@@ -93,8 +93,8 @@ const HelpBlock = styled.div`
 `;
 
 export {
-  HelpBlock,
   ExtraPadding,
+  HelpBlock,
   LogOutBlock,
   HelpText,
   NewBoardText,

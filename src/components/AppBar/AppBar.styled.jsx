@@ -23,18 +23,17 @@ export const Header = styled.header`
 `;
 
 export const MenuBtn = styled.button`
-width: 32px;
+  width: 32px;
   height: 32px;
   padding: 0;
   border: none;
   background-color: tomato;
   cursor: pointer;
 
- @media screen and (min-width: 1440px) {
-    width: 0;
-    height: 0;
+  @media screen and (min-width: 1440px) {
+    display: none;
   }
-`
+`;
 
 export const HeaderNav = styled.div`
   display: flex;

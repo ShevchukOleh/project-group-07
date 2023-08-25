@@ -13,17 +13,17 @@ import {
 export const AppBar = () => {
   return (
     <Header>
-      <MenuBtn type='button'>menu</MenuBtn>
+      <MenuBtn type="button">menu</MenuBtn>
 
       <HeaderNav>
-        <ChangeThemeBtn type='button'>
+        <ChangeThemeBtn type="button">
           <ThemeLabel>Theme</ThemeLabel>
           <ThemeIcon width="16px" height="16px">
             <use href="/src/images/symbol-defs.svg#icon-chevron"></use>
           </ThemeIcon>
         </ChangeThemeBtn>
 
-        <UserInfoBtn type='button'>
+        <UserInfoBtn type="button">
           <UserName>User</UserName>
           <UserAvatar>
             <img src="" alt="User name"></img>

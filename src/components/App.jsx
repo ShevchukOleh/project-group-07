@@ -1,4 +1,5 @@
 import Sidebar from './Sidebar/Sidebar';
+import WelcomePage from './WelcomePage/WelcomePage';
 
 export const App = () => {
   return (
@@ -12,7 +13,8 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <WelcomePage />
     </div>
   );
 };

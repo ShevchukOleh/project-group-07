@@ -8,7 +8,8 @@ export const Header = styled.header`
   width: 375px;
   height: 60px;
   padding: 14px 24px;
-  background-color: #161616;
+  background-color: #FCFCFC;
+;
 
   @media screen and (min-width: 768px) {
     width: 768px;
@@ -57,8 +58,9 @@ export const ChangeThemeBtn = styled.button`
 
 export const ThemeLabel = styled.p`
   margin: 0;
-  color: #fff;
+  color: #161616;
   font-size: 14px;
+  font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.02em;
 `;
@@ -66,7 +68,7 @@ export const ThemeLabel = styled.p`
 export const ThemeIcon = styled.svg`
   width: 16px;
   height: 16px;
-  fill: red;
+  fill: tomato;
 `;
 
 export const UserInfoBtn = styled.button`
@@ -92,8 +94,9 @@ export const UserAvatar = styled.div`
 
 export const UserName = styled.p`
   margin: 0;
-  color: #fff;
+  color: #161616;
   font-size: 14px;
+  font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.02em;
 `;

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.aside`
-  width: 0px;
-  height: 770px;
+  display: none;
   float: left;
   background-color: #e6e6b1;
 

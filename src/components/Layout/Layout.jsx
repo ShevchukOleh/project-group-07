@@ -4,11 +4,11 @@ import { AppBar } from 'components/AppBar';
 
 export const Layout = () => {
   return (
-    <div>
+    <>
       <AppBar />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 };

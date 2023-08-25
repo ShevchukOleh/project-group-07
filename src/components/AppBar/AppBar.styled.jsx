@@ -2,11 +2,39 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   box-sizing: border-box;
-  width: 1180px;
-  height: 68px;
-  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 320px;
+  width: 375px;
+  height: 60px;
+  padding: 14px 24px;
   background-color: #161616;
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    height: 68px;
+    padding: 18px 24px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: block;
+    width: 1180px;
+  }
 `;
+
+export const MenuBtn = styled.button`
+width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background-color: tomato;
+  cursor: pointer;
+
+ @media screen and (min-width: 1440px) {
+    width: 0;
+    height: 0;
+  }
+`
 
 export const HeaderNav = styled.div`
   display: flex;

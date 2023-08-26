@@ -1,109 +1,160 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Drawer } from '@mui/material';
 import { Typography } from '@mui/material';
-import { Input } from '@mui/material';
 
 const drawerWidth = 260;
 
-export const CustomDrawer = styled(Drawer)`
-  display: none;
+const CustomDrawer = styled(Drawer)`
   width: ${drawerWidth}px;
   flex-shrink: 0;
 
   & .MuiDrawer-paper {
     width: ${drawerWidth}px;
-    background-color: #121212;
-    padding: 24px;
+    background-color: #ffffff;
+  }
+  @media (max-width: 375px) {
+    width: 225px;
+    & .MuiDrawer-paper {
+      width: 225px;
+    }
   }
 `;
 
-export const ContainerAside = styled.aside`
-  display: none;
-  float: left;
-  background-color: #fff;
-
-  @media screen and (min-width: 1440px) {
-    display: block;
-    width: 260px;
-    height: 770px;
-  }
-`;
-
-export const SidebarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 770px;
-  padding: 24px;
+const SidebarContainer = styled.div`
+  height: 100%;
   justify-content: space-between;
 `;
 
-export const LogoContainer = styled.div`
+const LogoContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const LogoImage = styled.img`
+const Block = styled.div`
+  padding: 24px 24px 0;
+  @media (max-width: 375px) {
+    padding: 14px 14px 0;
+  }
+`;
+
+const LogoImage = styled.img`
   width: 32px;
   height: 32px;
   margin-right: 8px;
 `;
 
-export const LogoText = styled(Typography)`
+const LogoText = styled.p`
   margin-left: 8px;
+  color: black;
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+`;
+
+const InputContainer = styled.div`
+  margin-top: 60px;
+  margin-bottom: 8px;
+  font-size: 12px;
+`;
+
+const StyledInput = styled.h2`
+  font-size: 12px;
   color: #161616;
+  opacity: 50%;
 `;
 
-export const InputContainer = styled.div`
-  margin-top: 30px;
-  margin-bottom: 20px;
-`;
-
-export const StyledInput = styled(Input)`
-  border: none;
-  border-bottom: 1px solid #ccc;
-`;
-
-export const BlockContainerCreate = styled.div`
+const BlockContainerCreate = styled.div`
   display: flex;
   width: 212px;
-  background-color: #F6F6F7;
-  color: #161616;
+  background-color: #ffffff;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-top: 1px solid rgba(22, 22, 22, 0.1);
+  border-bottom: 1px solid rgba(22, 22, 22, 0.1);
   justify-content: space-between;
   align-items: center;
   margin-bottom: ${({ marginBottom }) => `${marginBottom}px`};
+  @media (max-width: 375px) {
+    width: 197px;
+  }
 `;
 
-export const BlockContainer = styled.div`
-  width: 212px;
+const BlockContainerBoard = styled.div`
+  overflow-y: auto;
+  max-height: 200px;
+`;
+
+const OneBoard = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  color: rgba(22, 22, 22, 0.5);
+  background-color: #ffffff;
+
+  &:hover {
+    background-color: #f6f6f7;
+    color: #121212;
+  }
+`;
+
+const BlockContainer = styled.div`
+  width: 172px;
   padding: 20px;
-  background-color: #F6F6F7;
+  background-color: #f6f6f7;
   color: #161616;
   border-radius: 8px;
   justify-content: space-between;
   margin-bottom: ${({ marginBottom }) => `${marginBottom}px`};
+
+  @media (max-width: 375px) {
+    width: 169px;
+    padding: 14px;
+  }
 `;
 
-export const NewBoardText = styled(Typography)`
-  display: block;
-  margin-bottom: 0px;
+const NewBoardText = styled.p`
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
 `;
 
-export const HelpText = styled(Typography)`
-  margin-bottom: 0px;
-`;
+const HelpText = styled(Typography)``;
 
-export const LogOutBlock = styled.div`
+const LogOutBlock = styled.div`
   display: flex;
   font-size: 16px;
   color: #161616;
+  font-weight: 600;
   align-items: center;
+  margin-top: 24px;
 `;
 
-export const ExtraPadding = styled.div`
-  padding-bottom: 50px;
-`;
-
-export const HelpBlock = styled.div`
+const HelpBlock = styled.div`
   display: flex;
   align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 18px;
 `;
+
+export {
+  HelpBlock,
+  LogOutBlock,
+  HelpText,
+  NewBoardText,
+  BlockContainer,
+  BlockContainerCreate,
+  StyledInput,
+  InputContainer,
+  LogoText,
+  LogoImage,
+  LogoContainer,
+  SidebarContainer,
+  CustomDrawer,
+  BlockContainerBoard,
+  Block,
+  OneBoard,
+};

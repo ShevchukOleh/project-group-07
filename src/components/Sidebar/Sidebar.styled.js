@@ -25,14 +25,14 @@ export const ContainerAside = styled.aside`
   @media screen and (min-width: 1440px) {
     display: block;
     width: 260px;
-    height: 770px;
+    height: 100vh;
   }
 `;
 
 export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 770px;
+  height: 100vh;
   padding: 24px;
   justify-content: space-between;
 `;
@@ -70,7 +70,7 @@ export const BlockContainerCreate = styled.div`
   color: #161616;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${({ marginBottom }) => `${marginBottom}px`};
+  /* margin-bottom: ${({ marginBottom }) => `${marginBottom}px`}; */
 `;
 
 export const BlockContainer = styled.div`

@@ -15,7 +15,7 @@ export const App = () => {
     >
       {/* <Sidebar /> */}
       <WelcomePage />
-      <Layout />
+      {/* <Layout /> */}
     </div>
   );
 }

@@ -5,7 +5,6 @@ import plant from '../../images/cup.png';
 import circle from '../../images/help-circle.png';
 import {
   HelpBlock,
-  ExtraPadding,
   LogOutBlock,
   HelpText,
   NewBoardText,
@@ -17,21 +16,23 @@ import {
   LogoImage,
   LogoContainer,
   SidebarContainer,
-  CustomDrawer,
+  ContainerAside,
 } from './Sidebar.styled';
 
-const Sidebar = () => {
+export const Sidebar = () => {
   return (
-    <CustomDrawer variant="permanent" anchor="left">
+    <ContainerAside>
       <SidebarContainer>
         <div>
           <LogoContainer>
             <LogoImage src={logo} alt="Logo" />
             <LogoText variant="h6">Task Pro</LogoText>
           </LogoContainer>
+
           <InputContainer>
             <StyledInput placeholder="My boards" fullWidth />
           </InputContainer>
+
           <BlockContainerCreate marginBottom={206}>
             <NewBoardText variant="body2">
               Create <br />a new board
@@ -49,6 +50,7 @@ const Sidebar = () => {
             </Button>
           </BlockContainerCreate>
         </div>
+
         <div>
           <BlockContainer marginBottom={24}>
             <img
@@ -56,6 +58,7 @@ const Sidebar = () => {
               alt="plant"
               style={{ width: '54px', height: '78px' }}
             />
+
             <HelpText variant="body2">
               If you need help with <a href="http://www.google.com">TaskPro</a>,
               check out our support resources or reach out to our customer
@@ -71,6 +74,7 @@ const Sidebar = () => {
               </HelpBlock>
             </HelpText>
           </BlockContainer>
+
           <LogOutBlock>
             <svg width={32} height={32} style={{ marginRight: '14px' }}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#logout`} />
@@ -79,9 +83,7 @@ const Sidebar = () => {
           </LogOutBlock>
         </div>
       </SidebarContainer>
-      <ExtraPadding />
-    </CustomDrawer>
+    </ContainerAside> 
+    
   );
 };
-
-export default Sidebar;

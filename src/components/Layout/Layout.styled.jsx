@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const Container = styled.div`
   min-width: 320px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid red;
 
   @media screen and (min-width: 320px) {
     max-width: 375px;

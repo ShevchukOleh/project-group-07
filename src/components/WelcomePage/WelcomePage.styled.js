@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const WelcomePageStyle = styled.div`
   padding: 211px 20px;

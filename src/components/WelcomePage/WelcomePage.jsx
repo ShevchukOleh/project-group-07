@@ -5,6 +5,7 @@ import StartIconLaptopx1 from '../../images/Image-wp-laptop@1x.jpg';
 import StartIconLaptopx2 from '../../images/Image-wp-laptop@2x.jpg';
 import StartIconMobile1 from '../../images/Image-wp-mobile@1x.jpg';
 import StartIconMobile2 from '../../images/Image-wp-mobile@2x.jpg';
+import { Link } from 'react-router-dom';
 
 export default function WelcomePage() {
   return (
@@ -39,13 +40,18 @@ export default function WelcomePage() {
         Supercharge your productivity and take control of your tasks with
         TaskPro - Don't wait, start achieving your goals now!
       </p>
-      <button onClick={() => console.log('rout registration')} className="btn">
-        Registration
-      </button>
+      <Link to="/registration">
+        <button
+          onClick={() => console.log('rout registration')}
+          className="btn"
+        >
+          Registration
+        </button>
+      </Link>
       {/* Link to login */}
-      <a className="linkLogin" href="http://">
+      <Link to="/login" className="linkLogin">
         Log In
-      </a>
+      </Link>
     </WelcomePageStyle>
   );
 }

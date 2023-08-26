@@ -8,7 +8,10 @@ import {
   UserInfoBtn,
   UserName,
   UserAvatar,
+  ThemeBtn,
 } from './AppBar.styled';
+import Button from '@mui/material/Button';
+import Icon from '../../images/symbol-defs.svg';
 
 export const AppBar = () => {
   return (
@@ -16,12 +19,11 @@ export const AppBar = () => {
       <MenuBtn type="button"></MenuBtn>
 
       <HeaderNav>
-        <ChangeThemeBtn type="button">
-          <ThemeLabel>Theme</ThemeLabel>
-          <ThemeIcon width="16px" height="16px">
-            <use href="/src/images/symbol-defs.svg#icon-chevron"></use>
+        <ThemeBtn>Theme
+          <ThemeIcon>
+            <use href={`${Icon}#icon-chevron-down`}></use>
           </ThemeIcon>
-        </ChangeThemeBtn>
+        </ThemeBtn>
 
         <UserInfoBtn type="button">
           <UserName>User</UserName>

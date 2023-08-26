@@ -42,9 +42,9 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
       <ErrorComponent />
     </div>
 
-    {/* <FormButtonLink to="/login"> */}
-    <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
-    {/* </FormButtonLink> */}
+    <FormButtonLink to="/login">
+      <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
+    </FormButtonLink>
   </TextForm>
 );
 

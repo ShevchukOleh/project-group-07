@@ -41,14 +41,8 @@ export default function WelcomePage() {
         TaskPro - Don't wait, start achieving your goals now!
       </p>
       <Link to="/registration">
-        <button
-          onClick={() => console.log('rout registration')}
-          className="btn"
-        >
-          Registration
-        </button>
+        <button className="btn">Registration</button>
       </Link>
-      {/* Link to login */}
       <Link to="/login" className="linkLogin">
         Log In
       </Link>

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Button from '@mui/material/Button';
 
 export const Header = styled.header`
   box-sizing: border-box;
@@ -8,9 +9,7 @@ export const Header = styled.header`
   width: 375px;
   height: 60px;
   padding: 14px 24px;
-  background-color: #FCFCFC;
-;
-
+  background-color: #fcfcfc;
   @media screen and (min-width: 768px) {
     width: 768px;
     height: 68px;
@@ -66,9 +65,9 @@ export const ThemeLabel = styled.span`
 `;
 
 export const ThemeIcon = styled.svg`
-  width: 16px;
-  height: 16px;
-  fill: tomato;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 `;
 
 export const UserInfoBtn = styled.button`
@@ -98,5 +97,14 @@ export const UserName = styled.span`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
+  letter-spacing: 0.02em;
+`;
+
+export const ThemeBtn = styled(Button)`
+  color: #161616;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: none;
   letter-spacing: 0.02em;
 `;

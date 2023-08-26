@@ -6,28 +6,18 @@ import {
   ContainerEntry,
 } from '../FormUi/FormUi.styled';
 import { useLocation } from 'react-router-dom';
-import RegistrationUI from './RegistrationTemplate';
+import RegistrationTemplate from './RegistrationTemplate';
 import { currentLink } from '../JS/currentColor';
+import { Formik } from 'formik';
+import { validationSchemaRestration } from '../JS/validationSchema';
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    name: '',
-  });
   const location = useLocation();
   const isCurrentRegistrationRoute = location.pathname === '/registration';
   const isCurrentLoginRoute = location.pathname === '/login';
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({ ...prevData, [name]: value }));
+  const handleSubmit = (values, formikBag) => {
+    console.log('submitted:', values);
   };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
   return (
     <ContainerEntry>
       <FormContainer>
@@ -49,12 +39,13 @@ const RegistrationForm = () => {
             Log In{' '}
           </LinkFormButtonNav>
         </LinkFormWrapper>
-
-        <RegistrationUI
-          handleSubmit={handleSubmit}
-          formData={formData}
-          handleInputChange={handleInputChange}
-        />
+        <Formik
+          initialValues={{ name: '', email: '', password: '' }}
+          validationSchema={validationSchemaRestration}
+          onSubmit={handleSubmit}
+        >
+          {formikProps => <RegistrationTemplate formikProps={formikProps} />}
+        </Formik>
       </FormContainer>
     </ContainerEntry>
   );

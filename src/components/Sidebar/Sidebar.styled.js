@@ -1,11 +1,12 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Drawer } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Input } from '@mui/material';
 
-const drawerWidth = 212;
+const drawerWidth = 260;
 
-const CustomDrawer = styled(Drawer)`
+export const CustomDrawer = styled(Drawer)`
+  display: none;
   width: ${drawerWidth}px;
   flex-shrink: 0;
 
@@ -16,95 +17,93 @@ const CustomDrawer = styled(Drawer)`
   }
 `;
 
-const SidebarContainer = styled.div`
+export const ContainerAside = styled.aside`
+  display: none;
+  float: left;
+  background-color: #fff;
+
+  @media screen and (min-width: 1440px) {
+    display: block;
+    width: 260px;
+    height: 770px;
+  }
+`;
+
+export const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 770px;
+  padding: 24px;
   justify-content: space-between;
 `;
 
-const LogoContainer = styled.div`
+export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const LogoImage = styled.img`
+export const LogoImage = styled.img`
   width: 32px;
   height: 32px;
   margin-right: 8px;
 `;
 
-const LogoText = styled(Typography)`
+export const LogoText = styled(Typography)`
   margin-left: 8px;
-  color: white;
+  color: #161616;
 `;
 
-const InputContainer = styled.div`
-  margin-top: 45px;
-  margin-bottom: 30px;
+export const InputContainer = styled.div`
+  margin-top: 30px;
+  margin-bottom: 20px;
 `;
 
-const StyledInput = styled(Input)`
+export const StyledInput = styled(Input)`
   border: none;
   border-bottom: 1px solid #ccc;
 `;
 
-const BlockContainerCreate = styled.div`
+export const BlockContainerCreate = styled.div`
   display: flex;
   width: 212px;
-  background-color: #151414;
-  color: white;
+  background-color: #F6F6F7;
+  color: #161616;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: ${({ marginBottom }) => `${marginBottom}px`};
 `;
 
-const BlockContainer = styled.div`
-  width: 172px;
+export const BlockContainer = styled.div`
+  width: 212px;
   padding: 20px;
-  background-color: #1f1f1f;
-  color: white;
+  background-color: #F6F6F7;
+  color: #161616;
   border-radius: 8px;
   justify-content: space-between;
   margin-bottom: ${({ marginBottom }) => `${marginBottom}px`};
 `;
 
-const NewBoardText = styled(Typography)`
-  margin-bottom: 14px;
+export const NewBoardText = styled(Typography)`
+  display: block;
+  margin-bottom: 0px;
 `;
 
-const HelpText = styled(Typography)`
-  margin-bottom: 18px;
+export const HelpText = styled(Typography)`
+  margin-bottom: 0px;
 `;
 
-const LogOutBlock = styled.div`
+export const LogOutBlock = styled.div`
   display: flex;
   font-size: 16px;
-  color: white;
+  color: #161616;
   align-items: center;
 `;
 
-const ExtraPadding = styled.div`
+export const ExtraPadding = styled.div`
   padding-bottom: 50px;
 `;
 
-const HelpBlock = styled.div`
+export const HelpBlock = styled.div`
   display: flex;
   align-items: center;
 `;
-
-export {
-  ExtraPadding,
-  HelpBlock,
-  LogOutBlock,
-  HelpText,
-  NewBoardText,
-  BlockContainer,
-  BlockContainerCreate,
-  StyledInput,
-  InputContainer,
-  LogoText,
-  LogoImage,
-  LogoContainer,
-  SidebarContainer,
-  CustomDrawer,
-};

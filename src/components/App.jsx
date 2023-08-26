@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import WelcomePage from './WelcomePage/WelcomePage';
 import RegistrationForm from './Forms/RegistrationForm/RegistrationForm';
 import LoginForm from './Forms/LoginForm/LoginForm';
+import '../styles/fonts.css'
+import 'modern-normalize/modern-normalize.css';
 
 export const App = () => {
   return (

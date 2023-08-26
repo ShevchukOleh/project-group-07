@@ -1,10 +1,10 @@
 import React from 'react';
 import { WelcomePageStyle } from './WelcomePage.styled';
 import Icon from '../../images/symbol-defs.svg';
-import StartIconLaptopx1 from '../../images/Image-wp-laptop@1x.jpg';
-import StartIconLaptopx2 from '../../images/Image-wp-laptop@2x.jpg';
-import StartIconMobile1 from '../../images/Image-wp-mobile@1x.jpg';
-import StartIconMobile2 from '../../images/Image-wp-mobile@2x.jpg';
+import StartIconLaptopx1 from '../../images/Image-wp-laptop@1x.png';
+import StartIconLaptopx2 from '../../images/Image-wp-laptop@2x.png';
+import StartIconMobile1 from '../../images/Image-wp-mobile@1x.png';
+import StartIconMobile2 from '../../images/Image-wp-mobile@2x.png';
 import { Link } from 'react-router-dom';
 
 export default function WelcomePage() {

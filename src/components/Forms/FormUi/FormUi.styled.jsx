@@ -61,6 +61,7 @@ const LinkFormButtonNav = styled(Link)`
   font-weight: 500;
   line-height: normal;
   transition: color 0.3s linear;
+  font-family: 'poppins';
 `;
 const TextFieldCustum = styled.input`
   height: 49px;
@@ -74,6 +75,8 @@ const TextFieldCustum = styled.input`
   font-size: 14px;
   color: #fff;
   box-sizing: border-box;
+  font-family: 'poppins';
+  font-weight: 400;
 `;
 const TextForm = styled.form`
   display: flex;
@@ -87,6 +90,8 @@ const TextFormSubmitButton = styled.button`
   background-color: #bedbb0;
   cursor: pointer;
   width: 100%;
+  font-family: 'poppins';
+  font-weight: 500;
   @media (min-width: 768px) {
     padding: 14px 99px;
   }

@@ -74,6 +74,8 @@ export const WelcomePageStyle = styled.div`
     margin-bottom: 24px;
   }
   & .logoName {
+    font-family: 'poppins';
+    font-weight: 600;
     font-size: 28px;
     font-weight: 600;
     line-height: normal;
@@ -87,6 +89,8 @@ export const WelcomePageStyle = styled.div`
     }
   }
   & .description {
+    font-family: 'poppins';
+    font-weight: 400;
     margin-bottom: 48px;
     max-width: 335px;
     @media screen and (min-width: 768px) {
@@ -99,6 +103,8 @@ export const WelcomePageStyle = styled.div`
     color: #161616;
   }
   & .btn {
+    font-family: 'poppins';
+    font-weight: 500;
     width: 100%;
     @media screen and (min-width: 768px) {
       width: 344px;
@@ -118,12 +124,13 @@ export const WelcomePageStyle = styled.div`
     background-color: #000000;
   }
   & .linkLogin {
+    font-family: 'poppins';
+    font-weight: 500;
     display: block;
     text-decoration: none;
     color: #000000;
     color: #161616;
     font-size: 14px;
-    font-weight: 500;
     letter-spacing: -0.28px;
   }
 `;

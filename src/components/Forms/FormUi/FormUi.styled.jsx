@@ -90,6 +90,7 @@ const TextFormSubmitButton = styled.button`
   background-color: #bedbb0;
   cursor: pointer;
   width: 100%;
+  margin-top: 14px;
   font-family: 'poppins';
   font-weight: 500;
   @media (min-width: 768px) {
@@ -105,7 +106,7 @@ const FormButtonLink = styled(Link)`
 `;
 const IconPassowordWrapper = styled.div`
   position: absolute;
-  top: 55%;
+  top: 49%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;

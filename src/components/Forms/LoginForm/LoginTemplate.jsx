@@ -1,49 +1,52 @@
+import React from 'react';
 import {
-  TextFieldCustum,
   TextForm,
+  TextFieldCustum,
   FormButtonLink,
   TextFormSubmitButton,
   IconPassowordWrapper,
-} from "../FormUi/FormUi.styled";
-import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
-
-const LoginUI = ({
-  handleSubmit,
-  formData,
-  handleInputChange,
-  showPassword,
-  handleShowPassword,
-}) => (
-  <TextForm onSubmit={handleSubmit}>
+} from '../FormUi/FormUi.styled';
+import { RiEyeLine, RiEyeCloseLine } from 'react-icons/ri';
+import ErrorComponent from '../FormUi/ErrorComponent/ErrorComponent';
+const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
+  <TextForm onSubmit={formikProps.handleSubmit}>
     <TextFieldCustum
-      type="email"
+      type="text"
       name="email"
-      value={formData.email}
-      onChange={handleInputChange}
+      value={formikProps.values.email}
+      onChange={formikProps.handleChange}
       placeholder="Enter your email"
       required
+      autoComplete="on"
     />
-    <div style={{ position: "relative", width: "100%" }}>
+    <ErrorComponent />
+    <div style={{ position: 'relative', width: '100%' }}>
       <TextFieldCustum
-        type={showPassword ? "text" : "password"}
+        type={showPassword ? 'text' : 'password'}
         name="password"
-        value={formData.password}
-        onChange={handleInputChange}
+        value={formikProps.values.password}
+        onChange={formikProps.handleChange}
         placeholder="Create a password"
         required
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,64}$"
+        autoComplete="on"
+        minLength={8}
+        maxLength={64}
       />
       <IconPassowordWrapper onClick={handleShowPassword}>
         {showPassword ? (
-          <RiEyeCloseLine style={{ color: "#fff", fontSize: "18px" }} />
+          <RiEyeCloseLine style={{ color: '#fff', fontSize: '18px' }} />
         ) : (
-          <RiEyeLine style={{ color: "#fff", fontSize: "18px" }} />
+          <RiEyeLine style={{ color: '#fff', fontSize: '18px' }} />
         )}
       </IconPassowordWrapper>
+      <ErrorComponent />
     </div>
-    <FormButtonLink to="/login">
-      <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
-    </FormButtonLink>
+
+    {/* <FormButtonLink to="/login"> */}
+    <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
+    {/* </FormButtonLink> */}
   </TextForm>
 );
 
-export default LoginUI;
+export default LoginTemplate;

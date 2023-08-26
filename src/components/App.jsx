@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar/Sidebar';
+// import Sidebar from './Sidebar/Sidebar';
 import WelcomePage from './WelcomePage/WelcomePage';
 
 export const App = () => {
@@ -15,7 +15,7 @@ export const App = () => {
     >
       {/* <Sidebar /> */}
       <WelcomePage />
-      <Layout/>
+      <Layout />
     </div>
   );
-};
+}

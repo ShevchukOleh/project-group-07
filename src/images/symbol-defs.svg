@@ -47,5 +47,8 @@
     <symbol id="icon-filter" viewBox="0 0 32 32">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M29.334 4H2.667l10.667 12.613v8.72L18.667 28V16.613L29.334 4z"/>
     </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 30 32">
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.8235" d="M7.529 12.235l7.529 7.529 7.529-7.529"></path>
+    </symbol>
   </defs>
 </svg>

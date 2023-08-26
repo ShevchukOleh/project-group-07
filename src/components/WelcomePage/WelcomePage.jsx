@@ -11,18 +11,16 @@ export default function WelcomePage() {
     <WelcomePageStyle style={{}}>
       <picture className="iconUser">
         <source
-          media="(min-width: 1200px)"
+          media="(min-width: 1440px)"
           srcSet={(`${StartIconLaptopx1} 1x`, `${StartIconLaptopx2} 2x`)}
         />
         <source
           media="(min-width: 768px)"
-          srcSet={`${StartIconLaptopx1} 1x,
-          ${StartIconLaptopx2} 2x`}
+          srcSet={(`${StartIconLaptopx1} 1x`, `${StartIconLaptopx2} 2x`)}
         />
         <source
           media="(max-width: 767px)"
-          srcSet={`${StartIconMobile1} 1x,
-          ${StartIconMobile2} 2x`}
+          srcSet={(`${StartIconMobile1} 1x`, `${StartIconMobile2} 2x`)}
         />
         <img
           src={(`${StartIconLaptopx1} 1x`, `${StartIconLaptopx2} 2x`)}

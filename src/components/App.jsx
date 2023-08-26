@@ -1,5 +1,8 @@
 // import Sidebar from './Sidebar/Sidebar';
+import { Route, Routes } from 'react-router-dom';
 import WelcomePage from './WelcomePage/WelcomePage';
+import RegistrationForm from './Forms/RegistrationForm/RegistrationForm';
+import LoginForm from './Forms/LoginForm/LoginForm';
 
 export const App = () => {
   return (
@@ -13,9 +16,14 @@ export const App = () => {
         color: '#010101',
       }}
     >
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="registration" element={<RegistrationForm />} />
+        <Route path="login" element={<LoginForm />} />
+      </Routes>
       {/* <Sidebar /> */}
-      <WelcomePage />
+
       {/* <Layout /> */}
     </div>
   );
-}
+};

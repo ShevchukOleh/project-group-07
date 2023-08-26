@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Drawer } from '@mui/material';
 import { Typography } from '@mui/material';
-// import { Input } from '@mui/material';
 
 const drawerWidth = 260;
 
@@ -14,16 +13,14 @@ const CustomDrawer = styled(Drawer)`
     background-color: #ffffff;
   }
   @media (max-width: 375px) {
-    width: 197px;
+    width: 225px;
     & .MuiDrawer-paper {
-      width: 197px;
+      width: 225px;
     }
   }
 `;
 
 const SidebarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   height: 100%;
   justify-content: space-between;
 `;
@@ -31,15 +28,12 @@ const SidebarContainer = styled.div`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-
-  @media (max-width: 375px) {
-  }
 `;
 
 const Block = styled.div`
-  padding: 24px;
+  padding: 24px 24px 0;
   @media (max-width: 375px) {
-    padding: 14px;
+    padding: 14px 14px 0;
   }
 `;
 
@@ -61,9 +55,6 @@ const InputContainer = styled.div`
   margin-top: 60px;
   margin-bottom: 8px;
   font-size: 12px;
-
-  @media (max-width: 375px) {
-  }
 `;
 
 const StyledInput = styled.h2`
@@ -89,20 +80,22 @@ const BlockContainerCreate = styled.div`
 `;
 
 const BlockContainerBoard = styled.div`
-  height: 200px;
   overflow-y: auto;
+  max-height: 200px;
 `;
 
 const OneBoard = styled.div`
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   padding: 22px;
   display: flex;
   align-items: center;
-
+  color: rgba(22, 22, 22, 0.5);
   background-color: #ffffff;
 
   &:hover {
     background-color: #f6f6f7;
+    color: #121212;
   }
 `;
 
@@ -126,7 +119,6 @@ const NewBoardText = styled.p`
   font-size: 14px;
   font-weight: 600;
   margin: 0;
-  margin-bottom: 18px;
 `;
 
 const HelpText = styled(Typography)``;

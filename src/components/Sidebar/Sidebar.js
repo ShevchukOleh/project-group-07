@@ -2,10 +2,9 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
-import circle from '../../images/help-circle.png';
-
+// import circle from '../../images/help-circle.png';
+import { BordInSidebar } from './BordInSidebar';
 import {
-  OneBoard,
   Block,
   HelpBlock,
   LogOutBlock,
@@ -23,29 +22,6 @@ import {
   BlockContainerBoard,
 } from './Sidebar.styled';
 
-const testBoards = [
-  {
-    name: 'Project office',
-    status: 'black',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-  {
-    name: 'My test',
-    status: 'red',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-  {
-    name: 'My test',
-    status: 'red',
-  },
-];
-
 const Sidebar = () => {
   const isBoard = true;
 
@@ -60,7 +36,7 @@ const Sidebar = () => {
           <InputContainer>
             <StyledInput> My board</StyledInput>
           </InputContainer>
-          <BlockContainerCreate marginBottom={24}>
+          <BlockContainerCreate marginBottom={40}>
             <NewBoardText>
               Create <br />a new board
             </NewBoardText>
@@ -79,20 +55,7 @@ const Sidebar = () => {
         </Block>
         {isBoard ? (
           <BlockContainerBoard>
-            {testBoards.map(({ name, status }) => {
-              return (
-                <OneBoard>
-                  <div style={{ marginRight: '16px' }}>Icon</div>
-                  <div style={{ flex: 1, color: `${status}` }}>{name}</div>
-                  <div style={{ marginRight: '8px' }}>
-                    <>Icon</>
-                  </div>
-                  <div>
-                    <>Icon</>
-                  </div>
-                </OneBoard>
-              );
-            })}
+            <BordInSidebar />
           </BlockContainerBoard>
         ) : (
           <></>
@@ -116,13 +79,22 @@ const Sidebar = () => {
               support team.
             </HelpText>
             <HelpBlock>
-              <img
-                src={circle}
-                alt="help"
-                style={{ width: '20px', height: '20px', marginRight: '8px' }}
-              />
-
-              <p style={{ margin: '0' }}> Need help?</p>
+              <button
+                style={{
+                  border: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  background: 'inherit',
+                  padding: '0',
+                }}
+              >
+                <svg width={20} height={20} style={{ marginRight: '8px' }}>
+                  <use
+                    xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-help-circle`}
+                  />
+                </svg>
+                <p style={{ margin: '0' }}> Need help?</p>
+              </button>
             </HelpBlock>
           </BlockContainer>
           <LogOutBlock>

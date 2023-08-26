@@ -13,7 +13,7 @@ import {
 export const AppBar = () => {
   return (
     <Header>
-      <MenuBtn type="button">menu</MenuBtn>
+      <MenuBtn type="button"></MenuBtn>
 
       <HeaderNav>
         <ChangeThemeBtn type="button">

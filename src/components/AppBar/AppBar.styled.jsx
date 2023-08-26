@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const Header = styled.header`
   box-sizing: border-box;
@@ -56,7 +56,7 @@ export const ChangeThemeBtn = styled.button`
   cursor: pointer;
 `;
 
-export const ThemeLabel = styled.p`
+export const ThemeLabel = styled.span`
   margin: 0;
   color: #161616;
   font-size: 14px;
@@ -92,7 +92,7 @@ export const UserAvatar = styled.div`
   background-color: tomato;
 `;
 
-export const UserName = styled.p`
+export const UserName = styled.span`
   margin: 0;
   color: #161616;
   font-size: 14px;

@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { SideBar } from 'components/SideBar';
+import { Sidebar }  from '../Sidebar';
 import { AppBar } from 'components/AppBar';
 import { Container } from './Layout.styled';
 
 export const Layout = () => {
   return (
     <Container>
-      <SideBar />
+      <Sidebar />
       <AppBar />
       <Suspense fallback={null}>
         <Outlet />

@@ -4,7 +4,7 @@ import { Sidebar }  from '../Sidebar/Sidebar';
 import { AppBar } from 'components/AppBar';
 import { Container } from './Layout.styled';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <Container>
       <Sidebar />
@@ -15,3 +15,5 @@ export const Layout = () => {
     </Container>
   );
 };
+
+export default Layout;

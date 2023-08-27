@@ -19,7 +19,7 @@ import {
   ContainerAside,
 } from './Sidebar.styled';
 
-export const Sidebar = () => {
+export const Sidebar = ({ setIsShowModal }) => {
   return (
     <ContainerAside>
       <SidebarContainer>
@@ -38,6 +38,7 @@ export const Sidebar = () => {
               Create <br />a new board
             </NewBoardText>
             <Button
+              onClick={() => setIsShowModal(true)}
               color="primary"
               sx={{
                 minWidth: '40px',
@@ -83,7 +84,6 @@ export const Sidebar = () => {
           </LogOutBlock>
         </div>
       </SidebarContainer>
-    </ContainerAside> 
-    
+    </ContainerAside>
   );
 };

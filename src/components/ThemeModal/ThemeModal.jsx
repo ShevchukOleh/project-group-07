@@ -47,32 +47,64 @@ export const ThemeModal = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        sx={{
+          '& .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper': {
+            borderRadius: '8px',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: 'rgba(190,219,176,1)',
+            boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.1)',
+          },
+          '& ul': {
+            padding: 0,
+          },
+        }}
       >
-        <FormControl>
+        <FormControl
+          sx={{
+            width: 100,
+            height: 107,
+            justifyContent: 'center',
+          }}
+        >
           <FormLabel id="radio-buttons-group-label"></FormLabel>
           <RadioGroup
             aria-labelledby="radio-buttons-group-label"
             name="radio-buttons-group"
             value={themeValue}
             onChange={handleChange}
+            sx={{
+              display: 'flex',
+              gap: '4px',
+              justifyContent: 'normal',
+              alignContent: 'center',
+            }}
           >
             <FormControlLabel
               value="light"
-              control={<Radio />}
+              control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
               label="Light"
               labelPlacement="start"
+              sx={{
+                marginLeft: 0,
+                justifyContent: 'flex-end',
+                maxWidth: 100,
+                fontFamily: 'Poppins',
+              }}
             />
             <FormControlLabel
               value="dark"
-              control={<Radio />}
+              control={<Radio sx={{ padding: 0 }} />}
               label="Dark"
               labelPlacement="start"
+              sx={{ marginLeft: 0, justifyContent: 'flex-end', maxWidth: 100 }}
             />
             <FormControlLabel
               value="violet"
-              control={<Radio />}
+              control={<Radio sx={{ padding: 0 }} />}
               label="Violet"
               labelPlacement="start"
+              sx={{ marginLeft: 0, justifyContent: 'flex-end', maxWidth: 100 }}
             />
           </RadioGroup>
         </FormControl>

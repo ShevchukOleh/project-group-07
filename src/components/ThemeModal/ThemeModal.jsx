@@ -14,7 +14,7 @@ export const ThemeModal = () => {
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
+  console.log(themeValue);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -58,8 +58,12 @@ export const ThemeModal = () => {
           },
           '& ul': {
             padding: 0,
-            },
-          '& .css-ahj2mt-MuiTypography-root': {fontFamily: 'Poppins', fontSize: '14px'},
+          },
+          '& .css-ahj2mt-MuiTypography-root': {
+            fontFamily: 'Poppins',
+            fontSize: '14px',
+            color: '#161616',
+          },
         }}
       >
         <FormControl
@@ -95,7 +99,7 @@ export const ThemeModal = () => {
             />
             <FormControlLabel
               value="dark"
-              control={<Radio sx={{ padding: 0 }} />}
+              control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
               label="Dark"
               labelPlacement="start"
               sx={{
@@ -106,7 +110,7 @@ export const ThemeModal = () => {
             />
             <FormControlLabel
               value="violet"
-              control={<Radio sx={{ padding: 0 }} />}
+              control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
               label="Violet"
               labelPlacement="start"
               sx={{

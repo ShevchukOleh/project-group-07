@@ -54,10 +54,12 @@ export const ThemeModal = () => {
             borderStyle: 'solid',
             borderColor: 'rgba(190,219,176,1)',
             boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.1)',
+            backgroundColor: '#FCFCFC',
           },
           '& ul': {
             padding: 0,
-          },
+            },
+          '& .css-ahj2mt-MuiTypography-root': {fontFamily: 'Poppins', fontSize: '14px'},
         }}
       >
         <FormControl
@@ -89,7 +91,6 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
-                fontFamily: 'Poppins',
               }}
             />
             <FormControlLabel
@@ -97,14 +98,22 @@ export const ThemeModal = () => {
               control={<Radio sx={{ padding: 0 }} />}
               label="Dark"
               labelPlacement="start"
-              sx={{ marginLeft: 0, justifyContent: 'flex-end', maxWidth: 100 }}
+              sx={{
+                marginLeft: 0,
+                justifyContent: 'flex-end',
+                maxWidth: 100,
+              }}
             />
             <FormControlLabel
               value="violet"
               control={<Radio sx={{ padding: 0 }} />}
               label="Violet"
               labelPlacement="start"
-              sx={{ marginLeft: 0, justifyContent: 'flex-end', maxWidth: 100 }}
+              sx={{
+                marginLeft: 0,
+                justifyContent: 'flex-end',
+                maxWidth: 100,
+              }}
             />
           </RadioGroup>
         </FormControl>

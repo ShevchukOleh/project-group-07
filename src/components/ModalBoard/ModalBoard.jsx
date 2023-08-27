@@ -83,6 +83,7 @@ export default function FormDialog() {
         </MenuItem>
           {/* </MenuList> */}
           </ContainerStyled>
+          <DialogTitle sx={2}>Background</DialogTitle>
           </DialogContent>
         <DialogActionsStyled>
           <ButtonStyled margin="dense" variant="contained" onClick={handleClose}>Create</ButtonStyled>

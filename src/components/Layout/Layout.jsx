@@ -5,6 +5,8 @@ import { AppBar } from 'components/AppBar';
 import { Container } from './Layout.styled';
 import BackDrop from 'components/BackDrop/BackDrop';
 import { useState } from 'react';
+import FormDialog from 'components/ModalBoard/ModalBoard';
+
 
 export const Layout = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -19,6 +21,7 @@ export const Layout = () => {
         <Outlet />
       </Suspense>
       {isShowModal && <BackDrop hideModal={hideModal}></BackDrop>};
+      <FormDialog></FormDialog>
     </Container>
   );
 };

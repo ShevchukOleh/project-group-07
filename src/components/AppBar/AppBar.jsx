@@ -12,7 +12,6 @@ import {
 import Icon from '../../images/symbol-defs.svg';
 import {
   Menu,
-  MenuItem,
   Radio,
   RadioGroup,
   FormControl,
@@ -21,6 +20,7 @@ import {
 } from '@mui/material';
 
 export const AppBar = () => {
+  const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = event => {
@@ -29,7 +29,10 @@ export const AppBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleChange = event => {
+    setThemeValue(event.currentTarget.value);
+  }
+  
   return (
     <Header>
       <MenuBtn>
@@ -60,8 +63,9 @@ export const AppBar = () => {
             <FormLabel id="radio-buttons-group-label"></FormLabel>
             <RadioGroup
               aria-labelledby="radio-buttons-group-label"
-              defaultValue="light"
               name="radio-buttons-group"
+              value={themeValue}
+              onChange={handleChange}
             >
               <FormControlLabel
                 value="light"

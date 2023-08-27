@@ -22,7 +22,7 @@ export const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      {isShowModal && <BackDrop hideModal={hideModal}></BackDrop>};
+      {isShowModal && <BackDrop hideModal={hideModal}></BackDrop>}
     </Container>
   );
 };

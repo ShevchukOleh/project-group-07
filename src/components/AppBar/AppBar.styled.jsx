@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 export const Header = styled.header`
@@ -47,23 +47,6 @@ export const HeaderNav = styled.div`
   gap: 10px;
   align-items: center;
   justify-content: end;
-`;
-
-export const ThemeBtn = styled(Button)`
-  gap: 4px;
-  color: #161616;
-  font-family: Poppins;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.5;
-  text-transform: none;
-  letter-spacing: 0.02em;
-`;
-
-export const ThemeIcon = styled.svg`
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
 `;
 
 export const UserInfoBtn = styled(Button)`

@@ -23,15 +23,18 @@ export const AppBar = () => {
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleChange = event => {
     setThemeValue(event.currentTarget.value);
-  }
+  };
   
   return (
     <Header>

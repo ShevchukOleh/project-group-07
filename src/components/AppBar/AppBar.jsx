@@ -1,34 +1,87 @@
+import { useState } from 'react';
 import {
   Header,
   MenuBtn,
+  MenuIconNav,
   HeaderNav,
-  ChangeThemeBtn,
-  ThemeLabel,
+  ThemeBtn,
   ThemeIcon,
   UserInfoBtn,
-  UserName,
   UserAvatar,
-  ThemeBtn,
 } from './AppBar.styled';
-import Button from '@mui/material/Button';
 import Icon from '../../images/symbol-defs.svg';
+import {
+  Menu,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+} from '@mui/material';
 
 export const AppBar = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Header>
-      <MenuBtn type="button"></MenuBtn>
+      <MenuBtn>
+        <MenuIconNav />
+      </MenuBtn>
 
       <HeaderNav>
-        <ThemeBtn>Theme
+        <ThemeBtn
+          id="theme-button"
+          aria-controls={open ? 'theme-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+        >
+          Theme
           <ThemeIcon>
             <use href={`${Icon}#icon-chevron-down`}></use>
           </ThemeIcon>
         </ThemeBtn>
 
-        <UserInfoBtn type="button">
-          <UserName>User</UserName>
+        <Menu
+          id="theme-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+        >
+          <FormControl>
+            <FormLabel id="radio-buttons-group-label"></FormLabel>
+            <RadioGroup
+              aria-labelledby="radio-buttons-group-label"
+              defaultValue="light"
+              name="radio-buttons-group"
+            >
+              <FormControlLabel
+                value="light"
+                control={<Radio />}
+                label="Light"
+              />
+              <FormControlLabel value="dark" control={<Radio />} label="Dark" />
+              <FormControlLabel
+                value="violet"
+                control={<Radio />}
+                label="Violet"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Menu>
+
+        <UserInfoBtn>
+          User
           <UserAvatar>
-            <img src="" alt="User name"></img>
+            <img src="" alt="User name" />
           </UserAvatar>
         </UserInfoBtn>
       </HeaderNav>

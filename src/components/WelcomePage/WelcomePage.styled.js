@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 
 export const WelcomePageStyle = styled.div`
+  margin-left: auto;
+  margin-right: auto;
   padding: 211px 20px;
   max-width: 100%;
   background-color: #b6d9af;
   background-image: linear-gradient(0deg, #b6d9af 0%, #ffffff 100%);
+  text-align: center;
   @media screen and (min-width: 375px) {
     max-width: 375px;
   }
@@ -16,15 +19,8 @@ export const WelcomePageStyle = styled.div`
     max-width: 1440px;
     padding: 166px 483px;
   }
-  text-align: center;
 
-  & h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
+  & p {
     padding: 0;
     margin: 0;
   }
@@ -118,6 +114,8 @@ export const WelcomePageStyle = styled.div`
     color: #ffffff;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
+
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   & .btn:hover {

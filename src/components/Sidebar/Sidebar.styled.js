@@ -19,7 +19,7 @@ import styled from '@emotion/styled';
 // `;
 
 const ContainerAside = styled.aside`
-  /* display: none; */
+  display: none;
   float: left;
   background-color: #fff;
 

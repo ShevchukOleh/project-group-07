@@ -17,7 +17,7 @@ export const Layout = () => {
       <Sidebar setIsShowModal={setIsShowModal} />
       <div>
         <AppBar />
-        <Board />
+        <Board setIsShowModal={setIsShowModal} />
       </div>
       <Suspense fallback={null}>
         <Outlet />

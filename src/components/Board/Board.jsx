@@ -2,7 +2,7 @@ import React from 'react';
 import { BoardStyle } from './Board.styled';
 import { RiFilter2Line, RiAddLine } from 'react-icons/ri';
 
-export default function Board() {
+export default function Board({ setIsShowModal }) {
   return (
     <BoardStyle>
       <div className="containerTitle">
@@ -12,7 +12,7 @@ export default function Board() {
           <p className="filters">Filters</p>
         </div>
       </div>
-      <button className="btnAddColumn">
+      <button className="btnAddColumn" onClick={() => setIsShowModal(true)}>
         <div className="containerLogoName">
           <div className="containerIconBtn">
             <RiAddLine className="iconBtn" />

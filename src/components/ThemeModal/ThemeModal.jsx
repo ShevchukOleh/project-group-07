@@ -118,7 +118,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
-                '& .MuiTypography-root': { color: `${themeBtnColor(firstThemeStatus)}` },
+                '& .MuiTypography-root': { color: themeBtnColor(firstThemeStatus) },
               }}
             />
             <FormControlLabel
@@ -130,7 +130,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
-                '& .MuiTypography-root': { color: `${themeBtnColor(secondThemeStatus)}` },
+                '& .MuiTypography-root': { color: themeBtnColor(secondThemeStatus) },
               }}
             />
             <FormControlLabel
@@ -142,7 +142,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
-                '& .MuiTypography-root': { color: `${themeBtnColor(thirdThemeStatus)}` },
+                '& .MuiTypography-root': { color: themeBtnColor(thirdThemeStatus) },
               }}
             />
           </RadioGroup>

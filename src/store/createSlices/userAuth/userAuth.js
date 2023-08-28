@@ -3,6 +3,7 @@ import {
   loginUser,
   registerUser,
   logoutUser,
+  fetchCurrentUser,
 } from 'store/AsyncThunk/asyncThunkUsersAuth';
 
 const userSlice = createSlice({
@@ -13,6 +14,7 @@ const userSlice = createSlice({
     user: null,
     token: null,
     error: null,
+    currentUser: null,
   },
   reducers: {},
   extraReducers: builder => {
@@ -21,10 +23,12 @@ const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        const { token, user } = action.payload;
         state.loading = false;
         state.isLoggedIn = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        console.log(action.payload);
+        state.user = user.email;
+        state.token = token;
         state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -37,8 +41,8 @@ const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
+        console.log(action.payload);
         state.user = action.payload.user;
-        state.token = action.payload.token; // Зберігаємо токен
         state.error = null;
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -52,12 +56,16 @@ const userSlice = createSlice({
         state.loading = false;
         state.isLoggedIn = false;
         state.user = null;
-        state.token = null; // Очищаємо токен під час виходу
+        state.token = null;
         state.error = null;
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+        state.error = null;
       });
   },
 });

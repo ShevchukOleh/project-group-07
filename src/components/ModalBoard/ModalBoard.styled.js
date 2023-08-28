@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import MenuList from '@mui/material/MenuList';
+import RadioGroup from '@mui/material/RadioGroup'
 import DialogActions from '@mui/material/DialogActions';
 
 
@@ -12,7 +13,7 @@ export const ButtonStyled = styled(Button)`
        justify-content: center;
   `
 
-  export const ContainerStyled = styled(MenuList)`
+  export const ContainerStyled = styled(RadioGroup)`
   display: flex;
   padding: 5;
   background-color: background.paper;
@@ -29,6 +30,6 @@ export const ButtonStyled = styled(Button)`
 `
 
 export const Icon = styled.img`
-width: 18;
-height: 18;
+width: 18px;
+height: 18px;
 `

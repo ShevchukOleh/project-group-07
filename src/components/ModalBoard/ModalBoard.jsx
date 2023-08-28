@@ -7,11 +7,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-// import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
 import {ContainerStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
 import { createTheme } from '@mui/material/styles';
 import Colors from '../../images/icons/colors.svg';
@@ -22,6 +17,9 @@ import Loading from '../../images/icons/loading-03.svg';
 import Project from '../../images/icons/Project.svg';
 import Puzzle from '../../images/icons/puzzle-piece-02.svg';
 import Star from '../../images/icons/star-04.svg';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 
 
@@ -38,6 +36,7 @@ import Star from '../../images/icons/star-04.svg';
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState('');
   // const [title, setTitle] = React.useState('');
 
   const handleClickOpen = () => {
@@ -48,6 +47,10 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  const handleChange = (value) => {
+    setValue(value);
+    console.log(value)
+  }
 
 
   return (
@@ -67,52 +70,25 @@ export default function FormDialog() {
             fullWidth
             // variant="standard"
           />
-        <DialogTitle sx={2}>Icons</DialogTitle>
-          {/* <MenuList sx={style}> */}
-        <ContainerStyled>
-        <MenuItem>
-          <ListItemIcon>
-            <Icon src={Project} alt='Colors' />
-          </ListItemIcon>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Icon src={Star} alt='Container' />
-          </ListItemIcon>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Icon src={Loading} alt='colors' />
-          </ListItemIcon>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Icon src={Puzzle} alt='colors' />
-          </ListItemIcon>
-            </MenuItem>
-            <MenuItem>
-          <ListItemIcon>
-            <Icon src={Container} alt='colors' />
-          </ListItemIcon>
-            </MenuItem>
-            <MenuItem>
-          <ListItemIcon>
-            <Icon src={Lightning} alt='colors' />
-          </ListItemIcon>
-            </MenuItem>
-            <MenuItem>
-          <ListItemIcon>
-            <Icon src={Colors} alt='colors' />
-          </ListItemIcon>
-            </MenuItem>
-            <MenuItem>
-          <ListItemIcon>
-            <Icon src={Hexagon} alt='colors' />
-          </ListItemIcon>
-        </MenuItem>
-          {/* </MenuList> */}
-          </ContainerStyled>
+          <FormControl>
+          <FormLabel id="icons-group">Icons</FormLabel>
+          <ContainerStyled
+              aria-labelledby="icons-group"
+              defaultValue='Project'
+              name="icons-group"
+              value={value}
+              onChange={handleChange}>
+              
+              <FormControlLabel value="Project" control={<Icon src={Project} alt='Project' />} /> 
+              <FormControlLabel value="Star" control={<Icon src={Star} alt='Star' />} /> 
+              <FormControlLabel value="Loading" control={<Icon src={Loading} alt='Loading' />} /> 
+              <FormControlLabel value="Puzzle" control={<Icon src={Puzzle} alt='Puzzle' />} /> 
+              <FormControlLabel value="Container" control={<Icon src={Container} alt='Container' />} /> 
+              <FormControlLabel value="Lightning" control={<Icon src={Lightning} alt='Lightning' />} /> 
+              <FormControlLabel value="Colors" control={<Icon src={Colors} alt='Colors' />} /> 
+              <FormControlLabel value="Hexagon" control={<Icon src={Hexagon} alt='Hexagon' />} /> 
+            </ContainerStyled>
+          </FormControl>
           <DialogTitle sx={2}>Background</DialogTitle>
           </DialogContent>
         <DialogActionsStyled>

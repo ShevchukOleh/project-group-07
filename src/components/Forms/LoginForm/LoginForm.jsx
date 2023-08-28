@@ -10,8 +10,11 @@ import { Formik } from 'formik';
 import LoginTemplate from './LoginTemplate';
 import { currentLink } from '../JS/currentColor';
 import { validationSchemaLogin } from '../JS/validationSchema';
+import { useDispatch } from 'react-redux';
+import { loginUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 const LoginForm = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const isCurrentRegistrationRoute = location.pathname === '/registration';
   const isCurrentLoginRoute = location.pathname === '/login';
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +25,7 @@ const LoginForm = () => {
 
   const handleSubmit = (values, formikBag) => {
     console.log('submitted:', values);
+    dispatch(loginUser(values));
   };
 
   return (

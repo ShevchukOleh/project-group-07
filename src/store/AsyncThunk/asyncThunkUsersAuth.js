@@ -1,15 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const BASE_URL = 'https://taskpro-backend-zulp.onrender.com/api/users/';
 
 const loginUser = createAsyncThunk('user/loginUser', async credentials => {
   try {
-    const response = await fetch('URL_API/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    });
-    const data = await response.json();
+    const response = await axios.post(`${BASE_URL}signin`, credentials);
+    const { data } = response; // Деструктуризация объекта response.data
     return data;
   } catch (error) {
     throw new Error('Failed to login');
@@ -18,30 +15,45 @@ const loginUser = createAsyncThunk('user/loginUser', async credentials => {
 
 const registerUser = createAsyncThunk('user/registerUser', async userData => {
   try {
-    const response = await fetch('URL_API/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
-    const data = await response.json();
+    const response = await axios.post(`${BASE_URL}register`, userData);
+    const { data } = response;
     return data;
   } catch (error) {
     throw new Error('Failed to register');
   }
 });
 
-const logoutUser = createAsyncThunk('user/logoutUser', async () => {
+const logoutUser = createAsyncThunk('user/logoutUser', async (_, thunkAPI) => {
   try {
-    const response = await fetch('URL_API/logout', {
-      method: 'POST',
+    const token = thunkAPI.getState().user.token; //from component
+    const response = await axios.post(`${BASE_URL}signout`, null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
-    const data = await response.json();
+    const { data } = response;
     return data;
   } catch (error) {
     throw new Error('Failed to logout');
   }
 });
 
-export { loginUser, registerUser, logoutUser };
+const fetchCurrentUser = createAsyncThunk(
+  'user/fetchCurrentUser',
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+      const response = await axios.get(`${BASE_URL}current`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed to fetch current user');
+    }
+  }
+);
+
+export { loginUser, registerUser, logoutUser, fetchCurrentUser };

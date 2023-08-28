@@ -1,3 +1,4 @@
+// import React, { useEffect } from 'react';
 import React from 'react';
 import {
   FormContainer,
@@ -10,14 +11,20 @@ import RegistrationTemplate from './RegistrationTemplate';
 import { currentLink } from '../JS/currentColor';
 import { Formik } from 'formik';
 import { validationSchemaRestration } from '../JS/validationSchema';
+import { registerUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
+import { useDispatch } from 'react-redux';
+
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const isCurrentRegistrationRoute = location.pathname === '/registration';
   const isCurrentLoginRoute = location.pathname === '/login';
 
   const handleSubmit = (values, formikBag) => {
+    dispatch(registerUser(values));
     console.log('submitted:', values);
   };
+
   return (
     <ContainerEntry>
       <FormContainer>

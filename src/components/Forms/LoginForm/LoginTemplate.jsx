@@ -4,7 +4,7 @@ import {
   TextFieldCustum,
   TextFormSubmitButton,
   IconPassowordWrapper,
-  FormButtonLink,
+  // FormButtonLink,
 } from '../FormUi/FormUi.styled';
 import { RiEyeLine, RiEyeCloseLine } from 'react-icons/ri';
 import ErrorComponent from '../FormUi/ErrorComponent/ErrorComponent';
@@ -43,9 +43,9 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
       <ErrorComponent />
     </div>
 
-    <FormButtonLink to="/login">
-      <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
-    </FormButtonLink>
+    {/* <FormButtonLink to="/login"> */}
+    <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
+    {/* </FormButtonLink> */}
   </TextForm>
 );
 

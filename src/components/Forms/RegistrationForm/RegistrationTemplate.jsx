@@ -2,7 +2,7 @@ import React from 'react';
 import {
   TextForm,
   TextFieldCustum,
-  FormButtonLink,
+  // FormButtonLink,
   TextFormSubmitButton,
 } from '../FormUi/FormUi.styled';
 import ErrorComponent from '../FormUi/ErrorComponent/ErrorComponent';
@@ -46,9 +46,9 @@ const RegistrationTemplate = ({ formikProps }) => (
     />
     <ErrorComponent />
 
-    <FormButtonLink to="/login">
-      <TextFormSubmitButton type="submit">Register Now</TextFormSubmitButton>
-    </FormButtonLink>
+    {/* <FormButtonLink to="/login"> */}
+    <TextFormSubmitButton type="submit">Register Now</TextFormSubmitButton>
+    {/* </FormButtonLink> */}
   </TextForm>
 );
 

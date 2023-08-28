@@ -45,10 +45,7 @@ const RegistrationTemplate = ({ formikProps }) => (
       maxLength={64}
     />
     <ErrorComponent />
-
-    {/* <FormButtonLink to="/login"> */}
     <TextFormSubmitButton type="submit">Register Now</TextFormSubmitButton>
-    {/* </FormButtonLink> */}
   </TextForm>
 );
 

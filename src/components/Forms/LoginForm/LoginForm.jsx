@@ -10,29 +10,30 @@ import LoginTemplate from './LoginTemplate';
 import { validationSchemaLogin } from '../JS/validationSchema';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
+import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
   const handleShowPassword = () => {
     setShowPassword(prevShow => !prevShow);
   };
 
-  const handleSubmit = (values, formikBag) => {
+  const handleSubmit = async (values, formikBag) => {
     console.log('submitted:', values);
-    dispatch(loginUser(values));
+    await dispatch(loginUser(values));
+    navigate('/dashboard');
   };
 
   return (
     <ContainerEntry>
       <FormContainer>
         <LinkFormWrapper>
-          <LinkFormButtonNav activeClassName="active" to="/registration">
+          <LinkFormButtonNav activeclassname="active" to="/registration">
             Registration
           </LinkFormButtonNav>
           <LinkFormButtonNav to="/login">Log In </LinkFormButtonNav>
         </LinkFormWrapper>
-
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchemaLogin}

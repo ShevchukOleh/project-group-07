@@ -10,6 +10,7 @@ import {
 import { FiltersBtn, FilterIcon } from './FiltersModal.styled';
 
 export const FiltersModal = () => {
+  const [filterValue, setFilterValue] = useState('');
   const [filtersEl, setFiltersEl] = useState(null);
   const open = Boolean(filtersEl);
 
@@ -19,6 +20,11 @@ export const FiltersModal = () => {
 
   const handleClose = () => {
     setFiltersEl(null);
+  };
+
+  const handleChange = event => {
+    setFilterValue(event.currentTarget.value);
+    console.log(event.currentTarget.value);
   };
 
   return (
@@ -39,7 +45,13 @@ export const FiltersModal = () => {
         anchorEl={filtersEl}
         open={open}
         onClose={handleClose}
+        sx={{
+          '& .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper': {
+            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
+          },
+        }}
       >
+        Filters
         <FormControl
           sx={{
             width: 300,
@@ -47,11 +59,14 @@ export const FiltersModal = () => {
             justifyContent: 'center',
           }}
         >
-          <FormLabel id="filters-radio-buttons-group-label">Filters</FormLabel>
+          <FormLabel id="filters-radio-buttons-group-label">
+            Label color
+          </FormLabel>
           <RadioGroup
             aria-labelledby="filters-radio-buttons-group-label"
-            defaultValue="without priority"
             name="filters-radio-buttons-group"
+            value={filterValue}
+            onChange={handleChange}
           >
             <FormControlLabel
               value="without priority"

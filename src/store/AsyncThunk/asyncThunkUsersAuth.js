@@ -3,16 +3,11 @@ import axios from 'axios';
 
 const BASE_URL = 'https://taskpro-backend-zulp.onrender.com/api/users/';
 
-const handleResponse = response => {
-  const data = JSON.stringify(response.data, null, 2);
-  const parsedData = JSON.parse(data);
-  return parsedData;
-};
-
 const loginUser = createAsyncThunk('user/loginUser', async credentials => {
   try {
     const response = await axios.post(`${BASE_URL}signin`, credentials);
-    return handleResponse(response);
+    const { data } = response; // Деструктуризация объекта response.data
+    return data;
   } catch (error) {
     throw new Error('Failed to login');
   }
@@ -21,7 +16,8 @@ const loginUser = createAsyncThunk('user/loginUser', async credentials => {
 const registerUser = createAsyncThunk('user/registerUser', async userData => {
   try {
     const response = await axios.post(`${BASE_URL}register`, userData);
-    return handleResponse(response);
+    const { data } = response;
+    return data;
   } catch (error) {
     throw new Error('Failed to register');
   }
@@ -29,13 +25,14 @@ const registerUser = createAsyncThunk('user/registerUser', async userData => {
 
 const logoutUser = createAsyncThunk('user/logoutUser', async (_, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().user.token;
+    const token = thunkAPI.getState().user.token; //from component
     const response = await axios.post(`${BASE_URL}signout`, null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    return handleResponse(response);
+    const { data } = response;
+    return data;
   } catch (error) {
     throw new Error('Failed to logout');
   }
@@ -51,7 +48,8 @@ const fetchCurrentUser = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      return handleResponse(response);
+      const { data } = response;
+      return data;
     } catch (error) {
       throw new Error('Failed to fetch current user');
     }

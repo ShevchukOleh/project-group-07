@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { Button } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export const Header = styled.header`
   box-sizing: border-box;
@@ -8,9 +10,7 @@ export const Header = styled.header`
   width: 375px;
   height: 60px;
   padding: 14px 24px;
-  background-color: #FCFCFC;
-;
-
+  background-color: #fcfcfc;
   @media screen and (min-width: 768px) {
     width: 768px;
     height: 68px;
@@ -23,17 +23,23 @@ export const Header = styled.header`
   }
 `;
 
-export const MenuBtn = styled.button`
+export const MenuBtn = styled(Button)`
   width: 32px;
   height: 32px;
   padding: 0;
-  border: none;
-  background-color: tomato;
-  cursor: pointer;
+  justify-content: center;
+  min-width: 32px;
+  color: #161616;
 
   @media screen and (min-width: 1440px) {
     display: none;
   }
+`;
+
+export const MenuIconNav = styled(MenuIcon)`
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
 `;
 
 export const HeaderNav = styled.div`
@@ -43,45 +49,15 @@ export const HeaderNav = styled.div`
   justify-content: end;
 `;
 
-export const ChangeThemeBtn = styled.button`
-  display: flex;
-  gap: 4px;
-  width: 68px;
-  height: 21px;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-`;
-
-export const ThemeLabel = styled.span`
-  margin: 0;
+export const UserInfoBtn = styled(Button)`
+  gap: 8px;
   color: #161616;
+  font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
+  text-transform: none;
   letter-spacing: 0.02em;
-`;
-
-export const ThemeIcon = styled.svg`
-  width: 16px;
-  height: 16px;
-  fill: tomato;
-`;
-
-export const UserInfoBtn = styled.button`
-  display: flex;
-  gap: 8px;
-  width: 79px;
-  height: 32px;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
 `;
 
 export const UserAvatar = styled.div`
@@ -90,13 +66,4 @@ export const UserAvatar = styled.div`
   border-radius: 5px;
   overflow: hidden;
   background-color: tomato;
-`;
-
-export const UserName = styled.span`
-  margin: 0;
-  color: #161616;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
 `;

@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import WelcomePage from './WelcomePage/WelcomePage';
 import RegistrationForm from './Forms/RegistrationForm/RegistrationForm';
 import LoginForm from './Forms/LoginForm/LoginForm';
-import { Layout } from './Layout';
+import Layout from './Layout';
 //import { TasksPage } from 'pages/TasksPage';
 
 import '../styles/fonts.css';

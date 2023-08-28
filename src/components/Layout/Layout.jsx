@@ -7,7 +7,7 @@ import BackDrop from 'components/BackDrop/BackDrop';
 import { useState } from 'react';
 import Board from 'components/Board/Board';
 
-export const Layout = () => {
+const Layout = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const hideModal = () => {
     setIsShowModal(false);
@@ -26,3 +26,5 @@ export const Layout = () => {
     </Container>
   );
 };
+
+export default Layout;

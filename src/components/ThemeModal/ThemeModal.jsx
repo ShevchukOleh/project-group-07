@@ -19,9 +19,7 @@ export const ThemeModal = () => {
   const [secondThemeStatus, setSecondThemeStatus] = useState(null);
   const [thirdThemeStatus, setThirdThemeStatus] = useState(null);
 
-  const firstBtnColor = firstThemeStatus ? 'rgba(190,219,176,1)' : '#161616';
-  const secondBtnColor = secondThemeStatus ? 'rgba(190,219,176,1)' : '#161616';
-  const thirdBtnColor = thirdThemeStatus ? 'rgba(190,219,176,1)' : '#161616';
+  const themeBtnColor = themeStatus =>  themeStatus ? 'rgba(190,219,176,1)' : '#161616';
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -120,7 +118,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
-                '& .MuiTypography-root': { color: `${firstBtnColor}` },
+                '& .MuiTypography-root': { color: `${themeBtnColor(firstThemeStatus)}` },
               }}
             />
             <FormControlLabel
@@ -132,7 +130,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
-                '& .MuiTypography-root': { color: `${secondBtnColor}` },
+                '& .MuiTypography-root': { color: `${themeBtnColor(secondThemeStatus)}` },
               }}
             />
             <FormControlLabel
@@ -144,7 +142,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
-                '& .MuiTypography-root': { color: `${thirdBtnColor}` },
+                '& .MuiTypography-root': { color: `${themeBtnColor(thirdThemeStatus)}` },
               }}
             />
           </RadioGroup>

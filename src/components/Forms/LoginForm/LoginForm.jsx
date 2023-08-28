@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ContainerEntry,
   FormContainer,
   LinkFormWrapper,
   LinkFormButtonNav,
 } from '../FormUi/FormUi.styled';
-import { useLocation } from 'react-router-dom';
 import { Formik } from 'formik';
 import LoginTemplate from './LoginTemplate';
-import { currentLink } from '../JS/currentColor';
 import { validationSchemaLogin } from '../JS/validationSchema';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 const LoginForm = () => {
-  const location = useLocation();
   const dispatch = useDispatch();
-  const isCurrentRegistrationRoute = location.pathname === '/registration';
-  const isCurrentLoginRoute = location.pathname === '/login';
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = () => {
@@ -32,22 +27,10 @@ const LoginForm = () => {
     <ContainerEntry>
       <FormContainer>
         <LinkFormWrapper>
-          <LinkFormButtonNav
-            style={{
-              color: currentLink(isCurrentRegistrationRoute),
-            }}
-            to="/registration"
-          >
+          <LinkFormButtonNav activeClassName="active" to="/registration">
             Registration
           </LinkFormButtonNav>
-          <LinkFormButtonNav
-            style={{
-              color: currentLink(isCurrentLoginRoute),
-            }}
-            to="/login"
-          >
-            Log In{' '}
-          </LinkFormButtonNav>
+          <LinkFormButtonNav to="/login">Log In </LinkFormButtonNav>
         </LinkFormWrapper>
 
         <Formik

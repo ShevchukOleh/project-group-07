@@ -46,9 +46,9 @@ const RegistrationTemplate = ({ formikProps }) => (
     />
     <ErrorComponent />
 
-    <FormButtonLink to="/login">
-      <TextFormSubmitButton type="submit">Register Now</TextFormSubmitButton>
-    </FormButtonLink>
+    {/* <FormButtonLink to="/login"> */}
+    <TextFormSubmitButton type="submit">Register Now</TextFormSubmitButton>
+    {/* </FormButtonLink> */}
   </TextForm>
 );
 

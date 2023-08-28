@@ -1,16 +1,8 @@
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
-import MenuList from '@mui/material/MenuList';
 import RadioGroup from '@mui/material/RadioGroup'
 import DialogActions from '@mui/material/DialogActions';
-import TextField from '@mui/material/TextField';
-import { Dialog } from '@mui/material';
 
-
-  
-// export const DialogStyled = styled(Dialog)`
-// padding: 24px;
-// `
 
 export const ButtonStyled = styled(Button)`
        background-color: "#BEDBB0";
@@ -23,7 +15,8 @@ export const ButtonStyled = styled(Button)`
 
 export const ContainerModal = styled.div`
 padding: 24px;
-
+width: 335px;
+height: 433;
 `
 
   export const FormContainerStyled = styled(RadioGroup)`
@@ -33,10 +26,15 @@ padding: 24px;
   gap: 8px;
   `
 
+export const ImageBgContainer = styled(RadioGroup)`
+  border: 2px solid grey;
+  padding-left: 14px;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 40px;
+`
   export const DialogActionsStyled = styled(DialogActions)`
-
-
-  align-items: center;
+   align-items: center;
     justify-content: center;
     padding: 0px;
 `
@@ -46,6 +44,11 @@ width: 18px;
 height: 18px;
 `
 
+export const Image = styled.img`
+width: 28px;
+height: 28px;
+`
+
 export const TextFieldStyled = styled.input`
 caret-color: #BEDBB0;
 border: 1px solid #BEDBB0;
@@ -53,13 +56,13 @@ border-radius: 8px;
 height: 49px;
 width: 100%;
 margin-bottom: 24px;
-padding: 18px;
+padding-left: 18px;
   ::placeholder {
     color: #BEDBB0;
   };
-  &&:focus {
-  border: 1px solid grey
-  };
+  // &&:focus {
+  // border: 1px solid grey
+  // };
   &&:hover {
   border: 1px solid grey
   };

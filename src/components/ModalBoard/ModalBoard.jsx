@@ -1,12 +1,9 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import DialogActions from '@mui/material/DialogActions';
-import {FormContainerStyled, ContainerModal, TextFieldStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
-import { createTheme } from '@mui/material/styles';
+import {FormContainerStyled, ImageBgContainer, Image, ContainerModal, TextFieldStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
 import Colors from '../../images/icons/colors.svg';
 import Container from '../../images/icons/container.svg';
 import Hexagon from '../../images/icons/hexagon-01.svg';
@@ -15,16 +12,25 @@ import Loading from '../../images/icons/loading-03.svg';
 import Project from '../../images/icons/Project.svg';
 import Puzzle from '../../images/icons/puzzle-piece-02.svg';
 import Star from '../../images/icons/star-04.svg';
-import Plus from '../../images/icons/plus.svg'
+import Plus from '../../images/icons/plus.svg';
+import Vector1 from '../../images/images_bg/Vector1.svg'
+import Vector2 from '../../images/images_bg/Vector2.svg'
+import Vector3 from '../../images/images_bg/Vector3.svg'
+import Vector4 from '../../images/images_bg/Vector4.svg'
+
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
  import GlobalStyles from '@mui/material/GlobalStyles';
 import { Box } from '@mui/material';
 import RadioGroup from '@mui/material/RadioGroup'
 
 
+// const IMG_URL = `../../images/images_bg/`
 
+// const imageArraySrc = [
+//   `images-05.svg`,
+//   `Vector1.svg`
+// ]
 
 
 // const theme = createTheme({
@@ -76,14 +82,6 @@ export default function FormDialog() {
             placeholder='Title'
             required
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              
-            // sx={{
-            //   border: '1px solid #BEDBB0',
-            //   borderRadius: 1,
-            //   caretColor: '#BEDBB0',
-            //   height: 49,
-            // }}
-            // variant="standard"
           />
            {/* <TextField
           error
@@ -95,7 +93,6 @@ export default function FormDialog() {
           fullWidth
         /> */}
           <FormControl sx={{ padding: 0, marginBottom: '24px' }}>
-          
             <DialogTitle
               sx={{ fontSize: 14, fontWeight:500, padding: 0, marginBottom: '14px' }}
             >Icons</DialogTitle>
@@ -118,23 +115,19 @@ export default function FormDialog() {
             </FormContainerStyled>
           </FormControl>
           <DialogTitle sx={{ fontSize: 14, fontWeight:500, padding: 0, marginBottom: '14px' }}>Background</DialogTitle>
-          <RadioGroup sx={{marginBottom: '40px'}}
+          <ImageBgContainer
               row
-              aria-labelledby="icons-group"
-              defaultValue='Project'
-              name="icons-group"
+              aria-labelledby="image-group"
+              defaultValue='Vector1'
+              name="image-group"
               value={value}
               onChange={handleChange}>
               
-              <FormControlLabel value="Project" control={<Icon src={Project} alt='Project' />} /> 
-              {/* <FormControlLabel value="Star" control={<Icon src={Star} alt='Star' /> } /> 
-              <FormControlLabel value="Loading" control={<Icon src={Loading} alt='Loading' />}/> 
-              <FormControlLabel value="Puzzle" control={<Icon src={Puzzle} alt='Puzzle' />}/> 
-              <FormControlLabel value="Container" control={<Icon src={Container} alt='Container' />} /> 
-              <FormControlLabel value="Lightning" control={<Icon src={Lightning} alt='Lightning' />}/> 
-              <FormControlLabel value="Colors" control={<Icon src={Colors} alt='Colors' />} /> 
-              <FormControlLabel value="Hexagon" control={<Icon src={Hexagon} alt='Hexagon' />}/>  */}
-            </RadioGroup>
+              <FormControlLabel value="Vector1" control={<Image src={Vector1} alt='Vector1' />} />
+              <FormControlLabel value="Vector2" control={<Image src={Vector2} alt='Vector2' />} />
+              <FormControlLabel value="Vector3" control={<Image src={Vector3} alt='Vector3' />} />
+              <FormControlLabel value="Vector4" control={<Image src={Vector4} alt='Vector4' />} />
+            </ImageBgContainer>
           
           </DialogContent>
         <DialogActionsStyled>

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import WelcomePage from './WelcomePage/WelcomePage';
 import RegistrationForm from './Forms/RegistrationForm/RegistrationForm';
 import LoginForm from './Forms/LoginForm/LoginForm';
@@ -18,7 +18,7 @@ export const App = () => {
       <Route path="/" element={<WelcomePage />} />
       <Route path="registration" element={<RegistrationForm />} />
       <Route path="login" element={<LoginForm />} />
-      <Route path="*" element={<LoginForm />} />
+      <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
 };

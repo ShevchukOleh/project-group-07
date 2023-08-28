@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const ContainerEntry = styled.div`
   width: 100%;
   max-width: 320px;
@@ -52,9 +52,8 @@ const LinkFormWrapper = styled.div`
     max-width: 473px;
   }
 `;
-const LinkFormButtonNav = styled(Link)`
-  color: ${props =>
-    props.isCurrentRoute ? '#ffffff' : 'rgba(255, 255, 255, 0.30)'};
+const LinkFormButtonNav = styled(NavLink)`
+  color: rgba(255, 255, 255, 0.3);
   font-size: 18px;
   font-family: inherit;
   text-decoration: none;
@@ -62,6 +61,12 @@ const LinkFormButtonNav = styled(Link)`
   line-height: normal;
   transition: color 0.3s linear;
   font-family: 'poppins';
+  &.active {
+    color: #ffffff;
+  }
+  &:active {
+    color: inherit;
+  }
 `;
 const TextFieldCustum = styled.input`
   height: 49px;

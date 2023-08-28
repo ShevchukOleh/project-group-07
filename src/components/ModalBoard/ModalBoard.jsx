@@ -4,10 +4,8 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import {ContainerStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
+import DialogActions from '@mui/material/DialogActions';
+import {FormContainerStyled, TextFieldStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
 import { createTheme } from '@mui/material/styles';
 import Colors from '../../images/icons/colors.svg';
 import Container from '../../images/icons/container.svg';
@@ -17,9 +15,13 @@ import Loading from '../../images/icons/loading-03.svg';
 import Project from '../../images/icons/Project.svg';
 import Puzzle from '../../images/icons/puzzle-piece-02.svg';
 import Star from '../../images/icons/star-04.svg';
+import Plus from '../../images/icons/plus.svg'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+ import GlobalStyles from '@mui/material/GlobalStyles';
+import { Box } from '@mui/material';
+
 
 
 
@@ -59,40 +61,78 @@ export default function FormDialog() {
         Open form dialog
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New board</DialogTitle>
-        <DialogContent>
-          <TextField
+        <DialogTitle sx={{ fontSize: 18, fontWeight:500 }}>New board</DialogTitle>
+        <DialogContent >
+          <TextFieldStyled
             autoFocus
             margin="dense"
             id="title"
             label="Title"
             type="text"
             fullWidth
+            required
+            sx={{
+              color: '#BEDBB0',
+            }}
             // variant="standard"
           />
+           {/* <TextField
+          error
+          id="filled-error-helper-text"
+          label="Error"
+          defaultValue="Hello World"
+          helperText="Incorrect entry."
+          variant="filled"
+          fullWidth
+        /> */}
           <FormControl>
-          <FormLabel id="icons-group">Icons</FormLabel>
-          <ContainerStyled
+          <GlobalStyles styles={{ h2: { color: '#161616' } }} />
+            <DialogTitle
+              sx={{ fontSize: 14, fontWeight:500 }}
+            >Icons</DialogTitle>
+          <FormContainerStyled
               aria-labelledby="icons-group"
               defaultValue='Project'
               name="icons-group"
               value={value}
               onChange={handleChange}>
               
-              <FormControlLabel value="Project" control={<Icon src={Project} alt='Project' />} /> 
-              <FormControlLabel value="Star" control={<Icon src={Star} alt='Star' />} /> 
-              <FormControlLabel value="Loading" control={<Icon src={Loading} alt='Loading' />} /> 
-              <FormControlLabel value="Puzzle" control={<Icon src={Puzzle} alt='Puzzle' />} /> 
-              <FormControlLabel value="Container" control={<Icon src={Container} alt='Container' />} /> 
-              <FormControlLabel value="Lightning" control={<Icon src={Lightning} alt='Lightning' />} /> 
-              <FormControlLabel value="Colors" control={<Icon src={Colors} alt='Colors' />} /> 
-              <FormControlLabel value="Hexagon" control={<Icon src={Hexagon} alt='Hexagon' />} /> 
-            </ContainerStyled>
+              <FormControlLabel value="Project" control={<Icon src={Project} alt='Project' />} labelPlacement="start" /> 
+              <FormControlLabel value="Star" control={<Icon src={Star} alt='Star' /> } labelPlacement="start"/> 
+              <FormControlLabel value="Loading" control={<Icon src={Loading} alt='Loading' />} labelPlacement="start"/> 
+              <FormControlLabel value="Puzzle" control={<Icon src={Puzzle} alt='Puzzle' />} labelPlacement="start"/> 
+              <FormControlLabel value="Container" control={<Icon src={Container} alt='Container' />} labelPlacement="start"/> 
+              <FormControlLabel value="Lightning" control={<Icon src={Lightning} alt='Lightning' />} labelPlacement="start"/> 
+              <FormControlLabel value="Colors" control={<Icon src={Colors} alt='Colors' />} labelPlacement="start" /> 
+              <FormControlLabel value="Hexagon" control={<Icon src={Hexagon} alt='Hexagon' />} labelPlacement="start"/> 
+            </FormContainerStyled>
           </FormControl>
-          <DialogTitle sx={2}>Background</DialogTitle>
+          <DialogTitle sx={{ fontSize: 14, fontWeight:500 }}>Background</DialogTitle>
           </DialogContent>
         <DialogActionsStyled>
-          <ButtonStyled margin="dense" variant="contained" onClick={handleClose}>Create</ButtonStyled>
+          <Button fullWidth variant="contained" onClick={handleClose}
+            sx={{
+              fontFamily: 'Poppins',
+              backgroundColor: '#BEDBB0',
+              color: '#161616',
+              fontWeight: 500,   
+              height: 49,
+            }}
+          >
+            <Box sx={{
+              backgroundColor: '#161616',
+              height: 28,
+              width: 28,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 1,
+              marginRight: 1,
+       
+            }}>
+              <Icon src={Plus }/>
+            </Box>
+            Create</Button>
         </DialogActionsStyled>
       </Dialog>
     </div>

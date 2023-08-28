@@ -47,6 +47,7 @@ export const FiltersModal = () => {
         onClose={handleClose}
         sx={{
           '& .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper': {
+            padding: '24px',
             boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
           },
         }}

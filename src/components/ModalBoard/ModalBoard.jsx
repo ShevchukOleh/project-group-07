@@ -21,6 +21,8 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
  import GlobalStyles from '@mui/material/GlobalStyles';
 import { Box } from '@mui/material';
+import RadioGroup from '@mui/material/RadioGroup'
+
 
 
 
@@ -62,12 +64,9 @@ export default function FormDialog() {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <ContainerModal>
-          <GlobalStyles styles={{
-            h2: {
-              color: '#161616',
-            },
+          <GlobalStyles styles={{ h2: {color: '#161616'},
           }} />
-        <DialogTitle sx={{ fontSize: 18, fontWeight:500, padding: 0 }}>New board</DialogTitle>
+        <DialogTitle sx={{ fontSize: 18, fontWeight:500, padding: 0, marginBottom: '24px' }}>New board</DialogTitle>
         <DialogContent sx={{ padding: 0 }}>
           <TextFieldStyled
             autoFocus
@@ -76,6 +75,8 @@ export default function FormDialog() {
             type="text"
             placeholder='Title'
             required
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              
             // sx={{
             //   border: '1px solid #BEDBB0',
             //   borderRadius: 1,
@@ -93,10 +94,10 @@ export default function FormDialog() {
           variant="filled"
           fullWidth
         /> */}
-          <FormControl>
+          <FormControl sx={{ padding: 0, marginBottom: '24px' }}>
           
             <DialogTitle
-              sx={{ fontSize: 14, fontWeight:500, padding: 0 }}
+              sx={{ fontSize: 14, fontWeight:500, padding: 0, marginBottom: '14px' }}
             >Icons</DialogTitle>
             <FormContainerStyled
               row
@@ -116,7 +117,25 @@ export default function FormDialog() {
               <FormControlLabel value="Hexagon" control={<Icon src={Hexagon} alt='Hexagon' />}/> 
             </FormContainerStyled>
           </FormControl>
-          <DialogTitle sx={{ fontSize: 14, fontWeight:500, padding: 0 }}>Background</DialogTitle>
+          <DialogTitle sx={{ fontSize: 14, fontWeight:500, padding: 0, marginBottom: '14px' }}>Background</DialogTitle>
+          <RadioGroup sx={{marginBottom: '40px'}}
+              row
+              aria-labelledby="icons-group"
+              defaultValue='Project'
+              name="icons-group"
+              value={value}
+              onChange={handleChange}>
+              
+              <FormControlLabel value="Project" control={<Icon src={Project} alt='Project' />} /> 
+              {/* <FormControlLabel value="Star" control={<Icon src={Star} alt='Star' /> } /> 
+              <FormControlLabel value="Loading" control={<Icon src={Loading} alt='Loading' />}/> 
+              <FormControlLabel value="Puzzle" control={<Icon src={Puzzle} alt='Puzzle' />}/> 
+              <FormControlLabel value="Container" control={<Icon src={Container} alt='Container' />} /> 
+              <FormControlLabel value="Lightning" control={<Icon src={Lightning} alt='Lightning' />}/> 
+              <FormControlLabel value="Colors" control={<Icon src={Colors} alt='Colors' />} /> 
+              <FormControlLabel value="Hexagon" control={<Icon src={Hexagon} alt='Hexagon' />}/>  */}
+            </RadioGroup>
+          
           </DialogContent>
         <DialogActionsStyled>
           <Button variant="contained" onClick={handleClose}
@@ -126,7 +145,8 @@ export default function FormDialog() {
               color: '#161616',
               fontWeight: 500,   
               height: 49,
-              width: '100%'
+              width: '100%',
+              padding: 0,
                   }}
           >
             <Box sx={{

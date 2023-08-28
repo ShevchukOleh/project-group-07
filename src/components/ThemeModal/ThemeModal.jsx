@@ -25,6 +25,7 @@ export const ThemeModal = () => {
 
   const handleChange = event => {
     setThemeValue(event.currentTarget.value);
+    console.log(event.currentTarget.cheked)
   };
 
   return (
@@ -59,11 +60,6 @@ export const ThemeModal = () => {
           '& ul': {
             padding: 0,
           },
-          '& .css-ahj2mt-MuiTypography-root': {
-            fontFamily: 'Poppins',
-            fontSize: '14px',
-            color: '#161616',
-          },
         }}
       >
         <FormControl
@@ -84,6 +80,8 @@ export const ThemeModal = () => {
               gap: '4px',
               justifyContent: 'normal',
               alignContent: 'center',
+              '& label span': { color: '#161616', fontFamily: 'Poppins', fontSize: '14px'},
+              '& label .MuiButtonBase-root': { visibility: 'hidden'},
             }}
           >
             <FormControlLabel

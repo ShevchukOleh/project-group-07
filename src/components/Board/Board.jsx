@@ -1,16 +1,14 @@
 import React from 'react';
 import { BoardStyle } from './Board.styled';
-import { RiFilter2Line, RiAddLine } from 'react-icons/ri';
+import { RiAddLine } from 'react-icons/ri';
+import { FiltersModal } from 'components/FiltersModal';
 
 export default function Board({ setIsShowModal }) {
   return (
     <BoardStyle>
       <div className="containerTitle">
         <h2 className="title">Project office</h2>
-        <div className="containerIcon">
-          <RiFilter2Line style={{ fill: 'rgba(22, 22, 22, 0.80)' }} />
-          <p className="filters">Filters</p>
-        </div>
+        <FiltersModal/>
       </div>
       <button className="btnAddColumn" onClick={() => setIsShowModal(true)}>
         <div className="containerLogoName">

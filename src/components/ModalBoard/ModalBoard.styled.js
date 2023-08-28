@@ -27,3 +27,8 @@ export const ButtonStyled = styled(Button)`
     align-items: center;
     justify-content: center;
 `
+
+export const Icon = styled.img`
+width: 18;
+height: 18;
+`

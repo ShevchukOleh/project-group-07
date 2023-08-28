@@ -12,8 +12,18 @@ import ContentCut from '@mui/icons-material/ContentCut';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import ContentPaste from '@mui/icons-material/ContentPaste';
 import Cloud from '@mui/icons-material/Cloud';
-import {ContainerStyled, DialogActionsStyled, ButtonStyled} from './ModalBoard.styled'
+import {ContainerStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
 import { createTheme } from '@mui/material/styles';
+import Colors from '../../images/icons/colors.svg';
+import Container from '../../images/icons/container.svg';
+import Hexagon from '../../images/icons/hexagon-01.svg';
+import Lightning from '../../images/icons/lightning-02.svg';
+import Loading from '../../images/icons/loading-03.svg';
+import Project from '../../images/icons/Project.svg';
+import Puzzle from '../../images/icons/puzzle-piece-02.svg';
+import Star from '../../images/icons/star-04.svg';
+
+
 
 // const theme = createTheme({
 //   palette: {
@@ -62,23 +72,43 @@ export default function FormDialog() {
         <ContainerStyled>
         <MenuItem>
           <ListItemIcon>
-            <ContentCut fontSize="small" />
+            <Icon src={Project} alt='Colors' />
           </ListItemIcon>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentCopy fontSize="small" />
+            <Icon src={Star} alt='Container' />
           </ListItemIcon>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentPaste fontSize="small" />
+            <Icon src={Loading} alt='colors' />
           </ListItemIcon>
         </MenuItem>
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <Cloud fontSize="small" />
+            <Icon src={Puzzle} alt='colors' />
+          </ListItemIcon>
+            </MenuItem>
+            <MenuItem>
+          <ListItemIcon>
+            <Icon src={Container} alt='colors' />
+          </ListItemIcon>
+            </MenuItem>
+            <MenuItem>
+          <ListItemIcon>
+            <Icon src={Lightning} alt='colors' />
+          </ListItemIcon>
+            </MenuItem>
+            <MenuItem>
+          <ListItemIcon>
+            <Icon src={Colors} alt='colors' />
+          </ListItemIcon>
+            </MenuItem>
+            <MenuItem>
+          <ListItemIcon>
+            <Icon src={Hexagon} alt='colors' />
           </ListItemIcon>
         </MenuItem>
           {/* </MenuList> */}

@@ -17,12 +17,11 @@ import Vector1 from '../../images/images_bg/Vector1.svg'
 import Vector2 from '../../images/images_bg/Vector2.svg'
 import Vector3 from '../../images/images_bg/Vector3.svg'
 import Vector4 from '../../images/images_bg/Vector4.svg'
-
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
  import GlobalStyles from '@mui/material/GlobalStyles';
 import { Box } from '@mui/material';
-import RadioGroup from '@mui/material/RadioGroup'
+// import RadioGroup from '@mui/material/RadioGroup'
 
 
 // const IMG_URL = `../../images/images_bg/`
@@ -47,7 +46,12 @@ import RadioGroup from '@mui/material/RadioGroup'
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
+  const [valueInput, setValueInput] = React.useState('');
   // const [title, setTitle] = React.useState('');
+
+  const handleChange = (value) => {
+  console.log(value)
+}
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -57,8 +61,11 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  const handleChange = (value) => {
-    setValue(value);
+  const handleChangeIcon = (value) => {
+    setValueInput(value);
+    console.log(value)
+  }
+  const handleChangeImg = (value) => {
     console.log(value)
   }
 
@@ -81,6 +88,7 @@ export default function FormDialog() {
             type="text"
             placeholder='Title'
             required
+            onChange={handleChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           />
            {/* <TextField
@@ -102,7 +110,7 @@ export default function FormDialog() {
               defaultValue='Project'
               name="icons-group"
               value={value}
-              onChange={handleChange}>
+              onChange={handleChangeIcon}>
               
               <FormControlLabel value="Project" control={<Icon src={Project} alt='Project' />} /> 
               <FormControlLabel value="Star" control={<Icon src={Star} alt='Star' /> } /> 
@@ -121,7 +129,7 @@ export default function FormDialog() {
               defaultValue='Vector1'
               name="image-group"
               value={value}
-              onChange={handleChange}>
+              onChange={handleChangeImg}>
               
               <FormControlLabel value="Vector1" control={<Image src={Vector1} alt='Vector1' />} />
               <FormControlLabel value="Vector2" control={<Image src={Vector2} alt='Vector2' />} />
@@ -131,7 +139,8 @@ export default function FormDialog() {
           
           </DialogContent>
         <DialogActionsStyled>
-          <Button variant="contained" onClick={handleClose}
+            <Button variant="contained"
+              onClick={handleClose}
             sx={{
               fontFamily: 'Poppins',
               backgroundColor: '#BEDBB0',

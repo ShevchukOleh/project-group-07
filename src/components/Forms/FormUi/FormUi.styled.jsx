@@ -33,6 +33,7 @@ const FormContainer = styled.div`
   border-radius: 8px;
   box-sizing: border-box;
   transition: width, height, 0.3s linear;
+  position: relative;
   @media (min-width: 375px) {
     width: 335px;
   }

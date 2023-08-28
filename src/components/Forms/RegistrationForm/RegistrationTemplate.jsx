@@ -16,10 +16,8 @@ const RegistrationTemplate = ({ formikProps }) => (
       onChange={formikProps.handleChange}
       placeholder="Enter your name"
       required
-      minLength={2}
-      maxLength={32}
     />
-    <ErrorComponent />
+    <ErrorComponent name="name" />
 
     <TextFieldCustum
       type="email"
@@ -30,7 +28,7 @@ const RegistrationTemplate = ({ formikProps }) => (
       placeholder="Enter your email"
       required
     />
-    <ErrorComponent />
+    <ErrorComponent name="email" />
 
     <TextFieldCustum
       type="text"
@@ -41,10 +39,9 @@ const RegistrationTemplate = ({ formikProps }) => (
       placeholder="Create a password"
       pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,64}$"
       required
-      minLength={8}
-      maxLength={64}
     />
-    <ErrorComponent />
+    <ErrorComponent name="password" />
+
     <TextFormSubmitButton type="submit">Register Now</TextFormSubmitButton>
   </TextForm>
 );

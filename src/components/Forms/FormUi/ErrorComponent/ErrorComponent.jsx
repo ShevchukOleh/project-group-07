@@ -1,6 +1,6 @@
 import './error.css';
 import { ErrorMessage } from 'formik';
-const ErrorComponent = () => (
-  <ErrorMessage name="email" component="div" className="error-message" />
+const ErrorComponent = ({ name }) => (
+  <ErrorMessage name={name} component="div" className="error-message" />
 );
 export default ErrorComponent;

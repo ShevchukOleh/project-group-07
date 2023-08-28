@@ -11,7 +11,6 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log(isLoggedIn);
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />

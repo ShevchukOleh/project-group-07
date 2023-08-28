@@ -5,9 +5,9 @@ const ProtectedRoute = ({
   redirectPath = '/registration',
   children,
 }) => {
-  if (!isLoggedIn) {
-    return <Navigate to={redirectPath} replace={true} />;
+  if (isLoggedIn) {
+    return children;
   }
-  return children;
+  return <Navigate to={redirectPath} replace={true} />;
 };
 export default ProtectedRoute;

@@ -14,7 +14,15 @@ export const ThemeModal = () => {
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  console.log(themeValue);
+
+  const [firstThemeStatus, setFirstThemeStatus] = useState(null);
+  const [secondThemeStatus, setSecondThemeStatus] = useState(null);
+  const [thirdThemeStatus, setThirdThemeStatus] = useState(null);
+
+  const firstBtnColor = firstThemeStatus ? 'rgba(190,219,176,1)' : '#161616';
+  const secondBtnColor = secondThemeStatus ? 'rgba(190,219,176,1)' : '#161616';
+  const thirdBtnColor = thirdThemeStatus ? 'rgba(190,219,176,1)' : '#161616';
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -25,7 +33,23 @@ export const ThemeModal = () => {
 
   const handleChange = event => {
     setThemeValue(event.currentTarget.value);
-    console.log(event.currentTarget.cheked)
+    console.log(event.currentTarget.value);
+
+    if (event.currentTarget.value === 'light') {
+      setFirstThemeStatus(true);
+      setSecondThemeStatus(null);
+      setThirdThemeStatus(null);
+    }
+    if (event.currentTarget.value === 'dark') {
+      setSecondThemeStatus(true);
+      setFirstThemeStatus(null);
+      setThirdThemeStatus(null);
+    }
+    if (event.currentTarget.value === 'violet') {
+      setThirdThemeStatus(true);
+      setFirstThemeStatus(null);
+      setSecondThemeStatus(null);
+    }
   };
 
   return (
@@ -80,8 +104,11 @@ export const ThemeModal = () => {
               gap: '4px',
               justifyContent: 'normal',
               alignContent: 'center',
-              '& label span': { color: '#161616', fontFamily: 'Poppins', fontSize: '14px'},
-              '& label .MuiButtonBase-root': { visibility: 'hidden'},
+              '& label .MuiTypography-root': {
+                fontFamily: 'Poppins',
+                fontSize: '14px',
+              },
+              '& label .MuiButtonBase-root': { visibility: 'hidden' },
             }}
           >
             <FormControlLabel
@@ -93,6 +120,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
+                '& .MuiTypography-root': { color: `${firstBtnColor}` },
               }}
             />
             <FormControlLabel
@@ -104,6 +132,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
+                '& .MuiTypography-root': { color: `${secondBtnColor}` },
               }}
             />
             <FormControlLabel
@@ -115,6 +144,7 @@ export const ThemeModal = () => {
                 marginLeft: 0,
                 justifyContent: 'flex-end',
                 maxWidth: 100,
+                '& .MuiTypography-root': { color: `${thirdBtnColor}` },
               }}
             />
           </RadioGroup>

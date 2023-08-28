@@ -94,6 +94,7 @@ const BlockContainerCreate = styled.div`
 const BlockContainerBoard = styled.div`
   overflow-y: auto;
   max-height: 100%;
+  min-height: 110px;
 `;
 
 const OneBoard = styled.div`

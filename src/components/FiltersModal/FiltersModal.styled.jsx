@@ -39,6 +39,7 @@ export const Border = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
+  position: relative;
 `;
 
 export const ShowAllBtn = styled(Button)`

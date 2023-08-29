@@ -169,15 +169,15 @@ export const FiltersModal = () => {
               sx={{
                 '&': { gap: '8px' },
                 '& label': { margin: 0, gap: '8px' },
-                '& label span': {
-                  padding: 0,
-                  color: 'rgba(22, 22, 22, 0.5)',
+                '& label .MuiTypography-root': {
                   fontFamily: 'Poppins',
                   fontWeight: 400,
                   fontSize: '12px',
                   lineHeight: 1.5,
                   letterSpacing: '0.02em',
                 },
+                '& label .MuiButtonBase-root': { padding: 0 },
+                '& label > span span svg': {width: '14px', height: '14px'},
               }}
             >
               <FormControlLabel

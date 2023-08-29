@@ -144,13 +144,25 @@ const HelpText = styled.p`
   }
 `;
 
-const LogOutBlock = styled.div`
+const LogOutBlock = styled.button`
+  border: none;
+  background-color: inherit;
   display: flex;
   font-size: 16px;
   color: #161616;
   font-weight: 600;
   align-items: center;
   margin-top: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const HelpBlock = styled.div`

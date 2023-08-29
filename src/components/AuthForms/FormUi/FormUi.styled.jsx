@@ -110,7 +110,7 @@ const IconPassowordWrapper = styled.div`
   position: absolute;
   top: 49%;
   right: 10px;
-  transform: translateY(-50%);
+  transform: translateY(-40%);
   cursor: pointer;
 `;
 export {

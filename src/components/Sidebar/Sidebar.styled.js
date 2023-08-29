@@ -152,6 +152,7 @@ const LogOutBlock = styled.button`
   color: #161616;
   font-weight: 600;
   align-items: center;
+  cursor: pointer;
   margin-top: 24px;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;

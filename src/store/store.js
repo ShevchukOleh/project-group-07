@@ -1,7 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import collectionSlice from './createSlices/collection/collection';
 import userSlice from './createSlices/userAuth/userAuth';
-import boardSlice from './createSlices/board/board';
+import { getPersistConfig } from 'redux-deep-persist';
+
 
 import thunk from 'redux-thunk';
 
@@ -11,9 +14,20 @@ const rootReducer = combineReducers({
   board: boardSlice,
 });
 
+const persistConfig = getPersistConfig({
+  key: 'root',
+  storage,
+  whitelist: ['user.isLoggedIn', 'user.token'],
+  rootReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: [thunk],
 });
 
-export default store;
+const persistor = persistStore(store);
+
+export { store, persistor };

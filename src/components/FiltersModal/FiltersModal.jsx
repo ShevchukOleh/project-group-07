@@ -83,7 +83,7 @@ export const FiltersModal = () => {
 
           <Button
             onClick={handleClose}
-            sx={{ padding: 0, width: '18px', height: '18px' }}
+            sx={{ padding: 0, minWidth: '18px', height: '18px', position: 'absolute', top: '-15px', right: '-15px', }}
           >
             <CloseOutlinedIcon
               sx={{

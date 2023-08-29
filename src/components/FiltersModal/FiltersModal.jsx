@@ -24,6 +24,13 @@ export const FiltersModal = () => {
   const [filtersEl, setFiltersEl] = useState(null);
   const open = Boolean(filtersEl);
 
+  const [withoutStatus, setWithouteStatus] = useState(null);
+  const [lowStatus, setLowStatus] = useState(null);
+  const [mediumStatus, setMediumStatus] = useState(null);
+  const [highStatus, setHighStatus] = useState(null);
+
+  const priorityColor = priorityStatus =>  priorityStatus ? 'rgba(190,219,176,1)' : '#161616';
+
   const handleClick = event => {
     setFiltersEl(event.currentTarget);
   };
@@ -83,7 +90,14 @@ export const FiltersModal = () => {
 
           <Button
             onClick={handleClose}
-            sx={{ padding: 0, minWidth: '18px', height: '18px', position: 'absolute', top: '-15px', right: '-15px', }}
+            sx={{
+              padding: 0,
+              minWidth: '18px',
+              height: '18px',
+              position: 'absolute',
+              top: '-15px',
+              right: '-15px',
+            }}
           >
             <CloseOutlinedIcon
               sx={{

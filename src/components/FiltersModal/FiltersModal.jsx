@@ -177,13 +177,18 @@ export const FiltersModal = () => {
                   letterSpacing: '0.02em',
                 },
                 '& label .MuiButtonBase-root': { padding: 0 },
-                '& label > span span svg': {width: '14px', height: '14px'},
+                '& label > span span svg': { width: '14px', height: '14px' },
               }}
             >
               <FormControlLabel
                 value="without priority"
                 control={
-                  <Radio sx={{ backgroundColor: 'rgba(22, 22, 22, 0.3)' }} />
+                  <Radio
+                    sx={{
+                      backgroundColor: 'rgba(22, 22, 22, 0.3)',
+                      '& span svg': { color: 'rgba(22, 22, 22, 0.3)' },
+                    }}
+                  />
                 }
                 label="Without priority"
                 sx={{
@@ -195,7 +200,12 @@ export const FiltersModal = () => {
               <FormControlLabel
                 value="low"
                 control={
-                  <Radio sx={{ background: 'rgba(143, 161, 208, 1)' }} />
+                  <Radio
+                    sx={{
+                      backgroundColor: 'rgba(143, 161, 208, 1)',
+                      '& span svg': { color: 'rgba(143, 161, 208, 1)' },
+                    }}
+                  />
                 }
                 label="Low"
                 sx={{
@@ -205,7 +215,12 @@ export const FiltersModal = () => {
               <FormControlLabel
                 value="medium"
                 control={
-                  <Radio sx={{ backgroundColor: 'rgba(224, 156, 181, 1)' }} />
+                  <Radio
+                    sx={{
+                      backgroundColor: 'rgba(224, 156, 181, 1)',
+                      '& span svg': { color: 'rgba(224, 156, 181, 1)' },
+                    }}
+                  />
                 }
                 label="Medium"
                 sx={{
@@ -217,7 +232,12 @@ export const FiltersModal = () => {
               <FormControlLabel
                 value="high"
                 control={
-                  <Radio sx={{ background: 'rgba(190, 219, 176, 1)' }} />
+                  <Radio
+                    sx={{
+                      backgroundColor: 'rgba(190, 219, 176, 1)',
+                      '& span svg': { color: 'rgba(190, 219, 176, 1)' },
+                    }}
+                  />
                 }
                 label="High"
                 sx={{

@@ -24,6 +24,9 @@ import {
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
 
+import { useDispatch } from 'react-redux';
+import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
+
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,6 +49,7 @@ export const Sidebar = ({ setIsShowModal }) => {
   };
 
   const isBoard = true;
+  const dispatch = useDispatch();
 
   return (
     <ContainerAside>
@@ -65,7 +69,16 @@ export const Sidebar = ({ setIsShowModal }) => {
               Create <br />a new board
             </NewBoardText>
             <Button
-              onClick={() => setIsShowModal(true)}
+              onClick={() => {
+                setIsShowModal(true);
+                dispatch(
+                  createBoard({
+                    title: 'NewBoard',
+                    icon: 'icon1',
+                    background: 'default',
+                  })
+                );
+              }}
               color="primary"
               sx={{
                 minWidth: '40px',

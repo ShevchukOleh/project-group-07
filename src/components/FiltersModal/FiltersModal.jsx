@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Button,
   Menu,
   Radio,
   RadioGroup,
@@ -7,6 +8,7 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@mui/material';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import {
   FiltersBtn,
   FilterIcon,
@@ -14,6 +16,7 @@ import {
   Border,
   Wrapper,
   ShowAllBtn,
+  MenuLabelWrap,
 } from './FiltersModal.styled';
 
 export const FiltersModal = () => {
@@ -75,8 +78,25 @@ export const FiltersModal = () => {
           '& ul > span': { color: '#161616' },
         }}
       >
-        <MenuLabel>Filters</MenuLabel>
+        <MenuLabelWrap>
+          <MenuLabel>Filters</MenuLabel>
+
+          <Button
+            onClick={handleClose}
+            sx={{ padding: 0, width: '18px', height: '18px' }}
+          >
+            <CloseOutlinedIcon
+              sx={{
+                minWidth: '18px',
+                height: '18px',
+                fill: 'rgba(22, 22, 22, 1)',
+              }}
+            />
+          </Button>
+        </MenuLabelWrap>
+
         <Border />
+
         <Wrapper>
           <FormControl
             sx={{

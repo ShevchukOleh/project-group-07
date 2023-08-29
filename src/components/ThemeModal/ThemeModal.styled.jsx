@@ -3,6 +3,8 @@ import { Button } from '@mui/material';
 
 export const ThemeBtn = styled(Button)`
   gap: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   color: #161616;
   font-family: Poppins;
   font-size: 14px;

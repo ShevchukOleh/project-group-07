@@ -4,11 +4,14 @@ import storage from 'redux-persist/lib/storage';
 import collectionSlice from './createSlices/collection/collection';
 import userSlice from './createSlices/userAuth/userAuth';
 import { getPersistConfig } from 'redux-deep-persist';
+
+
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   data: collectionSlice,
   user: userSlice,
+  board: boardSlice,
 });
 
 const persistConfig = getPersistConfig({

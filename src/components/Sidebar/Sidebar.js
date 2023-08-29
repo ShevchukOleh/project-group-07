@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
+
 // import circle from '../../images/help-circle.png';
 import { BordInSidebar } from './BordInSidebar';
+
 import {
   Block,
   HelpBlock,
@@ -18,7 +20,6 @@ import {
   LogoImage,
   LogoContainer,
   SidebarContainer,
-  // CustomDrawer,
   BlockContainerBoard,
   ContainerAside,
 } from './Sidebar.styled';
@@ -30,7 +31,9 @@ import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+
   const userToken = useSelector(selectToken);
+
   const openModalAndBackdrop = () => {
     setIsShowModal(true);
     openModal();
@@ -71,7 +74,16 @@ export const Sidebar = ({ setIsShowModal }) => {
               Create <br />a new board
             </NewBoardText>
             <Button
-              onClick={() => setIsShowModal(true)}
+              onClick={() => {
+                setIsShowModal(true);
+                dispatch(
+                  createBoard({
+                    title: 'Some title',
+                    icon: '64eb3c2a8408f19231b21fc5',
+                    background: '64eb2ce10d0d1b1e0a8b9bb2',
+                  })
+                );
+              }}
               color="primary"
               sx={{
                 minWidth: '40px',
@@ -135,7 +147,9 @@ export const Sidebar = ({ setIsShowModal }) => {
               </button>
             </HelpBlock>
           </BlockContainer>
+
           <LogOutBlock onClick={handleLogOut}>
+
             <svg width={32} height={32} style={{ marginRight: '14px' }}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#logout`} />
             </svg>

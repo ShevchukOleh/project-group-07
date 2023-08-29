@@ -16,6 +16,7 @@ export const BoardStyle = styled.section`
   & .containerTitle {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   & .title{
     color: #161616;

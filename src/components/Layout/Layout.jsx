@@ -3,10 +3,9 @@ import { Outlet } from 'react-router-dom';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { AppBar } from 'components/AppBar';
 import { Container } from './Layout.styled';
-import BackDrop from 'components/BackDrop/BackDrop';
+// import BackDrop from 'components/BackDrop/BackDrop';
 import { useState } from 'react';
 import FormDialog from 'components/ModalBoard/ModalBoard';
-
 
 export const Layout = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -20,8 +19,7 @@ export const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      {isShowModal && <BackDrop hideModal={hideModal}></BackDrop>};
-      <FormDialog></FormDialog>
+      {isShowModal && <FormDialog isShowModal={isShowModal} hideModal={hideModal}></FormDialog>};
     </Container>
   );
 };

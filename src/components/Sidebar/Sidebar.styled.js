@@ -150,6 +150,7 @@ const LogOutBlock = styled.div`
   color: #161616;
   font-weight: 600;
   align-items: center;
+  cursor: pointer;
   margin-top: 24px;
 `;
 

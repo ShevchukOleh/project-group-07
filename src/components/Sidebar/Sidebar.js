@@ -23,10 +23,14 @@ import {
   ContainerAside,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
+import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const dispatch = useDispatch();
+  const userToken = useSelector(selectToken);
   const openModalAndBackdrop = () => {
     setIsShowModal(true);
     openModal();
@@ -44,7 +48,9 @@ export const Sidebar = ({ setIsShowModal }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const handleLogOut = () => {
+    dispatch(logoutUser(userToken ?? ''));
+  };
   const isBoard = true;
 
   return (
@@ -129,7 +135,7 @@ export const Sidebar = ({ setIsShowModal }) => {
               </button>
             </HelpBlock>
           </BlockContainer>
-          <LogOutBlock>
+          <LogOutBlock onClick={handleLogOut}>
             <svg width={32} height={32} style={{ marginRight: '14px' }}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#logout`} />
             </svg>

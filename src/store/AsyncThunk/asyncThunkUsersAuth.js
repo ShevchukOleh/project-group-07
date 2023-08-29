@@ -32,9 +32,9 @@ const logoutUser = createAsyncThunk('user/logoutUser', async (_, thunkAPI) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const { data } = response;
-    console.log(data);
-    return data;
+    if (response.status === 204) {
+      console.log('Logout success');
+    }
   } catch (error) {
     throw new Error('Failed to logout');
   }

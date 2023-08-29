@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import {FormContainerStyled, ImageBgContainer, Image, ContainerModal, TextFieldStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
+import {FormContainerStyled,RadioStyled, ImageBgContainer, Image, ContainerModal, TextFieldStyled, DialogActionsStyled, ButtonStyled, Icon} from './ModalBoard.styled'
 import Colors from '../../images/icons/colors.svg';
 import Container from '../../images/icons/container.svg';
 import Hexagon from '../../images/icons/hexagon-01.svg';
@@ -21,7 +21,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
  import GlobalStyles from '@mui/material/GlobalStyles';
 import { Box } from '@mui/material';
-// import RadioGroup from '@mui/material/RadioGroup'
+import Radio from '@mui/material/Radio';
+import { useState } from 'react';
+
+
 
 
 // const IMG_URL = `../../images/images_bg/`
@@ -44,14 +47,11 @@ import { Box } from '@mui/material';
 // });
 
 export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
-  const [valueInput, setValueInput] = React.useState('');
+  const [open, setOpen] = useState(false);
+  const [valueIcon, setValueIcon] = useState('');
+  const [valueInput, setValueInput] = useState('');
+  const [valueImgBg, setValueImgBg] = useState('');
   // const [title, setTitle] = React.useState('');
-
-  const handleChange = (value) => {
-  console.log(value)
-}
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -61,12 +61,29 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  const handleChangeIcon = (value) => {
-    setValueInput(value);
-    console.log(value)
+  const handleCloseBtn = () => {
+    setOpen(false);
+    console.log(createBoard)
   }
-  const handleChangeImg = (value) => {
-    console.log(value)
+   
+  const handleChange = (event) => {
+    setValueInput(event.target.value);
+}
+  
+  const handleChangeIcon = (event) => {
+    setValueIcon(event.target.value)
+    console.log(event.target.value)
+  };
+
+  const handleChangeImg = (event) => {
+    console.log(event.target.value)
+    setValueImgBg(event.target.value)
+  }
+
+  const createBoard = {
+    name: valueInput,
+    icon: valueIcon,
+    img: valueImgBg,
   }
 
 
@@ -109,17 +126,53 @@ export default function FormDialog() {
               aria-labelledby="icons-group"
               defaultValue='Project'
               name="icons-group"
-              value={value}
+              value={valueIcon}
               onChange={handleChangeIcon}>
               
-              <FormControlLabel value="Project" control={<Icon src={Project} alt='Project' />} /> 
-              <FormControlLabel value="Star" control={<Icon src={Star} alt='Star' /> } /> 
-              <FormControlLabel value="Loading" control={<Icon src={Loading} alt='Loading' />}/> 
-              <FormControlLabel value="Puzzle" control={<Icon src={Puzzle} alt='Puzzle' />}/> 
-              <FormControlLabel value="Container" control={<Icon src={Container} alt='Container' />} /> 
-              <FormControlLabel value="Lightning" control={<Icon src={Lightning} alt='Lightning' />}/> 
-              <FormControlLabel value="Colors" control={<Icon src={Colors} alt='Colors' />} /> 
-              <FormControlLabel value="Hexagon" control={<Icon src={Hexagon} alt='Hexagon' />}/> 
+                <FormControlLabel value="Project"
+                  control={<RadioStyled
+                    icon={<Icon src={Project} alt='Project' />}
+                    checkedIcon={<Icon src={Project} alt='Project' checked />}
+                  />}/>                      
+                <FormControlLabel value="Star"
+                  control={<RadioStyled
+                  icon={<Icon src={Star} alt='Star' />}
+                  checkedIcon={<Icon src={Star} alt='Star' checked/> }
+                  />} />                
+                <FormControlLabel value="Loading"
+                  control={<RadioStyled
+                    icon={<Icon src={Loading} alt='Loading' />}
+                    checkedIcon={<Icon src={Loading} alt='Loading' checked />}
+                  />} /> 
+                <FormControlLabel value="Puzzle"
+                  control={
+                    <RadioStyled
+                    icon={<Icon src={Puzzle} alt='Puzzle' />}
+                    checkedIcon={<Icon src={Puzzle} alt='Puzzle' checked />}
+                  />}/>
+                <FormControlLabel value="Container"
+                  control={
+                    <RadioStyled
+                    icon={<Icon src={Container} alt='Container' />}
+                    checkedIcon={<Icon src={Container} alt='Container' checked />}
+                  />}/> 
+                <FormControlLabel value="Lightning"
+                  control={<RadioStyled
+                    icon={<Icon src={Lightning} alt='Lightning' />}
+                    checkedIcon={<Icon src={Lightning} alt='Lightning'checked />}/>
+                    } /> 
+                <FormControlLabel value="Colors"
+                  control={
+                    <RadioStyled
+                      icon={<Icon src={Colors} alt='Colors' />}
+                      checkedIcon={<Icon src={Colors} alt='Colors' checked />} />}
+                   /> 
+                <FormControlLabel value="Hexagon"
+                  control={
+                    <RadioStyled
+                      icon={<Icon src={Hexagon} alt='Hexagon' />}
+                      checkedIcon={<Icon src={Hexagon} alt='Hexagon' checked />} />}
+                   />
             </FormContainerStyled>
           </FormControl>
           <DialogTitle sx={{ fontSize: 14, fontWeight:500, padding: 0, marginBottom: '14px' }}>Background</DialogTitle>
@@ -128,11 +181,22 @@ export default function FormDialog() {
               aria-labelledby="image-group"
               defaultValue='Vector1'
               name="image-group"
-              value={value}
+              value={valueImgBg}
               onChange={handleChangeImg}>
               
-              <FormControlLabel value="Vector1" control={<Image src={Vector1} alt='Vector1' />} />
-              <FormControlLabel value="Vector2" control={<Image src={Vector2} alt='Vector2' />} />
+              <FormControlLabel value="Vector1"
+                control={
+                   <Radio
+                      icon={<Image src={Vector1} alt='Vector1' />}
+                      checkedIcon={<Image src={Vector1} alt='Vector1' checked />} />}
+                   />
+
+              <FormControlLabel value="Vector2"
+               control={
+                   <Radio
+                      icon={<Image src={Vector2} alt='Vector2' />}
+                      checkedIcon={<Image src={Vector2} alt='Vector2' checked />} />}
+                   />
               <FormControlLabel value="Vector3" control={<Image src={Vector3} alt='Vector3' />} />
               <FormControlLabel value="Vector4" control={<Image src={Vector4} alt='Vector4' />} />
             </ImageBgContainer>
@@ -140,7 +204,7 @@ export default function FormDialog() {
           </DialogContent>
         <DialogActionsStyled>
             <Button variant="contained"
-              onClick={handleClose}
+            onClick={handleCloseBtn}
             sx={{
               fontFamily: 'Poppins',
               backgroundColor: '#BEDBB0',

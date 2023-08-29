@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import RadioGroup from '@mui/material/RadioGroup'
 import DialogActions from '@mui/material/DialogActions';
+import { Radio } from '@mui/material';
 
 
 export const ButtonStyled = styled(Button)`
@@ -24,8 +25,17 @@ height: 433;
   padding-left: 9px;
   display:flex;
   gap: 8px;
-  `
-
+  
+`
+export const RadioStyled = styled(Radio)`
+width: 18px;
+height: 18px;
+`
+export const RadioStyledImg = styled(Radio)`
+width: 18px;
+height: 18px;
+`
+  
 export const ImageBgContainer = styled(RadioGroup)`
   border: 2px solid grey;
   padding-left: 14px;

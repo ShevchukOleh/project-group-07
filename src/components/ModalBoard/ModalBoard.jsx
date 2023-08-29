@@ -25,27 +25,6 @@ import Radio from '@mui/material/Radio';
 import { useState } from 'react';
 
 
-
-
-// const IMG_URL = `../../images/images_bg/`
-
-// const imageArraySrc = [
-//   `images-05.svg`,
-//   `Vector1.svg`
-// ]
-
-
-// const theme = createTheme({
-//   palette: {
-//     green: {
-//       main: '#E3D026',
-//       light: '#E9DB5D',
-//       dark: '#A29415',
-//       contrastText: '#242105',
-//     },
-//   },
-// });
-
 export default function FormDialog() {
   const [open, setOpen] = useState(false);
   const [valueIcon, setValueIcon] = useState('');
@@ -203,7 +182,8 @@ export default function FormDialog() {
           
           </DialogContent>
         <DialogActionsStyled>
-            <Button variant="contained"
+            <Button
+              // variant="contained"
             onClick={handleCloseBtn}
             sx={{
               fontFamily: 'Poppins',

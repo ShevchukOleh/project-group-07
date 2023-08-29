@@ -33,6 +33,7 @@ const FormContainer = styled.div`
   border-radius: 8px;
   box-sizing: border-box;
   transition: width, height, 0.3s linear;
+  position: relative;
   @media (min-width: 375px) {
     width: 335px;
   }
@@ -51,6 +52,18 @@ const LinkFormWrapper = styled.div`
   @media (min-width: 768px) {
     max-width: 473px;
   }
+`;
+const TextFormSubmitButton = styled.button`
+  border-radius: 8px;
+  padding: 14px 20px;
+  background-color: #bedbb0;
+  cursor: pointer;
+  width: 100%;
+  color: #161616;
+  margin-top: 14px;
+  font-size: 18px;
+  font-family: 'poppins';
+  font-weight: 500;
 `;
 const LinkFormButtonNav = styled(NavLink)`
   color: rgba(255, 255, 255, 0.3);
@@ -89,19 +102,7 @@ const TextForm = styled.form`
   justify-content: center;
   gap: 14px;
 `;
-const TextFormSubmitButton = styled.button`
-  border-radius: 8px;
-  padding: 14px 50px;
-  background-color: #bedbb0;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 14px;
-  font-family: 'poppins';
-  font-weight: 500;
-  @media (min-width: 768px) {
-    padding: 14px 99px;
-  }
-`;
+
 const FormButtonLink = styled(Link)`
   text-decoration: none;
   font-family: inherit;

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
-// import circle from '../../images/help-circle.png';
+
+import circle from '../../images/help-circle.png';
 import { BordInSidebar } from './BordInSidebar';
+
 import {
   Block,
   HelpBlock,

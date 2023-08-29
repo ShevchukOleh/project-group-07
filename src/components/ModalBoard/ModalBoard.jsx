@@ -31,7 +31,7 @@ export default function FormDialog({hideModal, isShowModal}) {
       console.log(data)
     })
     .catch((error) => setError(error))
-  }, [TOKEN])
+  }, [])
 
     useEffect(() => {
     getImage(TOKEN).then(data => {
@@ -39,7 +39,7 @@ export default function FormDialog({hideModal, isShowModal}) {
       console.log(data)
     })
     .catch((error) => setError(error))
-    }, [TOKEN])
+    }, [])
   
   const handleClose = () => {
     hideModal();

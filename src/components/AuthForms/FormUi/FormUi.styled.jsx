@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const ContainerEntry = styled.div`
   width: 100%;
   max-width: 320px;
@@ -18,10 +18,6 @@ const ContainerEntry = styled.div`
   }
 
   @media (min-width: 768px) {
-    max-width: 768px;
-  }
-
-  @media (min-width: 1440px) {
     max-width: 1440px;
   }
 `;
@@ -33,6 +29,7 @@ const FormContainer = styled.div`
   border-radius: 8px;
   box-sizing: border-box;
   transition: width, height, 0.3s linear;
+  position: relative;
   @media (min-width: 375px) {
     width: 335px;
   }
@@ -52,9 +49,20 @@ const LinkFormWrapper = styled.div`
     max-width: 473px;
   }
 `;
-const LinkFormButtonNav = styled(Link)`
-  color: ${props =>
-    props.isCurrentRoute ? '#ffffff' : 'rgba(255, 255, 255, 0.30)'};
+const TextFormSubmitButton = styled.button`
+  border-radius: 8px;
+  padding: 14px 20px;
+  background-color: #bedbb0;
+  cursor: pointer;
+  width: 100%;
+  color: #161616;
+  margin-top: 14px;
+  font-size: 18px;
+  font-family: 'poppins';
+  font-weight: 500;
+`;
+const LinkFormButtonNav = styled(NavLink)`
+  color: rgba(255, 255, 255, 0.3);
   font-size: 18px;
   font-family: inherit;
   text-decoration: none;
@@ -62,6 +70,12 @@ const LinkFormButtonNav = styled(Link)`
   line-height: normal;
   transition: color 0.3s linear;
   font-family: 'poppins';
+  &.active {
+    color: #ffffff;
+  }
+  &:active {
+    color: inherit;
+  }
 `;
 const TextFieldCustum = styled.input`
   height: 49px;
@@ -84,19 +98,7 @@ const TextForm = styled.form`
   justify-content: center;
   gap: 14px;
 `;
-const TextFormSubmitButton = styled.button`
-  border-radius: 8px;
-  padding: 14px 50px;
-  background-color: #bedbb0;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 14px;
-  font-family: 'poppins';
-  font-weight: 500;
-  @media (min-width: 768px) {
-    padding: 14px 99px;
-  }
-`;
+
 const FormButtonLink = styled(Link)`
   text-decoration: none;
   font-family: inherit;

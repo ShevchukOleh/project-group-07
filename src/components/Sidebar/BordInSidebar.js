@@ -22,6 +22,22 @@ const testBoards = [
     name: 'its works!!',
     status: 'red',
   },
+  {
+    name: 'Project office',
+    status: 'black',
+  },
+  {
+    name: 'Naon Light Project',
+    status: 'green',
+  },
+  {
+    name: 'Project office',
+    status: 'black',
+  },
+  {
+    name: 'Naon Light Project',
+    status: 'green',
+  },
 ];
 
 export const BordInSidebar = () => {

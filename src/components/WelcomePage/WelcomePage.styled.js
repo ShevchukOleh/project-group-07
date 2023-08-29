@@ -5,6 +5,7 @@ export const WelcomePageStyle = styled.div`
   margin-right: auto;
   padding: 211px 20px;
   max-width: 100%;
+  margin: 0 auto;
   background-color: #b6d9af;
   background-image: linear-gradient(0deg, #b6d9af 0%, #ffffff 100%);
   text-align: center;

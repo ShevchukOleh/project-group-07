@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
@@ -22,12 +22,34 @@ import {
   BlockContainerBoard,
   ContainerAside,
 } from './Sidebar.styled';
+import ModalForm from './NeedHelp/NeedHelpModal';
 
 export const Sidebar = ({ setIsShowModal }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModalAndBackdrop = () => {
+    setIsShowModal(true);
+    openModal();
+  };
+
+  const closeModalAdnBackdrop = () => {
+    setIsShowModal(false);
+    closeModal();
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const isBoard = true;
 
   return (
     <ContainerAside>
+      <ModalForm />
       {/* <CustomDrawer variant="permanent" anchor="left"> */}
       <SidebarContainer>
         <Block>
@@ -83,13 +105,19 @@ export const Sidebar = ({ setIsShowModal }) => {
               customer support team.
             </HelpText>
             <HelpBlock>
+              <ModalForm
+                isModalOpen={isModalOpen}
+                closeModalAdnBackdrop={closeModalAdnBackdrop}
+              />
               <button
+                onClick={openModalAndBackdrop}
                 style={{
                   border: 'none',
                   display: 'flex',
                   alignItems: 'center',
                   background: 'inherit',
                   padding: '0',
+                  cursor: 'pointer',
                 }}
               >
                 <svg width={20} height={20} style={{ marginRight: '8px' }}>

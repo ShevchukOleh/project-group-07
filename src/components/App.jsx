@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import WelcomePage from './WelcomePage/WelcomePage';
-import RegistrationForm from './Forms/RegistrationForm/RegistrationForm';
-import LoginForm from './Forms/LoginForm/LoginForm';
+import RegistrationForm from './AuthForms/RegistrationForm/RegistrationForm';
+import LoginForm from './AuthForms/LoginForm/LoginForm';
 import Layout from './Layout';
 import '../styles/fonts.css';
 import 'modern-normalize/modern-normalize.css';
@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'store/createSlices/userAuth/userSelectors';
 import PrivateRoute from './Routes/PrivateRoute/PrivateRoute';
 import PublicRoute from './Routes/PublicRoute/PublicRoute';
-
+import AuthForms from './AuthForms/AuthForms';
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
@@ -22,32 +22,29 @@ export const App = () => {
           </PublicRoute>
         }
       />
-
       <Route
-        path="registration"
+        path="/auth"
         element={
           <PublicRoute isLoggedIn={isLoggedIn}>
-            <RegistrationForm />
+            <AuthForms />
           </PublicRoute>
         }
-      />
+      >
+        <Route path="login" element={<LoginForm />} />
+        <Route path="registration" element={<RegistrationForm />} />
+      </Route>
       <Route
-        path="login"
-        element={
-          <PublicRoute isLoggedIn={isLoggedIn}>
-            <LoginForm />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="dashboard"
+        path="home"
         element={
           <PrivateRoute isLoggedIn={isLoggedIn}>
             <Layout />
           </PrivateRoute>
         }
       />
-      <Route path="*" element={<Navigate to="registration" replace={true} />} />
+      <Route
+        path="*"
+        element={<Navigate to="/auth/registration" replace={true} />}
+      />
     </Routes>
   );
 };

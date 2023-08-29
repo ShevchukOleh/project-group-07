@@ -11,7 +11,7 @@ import thunk from 'redux-thunk';
 const rootReducer = combineReducers({
   data: collectionSlice,
   user: userSlice,
-  board: boardSlice,
+  // board: boardSlice,
 });
 
 const persistConfig = getPersistConfig({

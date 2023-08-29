@@ -27,6 +27,7 @@ import ModalForm from './NeedHelp/NeedHelpModal';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

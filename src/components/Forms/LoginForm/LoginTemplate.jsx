@@ -10,16 +10,18 @@ import { RiEyeLine, RiEyeCloseLine } from 'react-icons/ri';
 import ErrorComponent from '../FormUi/ErrorComponent/ErrorComponent';
 const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
   <TextForm onSubmit={formikProps.handleSubmit}>
-    <TextFieldCustum
-      type="text"
-      name="email"
-      value={formikProps.values.email}
-      onChange={formikProps.handleChange}
-      placeholder="Enter your email"
-      required
-      autoComplete="on"
-    />
-    <ErrorComponent />
+    <div>
+      <TextFieldCustum
+        type="text"
+        name="email"
+        value={formikProps.values.email}
+        onChange={formikProps.handleChange}
+        placeholder="Enter your email"
+        autoComplete="on"
+      />
+      <ErrorComponent name="email" />
+    </div>
+
     <div style={{ position: 'relative', width: '100%' }}>
       <TextFieldCustum
         type={showPassword ? 'text' : 'password'}
@@ -27,8 +29,6 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
         value={formikProps.values.password}
         onChange={formikProps.handleChange}
         placeholder="Create a password"
-        required
-        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,64}$"
         autoComplete="on"
         minLength={8}
         maxLength={64}
@@ -40,7 +40,7 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
           <RiEyeLine style={{ color: '#fff', fontSize: '18px' }} />
         )}
       </IconPassowordWrapper>
-      <ErrorComponent />
+      <ErrorComponent name="password" />
     </div>
     <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
   </TextForm>

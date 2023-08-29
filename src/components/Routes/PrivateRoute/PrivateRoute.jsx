@@ -1,6 +1,6 @@
 const { Navigate } = require('react-router-dom');
 
-const ProtectedRoute = ({
+const PrivateRoute = ({
   isLoggedIn,
   redirectPath = '/registration',
   children,
@@ -10,4 +10,4 @@ const ProtectedRoute = ({
   }
   return <Navigate to={redirectPath} replace={true} />;
 };
-export default ProtectedRoute;
+export default PrivateRoute;

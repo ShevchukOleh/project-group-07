@@ -27,6 +27,11 @@ const validationSchemaLogin = Yup.object().shape({
       /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/,
       'Invalid email format'
     ),
-  password: Yup.string().required('Password is required'),
+  password: Yup.string()
+    .required('Password is required')
+    .matches(
+      /^(?=.*[a-zA-Z0-9])[a-zA-Z0-9!@#$%^&*]{8,64}$/,
+      'Password must contain letters, digits, and be 8-64 characters long'
+    ),
 });
 export { validationSchemaRestration, validationSchemaLogin };

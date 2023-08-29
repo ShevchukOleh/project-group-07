@@ -32,6 +32,9 @@ export const FiltersModal = () => {
   const priorityColor = priorityStatus =>
     priorityStatus ? 'rgba(22, 22, 22, 1)' : 'rgba(22, 22, 22, 0.5)';
 
+  const bgPriorityColor = (priorityStatus, bgColor) =>
+    priorityStatus ? 'transparent' : bgColor;
+
   const handleClick = event => {
     setFiltersEl(event.currentTarget);
   };
@@ -185,7 +188,10 @@ export const FiltersModal = () => {
                 control={
                   <Radio
                     sx={{
-                      backgroundColor: 'rgba(22, 22, 22, 0.3)',
+                      backgroundColor: bgPriorityColor(
+                        withoutStatus,
+                        'rgba(22, 22, 22, 0.3)'
+                      ),
                       '& span svg': { color: 'rgba(22, 22, 22, 0.3)' },
                     }}
                   />
@@ -202,7 +208,10 @@ export const FiltersModal = () => {
                 control={
                   <Radio
                     sx={{
-                      backgroundColor: 'rgba(143, 161, 208, 1)',
+                      backgroundColor: bgPriorityColor(
+                        lowStatus,
+                        'rgba(143, 161, 208, 1)'
+                      ),
                       '& span svg': { color: 'rgba(143, 161, 208, 1)' },
                     }}
                   />
@@ -217,7 +226,10 @@ export const FiltersModal = () => {
                 control={
                   <Radio
                     sx={{
-                      backgroundColor: 'rgba(224, 156, 181, 1)',
+                      backgroundColor: bgPriorityColor(
+                        mediumStatus,
+                        'rgba(224, 156, 181, 1)'
+                      ),
                       '& span svg': { color: 'rgba(224, 156, 181, 1)' },
                     }}
                   />
@@ -234,7 +246,10 @@ export const FiltersModal = () => {
                 control={
                   <Radio
                     sx={{
-                      backgroundColor: 'rgba(190, 219, 176, 1)',
+                      backgroundColor: bgPriorityColor(
+                        highStatus,
+                        'rgba(190, 219, 176, 1)'
+                      ),
                       '& span svg': { color: 'rgba(190, 219, 176, 1)' },
                     }}
                   />

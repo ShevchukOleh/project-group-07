@@ -27,6 +27,7 @@ export const MenuLabel = styled.span`
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.02em;
+  color: rgba(22, 22, 22, 1);
 `;
 
 export const Border = styled.div`
@@ -52,4 +53,9 @@ export const ShowAllBtn = styled(Button)`
   line-height: 1.5;
   text-transform: none;
   letter-spacing: 0.02em;
+`;
+
+export const MenuLabelWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

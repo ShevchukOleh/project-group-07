@@ -107,16 +107,20 @@ const FormButtonLink = styled(Link)`
   font-size: 14px;
 `;
 const IconPassowordWrapper = styled.div`
-  position: absolute;
-  top: 49%;
-  right: 10px;
-  transform: translateY(-40%);
   cursor: pointer;
+  width: 30px;
+  margin-top: -33px;
+`;
+const ContainerErrorIcon = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 `;
 export {
   FormContainer,
   LinkFormWrapper,
   LinkFormButtonNav,
+  ContainerErrorIcon,
   TextForm,
   TextFieldCustum,
   TextFormSubmitButton,

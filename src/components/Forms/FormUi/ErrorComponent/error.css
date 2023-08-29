@@ -1,9 +1,8 @@
 .error-message {
-  color: rgba(255, 0, 0, 0.699);
-  position: absolute;
+  color: rgba(255, 0, 0, 0.712);
   font-size: 12px;
   font-family: 'poppins';
   font-weight: 500;
-  bottom: 100px;
+  margin-top: 5px;
   letter-spacing: 0.03em;
 }

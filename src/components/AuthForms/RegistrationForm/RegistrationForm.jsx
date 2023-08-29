@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RegistrationTemplate from './RegistrationTemplate';
 import { Formik } from 'formik';
 import { validationSchemaRestration } from '../JS/validationSchema';
@@ -9,7 +9,10 @@ import { useNavigate } from 'react-router-dom';
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setShowPassword(prevShow => !prevShow);
+  };
   const handleSubmit = async (values, formikBag) => {
     await dispatch(registerUser(values));
     console.log('submitted:', values);
@@ -22,7 +25,13 @@ const RegistrationForm = () => {
       validationSchema={validationSchemaRestration}
       onSubmit={handleSubmit}
     >
-      {formikProps => <RegistrationTemplate formikProps={formikProps} />}
+      {formikProps => (
+        <RegistrationTemplate
+          handleShowPassword={handleShowPassword}
+          showPassword={showPassword}
+          formikProps={formikProps}
+        />
+      )}
     </Formik>
   );
 };

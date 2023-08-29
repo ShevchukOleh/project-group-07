@@ -56,6 +56,12 @@ export const FiltersModal = () => {
         anchorEl={filtersEl}
         open={open}
         onClose={handleClose}
+        anchorOrigin={{
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          horizontal: 'right',
+        }}
         sx={{
           '& .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper': {
             padding: '26px 24px',

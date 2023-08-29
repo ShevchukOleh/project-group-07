@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-const PublicRoute = ({ isLoggedIn, redirectPath = '/dashboard', children }) => {
+const PublicRoute = ({ isLoggedIn, redirectPath = '/home', children }) => {
   if (!isLoggedIn) {
     return children;
   } else {

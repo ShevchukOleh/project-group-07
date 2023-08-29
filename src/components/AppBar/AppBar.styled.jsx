@@ -51,6 +51,8 @@ export const HeaderNav = styled.div`
 
 export const UserInfoBtn = styled(Button)`
   gap: 8px;
+  padding-top: 0;
+  padding-bottom: 0;
   color: #161616;
   font-family: Poppins;
   font-size: 14px;

@@ -83,9 +83,9 @@ export const Sidebar = ({ setIsShowModal }) => {
                 setIsShowModal(true);
                 dispatch(
                   createBoard({
-                    title: 'NewBoard',
-                    icon: 'icon1',
-                    background: 'default',
+                    title: 'Some title',
+                    icon: '64eb3c2a8408f19231b21fc5',
+                    background: '64eb2ce10d0d1b1e0a8b9bb2',
                   })
                 );
               }}

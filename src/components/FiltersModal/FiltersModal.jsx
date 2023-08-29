@@ -24,12 +24,13 @@ export const FiltersModal = () => {
   const [filtersEl, setFiltersEl] = useState(null);
   const open = Boolean(filtersEl);
 
-  const [withoutStatus, setWithouteStatus] = useState(null);
+  const [withoutStatus, setWithoutStatus] = useState(null);
   const [lowStatus, setLowStatus] = useState(null);
   const [mediumStatus, setMediumStatus] = useState(null);
   const [highStatus, setHighStatus] = useState(null);
 
-  const priorityColor = priorityStatus =>  priorityStatus ? 'rgba(190,219,176,1)' : '#161616';
+  const priorityColor = priorityStatus =>
+    priorityStatus ? 'rgba(22, 22, 22, 1)' : 'rgba(22, 22, 22, 0.5)';
 
   const handleClick = event => {
     setFiltersEl(event.currentTarget);
@@ -42,6 +43,31 @@ export const FiltersModal = () => {
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
     console.log(event.currentTarget.value);
+
+    if (event.currentTarget.value === 'without priority') {
+      setWithoutStatus(true);
+      setLowStatus(null);
+      setMediumStatus(null);
+      setHighStatus(null);
+    }
+    if (event.currentTarget.value === 'low') {
+      setWithoutStatus(null);
+      setLowStatus(true);
+      setMediumStatus(null);
+      setHighStatus(null);
+    }
+    if (event.currentTarget.value === 'medium') {
+      setWithoutStatus(null);
+      setLowStatus(null);
+      setMediumStatus(true);
+      setHighStatus(null);
+    }
+    if (event.currentTarget.value === 'high') {
+      setWithoutStatus(null);
+      setLowStatus(null);
+      setMediumStatus(null);
+      setHighStatus(true);
+    }
   };
 
   const handleShowAllBtnClick = event => {
@@ -67,9 +93,11 @@ export const FiltersModal = () => {
         open={open}
         onClose={handleClose}
         anchorOrigin={{
+          vertical: 'top',
           horizontal: 'right',
         }}
         transformOrigin={{
+          vertical: 'top',
           horizontal: 'right',
         }}
         sx={{
@@ -158,6 +186,11 @@ export const FiltersModal = () => {
                   <Radio sx={{ backgroundColor: 'rgba(22, 22, 22, 0.3)' }} />
                 }
                 label="Without priority"
+                sx={{
+                  '& .MuiTypography-root': {
+                    color: priorityColor(withoutStatus),
+                  },
+                }}
               />
               <FormControlLabel
                 value="low"
@@ -165,6 +198,9 @@ export const FiltersModal = () => {
                   <Radio sx={{ background: 'rgba(143, 161, 208, 1)' }} />
                 }
                 label="Low"
+                sx={{
+                  '& .MuiTypography-root': { color: priorityColor(lowStatus) },
+                }}
               />
               <FormControlLabel
                 value="medium"
@@ -172,6 +208,11 @@ export const FiltersModal = () => {
                   <Radio sx={{ backgroundColor: 'rgba(224, 156, 181, 1)' }} />
                 }
                 label="Medium"
+                sx={{
+                  '& .MuiTypography-root': {
+                    color: priorityColor(mediumStatus),
+                  },
+                }}
               />
               <FormControlLabel
                 value="high"
@@ -179,6 +220,9 @@ export const FiltersModal = () => {
                   <Radio sx={{ background: 'rgba(190, 219, 176, 1)' }} />
                 }
                 label="High"
+                sx={{
+                  '& .MuiTypography-root': { color: priorityColor(highStatus) },
+                }}
               />
             </RadioGroup>
           </FormControl>

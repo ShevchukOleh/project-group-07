@@ -1,32 +1,27 @@
+import { ThemeModal } from 'components/ThemeModal';
 import {
   Header,
   MenuBtn,
+  MenuIconNav,
   HeaderNav,
-  ChangeThemeBtn,
-  ThemeLabel,
-  ThemeIcon,
   UserInfoBtn,
-  UserName,
   UserAvatar,
 } from './AppBar.styled';
 
 export const AppBar = () => {
   return (
     <Header>
-      <MenuBtn type="button"></MenuBtn>
+      <MenuBtn>
+        <MenuIconNav />
+      </MenuBtn>
 
       <HeaderNav>
-        <ChangeThemeBtn type="button">
-          <ThemeLabel>Theme</ThemeLabel>
-          <ThemeIcon width="16px" height="16px">
-            <use href="/src/images/symbol-defs.svg#icon-chevron"></use>
-          </ThemeIcon>
-        </ChangeThemeBtn>
+        <ThemeModal />
 
-        <UserInfoBtn type="button">
-          <UserName>User</UserName>
+        <UserInfoBtn>
+          User
           <UserAvatar>
-            <img src="" alt="User name"></img>
+            <img src="" alt="User name" />
           </UserAvatar>
         </UserInfoBtn>
       </HeaderNav>

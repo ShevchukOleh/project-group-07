@@ -3,6 +3,7 @@ import WelcomePage from './WelcomePage/WelcomePage';
 import RegistrationForm from './Forms/RegistrationForm/RegistrationForm';
 import LoginForm from './Forms/LoginForm/LoginForm';
 import { Layout } from './Layout';
+import Layout from './Layout';
 import '../styles/fonts.css';
 import 'modern-normalize/modern-normalize.css';
 import { useSelector } from 'react-redux';

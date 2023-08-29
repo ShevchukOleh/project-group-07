@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   ContainerEntry,
   FormContainer,
@@ -8,7 +8,7 @@ import {
 import { Formik } from 'formik';
 import LoginTemplate from './LoginTemplate';
 import { validationSchemaLogin } from '../JS/validationSchema';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {

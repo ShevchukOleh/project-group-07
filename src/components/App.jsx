@@ -15,7 +15,7 @@ export const App = () => {
   return (
     <Routes>
       <Route
-        path="/welcome"
+        path="/"
         element={
           <PublicRoute isLoggedIn={isLoggedIn}>
             <WelcomePage />

@@ -27,10 +27,7 @@ import {
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
 import FormDialog from '../ModalBoard/ModalBoard'
-import { useDispatch } from 'react-redux';
 import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
-import { useNavigate } from 'react-router';
-
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';

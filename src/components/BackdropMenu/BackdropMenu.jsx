@@ -18,7 +18,11 @@ export const BackdropMenu = () => {
         <MenuIconNav />
       </MenuBtn>
       <Backdrop
-        sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+        sx={{
+          color: '#fff',
+          zIndex: theme => theme.zIndex.drawer + 1,
+          justifyContent: 'flex-start',
+        }}
         open={open}
         onClick={handleClose}
       >

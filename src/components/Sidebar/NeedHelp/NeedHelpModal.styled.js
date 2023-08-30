@@ -9,6 +9,7 @@ const ModalOverlay = styled.div`
   height: 100%;
   z-index: 1001;
   display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -17,7 +18,6 @@ const ModalOverlay = styled.div`
 const IconClose = styled.svg`
   width: 18px;
   height: 18px;
-  /* Добавьте другие стили, если необходимо */
 `;
 
 const ModalContent = styled.div`

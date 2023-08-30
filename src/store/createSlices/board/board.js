@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getAllBoards, createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
-const initialState = { boards: [], loading: false, error: null };
+const initialState = {
+  boards: [],
+  loading: false,
+  error: null,
+};
 
 const boardSlice = createSlice({
   name: 'board',

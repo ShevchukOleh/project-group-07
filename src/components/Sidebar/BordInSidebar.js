@@ -1,97 +1,61 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { OneBoard } from './Sidebar.styled';
-
-const testBoards = [
-  {
-    name: 'Project office',
-    status: 'black',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-  {
-    name: 'My test',
-    status: 'red',
-  },
-  {
-    name: 'for test',
-    status: 'green',
-  },
-  {
-    name: 'its works!!',
-    status: 'red',
-  },
-  {
-    name: 'Project office',
-    status: 'black',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-  {
-    name: 'Project office',
-    status: 'black',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-];
+import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit2 } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 
 export const BordInSidebar = () => {
-  const [tasks, setTasks] = useState(testBoards);
+  const boardsInSidebar = useSelector(state => state.board.boards);
 
-  const handleDragStart = (e, index) => {
-    e.dataTransfer.setData('text/plain', index);
-  };
+  // const [boards, setBoards] = useState(boardsInSidebar);
 
-  const handleDragOver = (e, index) => {
-    e.preventDefault();
-  };
+  console.log(boardsInSidebar);
 
-  const handleDrop = (e, dropIndex) => {
-    const draggedIndex = e.dataTransfer.getData('text/plain');
-    const updatedTasks = [...tasks];
-    const [draggedTask] = updatedTasks.splice(draggedIndex, 1);
-    updatedTasks.splice(dropIndex, 0, draggedTask);
-    setTasks(updatedTasks);
-  };
+  // const handleDragStart = (e, index) => {
+  //   e.dataTransfer.setData('text/plain', index);
+  // };
+
+  // const handleDragOver = (e, index) => {
+  //   e.preventDefault();
+  // };
+
+  // const handleDrop = (e, dropIndex) => {
+  //   const draggedIndex = e.dataTransfer.getData('text/plain');
+  //   const updatedBoards = [...boards];
+  //   const [draggedBoard] = updatedBoards.splice(draggedIndex, 1);
+  //   updatedBoards.splice(dropIndex, 0, draggedBoard);
+  //   setBoards(updatedBoards);
+  // };
 
   return (
-    <div className="task-list">
-      {tasks.map((task, index) => (
+    <div className="board-list">
+      {boardsInSidebar.map((board, index) => (
         <div
           key={index}
-          className="task"
+          className="board"
           draggable
-          onDragStart={e => handleDragStart(e, index)}
-          onDragOver={e => handleDragOver(e, index)}
-          onDrop={e => handleDrop(e, index)}
+          // onDragStart={e => handleDragStart(e, index)}
+          // onDragOver={e => handleDragOver(e, index)}
+          // onDrop={e => handleDrop(e, index)}
         >
           <OneBoard>
             <div style={{ marginRight: '16px' }}>
-              <svg width={18} height={18}>
+              <div>
+                <img src={board.icon.icon_src} alt="icon" />
+              </div>
+              {/* {board.icon} */}
+              {/* <svg width={18} height={18}>
                 <use
                   xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-IconProject`}
                 />
-              </svg>
+              </svg> */}
             </div>
-            <div style={{ flex: 1 }}>{task.name}</div>
+            <div style={{ flex: 1 }}>{board.title}</div>
             <div style={{ marginRight: '8px' }}>
-              <svg width={16} height={16}>
-                <use
-                  xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-pencil-01`}
-                />
-              </svg>
+              <FiEdit2 />
             </div>
             <div>
-              <svg width={16} height={16}>
-                <use
-                  xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-trash`}
-                />
-              </svg>
+              <AiOutlineDelete />
             </div>
           </OneBoard>
         </div>

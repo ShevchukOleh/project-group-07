@@ -18,10 +18,19 @@ export const AppBar = () => {
         <ThemeModal />
 
         <UserInfoBtn>
-          User
-          <UserAvatar>
-            <img src="" alt="User name" />
-          </UserAvatar>
+          {user ? (
+            <>
+              {user.name}
+              <UserAvatar>
+                <img
+                  src={user.avatarURL}
+                  alt={user.name}
+                />
+              </UserAvatar>
+            </>
+          ) : (
+            <p>Loading user data...</p>
+          )}
         </UserInfoBtn>
       </HeaderNav>
     </Header>

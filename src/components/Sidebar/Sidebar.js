@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
-
-// import circle from '../../images/help-circle.png';
 import { BordInSidebar } from './BordInSidebar';
-
 import {
   Block,
   HelpBlock,
@@ -22,6 +18,10 @@ import {
   SidebarContainer,
   BlockContainerBoard,
   ContainerAside,
+  PlusIcon,
+  CreateButton,
+  PlantImg,
+  Helpbutton,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
@@ -34,16 +34,6 @@ export const Sidebar = ({ setIsShowModal }) => {
   const dispatch = useDispatch();
 
   const userToken = useSelector(selectToken);
-
-  const openModalAndBackdrop = () => {
-    setIsShowModal(true);
-    openModal();
-  };
-
-  const closeModalAdnBackdrop = () => {
-    setIsShowModal(false);
-    closeModal();
-  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -60,7 +50,6 @@ export const Sidebar = ({ setIsShowModal }) => {
   return (
     <ContainerAside>
       <ModalForm />
-      {/* <CustomDrawer variant="permanent" anchor="left"> */}
       <SidebarContainer>
         <Block>
           <LogoContainer>
@@ -74,27 +63,20 @@ export const Sidebar = ({ setIsShowModal }) => {
             <NewBoardText>
               Create <br />a new board
             </NewBoardText>
-            <Button
+            <CreateButton
               onClick={() => {
                 setIsShowModal(true);
                 dispatch(
                   createBoard({
-                    title: 'Some title',
+                    title: ' next',
                     icon: '64eb3c2a8408f19231b21fc5',
                     background: '64eb2ce10d0d1b1e0a8b9bb2',
                   })
                 );
               }}
-              color="primary"
-              sx={{
-                minWidth: '40px',
-                height: '36px',
-                marginLeft: '8px',
-                background: '#BEDBB0',
-              }}
             >
-              <p style={{ color: 'black', fontSize: '26px', margin: '0' }}>+</p>
-            </Button>
+              <PlusIcon>+</PlusIcon>
+            </CreateButton>
           </BlockContainerCreate>
         </Block>
         {isBoard ? (
@@ -106,11 +88,7 @@ export const Sidebar = ({ setIsShowModal }) => {
         )}
         <Block>
           <BlockContainer marginBottom={24}>
-            <img
-              src={plant}
-              alt="plant"
-              style={{ width: '54px', height: '78px', marginBottom: '14px' }}
-            />
+            <PlantImg src={plant} alt="plant" />
             <HelpText>
               If you need help with{' '}
               <a
@@ -124,28 +102,15 @@ export const Sidebar = ({ setIsShowModal }) => {
               customer support team.
             </HelpText>
             <HelpBlock>
-              <ModalForm
-                isModalOpen={isModalOpen}
-                closeModalAdnBackdrop={closeModalAdnBackdrop}
-              />
-              <button
-                onClick={openModalAndBackdrop}
-                style={{
-                  border: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  background: 'inherit',
-                  padding: '0',
-                  cursor: 'pointer',
-                }}
-              >
+              <ModalForm isModalOpen={isModalOpen} closeModal={closeModal} />
+              <Helpbutton onClick={openModal}>
                 <svg width={20} height={20} style={{ marginRight: '8px' }}>
                   <use
                     xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-help-circle`}
                   />
                 </svg>
                 <p style={{ margin: '0' }}> Need help?</p>
-              </button>
+              </Helpbutton>
             </HelpBlock>
           </BlockContainer>
 
@@ -157,7 +122,6 @@ export const Sidebar = ({ setIsShowModal }) => {
           </LogOutBlock>
         </Block>
       </SidebarContainer>
-      {/* </CustomDrawer> */}
     </ContainerAside>
   );
 };

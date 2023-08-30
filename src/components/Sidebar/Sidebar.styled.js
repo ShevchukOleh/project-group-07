@@ -1,22 +1,5 @@
 import styled from '@emotion/styled';
-
-// const drawerWidth = 260;
-
-// const CustomDrawer = styled(Drawer)`
-//   width: ${drawerWidth}px;
-//   flex-shrink: 0;
-
-//   & .MuiDrawer-paper {
-//     width: ${drawerWidth}px;
-//     background-color: #ffffff;
-//   }
-//   @media (max-width: 375px) {
-//     width: 225px;
-//     & .MuiDrawer-paper {
-//       width: 225px;
-//     }
-//   }
-// `;
+import Button from '@mui/material/Button';
 
 const ContainerAside = styled.aside`
   display: none;
@@ -174,6 +157,34 @@ const HelpBlock = styled.div`
   margin-top: 18px;
 `;
 
+const PlusIcon = styled.p`
+  color: black;
+  font-size: 26px;
+  margin: 0;
+`;
+
+const CreateButton = styled(Button)`
+  min-width: 40px;
+  height: 36px;
+  margin-left: 8px;
+  background-color: #bedbb0;
+`;
+
+const PlantImg = styled.img`
+  width: 54px;
+  height: 78px;
+  margin-bottom: 14px;
+`;
+
+const Helpbutton = styled.button`
+  border: none;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  padding: 0;
+  cursor: pointer;
+`;
+
 export {
   HelpBlock,
   LogOutBlock,
@@ -192,4 +203,8 @@ export {
   Block,
   OneBoard,
   ContainerAside,
+  PlusIcon,
+  CreateButton,
+  PlantImg,
+  Helpbutton,
 };

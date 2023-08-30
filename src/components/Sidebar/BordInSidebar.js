@@ -1,97 +1,78 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { OneBoard } from './Sidebar.styled';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit2 } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 
-const testBoards = [
-  {
-    name: 'Project office',
-    status: 'black',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-  {
-    name: 'My test',
-    status: 'red',
-  },
-  {
-    name: 'for test',
-    status: 'green',
-  },
-  {
-    name: 'its works!!',
-    status: 'red',
-  },
-  {
-    name: 'Project office',
-    status: 'black',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-  {
-    name: 'Project office',
-    status: 'black',
-  },
-  {
-    name: 'Naon Light Project',
-    status: 'green',
-  },
-];
+// const boardsMass = [
+//   {
+//     title: 'Some title',
+//     icon: '64eb3c2a8408f19231b21fc5',
+//     background: '64eb2ce10d0d1b1e0a8b9bb2',
+//   },
+//   {
+//     title: 'next title',
+//     icon: '64eb3c2a8408f19231b21fc5',
+//     background: '64eb2ce10d0d1b1e0a8b9bb2',
+//   },
+//   {
+//     title: 'Some  next title',
+//     icon: '64eb3c2a8408f19231b21fc5',
+//     background: '64eb2ce10d0d1b1e0a8b9bb2',
+//   },
+// ];
 
 export const BordInSidebar = () => {
-  const [tasks, setTasks] = useState(testBoards);
+  const boardsInSidebar = useSelector(state => state.board.boards);
+  // const [boards, setBoards] = useState(boardsInSidebar);
 
-  const handleDragStart = (e, index) => {
-    e.dataTransfer.setData('text/plain', index);
-  };
+  // console.log(boards);
 
-  const handleDragOver = (e, index) => {
-    e.preventDefault();
-  };
+  // const handleDragStart = (e, index) => {
+  //   e.dataTransfer.setData('text/plain', index);
+  // };
 
-  const handleDrop = (e, dropIndex) => {
-    const draggedIndex = e.dataTransfer.getData('text/plain');
-    const updatedTasks = [...tasks];
-    const [draggedTask] = updatedTasks.splice(draggedIndex, 1);
-    updatedTasks.splice(dropIndex, 0, draggedTask);
-    setTasks(updatedTasks);
-  };
+  // const handleDragOver = (e, index) => {
+  //   e.preventDefault();
+  // };
+
+  // const handleDrop = (e, dropIndex) => {
+  //   const draggedIndex = e.dataTransfer.getData('text/plain');
+  //   const updatedBoards = [...boards];
+  //   const [draggedBoard] = updatedBoards.splice(draggedIndex, 1);
+  //   updatedBoards.splice(dropIndex, 0, draggedBoard);
+  //   setBoards(updatedBoards);
+  // };
 
   return (
-    <div className="task-list">
-      {tasks.map((task, index) => (
+    <div className="board-list">
+      {boardsInSidebar.map((board, index) => (
         <div
           key={index}
-          className="task"
+          className="board"
           draggable
-          onDragStart={e => handleDragStart(e, index)}
-          onDragOver={e => handleDragOver(e, index)}
-          onDrop={e => handleDrop(e, index)}
+          // onDragStart={e => handleDragStart(e, index)}
+          // onDragOver={e => handleDragOver(e, index)}
+          // onDrop={e => handleDrop(e, index)}
         >
           <OneBoard>
             <div style={{ marginRight: '16px' }}>
-              <svg width={18} height={18}>
+              <div>
+                <img src={board.icon.icon_src} alt="icon" />
+              </div>
+              {/* {board.icon} */}
+              {/* <svg width={18} height={18}>
                 <use
                   xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-IconProject`}
                 />
-              </svg>
+              </svg> */}
             </div>
-            <div style={{ flex: 1 }}>{task.name}</div>
+            <div style={{ flex: 1 }}>{board.title}</div>
             <div style={{ marginRight: '8px' }}>
-              <svg width={16} height={16}>
-                <use
-                  xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-pencil-01`}
-                />
-              </svg>
+              <FiEdit2 />
             </div>
             <div>
-              <svg width={16} height={16}>
-                <use
-                  xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-trash`}
-                />
-              </svg>
+              <AiOutlineDelete />
             </div>
           </OneBoard>
         </div>

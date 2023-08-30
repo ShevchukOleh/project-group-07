@@ -22,7 +22,7 @@ export const MenuIconNav = styled(MenuIcon)`
 `;
 
 export const Wrapper = styled.div`
-  display: block;
+
   @media screen and (min-width: 1440px) {
     display: none;
   }

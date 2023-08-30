@@ -42,12 +42,7 @@ const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      {isShowModal && (
-        <FormDialog
-          isShowModal={isShowModal}
-          hideModal={hideModal}
-        ></FormDialog>
-      )}
+      {isShowModal && <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>}
     </Container>
   );
 };

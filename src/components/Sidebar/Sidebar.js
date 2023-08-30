@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
-
 import circle from '../../images/help-circle.png';
 import { BordInSidebar } from './BordInSidebar';
 
@@ -24,6 +23,7 @@ import {
   ContainerAside,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
+import FormDialog from '../ModalBoard/ModalBoard'
 import { useDispatch } from 'react-redux';
 import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 import { useNavigate } from 'react-router';
@@ -31,6 +31,7 @@ import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -61,6 +62,11 @@ export const Sidebar = ({ setIsShowModal }) => {
     setIsModalOpen(false);
   };
 
+  const closeModalBoard = () => {
+    setIsShowModal(false);
+    setIsModalBoardOpen(false);
+  }
+
   const isBoard = true;
 
   return (
@@ -83,6 +89,7 @@ export const Sidebar = ({ setIsShowModal }) => {
             <Button
               onClick={() => {
                 setIsShowModal(true);
+                setIsModalBoardOpen(true);
                 dispatch(
                   createBoard({
                     title: 'Some title',
@@ -101,6 +108,7 @@ export const Sidebar = ({ setIsShowModal }) => {
             >
               <p style={{ color: 'black', fontSize: '26px', margin: '0' }}>+</p>
             </Button>
+            <FormDialog isShowModal={isModalBoardOpen} hideModal={closeModalBoard} ></FormDialog>
           </BlockContainerCreate>
         </Block>
         {isBoard ? (

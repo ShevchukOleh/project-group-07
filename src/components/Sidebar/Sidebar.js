@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
+
 // import circle from '../../images/help-circle.png';
 import { BordInSidebar } from './BordInSidebar';
+
 import {
   Block,
   HelpBlock,
@@ -22,24 +24,16 @@ import {
   ContainerAside,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
-import { useDispatch } from 'react-redux';
-import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
-import { useNavigate } from 'react-router';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await dispatch(logoutUser());
-      navigate('/auth/login');
-    } catch (e) {
-      console.error('Logout failed:', e);
-    }
-  };
+  const userToken = useSelector(selectToken);
 
   const openModalAndBackdrop = () => {
     setIsShowModal(true);
@@ -58,7 +52,9 @@ export const Sidebar = ({ setIsShowModal }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const handleLogOut = () => {
+    dispatch(logoutUser(userToken ?? ''));
+  };
   const isBoard = true;
 
   return (
@@ -152,7 +148,8 @@ export const Sidebar = ({ setIsShowModal }) => {
               </button>
             </HelpBlock>
           </BlockContainer>
-          <LogOutBlock onClick={handleLogout}>
+
+          <LogOutBlock onClick={handleLogOut}>
             <svg width={32} height={32} style={{ marginRight: '14px' }}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#logout`} />
             </svg>

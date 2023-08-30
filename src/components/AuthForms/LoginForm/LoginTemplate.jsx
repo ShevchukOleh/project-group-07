@@ -4,6 +4,7 @@ import {
   TextFieldCustum,
   TextFormSubmitButton,
   IconPassowordWrapper,
+  ContainerErrorIcon,
   // FormButtonLink,
 } from '../FormUi/FormUi.styled';
 import { RiEyeLine, RiEyeCloseLine } from 'react-icons/ri';
@@ -22,7 +23,7 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
       <ErrorComponent name="email" />
     </div>
 
-    <div style={{ position: 'relative', width: '100%' }}>
+    <div>
       <TextFieldCustum
         type={showPassword ? 'text' : 'password'}
         name="password"
@@ -33,14 +34,16 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
         minLength={8}
         maxLength={64}
       />
-      <IconPassowordWrapper onClick={handleShowPassword}>
-        {showPassword ? (
-          <RiEyeCloseLine style={{ color: '#fff', fontSize: '18px' }} />
-        ) : (
-          <RiEyeLine style={{ color: '#fff', fontSize: '18px' }} />
-        )}
-      </IconPassowordWrapper>
-      <ErrorComponent name="password" />
+      <ContainerErrorIcon>
+        <IconPassowordWrapper onClick={handleShowPassword}>
+          {showPassword ? (
+            <RiEyeCloseLine style={{ color: '#fff', fontSize: '18px' }} />
+          ) : (
+            <RiEyeLine style={{ color: '#fff', fontSize: '18px' }} />
+          )}
+        </IconPassowordWrapper>
+        <ErrorComponent name="password" />
+      </ContainerErrorIcon>
     </div>
     <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
   </TextForm>

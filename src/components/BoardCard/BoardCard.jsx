@@ -13,7 +13,7 @@ export default function BoardCard() {
         trends in watch design.
       </p>
       <hr></hr>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
         <div>
           <span className="priorityTitle">Priority</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
@@ -29,9 +29,15 @@ export default function BoardCard() {
         </div>
       </div>
       <div className="containerCardIcon">
-        <FiTrash style={{ cursor: 'pointer' }} />
-        <FiEdit2 style={{ cursor: 'pointer' }} />
-        <FiArrowRightCircle style={{ cursor: 'pointer' }} />
+        <FiArrowRightCircle
+          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+        />
+        <FiEdit2
+          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+        />
+        <FiTrash
+          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+        />
       </div>
     </BoardCardStyle>
   );

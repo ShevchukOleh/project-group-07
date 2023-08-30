@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ButtonCreateStyle = styled.button`
-  margin-top: 40px;
   width: 335px;
+
   border-radius: 8px;
   background: #fff;
   padding: 14px 78px 14px 79px;
@@ -12,12 +12,6 @@ export const ButtonCreateStyle = styled.button`
 
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media screen and (min-width: 768px) {
-    margin-top: 26px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin-top: 10px;
-  }
   &:hover {
     background: #bedbb0;
   }

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const BoardStyle = styled.section`
   position: relative;
+  width: 1180px;
+
+
+
   padding: 14px 20px;
   background-color: #f6f6f7;
   height: calc(100vh - 68px);
@@ -18,7 +22,60 @@ export const BoardStyle = styled.section`
     margin: 0;
     padding: 0;
   }
-  & .containerTitle {
+  & .containerColumns {
+    display: flex;
+    // flex-direction: row-reverse;
+    // justify-content: start;
+    overflow-x: scroll;
+
+    align-items: start;
+    gap:14px;
+
+
+
+    margin-top: 40px;
+    @media screen and (min-width: 768px) {
+      margin-top: 26px;
+    }
+    @media screen and (min-width: 1440px) {
+      margin-top: 10px;
+    }
+  }
+  & .containerColumns::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  & .containerColumns::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(22, 22, 22, 0.10);
+    border-radius: 10px;
+  }
+
+  & .containerColumns::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  & .containerColumnCard {
+    width: 354px;
+    height: 478px;
+    margin-bottom: 14px;
+    overflow-y: scroll;
+  }
+  
+  }
+  & .containerColumnCard::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  & .containerColumnCard::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(22, 22, 22, 0.10);
+    border-radius: 10px;
+  }
+
+  & .containerColumnCard::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  ​ & .containerTitle {
     // display: flex;
     // justify-content: space-between;
   }

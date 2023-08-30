@@ -1,8 +1,7 @@
+
 import { ThemeModal } from 'components/ThemeModal';
 import {
   Header,
-  MenuBtn,
-  MenuIconNav,
   HeaderNav,
   UserInfoBtn,
   UserAvatar,
@@ -10,9 +9,10 @@ import {
 import { BackdropMenu } from 'components/BackdropMenu';
 
 export const AppBar = () => {
+
   return (
     <Header>
-      <BackdropMenu/>
+      <BackdropMenu />
 
       <HeaderNav>
         <ThemeModal />

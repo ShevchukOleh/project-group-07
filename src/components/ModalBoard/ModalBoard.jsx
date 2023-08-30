@@ -25,12 +25,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-// const TOKEN= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzMyMTMzNSwiZXhwIjoxNjkzNDA0MTM1fQ.fA9XbH9XNFx6_S8_QSkmGifM67V63jMkgqxdr-3jvLU'
 
 export default function FormDialog({hideModal, isShowModal}) {
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
 
   const [valueInput, setValueInput] = useState('');
@@ -66,31 +64,26 @@ const token = useSelector(selectToken);
   const handleCloseBtn = () => {
     hideModal();
     if (valueInput && valueImgBg) {
-    dispatch(createBoard(createBoard));
-    console.log(createBoard)
+    console.log(createBoard);
+    // dispatch(createBoard(createBoard));
+
     }
     else console.error('Please, fill in the required fields');
   }
    
-  const handleChange = (event) => {
-    setValueInput(event.target.value);
-}
-  
-  const handleChangeIcon = (event) => {
-    setValueIcon(event.target.value)
-    console.log(event.target.value)
-  };
-
   const handleChange = event => {
     setValueInput(event.target.value);
+    console.log(valueInput);
   };
 
   const handleChangeIcon = event => {
     setValueIcon(event.target.value);
+    console.log(valueIcon)
   };
 
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
+    console.log(valueImgBg)
   };
 
   const createBoard = {

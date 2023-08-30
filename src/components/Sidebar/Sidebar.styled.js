@@ -19,9 +19,9 @@ import styled from '@emotion/styled';
 // `;
 
 const ContainerAside = styled.aside`
+  width: 260px;
   height: 100vh;
   background-color: #fff;
-  width: 260px;
 
   @media screen and (min-width: 768px) {
     width: 260px;

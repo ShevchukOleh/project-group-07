@@ -1,23 +1,36 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectBoards } from 'store/createSlices/board/boardSelectors';
+
+import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
-import { RiAddLine } from 'react-icons/ri';
+import { RiFilter2Line } from 'react-icons/ri';
+import BoardCard from 'components/BoardCard/BoardCard';
+
 import { FiltersModal } from 'components/FiltersModal';
 
 export default function Board({ setIsShowModal }) {
+  const boards = useSelector(selectBoards);
   return (
     <BoardStyle>
-      <div className="containerTitle">
-        <h2 className="title">Project office</h2>
-        <FiltersModal/>
-      </div>
-      <button className="btnAddColumn" onClick={() => setIsShowModal(true)}>
-        <div className="containerLogoName">
-          <div className="containerIconBtn">
-            <RiAddLine className="iconBtn" />
-          </div>
-          <p className="logoName">Add another column</p>
+      {boards.length !== 0 && (
+        <div className="containerTitle">
+          <h2 className="title">Project office</h2>
         </div>
-      </button>
+      )}
+      {boards.length !== 0 && (
+        <ButtonCreate
+          text="Add another column"
+          onClick={() => setIsShowModal(true)}
+        />
+      )}
+      <div className="containerIcon">
+        <RiFilter2Line style={{ fill: 'rgba(22, 22, 22, 0.80)' }} />
+        <p className="filters" onClick={() => setIsShowModal(true)}>
+          Filters
+        </p>
+      </div>
+      <BoardCard />
     </BoardStyle>
   );
 }

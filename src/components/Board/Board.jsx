@@ -5,6 +5,7 @@ import { selectBoards } from 'store/createSlices/board/boardSelectors';
 import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
 import { RiFilter2Line } from 'react-icons/ri';
+import BoardCard from 'components/BoardCard/BoardCard';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
@@ -27,6 +28,7 @@ export default function Board({ setIsShowModal }) {
           Filters
         </p>
       </div>
+      <BoardCard />
     </BoardStyle>
   );
 }

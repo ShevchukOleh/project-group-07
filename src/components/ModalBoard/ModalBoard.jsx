@@ -11,35 +11,43 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import {getIcon, getImage} from '../../components/ModalBoard/servises'
+import { useDispatch, useSelector } from 'react-redux';
+import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
+import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-const TOKEN= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzMyMTMzNSwiZXhwIjoxNjkzNDA0MTM1fQ.fA9XbH9XNFx6_S8_QSkmGifM67V63jMkgqxdr-3jvLU'
+// const TOKEN= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzMyMTMzNSwiZXhwIjoxNjkzNDA0MTM1fQ.fA9XbH9XNFx6_S8_QSkmGifM67V63jMkgqxdr-3jvLU'
 
 export default function FormDialog({hideModal, isShowModal}) {
 
-  const [valueIcon, setValueIcon] = useState('');
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+
+
   const [valueInput, setValueInput] = useState('');
+  const [valueIcon, setValueIcon] = useState('');
   const [valueImgBg, setValueImgBg] = useState('');
   //  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
 
+const token = useSelector(selectToken);
 
   useEffect(() => {
-    getIcon(TOKEN).then(data => {
+    getIcon(token).then(data => {
       setIcon(data);
       console.log(data)
     })
     .catch((error) => setError(error))
-  }, [TOKEN])
+  }, [token])
 
     useEffect(() => {
-    getImage(TOKEN).then(data => {
+    getImage(token).then(data => {
       setImage(data);
       console.log(data)
     })
     .catch((error) => setError(error))
-    }, [TOKEN])
+    }, [token])
   
   const handleClose = () => {
     hideModal();
@@ -47,7 +55,10 @@ export default function FormDialog({hideModal, isShowModal}) {
 
   const handleCloseBtn = () => {
     hideModal();
-    if (valueInput && valueImgBg) { console.log(createBoard) }
+    if (valueInput && valueImgBg) {
+    dispatch(createBoard(createBoard));
+    console.log(createBoard)
+    }
     else console.error('Please, fill in the required fields');
   }
    

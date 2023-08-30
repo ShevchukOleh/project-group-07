@@ -19,14 +19,16 @@ import styled from '@emotion/styled';
 // `;
 
 const ContainerAside = styled.aside`
-  display: none;
-  float: left;
+  height: 100vh;
   background-color: #fff;
+  width: 260px;
+
+  @media screen and (min-width: 768px) {
+    width: 260px;
+  }
 
   @media screen and (min-width: 1440px) {
-    display: block;
-    width: 260px;
-    height: 100vh;
+    float: left;
   }
 `;
 

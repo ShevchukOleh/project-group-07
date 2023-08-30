@@ -27,7 +27,6 @@ import ModalForm from './NeedHelp/NeedHelpModal';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,13 +65,6 @@ export const Sidebar = ({ setIsShowModal }) => {
             <CreateButton
               onClick={() => {
                 setIsShowModal(true);
-                dispatch(
-                  createBoard({
-                    title: ' next',
-                    icon: '64eb3c2a8408f19231b21fc5',
-                    background: '64eb2ce10d0d1b1e0a8b9bb2',
-                  })
-                );
               }}
             >
               <PlusIcon>+</PlusIcon>

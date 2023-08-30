@@ -4,29 +4,12 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 
-// const boardsMass = [
-//   {
-//     title: 'Some title',
-//     icon: '64eb3c2a8408f19231b21fc5',
-//     background: '64eb2ce10d0d1b1e0a8b9bb2',
-//   },
-//   {
-//     title: 'next title',
-//     icon: '64eb3c2a8408f19231b21fc5',
-//     background: '64eb2ce10d0d1b1e0a8b9bb2',
-//   },
-//   {
-//     title: 'Some  next title',
-//     icon: '64eb3c2a8408f19231b21fc5',
-//     background: '64eb2ce10d0d1b1e0a8b9bb2',
-//   },
-// ];
-
 export const BordInSidebar = () => {
   const boardsInSidebar = useSelector(state => state.board.boards);
+
   // const [boards, setBoards] = useState(boardsInSidebar);
 
-  // console.log(boards);
+  console.log(boardsInSidebar);
 
   // const handleDragStart = (e, index) => {
   //   e.dataTransfer.setData('text/plain', index);

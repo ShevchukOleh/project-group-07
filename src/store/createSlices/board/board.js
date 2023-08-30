@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllBoards, createBoard } from 'store/AsyncThunk/asyncThunkBoards';
+import {
+  getAllBoards,
+  createBoard,
+  deleteBoard,
+} from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
   boards: [],
@@ -36,6 +40,18 @@ const boardSlice = createSlice({
       .addCase(createBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(deleteBoard.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteBoard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.boards = state.boards.filter(el => el.id !== action.payload.id);
+      })
+      .addCase(deleteBoard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

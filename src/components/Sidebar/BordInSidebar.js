@@ -2,14 +2,22 @@ import React from 'react';
 import { OneBoard } from './Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const BordInSidebar = () => {
+  const dispatch = useDispatch();
   const boardsInSidebar = useSelector(state => state.board.boards);
 
   // const [boards, setBoards] = useState(boardsInSidebar);
 
   console.log(boardsInSidebar);
+
+  const handleDeleteBoard = id => {
+    dispatch(deleteBoard(id)).then(() => {
+      dispatch(getAllBoards());
+    });
+  };
 
   // const handleDragStart = (e, index) => {
   //   e.dataTransfer.setData('text/plain', index);
@@ -40,9 +48,7 @@ export const BordInSidebar = () => {
         >
           <OneBoard>
             <div style={{ marginRight: '16px' }}>
-              <div>
-                <img src={board.icon.icon_src} alt="icon" />
-              </div>
+              <div>{/* <img src={board.icon.icon_src} alt="icon" /> */}</div>
               {/* {board.icon} */}
               {/* <svg width={18} height={18}>
                 <use
@@ -55,7 +61,7 @@ export const BordInSidebar = () => {
               <FiEdit2 />
             </div>
             <div>
-              <AiOutlineDelete />
+              <AiOutlineDelete onClick={() => handleDeleteBoard(board._id)} />
             </div>
           </OneBoard>
         </div>

@@ -7,8 +7,6 @@ import { BoardStyle } from './Board.styled';
 import { RiFilter2Line } from 'react-icons/ri';
 import BoardCard from 'components/BoardCard/BoardCard';
 
-import { FiltersModal } from 'components/FiltersModal';
-
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
   return (

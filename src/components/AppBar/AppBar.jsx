@@ -7,13 +7,12 @@ import {
   UserInfoBtn,
   UserAvatar,
 } from './AppBar.styled';
+import { BackdropMenu } from 'components/BackdropMenu';
 
 export const AppBar = () => {
   return (
     <Header>
-      <MenuBtn>
-        <MenuIconNav />
-      </MenuBtn>
+      <BackdropMenu/>
 
       <HeaderNav>
         <ThemeModal />

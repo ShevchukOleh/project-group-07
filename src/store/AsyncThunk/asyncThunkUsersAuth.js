@@ -44,7 +44,7 @@ const fetchCurrentUser = createAsyncThunk(
   'user/fetchCurrentUser',
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.token;
+      const token = thunkAPI.getState().user.token;
       const response = await axios.get(`${BASE_URL}current`, {
         headers: {
           Authorization: `Bearer ${token}`,

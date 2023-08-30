@@ -14,24 +14,13 @@ export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <PublicRoute isLoggedIn={isLoggedIn}>
-            <WelcomePage />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/auth"
-        element={
-          <PublicRoute isLoggedIn={isLoggedIn}>
-            <AuthForms />
-          </PublicRoute>
-        }
-      >
-        <Route path="login" element={<LoginForm />} />
-        <Route path="registration" element={<RegistrationForm />} />
+      <Route path="/" element={<Navigate to="/welcome" />} />
+      <Route element={<PublicRoute />}>
+        <Route path="/welcome" element={<WelcomePage />} end />
+        <Route path="/auth" element={<AuthForms />}>
+          <Route path="login" element={<LoginForm />} />
+          <Route path="registration" element={<RegistrationForm />} />
+        </Route>
       </Route>
       <Route
         path="home"

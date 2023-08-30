@@ -2,14 +2,16 @@ import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 
 const ContainerAside = styled.aside`
-  display: none;
-  float: left;
+  width: 260px;
+  height: 100vh;
   background-color: #fff;
 
-  @media screen and (min-width: 1440px) {
-    display: block;
+  @media screen and (min-width: 768px) {
     width: 260px;
-    height: 100vh;
+  }
+
+  @media screen and (min-width: 1440px) {
+    float: left;
   }
 `;
 

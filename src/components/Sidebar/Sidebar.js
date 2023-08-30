@@ -150,7 +150,6 @@ export const Sidebar = ({ setIsShowModal }) => {
           </BlockContainer>
 
           <LogOutBlock onClick={handleLogOut}>
-
             <svg width={32} height={32} style={{ marginRight: '14px' }}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#logout`} />
             </svg>

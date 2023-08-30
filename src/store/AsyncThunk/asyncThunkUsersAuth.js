@@ -32,9 +32,9 @@ const logoutUser = createAsyncThunk('user/logoutUser', async (_, thunkAPI) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const { data } = response;
-    console.log(data);
-    return data;
+    if (response.status === 204) {
+      console.log('Logout success');
+    }
   } catch (error) {
     throw new Error('Failed to logout');
   }
@@ -44,7 +44,7 @@ const fetchCurrentUser = createAsyncThunk(
   'user/fetchCurrentUser',
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.token;
+      const token = thunkAPI.getState().user.token;
       const response = await axios.get(`${BASE_URL}current`, {
         headers: {
           Authorization: `Bearer ${token}`,

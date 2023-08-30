@@ -22,6 +22,7 @@ export const BackdropMenu = () => {
           color: '#fff',
           zIndex: theme => theme.zIndex.drawer + 1,
           justifyContent: 'flex-start',
+          alignItems: 'flex-start',
         }}
         open={open}
         onClick={handleClose}

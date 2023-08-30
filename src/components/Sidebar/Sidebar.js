@@ -83,6 +83,9 @@ export const Sidebar = ({ setIsShowModal }) => {
             <StyledInput> My board</StyledInput>
           </InputContainer>
           <BlockContainerCreate>
+            <FormDialog
+              isShowModal={isModalBoardOpen}
+              hideModal={closeModalBoard} ></FormDialog>
             <NewBoardText>
               Create <br />a new board
             </NewBoardText>
@@ -108,7 +111,6 @@ export const Sidebar = ({ setIsShowModal }) => {
             >
               <p style={{ color: 'black', fontSize: '26px', margin: '0' }}>+</p>
             </Button>
-            <FormDialog isShowModal={isModalBoardOpen} hideModal={closeModalBoard} ></FormDialog>
           </BlockContainerCreate>
         </Block>
         {isBoard ? (

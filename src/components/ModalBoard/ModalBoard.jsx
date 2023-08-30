@@ -40,6 +40,11 @@ export default function FormDialog({hideModal, isShowModal}) {
   const [image, setImage] = useState([]);
 
 const token = useSelector(selectToken);
+  const createBoard = {
+    name: valueInput,
+    icon: valueIcon,
+    img: valueImgBg,
+  };
 
   useEffect(() => {
     getIcon(token).then(data => {
@@ -65,8 +70,13 @@ const token = useSelector(selectToken);
     hideModal();
     if (valueInput && valueImgBg) {
     console.log(createBoard);
-    // dispatch(createBoard(createBoard));
-
+    dispatch(createBoard(
+      {
+    name: valueInput,
+    icon: valueIcon,
+    img: valueImgBg,
+  }
+    ));
     }
     else console.error('Please, fill in the required fields');
   }
@@ -86,11 +96,6 @@ const token = useSelector(selectToken);
     console.log(valueImgBg)
   };
 
-  const createBoard = {
-    name: valueInput,
-    icon: valueIcon,
-    img: valueImgBg,
-  };
 
   return (
     <div>
@@ -152,7 +157,7 @@ const token = useSelector(selectToken);
                     <FormControlLabel
                       value={_id}
                       control={
-                        <RadioStyled
+                        <RadioStyled key={_id}
                           icon={<Icon src={icon_src} alt={_id} />}
                           checkedIcon={
                             <Icon src={icon_src} alt={_id} checked />
@@ -189,6 +194,7 @@ const token = useSelector(selectToken);
                     value={_id}
                     control={
                       <RadioStyledImg
+                        key={_id}
                         icon={<Image src={background_icon_src} alt={_id} />}
                         checkedIcon={
                           <Image src={background_icon_src} alt={_id} checked />

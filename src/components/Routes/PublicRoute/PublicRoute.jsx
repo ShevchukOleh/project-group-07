@@ -7,4 +7,5 @@ const PublicRoute = ({ isLoggedIn, redirectPath = '/home', children }) => {
     return <Navigate to={redirectPath} replace={true} />;
   }
 };
+
 export default PublicRoute;

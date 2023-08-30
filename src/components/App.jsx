@@ -30,10 +30,7 @@ export const App = () => {
           </PrivateRoute>
         }
       />
-      <Route
-        path="*"
-        element={<Navigate to="/auth/registration" replace={true} />}
-      />
+      <Route path="*" element={<Navigate to="/welcome" replace={true} />} />
     </Routes>
   );
 };

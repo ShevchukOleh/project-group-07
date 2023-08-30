@@ -40,4 +40,103 @@ const createBoard = createAsyncThunk(
   }
 );
 
-export { getAllBoards, createBoard };
+const getBackgroundBoard = createAsyncThunk(
+  'board/getbackground',
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.get(`${BASE_URL}api/board/background`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;
+      console.log('data: ', data);
+      return data;
+    } catch (error) {
+      throw new Error('Failed get background');
+    }
+  }
+);
+const getIconBoard = createAsyncThunk('board/getIcon', async (_, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().user.token;
+    const response = await axios.get(`${BASE_URL}api/board/icon`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const { data } = response;
+    console.log('data: ', data);
+    return data;
+  } catch (error) {
+    throw new Error('Failed get icon');
+  }
+});
+
+const deleteBoard = createAsyncThunk(
+  'board/delete',
+  async (boardId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.delete(`${BASE_URL}api/board/${boardId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;
+      console.log('data: ', data);
+      return data;
+    } catch (error) {
+      throw new Error('Failed delete Board');
+    }
+  }
+);
+// 401 error?
+const editBoardById = createAsyncThunk(
+  'board/editBoardById',
+  async (boardId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.patch(`${BASE_URL}api/board/${boardId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;
+      console.log('data: ', data);
+      return data;
+    } catch (error) {
+      throw new Error('Failed edit board by id');
+    }
+  }
+);
+// 500 error
+const getBoardById = createAsyncThunk(
+  'board/getBoardById',
+  async (boardId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.get(`${BASE_URL}api/board/${boardId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;
+      console.log('data: ', data);
+      return data;
+    } catch (error) {
+      throw new Error('Failed get board by id');
+    }
+  }
+);
+
+export {
+  getAllBoards,
+  createBoard,
+  getBackgroundBoard,
+  getIconBoard,
+  deleteBoard,
+  getBoardById,
+  editBoardById,
+};

@@ -10,7 +10,7 @@ import {
   IconClose,
 } from './NeedHelpModal.styled';
 
-const ModalForm = ({ isModalOpen, closeModalAdnBackdrop }) => {
+const ModalForm = ({ isModalOpen, closeModal }) => {
   const initialValues = {
     email: '',
     comment: '',
@@ -18,7 +18,7 @@ const ModalForm = ({ isModalOpen, closeModalAdnBackdrop }) => {
 
   const handleSubmit = values => {
     if (values.email && values.comment) {
-      closeModalAdnBackdrop();
+      closeModal();
       console.log(values);
     } else {
       alert('Sorry');
@@ -27,7 +27,7 @@ const ModalForm = ({ isModalOpen, closeModalAdnBackdrop }) => {
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      closeModalAdnBackdrop();
+      closeModal();
     }
   };
 

@@ -2,7 +2,7 @@ const { Navigate } = require('react-router-dom');
 
 const PrivateRoute = ({
   isLoggedIn,
-  redirectPath = '/registration',
+  redirectPath = '/auth/registration',
   children,
 }) => {
   if (isLoggedIn) {

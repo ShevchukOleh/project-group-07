@@ -15,7 +15,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/welcome" />} />
-      <Route element={<PublicRoute />}>
+      <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
         <Route path="/welcome" element={<WelcomePage />} end />
         <Route path="/auth" element={<AuthForms />}>
           <Route path="login" element={<LoginForm />} />

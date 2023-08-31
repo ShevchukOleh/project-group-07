@@ -2,16 +2,14 @@ import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 
 const ContainerAside = styled.aside`
-  width: 260px;
-  height: 100vh;
+  display: none;
+  float: left;
   background-color: #fff;
 
-  @media screen and (min-width: 768px) {
-    width: 260px;
-  }
-
   @media screen and (min-width: 1440px) {
-    float: left;
+    display: block;
+    width: 260px;
+    height: 100vh;
   }
 `;
 
@@ -185,6 +183,16 @@ const Helpbutton = styled.button`
   background-color: inherit;
   padding: 0;
   cursor: pointer;
+
+  &:hover {
+    background-color: transparent;
+    color: blue;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    color: darkgray;
+  }
 `;
 
 export {
@@ -200,7 +208,6 @@ export {
   LogoImage,
   LogoContainer,
   SidebarContainer,
-  // CustomDrawer,
   BlockContainerBoard,
   Block,
   OneBoard,

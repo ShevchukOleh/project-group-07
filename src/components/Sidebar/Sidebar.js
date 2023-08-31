@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
-// import circle from '../../images/help-circle.png';
-
 import { BordInSidebar } from './BordInSidebar';
+import { BiHelpCircle } from 'react-icons/bi';
 import {
   Block,
   HelpBlock,
@@ -26,17 +25,14 @@ import {
   Helpbutton,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
-import FormDialog from '../ModalBoard/ModalBoard'
-import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+// import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const dispatch = useDispatch();
-
   const userToken = useSelector(selectToken);
 
   const openModal = () => {
@@ -46,16 +42,9 @@ export const Sidebar = ({ setIsShowModal }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  const closeModalBoard = () => {
-    setIsShowModal(false);
-    setIsModalBoardOpen(false);
-  }
-
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };
-
   const isBoard = true;
 
   return (
@@ -71,30 +60,18 @@ export const Sidebar = ({ setIsShowModal }) => {
             <StyledInput> My board</StyledInput>
           </InputContainer>
           <BlockContainerCreate>
-            <FormDialog
-              isShowModal={isModalBoardOpen}
-              hideModal={closeModalBoard} ></FormDialog>
             <NewBoardText>
               Create <br />a new board
             </NewBoardText>
             <CreateButton
               onClick={() => {
                 setIsShowModal(true);
-                setIsModalBoardOpen(true);
-                dispatch(
-                  createBoard({
-                    title: 'Some title',
-                    icon: '64eb3c2a8408f19231b21fc5',
-                    background: '64eb2ce10d0d1b1e0a8b9bb2',
-                  })
-                );
-              }}
-              color="primary"
-              sx={{
-                minWidth: '40px',
-                height: '36px',
-                marginLeft: '8px',
-                background: '#BEDBB0',
+                // dispatch(
+                //   createBoard({
+                //     title: 'hello',
+                //     icon: '434343434343',
+                //   })
+                // );
               }}
             >
               <PlusIcon>+</PlusIcon>
@@ -126,12 +103,8 @@ export const Sidebar = ({ setIsShowModal }) => {
             <HelpBlock>
               <ModalForm isModalOpen={isModalOpen} closeModal={closeModal} />
               <Helpbutton onClick={openModal}>
-                <svg width={20} height={20} style={{ marginRight: '8px' }}>
-                  <use
-                    xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-help-circle`}
-                  />
-                </svg>
-                <p style={{ margin: '0' }}> Need help?</p>
+                <BiHelpCircle size={20} />
+                <p style={{ margin: '0', marginLeft: '8px' }}> Need help?</p>
               </Helpbutton>
             </HelpBlock>
           </BlockContainer>

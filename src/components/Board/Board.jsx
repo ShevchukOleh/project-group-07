@@ -4,9 +4,9 @@ import { selectBoards } from 'store/createSlices/board/boardSelectors';
 
 import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
-import { RiFilter2Line } from 'react-icons/ri';
 import BoardCard from 'components/BoardCard/BoardCard';
 import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
+import { FiltersModal } from 'components/FiltersModal';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
@@ -18,12 +18,7 @@ export default function Board({ setIsShowModal }) {
         </div>
       )}
 
-      <div className="containerIcon">
-        <RiFilter2Line style={{ fill: 'rgba(22, 22, 22, 0.80)' }} />
-        <p className="filters" onClick={() => setIsShowModal(true)}>
-          Filters
-        </p>
-      </div>
+      <FiltersModal />
       {boards.length !== 0 && (
         <div className="containerColumns">
           <div className="containerOneColumn">

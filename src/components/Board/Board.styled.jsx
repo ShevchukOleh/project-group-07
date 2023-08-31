@@ -3,12 +3,6 @@ import styled from '@emotion/styled';
 export const BoardStyle = styled.section`
   position: relative;
   width: 375px;
-
-   & .css-1q29n59-MuiButtonBase-root-MuiButton-root {
-    position: absolute;
-    right: 24px;
-    top: 0;
-  }
   
   @media screen and (min-width: 768px) {
     width: 768px;
@@ -141,5 +135,10 @@ export const BoardStyle = styled.section`
     line-height: normal;
     letter-spacing: -0.28px;
     cursor: pointer;
+  }
+  & .filtersPosition {
+    position: absolute;
+    top: 0;
+    right: 24px;
   }
 `;

@@ -18,7 +18,9 @@ export default function Board({ setIsShowModal }) {
         </div>
       )}
 
-      <FiltersModal />
+      <div className='filtersPosition'>
+        <FiltersModal />
+      </div>
       {boards.length !== 0 && (
         <div className="containerColumns">
           <div className="containerOneColumn">

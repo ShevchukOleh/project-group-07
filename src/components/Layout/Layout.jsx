@@ -44,15 +44,15 @@ const Layout = () => {
   };
   const dispatch = useDispatch();
 
-  const boards = useSelector(selectBoards);
-  console.log('boards: ', boards);
-  const columns = useSelector(selectColumns);
-  console.log('columns: ', columns);
+  // const boards = useSelector(selectBoards);
+  // // console.log('boards: ', boards);
+  // const columns = useSelector(selectColumns);
+  // // console.log('columns: ', columns);
 
-  useEffect(() => {
-    dispatch(getAllBoards());
-    boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
-  }, [dispatch, boards]);
+  // useEffect(() => {
+  //   dispatch(getAllBoards());
+  //   boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
+  // }, [dispatch, boards]);
 
   return (
     <Container>

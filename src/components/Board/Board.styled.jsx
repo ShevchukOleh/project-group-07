@@ -73,7 +73,6 @@ export const BoardStyle = styled.section`
     margin-bottom: 14px;
     overflow-y: hidden;
     overflow-y: scroll;
-    flex: 1;
     @media screen and (min-width: 1440px) {
       width: 354px;
     }

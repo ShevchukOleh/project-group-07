@@ -25,10 +25,15 @@ import {
   Helpbutton,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
+import FormDialog from '../ModalBoard/ModalBoard'
+// import { useDispatch } from 'react-redux';
+// import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
+// import { useNavigate } from 'react-router';
+
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
+// import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 import FormDialog from 'components/ModalBoard/ModalBoard';
 
 export const Sidebar = ({ setIsShowModal }) => {
@@ -91,13 +96,13 @@ export const Sidebar = ({ setIsShowModal }) => {
               onClick={() => {
                 setIsShowModal(true);
                 setIsModalBoardOpen(true);
-                dispatch(
-                  createBoard({
-                    title: 'Some title',
-                    icon: '64eb3c2a8408f19231b21fc5',
-                    background: '64eb2ce10d0d1b1e0a8b9bb2',
-                  })
-                );
+                // dispatch(
+                //   createBoard({
+                //     title: 'Some title',
+                //     icon: '64eb3c2a8408f19231b21fc5',
+                //     background: '64eb2ce10d0d1b1e0a8b9bb2',
+                //   })
+                // );
               }}
               color="primary"
               sx={{

@@ -5,9 +5,6 @@ const instance = axios.create({
     
 })
 
-// const token= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzMyMTMzNSwiZXhwIjoxNjkzNDA0MTM1fQ.fA9XbH9XNFx6_S8_QSkmGifM67V63jMkgqxdr-3jvLU'
-
-
 export const setToken = (token) => {
     instance.defaults.headers.common['Authorization'] = token
 }

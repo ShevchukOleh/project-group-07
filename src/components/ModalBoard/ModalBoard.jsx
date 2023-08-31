@@ -20,16 +20,17 @@ import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { getIcon, getImage } from '../../components/ModalBoard/servises';
-import { useSelector } from 'react-redux';
+import {getIcon, getImage} from '../../components/ModalBoard/servises'
+import { useDispatch, useSelector } from 'react-redux';
+import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-// const TOKEN =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzMyMTMzNSwiZXhwIjoxNjkzNDA0MTM1fQ.fA9XbH9XNFx6_S8_QSkmGifM67V63jMkgqxdr-3jvLU';
 
-export default function FormDialog({ hideModal, isShowModal }) {
-  const [valueIcon, setValueIcon] = useState('');
+export default function FormDialog({hideModal, isShowModal}) {
+  const dispatch = useDispatch();
+
   const [valueInput, setValueInput] = useState('');
+  const [valueIcon, setValueIcon] = useState('');
   const [valueImgBg, setValueImgBg] = useState('');
   //  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -37,22 +38,30 @@ export default function FormDialog({ hideModal, isShowModal }) {
   const [image, setImage] = useState([]);
   const TOKEN = useSelector(selectToken);
 
-  useEffect(() => {
-    getIcon(TOKEN)
-      .then(data => {
-        setIcon(data);
-      })
-      .catch(error => setError(error));
-  }, [TOKEN]);
+  const token = useSelector(selectToken);
+  
+  const createBd = {
+    title: valueInput,
+    icon: valueIcon,
+    background: valueImgBg,
+  };
 
   useEffect(() => {
-    getImage(TOKEN)
-      .then(data => {
-        setImage(data);
-      })
-      .catch(error => setError(error));
-  }, [TOKEN]);
+    getIcon(token).then(data => {
+      setIcon(data);
+      // console.log(data)
+    })
+    .catch((error) => setError(error))
+  }, [token])
 
+    useEffect(() => {
+    getImage(token).then(data => {
+      setImage(data);
+      // console.log(data)
+    })
+    .catch((error) => setError(error))
+    }, [token])
+  
   const handleClose = () => {
     hideModal();
   };
@@ -60,27 +69,27 @@ export default function FormDialog({ hideModal, isShowModal }) {
   const handleCloseBtn = () => {
     hideModal();
     if (valueInput && valueImgBg) {
-      console.log(createBoard);
-    } else console.error('Please, fill in the required fields');
-  };
-
+      dispatch(createBoard(createBd));
+      console.log(createBd);
+    }
+    else console.error('Please, fill in the required fields');
+  }
+   
   const handleChange = event => {
     setValueInput(event.target.value);
+    console.log(valueInput);
   };
 
   const handleChangeIcon = event => {
     setValueIcon(event.target.value);
+    console.log(valueIcon)
   };
 
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
+    console.log(valueImgBg)
   };
 
-  const createBoard = {
-    name: valueInput,
-    icon: valueIcon,
-    img: valueImgBg,
-  };
 
   return (
     <div>
@@ -142,7 +151,7 @@ export default function FormDialog({ hideModal, isShowModal }) {
                     <FormControlLabel
                       value={_id}
                       control={
-                        <RadioStyled
+                        <RadioStyled key={_id}
                           icon={<Icon src={icon_src} alt={_id} />}
                           checkedIcon={
                             <Icon src={icon_src} alt={_id} checked />
@@ -179,6 +188,7 @@ export default function FormDialog({ hideModal, isShowModal }) {
                     value={_id}
                     control={
                       <RadioStyledImg
+                        key={_id}
                         icon={<Image src={background_icon_src} alt={_id} />}
                         checkedIcon={
                           <Image src={background_icon_src} alt={_id} checked />

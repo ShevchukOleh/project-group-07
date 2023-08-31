@@ -78,8 +78,6 @@ export const BoardStyle = styled.section`
     }
   }
   
-  }
-
   & .containerColumnCard::-webkit-scrollbar {
     width: 12px;
   }

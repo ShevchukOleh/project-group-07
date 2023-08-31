@@ -4,6 +4,7 @@ import {
   createBoard,
   getAllColums,
   createColumn,
+  deleteBoard,
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
@@ -70,17 +71,18 @@ const boardSlice = createSlice({
       .addCase(createColumn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      // .addCase(deleteBoard.pending, (state, action) => {
-      //   state.loading = true;
-      // })
-      // .addCase(deleteBoard.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.error = null;
-      //   state.boards = state.boards.filter(el => el.id !== action.payload.id);
-      // })
-      // .addCase(deleteBoard.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.payload;
+      })
+      .addCase(deleteBoard.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteBoard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.boards = state.boards.filter(el => el.id !== action.payload.id);
+      })
+      .addCase(deleteBoard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

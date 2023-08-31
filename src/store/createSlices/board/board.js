@@ -1,8 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllBoards, createBoard } from 'store/AsyncThunk/asyncThunkBoards';
+import {
+  getAllBoards,
+  createBoard,
+  getAllColums,
+  createColumn,
+} from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
   boards: [],
+  columns: [],
   loading: false,
   error: null,
 };
@@ -34,6 +40,34 @@ const boardSlice = createSlice({
         state.error = null;
       })
       .addCase(createBoard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+
+      //Column
+
+      //getAllColumn===========================================================>
+
+      .addCase(getAllColums.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getAllColums.fulfilled, (state, action) => {
+        state.loading = false;
+        state.columns = action.payload;
+        state.error = null;
+      })
+      .addCase(getAllColums.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //createBoard===========================================================>
+
+      .addCase(createColumn.fulfilled, (state, action) => {
+        state.loading = false;
+        state.columns.push(action.payload);
+        state.error = null;
+      })
+      .addCase(createColumn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

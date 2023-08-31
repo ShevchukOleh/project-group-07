@@ -2,8 +2,16 @@ import styled from 'styled-components';
 
 export const BoardStyle = styled.section`
   position: relative;
-  width: 1180px;
+  width: 375px;
+  @media screen and (min-width: 768px) {
+    width: 768px;
 
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 1180px;
+
+  }
 
 
   padding: 14px 20px;
@@ -24,16 +32,12 @@ export const BoardStyle = styled.section`
   }
   & .containerColumns {
     display: flex;
-    // flex-direction: row-reverse;
-    // justify-content: start;
     overflow-x: scroll;
 
     align-items: start;
     gap:14px;
-
-
-
     margin-top: 40px;
+    
     @media screen and (min-width: 768px) {
       margin-top: 26px;
     }
@@ -55,10 +59,14 @@ export const BoardStyle = styled.section`
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
   & .containerColumnCard {
-    width: 354px;
+    width: 334px;
     height: 478px;
     margin-bottom: 14px;
+    overflow-x: hidden;
     overflow-y: scroll;
+    @media screen and (min-width: 1440px) {
+      width: 354px;
+    }
   }
   
   }

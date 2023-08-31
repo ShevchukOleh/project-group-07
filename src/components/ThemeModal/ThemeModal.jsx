@@ -10,6 +10,10 @@ import {
 import { ThemeBtn, ThemeIcon } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
 
+const LIGHT = "light";
+const DARK = "dark";
+const COLORED = "violet";
+
 export const ThemeModal = () => {
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,17 +37,17 @@ export const ThemeModal = () => {
     setThemeValue(event.currentTarget.value);
     console.log(event.currentTarget.value);
 
-    if (event.currentTarget.value === 'light') {
+    if (event.currentTarget.value === LIGHT) {
       setFirstThemeStatus(true);
       setSecondThemeStatus(null);
       setThirdThemeStatus(null);
     }
-    if (event.currentTarget.value === 'dark') {
+    if (event.currentTarget.value === DARK) {
       setSecondThemeStatus(true);
       setFirstThemeStatus(null);
       setThirdThemeStatus(null);
     }
-    if (event.currentTarget.value === 'violet') {
+    if (event.currentTarget.value === COLORED) {
       setThirdThemeStatus(true);
       setFirstThemeStatus(null);
       setSecondThemeStatus(null);
@@ -110,7 +114,7 @@ export const ThemeModal = () => {
             }}
           >
             <FormControlLabel
-              value="light"
+              value={LIGHT}
               control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
               label="Light"
               labelPlacement="start"
@@ -122,7 +126,7 @@ export const ThemeModal = () => {
               }}
             />
             <FormControlLabel
-              value="dark"
+              value={DARK}
               control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
               label="Dark"
               labelPlacement="start"
@@ -134,7 +138,7 @@ export const ThemeModal = () => {
               }}
             />
             <FormControlLabel
-              value="violet"
+              value={COLORED}
               control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
               label="Violet"
               labelPlacement="start"

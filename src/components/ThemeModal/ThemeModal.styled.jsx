@@ -22,3 +22,9 @@ export const ThemeIcon = styled.svg`
   height: 20px;
   fill: currentColor;
 `;
+
+export const Wrapper = styled.div`
+  background-color: ${props => {
+    return props?.theme?.themeSet?.fourth;
+  }};
+`;

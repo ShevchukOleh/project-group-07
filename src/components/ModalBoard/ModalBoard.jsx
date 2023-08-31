@@ -40,6 +40,7 @@ export default function FormDialog({hideModal, isShowModal}) {
   const [image, setImage] = useState([]);
 
 const token = useSelector(selectToken);
+  
   const createBoard = {
     name: valueInput,
     icon: valueIcon,

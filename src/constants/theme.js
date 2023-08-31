@@ -5,12 +5,15 @@ const currentTheme = 'light';
 const lightTheme = {
   first: 'rgba(22, 22, 22, 0.8)',
   second: '#161616',
-  third: 'rgba(190,219,176,1)',
+  third: '#BEDBB0',
+  fourth: '#FCFCFC',
 };
 
 const darkTheme = {
-  first: '#fff',
-  second: '#fcfcfc',
+  first: 'rgba(255, 255, 255, 0.8)',
+  second: 'rgba(255, 255, 255, 0.5)',
+  third: '#BEDBB0',
+  fourth: 'rgba(21, 21, 21, 1)',
 };
 
 const coloredTheme = { first: '#ececec', second: '#DBBEb0' };

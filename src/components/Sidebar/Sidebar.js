@@ -28,10 +28,12 @@ import ModalForm from './NeedHelp/NeedHelpModal';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-// import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
+import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
+import FormDialog from 'components/ModalBoard/ModalBoard';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const dispatch = useDispatch();
   const userToken = useSelector(selectToken);
 
@@ -42,6 +44,12 @@ export const Sidebar = ({ setIsShowModal }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const closeModalBoard = () => {
+    setIsShowModal(false);
+    setIsModalBoardOpen(false);
+  }
+
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };
@@ -60,10 +68,13 @@ export const Sidebar = ({ setIsShowModal }) => {
             <StyledInput> My board</StyledInput>
           </InputContainer>
           <BlockContainerCreate>
+            <FormDialog
+              isShowModal={isModalBoardOpen}
+              hideModal={closeModalBoard} ></FormDialog>
             <NewBoardText>
               Create <br />a new board
             </NewBoardText>
-            <CreateButton
+            {/* <CreateButton
               onClick={() => {
                 setIsShowModal(true);
                 // dispatch(
@@ -72,6 +83,28 @@ export const Sidebar = ({ setIsShowModal }) => {
                 //     icon: '434343434343',
                 //   })
                 // );
+              }}
+            >
+              <PlusIcon>+</PlusIcon>
+            </CreateButton> */}
+            <CreateButton
+              onClick={() => {
+                setIsShowModal(true);
+                setIsModalBoardOpen(true);
+                dispatch(
+                  createBoard({
+                    title: 'Some title',
+                    icon: '64eb3c2a8408f19231b21fc5',
+                    background: '64eb2ce10d0d1b1e0a8b9bb2',
+                  })
+                );
+              }}
+              color="primary"
+              sx={{
+                minWidth: '40px',
+                height: '36px',
+                marginLeft: '8px',
+                background: '#BEDBB0',
               }}
             >
               <PlusIcon>+</PlusIcon>

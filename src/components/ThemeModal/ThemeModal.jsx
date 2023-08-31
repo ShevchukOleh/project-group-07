@@ -7,7 +7,7 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@mui/material';
-import { ThemeBtn, ThemeIcon } from './ThemeModal.styled';
+import { ThemeBtn, ThemeIcon, Wrapper } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
 import { theme } from '../../constants';
 
@@ -89,7 +89,7 @@ export const ThemeModal = () => {
           },
         }}
       >
-        <div>
+        <Wrapper>
           <FormControl
             sx={{
               width: 100,
@@ -161,7 +161,7 @@ export const ThemeModal = () => {
               />
             </RadioGroup>
           </FormControl>
-        </div>
+        </Wrapper>
       </Menu>
     </>
   );

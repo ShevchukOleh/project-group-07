@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { ThemeBtn, ThemeIcon } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
+import { theme } from '../../constants';
 
 const LIGHT = 'light';
 const DARK = 'dark';
@@ -18,13 +19,13 @@ export const ThemeModal = () => {
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const currentTheme = 'light';
+
   const [firstThemeStatus, setFirstThemeStatus] = useState(null);
   const [secondThemeStatus, setSecondThemeStatus] = useState(null);
   const [thirdThemeStatus, setThirdThemeStatus] = useState(null);
 
   const themeBtnColor = themeStatus =>
-    themeStatus ? 'rgba(190,219,176,1)' : '#161616';
+    themeStatus ? theme?.themeSet?.third : theme?.themeSet?.second;
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +64,6 @@ export const ThemeModal = () => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        currenttheme={currentTheme}
       >
         Theme
         <ThemeIcon>
@@ -84,7 +84,7 @@ export const ThemeModal = () => {
             borderRadius: '4px',
             borderWidth: '1px',
             borderStyle: 'solid',
-            borderColor: 'rgba(190,219,176,1)',
+            borderColor: `${ theme?.themeSet?.third}`,
             boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.1)',
           },
         }}
@@ -129,6 +129,7 @@ export const ThemeModal = () => {
                   },
                 }}
               />
+
               <FormControlLabel
                 value={DARK}
                 control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
@@ -143,6 +144,7 @@ export const ThemeModal = () => {
                   },
                 }}
               />
+
               <FormControlLabel
                 value={COLORED}
                 control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}

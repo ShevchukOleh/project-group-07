@@ -9,8 +9,15 @@ import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Board from 'components/Board/Board';
-import { getAllBoards } from '../../store/AsyncThunk/asyncThunkBoards';
-import { selectBoards } from 'store/createSlices/board/boardSelectors';
+import {
+  getAllBoards,
+  getAllColums,
+} from '../../store/AsyncThunk/asyncThunkBoards';
+import {
+  selectBoards,
+  selectColumns,
+} from 'store/createSlices/board/boardSelectors';
+
 
 const Layout = () => {
   const [showSidebar, setShowSidebar] = useState(null);
@@ -27,10 +34,13 @@ const Layout = () => {
   const dispatch = useDispatch();
   const boards = useSelector(selectBoards);
   console.log('boards: ', boards);
+  const columns = useSelector(selectColumns);
+  console.log('columns: ', columns);
 
   useEffect(() => {
     dispatch(getAllBoards());
-  }, [dispatch]);
+    boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
+  }, [dispatch, boards]);
 
   return (
     <Container>

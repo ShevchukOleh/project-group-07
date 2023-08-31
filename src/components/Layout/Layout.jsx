@@ -9,25 +9,54 @@ import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Board from 'components/Board/Board';
-import { getAllBoards } from '../../store/AsyncThunk/asyncThunkBoards';
-import { selectBoards } from 'store/createSlices/board/boardSelectors';
+import {
+  getAllBoards,
+  getAllColums,
+} from '../../store/AsyncThunk/asyncThunkBoards';
+import {
+  selectBoards,
+  selectColumns,
+} from 'store/createSlices/board/boardSelectors';
 
 
 const Layout = () => {
+  const [showSidebar, setShowSidebar] = useState(true);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 1439) {
+      setShowSidebar(false);
+    } else {
+      setShowSidebar(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const [isShowModal, setIsShowModal] = useState(false);
   const hideModal = () => {
     setIsShowModal(false);
   };
   const dispatch = useDispatch();
+
   const boards = useSelector(selectBoards);
   console.log('boards: ', boards);
+  const columns = useSelector(selectColumns);
+  console.log('columns: ', columns);
 
   useEffect(() => {
     dispatch(getAllBoards());
-  }, [dispatch]);
+    boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
+  }, [dispatch, boards]);
+
   return (
     <Container>
-      <Sidebar setIsShowModal={setIsShowModal} />
+      {showSidebar && <Sidebar setIsShowModal={setIsShowModal} />}
       <div>
         <AppBar />
         <Board setIsShowModal={setIsShowModal} />
@@ -35,7 +64,7 @@ const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      {isShowModal && <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>};
+      {isShowModal && <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>}
     </Container>
   );
 };

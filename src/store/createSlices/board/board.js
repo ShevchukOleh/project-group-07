@@ -1,8 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllBoards, createBoard } from 'store/AsyncThunk/asyncThunkBoards';
+import {
+  getAllBoards,
+  createBoard,
+  getAllColums,
+  createColumn,
+  deleteBoard,
+} from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
   boards: [],
+  columns: [],
   loading: false,
   error: null,
 };
@@ -36,6 +43,46 @@ const boardSlice = createSlice({
       .addCase(createBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+
+      //Column
+
+      //getAllColumn===========================================================>
+
+      .addCase(getAllColums.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getAllColums.fulfilled, (state, action) => {
+        state.loading = false;
+        state.columns = action.payload;
+        state.error = null;
+      })
+      .addCase(getAllColums.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //createBoard===========================================================>
+
+      .addCase(createColumn.fulfilled, (state, action) => {
+        state.loading = false;
+        state.columns.push(action.payload);
+        state.error = null;
+      })
+      .addCase(createColumn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(deleteBoard.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteBoard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.boards = state.boards.filter(el => el.id !== action.payload.id);
+      })
+      .addCase(deleteBoard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

@@ -27,9 +27,7 @@ import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 
 export default function FormDialog({hideModal, isShowModal}) {
-
   const dispatch = useDispatch();
-
 
   const [valueInput, setValueInput] = useState('');
   const [valueIcon, setValueIcon] = useState('');
@@ -38,8 +36,9 @@ export default function FormDialog({hideModal, isShowModal}) {
   const [error, setError] = useState('');
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
+  const TOKEN = useSelector(selectToken);
 
-const token = useSelector(selectToken);
+  const token = useSelector(selectToken);
   
   const createBd = {
     title: valueInput,
@@ -70,8 +69,8 @@ const token = useSelector(selectToken);
   const handleCloseBtn = () => {
     hideModal();
     if (valueInput && valueImgBg) {
-    dispatch(createBoard(createBd));
-    console.log(createBd);
+      dispatch(createBoard(createBd));
+      console.log(createBd);
     }
     else console.error('Please, fill in the required fields');
   }

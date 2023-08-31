@@ -75,7 +75,7 @@ const getIconBoard = createAsyncThunk('board/getIcon', async (_, thunkAPI) => {
 });
 
 const deleteBoard = createAsyncThunk(
-  'board/delete',
+  'board/deleteBoard',
   async (boardId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.token;
@@ -131,6 +131,96 @@ const getBoardById = createAsyncThunk(
   }
 );
 
+/***********************************************Colums******************************************************/
+
+const getAllColums = createAsyncThunk(
+  'board/getColums',
+  async (boardId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.get(
+        `${BASE_URL}/api/board/${boardId}/column`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed get colums');
+    }
+  }
+);
+
+const createColumn = createAsyncThunk(
+  'board/postColumn',
+  async ({ boardId, params }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+
+      const response = await axios.post(
+        `${BASE_URL}/api/board/${boardId}/column`,
+        params,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed to post new column');
+    }
+  }
+);
+
+const editColumnById = createAsyncThunk(
+  'board/editColumnById',
+  async ({ boardId, columnId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.patch(
+        `${BASE_URL}/api/board/${boardId}/column/${columnId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      console.log('data: ', data);
+      return data;
+    } catch (error) {
+      throw new Error('Failed edit column by id');
+    }
+  }
+);
+
+const deleteColumn = createAsyncThunk(
+  'board/deleteColumn',
+  async ({ boardId, columnId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.delete(
+        `${BASE_URL}/api/board/${boardId}/column/${columnId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      console.log('data: ', data);
+      return data;
+    } catch (error) {
+      throw new Error('Failed delete Board');
+    }
+  }
+);
+
 export {
   getAllBoards,
   createBoard,
@@ -139,4 +229,8 @@ export {
   deleteBoard,
   getBoardById,
   editBoardById,
+  getAllColums,
+  createColumn,
+  editColumnById,
+  deleteColumn,
 };

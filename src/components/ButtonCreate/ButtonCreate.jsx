@@ -4,7 +4,7 @@ import { RiAddLine } from 'react-icons/ri';
 
 export default function ButtonCreate(props) {
   return (
-    <ButtonCreateStyle className="btnAddColumn">
+    <ButtonCreateStyle onClick={props.onClick} className="btnAddColumn">
       <div className="containerLogoName">
         <div className="containerIconBtn">
           <RiAddLine className="iconBtn" />

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BoardCardStyle = styled.div`
   position: relative;
-  margin-top: 8px;
+  margin-bottom: 8px;
 
   width: 334px;
   height: 154px;

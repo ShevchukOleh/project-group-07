@@ -21,9 +21,11 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getIcon, getImage } from '../../components/ModalBoard/servises';
+import { useSelector } from 'react-redux';
+import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-const TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzMyMTMzNSwiZXhwIjoxNjkzNDA0MTM1fQ.fA9XbH9XNFx6_S8_QSkmGifM67V63jMkgqxdr-3jvLU';
+// const TOKEN =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzMyMTMzNSwiZXhwIjoxNjkzNDA0MTM1fQ.fA9XbH9XNFx6_S8_QSkmGifM67V63jMkgqxdr-3jvLU';
 
 export default function FormDialog({ hideModal, isShowModal }) {
   const [valueIcon, setValueIcon] = useState('');
@@ -33,6 +35,7 @@ export default function FormDialog({ hideModal, isShowModal }) {
   const [error, setError] = useState('');
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
+  const TOKEN = useSelector(selectToken);
 
   useEffect(() => {
     getIcon(TOKEN)
@@ -40,7 +43,7 @@ export default function FormDialog({ hideModal, isShowModal }) {
         setIcon(data);
       })
       .catch(error => setError(error));
-  }, []);
+  }, [TOKEN]);
 
   useEffect(() => {
     getImage(TOKEN)
@@ -48,7 +51,7 @@ export default function FormDialog({ hideModal, isShowModal }) {
         setImage(data);
       })
       .catch(error => setError(error));
-  }, []);
+  }, [TOKEN]);
 
   const handleClose = () => {
     hideModal();

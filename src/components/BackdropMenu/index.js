@@ -1,1 +1,1 @@
-export * from "./BackdropMenu";
+export { default } from './BackdropMenu';

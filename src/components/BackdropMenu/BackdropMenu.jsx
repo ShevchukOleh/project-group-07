@@ -3,7 +3,7 @@ import Backdrop from '@mui/material/Backdrop';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { MenuBtn, MenuIconNav, Wrapper } from './BackdropMenu.styled';
 
-export const BackdropMenu = () => {
+const BackdropMenu = () => {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -32,3 +32,5 @@ export const BackdropMenu = () => {
     </Wrapper>
   );
 };
+
+export default BackdropMenu;

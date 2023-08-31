@@ -1,11 +1,6 @@
 import { ThemeModal } from 'components/ThemeModal';
-import {
-  Header,
-  HeaderNav,
-  UserInfoBtn,
-  UserAvatar,
-} from './AppBar.styled';
-import { BackdropMenu } from 'components/BackdropMenu';
+import { Header, HeaderNav, UserInfoBtn, UserAvatar } from './AppBar.styled';
+import BackdropMenu from 'components/BackdropMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { fetchCurrentUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
@@ -19,7 +14,6 @@ export const AppBar = () => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-
   return (
     <Header>
       <BackdropMenu />
@@ -32,10 +26,7 @@ export const AppBar = () => {
             <>
               {user.name}
               <UserAvatar>
-                <img
-                  src={user.avatarURL}
-                  alt={user.name}
-                />
+                <img src={user.avatarURL} alt={user.name} />
               </UserAvatar>
             </>
           ) : (

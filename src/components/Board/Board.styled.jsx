@@ -6,8 +6,8 @@ export const BoardStyle = styled.section`
 
    & .css-1q29n59-MuiButtonBase-root-MuiButton-root {
     position: absolute;
-    right: 0;
-    top: 5px;
+    right: 24px;
+    top: 0;
   }
   
   @media screen and (min-width: 768px) {

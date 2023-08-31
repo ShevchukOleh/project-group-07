@@ -140,6 +140,7 @@ export const BoardStyle = styled.section`
   }
 
   & .css-1q29n59-MuiButtonBase-root-MuiButton-root {
-    position: absolute; right: 0;
+    position: absolute;
+    right: 0;
   }
 `;

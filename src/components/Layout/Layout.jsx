@@ -52,7 +52,7 @@ const Layout = () => {
   useEffect(() => {
     dispatch(getAllBoards());
     boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
-  }, [dispatch, boards]);
+  }, [dispatch]);
 
   return (
     <Container>

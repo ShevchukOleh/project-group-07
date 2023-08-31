@@ -36,7 +36,7 @@ export default function FormDialog({hideModal, isShowModal}) {
   const [error, setError] = useState('');
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
-  const TOKEN = useSelector(selectToken);
+
 
   const token = useSelector(selectToken);
   

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
 import { BordInSidebar } from './BordInSidebar';
@@ -11,7 +11,6 @@ import {
   NewBoardText,
   BlockContainer,
   BlockContainerCreate,
-  StyledInput,
   InputContainer,
   LogoText,
   LogoImage,
@@ -25,7 +24,7 @@ import {
   Helpbutton,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
-import FormDialog from '../ModalBoard/ModalBoard'
+import FormDialog from '../ModalBoard/ModalBoard';
 // import { useDispatch } from 'react-redux';
 // import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 // import { useNavigate } from 'react-router';
@@ -33,18 +32,32 @@ import FormDialog from '../ModalBoard/ModalBoard'
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+import SideBarSearch from './SideBarSearch/SideBarSearch';
+import { selectBoards } from 'store/createSlices/board/boardSelectors';
+import { getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 // import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const Sidebar = ({ setIsShowModal }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const dispatch = useDispatch();
   const userToken = useSelector(selectToken);
+  const boardsInSidebar = useSelector(selectBoards);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
+  const [boardsList, setBoardsList] = useState(boardsInSidebar); //collection boards
+  const [filteredItems, setFilteredItems] = useState(boardsList); //search
 
   const openModal = () => {
     setIsModalOpen(true);
   };
+  // ===============================search
+  useEffect(() => {
+    dispatch(getAllBoards());
+  }, [dispatch]);
 
+  useEffect(() => {
+    setBoardsList(boardsInSidebar);
+  }, [boardsInSidebar]);
+  // =============================search
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -52,8 +65,7 @@ export const Sidebar = ({ setIsShowModal }) => {
   const closeModalBoard = () => {
     setIsShowModal(false);
     setIsModalBoardOpen(false);
-  }
-
+  };
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };
@@ -69,15 +81,20 @@ export const Sidebar = ({ setIsShowModal }) => {
             <LogoText>Task Pro</LogoText>
           </LogoContainer>
           <InputContainer>
-            <StyledInput> My board</StyledInput>
+            <SideBarSearch
+              setFilteredItems={setFilteredItems}
+              boardsList={boardsList}
+            />
           </InputContainer>
           <BlockContainerCreate>
             <NewBoardText>
-              Create a<br />new board
+              Create a<br />
+              new board
             </NewBoardText>
             <FormDialog
               isShowModal={isModalBoardOpen}
-              hideModal={closeModalBoard}/>
+              hideModal={closeModalBoard}
+            />
             {/* <CreateButton
               onClick={() => {
                 setIsShowModal(true);
@@ -117,7 +134,7 @@ export const Sidebar = ({ setIsShowModal }) => {
         </Block>
         {isBoard ? (
           <BlockContainerBoard>
-            <BordInSidebar />
+            <BordInSidebar filteredItems={filteredItems} />
           </BlockContainerBoard>
         ) : (
           <></>

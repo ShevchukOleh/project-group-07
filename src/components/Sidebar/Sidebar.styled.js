@@ -67,7 +67,6 @@ const BlockContainerCreate = styled.div`
   color: #161616;
   padding-top: 14px;
   padding-bottom: 14px;
-  border-top: 1px solid rgba(22, 22, 22, 0.1);
   border-bottom: 1px solid rgba(22, 22, 22, 0.1);
   justify-content: space-between;
   align-items: center;
@@ -139,7 +138,6 @@ const LogOutBlock = styled.button`
   align-items: center;
   cursor: pointer;
   margin-top: 24px;
-  cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
 
   &:hover {

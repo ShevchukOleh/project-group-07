@@ -52,7 +52,8 @@ const Layout = () => {
   useEffect(() => {
     dispatch(getAllBoards());
     boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
-  }, [dispatch, boards]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container>

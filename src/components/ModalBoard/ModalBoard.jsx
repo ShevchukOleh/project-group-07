@@ -148,6 +148,7 @@ export default function FormDialog({hideModal, isShowModal}) {
                 {icon &&
                   icon.map(({ _id, icon_src }) => (
                     <FormControlLabel
+                      key={_id}
                       value={_id}
                       control={
                         <RadioStyled key={_id}
@@ -184,6 +185,7 @@ export default function FormDialog({hideModal, isShowModal}) {
               {image &&
                 image.map(({ _id, background_icon_src }) => (
                   <FormControlLabel
+                    key={_id}
                     value={_id}
                     control={
                       <RadioStyledImg

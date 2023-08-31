@@ -41,16 +41,16 @@ export default function FormDialog({hideModal, isShowModal}) {
 
 const token = useSelector(selectToken);
   
-  const createBoard = {
-    name: valueInput,
+  const createBd = {
+    title: valueInput,
     icon: valueIcon,
-    img: valueImgBg,
+    background: valueImgBg,
   };
 
   useEffect(() => {
     getIcon(token).then(data => {
       setIcon(data);
-      console.log(data)
+      // console.log(data)
     })
     .catch((error) => setError(error))
   }, [token])
@@ -58,7 +58,7 @@ const token = useSelector(selectToken);
     useEffect(() => {
     getImage(token).then(data => {
       setImage(data);
-      console.log(data)
+      // console.log(data)
     })
     .catch((error) => setError(error))
     }, [token])
@@ -70,14 +70,8 @@ const token = useSelector(selectToken);
   const handleCloseBtn = () => {
     hideModal();
     if (valueInput && valueImgBg) {
-    console.log(createBoard);
-    dispatch(createBoard(
-      {
-    name: valueInput,
-    icon: valueIcon,
-    img: valueImgBg,
-  }
-    ));
+    dispatch(createBoard(createBd));
+    console.log(createBd);
     }
     else console.error('Please, fill in the required fields');
   }

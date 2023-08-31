@@ -81,7 +81,7 @@ export const FiltersModal = () => {
     <>
       <FiltersBtn
         id="filters-button"
-        aria-controls={open ? 'theme-menu' : undefined}
+        aria-controls={open ? 'filters-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}

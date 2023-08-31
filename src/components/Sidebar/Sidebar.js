@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
 import { BordInSidebar } from './BordInSidebar';
+import { BiHelpCircle } from 'react-icons/bi';
 import {
   Block,
   HelpBlock,
@@ -27,11 +28,11 @@ import ModalForm from './NeedHelp/NeedHelpModal';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+// import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-
   const userToken = useSelector(selectToken);
 
   const openModal = () => {
@@ -65,6 +66,12 @@ export const Sidebar = ({ setIsShowModal }) => {
             <CreateButton
               onClick={() => {
                 setIsShowModal(true);
+                // dispatch(
+                //   createBoard({
+                //     title: 'hello',
+                //     icon: '434343434343',
+                //   })
+                // );
               }}
             >
               <PlusIcon>+</PlusIcon>
@@ -96,12 +103,8 @@ export const Sidebar = ({ setIsShowModal }) => {
             <HelpBlock>
               <ModalForm isModalOpen={isModalOpen} closeModal={closeModal} />
               <Helpbutton onClick={openModal}>
-                <svg width={20} height={20} style={{ marginRight: '8px' }}>
-                  <use
-                    xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-help-circle`}
-                  />
-                </svg>
-                <p style={{ margin: '0' }}> Need help?</p>
+                <BiHelpCircle size={20} />
+                <p style={{ margin: '0', marginLeft: '8px' }}> Need help?</p>
               </Helpbutton>
             </HelpBlock>
           </BlockContainer>

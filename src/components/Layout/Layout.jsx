@@ -3,9 +3,9 @@ import { Outlet } from 'react-router-dom';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { AppBar } from 'components/AppBar';
 import { Container } from './Layout.styled';
-// import BackDrop from 'components/BackDrop/BackDrop';
+import BackDrop from 'components/BackDrop/BackDrop';
 import { useState } from 'react';
-import FormDialog from 'components/ModalBoard/ModalBoard';
+// import FormDialog from 'components/ModalBoard/ModalBoard';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Board from 'components/Board/Board';
@@ -18,7 +18,15 @@ import {
   selectColumns,
 } from 'store/createSlices/board/boardSelectors';
 
+
 const Layout = () => {
+  const [showSidebar, setShowSidebar] = useState(null);
+  const bodyEl = document.querySelector('body');
+  bodyEl.onresize = function () {
+    if (bodyEl.clientWidth <= 1439) setShowSidebar(false);
+    if (bodyEl.clientWidth > 1439) setShowSidebar(true);
+  };
+
   const [isShowModal, setIsShowModal] = useState(false);
   const hideModal = () => {
     setIsShowModal(false);
@@ -31,12 +39,12 @@ const Layout = () => {
 
   useEffect(() => {
     dispatch(getAllBoards());
-
     boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
   }, [dispatch, boards]);
+
   return (
     <Container>
-      <Sidebar setIsShowModal={setIsShowModal} />
+      {showSidebar && <Sidebar setIsShowModal={setIsShowModal} />}
       <div>
         <AppBar />
         <Board setIsShowModal={setIsShowModal} />
@@ -44,12 +52,7 @@ const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      {isShowModal && (
-        <FormDialog
-          isShowModal={isShowModal}
-          hideModal={hideModal}
-        ></FormDialog>
-      )}
+      {isShowModal && <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>}
     </Container>
   );
 };

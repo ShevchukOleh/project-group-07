@@ -183,6 +183,16 @@ const Helpbutton = styled.button`
   background-color: inherit;
   padding: 0;
   cursor: pointer;
+
+  &:hover {
+    background-color: transparent;
+    color: blue;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    color: darkgray;
+  }
 `;
 
 export {
@@ -198,7 +208,6 @@ export {
   LogoImage,
   LogoContainer,
   SidebarContainer,
-  // CustomDrawer,
   BlockContainerBoard,
   Block,
   OneBoard,

@@ -63,6 +63,7 @@ const StyledTextArea = styled(Field)`
   border-radius: 4px;
   margin-top: 16px;
   padding: 8px;
+  resize: none;
 `;
 
 export {

@@ -34,7 +34,6 @@ import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 // import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
-import FormDialog from 'components/ModalBoard/ModalBoard';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

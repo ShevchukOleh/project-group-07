@@ -10,20 +10,21 @@ import {
 import { ThemeBtn, ThemeIcon } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
 
-const LIGHT = "light";
-const DARK = "dark";
-const COLORED = "violet";
+const LIGHT = 'light';
+const DARK = 'dark';
+const COLORED = 'violet';
 
 export const ThemeModal = () => {
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
+  const currentTheme = 'light';
   const [firstThemeStatus, setFirstThemeStatus] = useState(null);
   const [secondThemeStatus, setSecondThemeStatus] = useState(null);
   const [thirdThemeStatus, setThirdThemeStatus] = useState(null);
 
-  const themeBtnColor = themeStatus =>  themeStatus ? 'rgba(190,219,176,1)' : '#161616';
+  const themeBtnColor = themeStatus =>
+    themeStatus ? 'rgba(190,219,176,1)' : '#161616';
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -62,6 +63,7 @@ export const ThemeModal = () => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        currenttheme={currentTheme}
       >
         Theme
         <ThemeIcon>
@@ -75,82 +77,89 @@ export const ThemeModal = () => {
         open={open}
         onClose={handleClose}
         sx={{
-          '& .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper': {
-            borderRadius: '8px',
+          '& ul': {
+            padding: 0,
+          },
+          '& ul > div': {
+            borderRadius: '4px',
             borderWidth: '1px',
             borderStyle: 'solid',
             borderColor: 'rgba(190,219,176,1)',
             boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.1)',
-            backgroundColor: '#FCFCFC',
-          },
-          '& ul': {
-            padding: 0,
           },
         }}
       >
-        <FormControl
-          sx={{
-            width: 100,
-            height: 107,
-            justifyContent: 'center',
-          }}
-        >
-          <FormLabel id="radio-buttons-group-label"></FormLabel>
-          <RadioGroup
-            aria-labelledby="radio-buttons-group-label"
-            name="radio-buttons-group"
-            value={themeValue}
-            onChange={handleChange}
+        <div>
+          <FormControl
             sx={{
-              display: 'flex',
-              gap: '4px',
-              justifyContent: 'normal',
-              alignContent: 'center',
-              '& label .MuiTypography-root': {
-                fontFamily: 'Poppins',
-                fontSize: '14px',
-              },
-              '& label .MuiButtonBase-root': { visibility: 'hidden' },
+              width: 100,
+              height: 107,
+              justifyContent: 'center',
             }}
           >
-            <FormControlLabel
-              value={LIGHT}
-              control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
-              label="Light"
-              labelPlacement="start"
+            <FormLabel id="radio-buttons-group-label"></FormLabel>
+            <RadioGroup
+              aria-labelledby="radio-buttons-group-label"
+              name="radio-buttons-group"
+              value={themeValue}
+              onChange={handleChange}
               sx={{
-                marginLeft: 0,
-                justifyContent: 'flex-end',
-                maxWidth: 100,
-                '& .MuiTypography-root': { color: themeBtnColor(firstThemeStatus) },
+                display: 'flex',
+                gap: '4px',
+                justifyContent: 'normal',
+                alignContent: 'center',
+                '& label .MuiTypography-root': {
+                  fontFamily: 'Poppins',
+                  fontSize: '14px',
+                },
+                '& label .MuiButtonBase-root': { visibility: 'hidden' },
               }}
-            />
-            <FormControlLabel
-              value={DARK}
-              control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
-              label="Dark"
-              labelPlacement="start"
-              sx={{
-                marginLeft: 0,
-                justifyContent: 'flex-end',
-                maxWidth: 100,
-                '& .MuiTypography-root': { color: themeBtnColor(secondThemeStatus) },
-              }}
-            />
-            <FormControlLabel
-              value={COLORED}
-              control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
-              label="Violet"
-              labelPlacement="start"
-              sx={{
-                marginLeft: 0,
-                justifyContent: 'flex-end',
-                maxWidth: 100,
-                '& .MuiTypography-root': { color: themeBtnColor(thirdThemeStatus) },
-              }}
-            />
-          </RadioGroup>
-        </FormControl>
+            >
+              <FormControlLabel
+                value={LIGHT}
+                control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
+                label="Light"
+                labelPlacement="start"
+                sx={{
+                  marginLeft: 0,
+                  justifyContent: 'flex-end',
+                  maxWidth: 100,
+                  '& .MuiTypography-root': {
+                    color: themeBtnColor(firstThemeStatus),
+                  },
+                }}
+              />
+              <FormControlLabel
+                value={DARK}
+                control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
+                label="Dark"
+                labelPlacement="start"
+                sx={{
+                  marginLeft: 0,
+                  justifyContent: 'flex-end',
+                  maxWidth: 100,
+                  '& .MuiTypography-root': {
+                    color: themeBtnColor(secondThemeStatus),
+                  },
+                }}
+              />
+              <FormControlLabel
+                value={COLORED}
+                control={<Radio sx={{ padding: 0, width: 1, height: 1 }} />}
+                label="Violet"
+                labelPlacement="start"
+                sx={{
+                  marginLeft: 0,
+                  justifyContent: 'flex-end',
+                  maxWidth: 100,
+                  '& .MuiTypography-root': {
+                    color: themeBtnColor(thirdThemeStatus),
+                  },
+                }}
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
       </Menu>
     </>
   );

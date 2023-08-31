@@ -20,18 +20,30 @@ import {
 
 
 const Layout = () => {
-  const [showSidebar, setShowSidebar] = useState(null);
-  const bodyEl = document.querySelector('body');
-  bodyEl.onresize = function () {
-    if (bodyEl.clientWidth <= 1439) setShowSidebar(false);
-    if (bodyEl.clientWidth > 1439) setShowSidebar(true);
+  const [showSidebar, setShowSidebar] = useState(true);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 1439) {
+      setShowSidebar(false);
+    } else {
+      setShowSidebar(true);
+    }
   };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const [isShowModal, setIsShowModal] = useState(false);
   const hideModal = () => {
     setIsShowModal(false);
   };
   const dispatch = useDispatch();
+
   const boards = useSelector(selectBoards);
   console.log('boards: ', boards);
   const columns = useSelector(selectColumns);

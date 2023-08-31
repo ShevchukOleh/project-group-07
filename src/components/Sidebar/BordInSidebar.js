@@ -11,7 +11,7 @@ export const BordInSidebar = () => {
 
   // const [boards, setBoards] = useState(boardsInSidebar);
 
-  console.log(boardsInSidebar);
+  // console.log(boardsInSidebar);
 
   const handleDeleteBoard = id => {
     dispatch(deleteBoard(id)).then(() => {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const BoardStyle = styled.section`
   position: relative;
@@ -126,4 +126,6 @@ export const BoardStyle = styled.section`
     letter-spacing: -0.28px;
     cursor: pointer;
   }
+
+  & .css-1q29n59-MuiButtonBase-root-MuiButton-root {position: absolute; right: 0;}
 `;

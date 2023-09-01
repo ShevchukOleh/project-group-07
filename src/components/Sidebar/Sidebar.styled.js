@@ -82,17 +82,44 @@ const BlockContainerBoard = styled.div`
 `;
 
 const OneBoard = styled.div`
+  position: relative;
   font-size: 14px;
   font-weight: 500;
-  padding: 22px;
+  padding: 22px 20px 22px 24px;
   display: flex;
   align-items: center;
   color: rgba(22, 22, 22, 0.5);
   background-color: #ffffff;
 
+  .icon {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
   &:hover {
     background-color: #f6f6f7;
     color: #121212;
+    .icon {
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: ${props => props.color};
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  &:hover:before {
+    transform: scaleX(1);
   }
 `;
 

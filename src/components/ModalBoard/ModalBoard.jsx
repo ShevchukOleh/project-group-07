@@ -94,24 +94,24 @@ export default function FormDialog({hideModal, isShowModal}) {
     hideModal();
     if (valueInput && valueImgBg) {
       dispatch(createBoard(createBd));
-      console.log(createBd);
+      // console.log(createBd);
     }
     else console.error('Please, fill in the required fields');
   }
    
   const handleChange = event => {
     setValueInput(event.target.value);
-    console.log(valueInput);
+    // console.log(valueInput);
   };
 
   const handleChangeIcon = event => {
     setValueIcon(event.target.value);
-    console.log(valueIcon)
+    // console.log(valueIcon)
   };
 
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
-    console.log(valueImgBg)
+    // console.log(valueImgBg)
   };
 
   return (

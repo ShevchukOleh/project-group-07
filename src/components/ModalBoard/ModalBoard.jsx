@@ -17,15 +17,14 @@ import {
   FormControlLabelStyled,
 } from './ModalBoard.styled';
 import Plus from '../../images/icons/plus.svg';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import {getIcon, getImage} from '../../components/ModalBoard/servises'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
-import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+// import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 
 export default function FormDialog({hideModal, isShowModal}) {
@@ -82,9 +81,9 @@ export default function FormDialog({hideModal, isShowModal}) {
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
-  const darkImageBg = image[16];
-  const violetImageBg = image[17];
-  console.log(lightImageBg, darkImageBg, violetImageBg)
+  // const darkImageBg = image[16];
+  // const violetImageBg = image[17];
+  // console.log(lightImageBg, darkImageBg, violetImageBg)
 
   
   const handleClose = () => {

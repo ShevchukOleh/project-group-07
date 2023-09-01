@@ -119,7 +119,6 @@ export const FiltersModal = () => {
             borderColor: `${theme?.themeSet?.modalFiltersOutBorder}`,
             boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
           },
-          
         }}
       >
         <MenuWrap>

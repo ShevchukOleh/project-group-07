@@ -165,9 +165,9 @@ export default function FormDialog({hideModal, isShowModal}) {
               <IconContainer
               row
               aria-labelledby="icons-group"
-              defaultValue="Project"
+              // defaultValue="Project"
               name="icons-group"
-              // value={valueIcon}
+              value={valueIcon}
               onChange={handleChangeIcon}
             >
                 
@@ -175,6 +175,7 @@ export default function FormDialog({hideModal, isShowModal}) {
                 icon.map(({ _id, icon_src }) => (
                   <FormControlLabelStyled
                     value={_id}
+                    key={_id}
                     control={
                       <RadioStyled key={_id}
                         icon={<Icon src={icon_src} alt={_id} />}

@@ -32,6 +32,7 @@ const LogoContainer = styled.div`
 
 const Block = styled.div`
   padding: 24px;
+
   @media (max-width: 375px) {
     padding: 14px;
   }
@@ -80,7 +81,14 @@ const BlockContainerCreate = styled.div`
   }};
   padding-top: 14px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(22, 22, 22, 0.1);
+  border-top: 1px solid
+    ${props => {
+      return props?.theme?.themeSet?.sidebarCreateConBorder;
+    }};
+  border-bottom: 1px solid
+    ${props => {
+      return props?.theme?.themeSet?.sidebarCreateConBorder;
+    }};
   justify-content: space-between;
   align-items: center;
 
@@ -150,7 +158,9 @@ const LogOutBlock = styled.button`
   background-color: inherit;
   display: flex;
   font-size: 16px;
-  color: #161616;
+  color: ${props => {
+    return props?.theme?.themeSet?.logoutBtn;
+  }};
   font-weight: 600;
   align-items: center;
   cursor: pointer;

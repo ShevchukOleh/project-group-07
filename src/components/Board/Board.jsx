@@ -10,12 +10,22 @@ import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
 import BoardCard from 'components/BoardCard/BoardCard';
 import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
+import CardFormDialog from 'components/CardModal/CardModal'
 import { FiltersModal } from 'components/FiltersModal';
+import { useState } from 'react';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
+  const [isModalCardOpen, setIsModalCardOpen] = useState(false);
+
+    const openModalCard = () => {
+    setIsModalCardOpen(true);
+  };
+  const closeModalCard = () => {
+    setIsModalCardOpen(false);
+  };
 
   const board = boards.find(board => board.title === boardName) || boards[0];
   const backgroundId = board?.background;
@@ -49,7 +59,11 @@ export default function Board({ setIsShowModal }) {
             </div>
             <ButtonCreate
               text="Add another card"
-              onClick={() => setIsShowModal(true)}
+              onClick={openModalCard}
+            />
+            <CardFormDialog
+              isShowModal={isModalCardOpen}
+              hideModal={closeModalCard}
             />
           </div>
           <div className="containerOneColumn">
@@ -62,7 +76,7 @@ export default function Board({ setIsShowModal }) {
             </div>
             <ButtonCreate
               text="Add another card"
-              onClick={() => setIsShowModal(true)}
+              onClick={openModalCard}
             />
           </div>
           <div className="containerOneColumn">
@@ -75,7 +89,7 @@ export default function Board({ setIsShowModal }) {
             </div>
             <ButtonCreate
               text="Add another card"
-              onClick={() => setIsShowModal(true)}
+              onClick={openModalCard}
             />
           </div>
           <div>

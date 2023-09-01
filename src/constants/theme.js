@@ -7,6 +7,8 @@ const lightTheme = {
   headerMenuBtn: '#161616',
 
   sidebarBg: '#FFFFFF',
+  sidebarLogo: '#FFFFFF',
+  sidebarLogoBg: '#1F1F1F',
   sidebarLogoText: '#161616',
   sidebarCreateConBg: '#FFFFFF',
   sidebarCreateBoardText: '#161616',
@@ -34,6 +36,8 @@ const darkTheme = {
   headerMenuBtn: '#FFFFFF',
 
   sidebarBg: '#121212',
+  sidebarLogo: '#FFFFFF',
+  sidebarLogoBg: '#1F1F1F',
   sidebarLogoText: '#FFFFFF',
   sidebarCreateConBg: '#121212',
   sidebarCreateBoardText: '#FFFFFF',
@@ -61,6 +65,8 @@ const coloredTheme = {
   headerMenuBtn: '#161616',
 
   sidebarBg: '#5255BC',
+  sidebarLogo: '#5255BC',
+  sidebarLogoBg: '#FFFFFF',
   sidebarLogoText: '#FFFFFF',
   sidebarCreateConBg: '#5255BC',
   sidebarCreateBoardText: '#FFFFFF',

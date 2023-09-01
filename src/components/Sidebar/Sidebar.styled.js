@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
+import BoltIcon from '@mui/icons-material/Bolt';
 
 const ContainerAside = styled.aside`
   width: 260px;
@@ -36,11 +37,17 @@ const Block = styled.div`
   }
 `;
 
-const LogoImage = styled.img`
+const Logo = styled(BoltIcon)`
   width: 32px;
   height: 32px;
   margin-right: 8px;
-  fill: red;
+  border-radius: 8px;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarLogoBg;
+  }};
+  fill: ${props => {
+    return props?.theme?.themeSet?.sidebarLogo;
+  }};
 `;
 
 const LogoText = styled.p`
@@ -219,7 +226,7 @@ export {
   StyledInput,
   InputContainer,
   LogoText,
-  LogoImage,
+  Logo,
   LogoContainer,
   SidebarContainer,
   BlockContainerBoard,

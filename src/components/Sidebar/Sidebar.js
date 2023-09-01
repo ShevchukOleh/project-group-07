@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../../images/logo.png';
 import plant from '../../images/cup.png';
 import { BordInSidebar } from './BordInSidebar';
 import { BiHelpCircle } from 'react-icons/bi';
@@ -13,7 +12,7 @@ import {
   BlockContainerCreate,
   InputContainer,
   LogoText,
-  LogoImage,
+  Logo,
   LogoContainer,
   SidebarContainer,
   BlockContainerBoard,
@@ -79,7 +78,7 @@ export const Sidebar = ({ setIsShowModal }) => {
       <SidebarContainer>
         <Block>
           <LogoContainer>
-            <LogoImage src={logo} alt="Logo" />
+            <Logo />
             <LogoText>Task Pro</LogoText>
           </LogoContainer>
 
@@ -158,7 +157,7 @@ export const Sidebar = ({ setIsShowModal }) => {
               <br />
               customer support team.
             </HelpText>
-            
+
             <HelpBlock>
               <ModalForm isModalOpen={isModalOpen} closeModal={closeModal} />
               <Helpbutton onClick={openModal}>

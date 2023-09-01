@@ -121,7 +121,9 @@ const OneBoard = styled.div`
 const BlockContainer = styled.div`
   width: 212px;
   padding: 20px;
-  background-color: #f6f6f7;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarBlock;
+  }};
   color: #161616;
   border-radius: 8px;
   justify-content: space-between;
@@ -131,6 +133,12 @@ const BlockContainer = styled.div`
     width: 197px;
     padding: 14px;
   }
+`;
+
+const BlockLink = styled.a`
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarBlockLink;
+  }};
 `;
 
 const NewBoardText = styled.p`
@@ -241,6 +249,7 @@ export {
   SidebarContainer,
   BlockContainerBoard,
   Block,
+  BlockLink,
   OneBoard,
   ContainerAside,
   PlusIcon,

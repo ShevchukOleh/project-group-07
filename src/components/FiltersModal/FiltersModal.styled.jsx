@@ -4,7 +4,9 @@ import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 
 export const FiltersBtn = styled(Button)`
   gap: 8px;
-  color: rgba(22, 22, 22, 0.8);
+  color: ${props => {
+    return props?.theme?.themeSet?.modalFiltersLabel;
+  }};
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;

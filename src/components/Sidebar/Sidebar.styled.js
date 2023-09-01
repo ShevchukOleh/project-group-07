@@ -124,7 +124,9 @@ const BlockContainer = styled.div`
   background-color: ${props => {
     return props?.theme?.themeSet?.sidebarBlock;
   }};
-  color: #161616;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarText;
+  }};
   border-radius: 8px;
   justify-content: space-between;
   margin-bottom: ${({ marginBottom }) => `${marginBottom}px`};
@@ -222,6 +224,9 @@ const Helpbutton = styled.button`
   background-color: inherit;
   padding: 0;
   cursor: pointer;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarText;
+  }};
 
   &:hover {
     background-color: transparent;

@@ -69,18 +69,20 @@ export const BoardStyle = styled.section`
   }
 
   & .containerColumnCard {
-    height: calc(100vh - 334px);
+    max-height: calc(100vh - 334px);
     margin-bottom: 14px;
     overflow-y: hidden;
     overflow-y: scroll;
 
     @media screen and (min-width: 768px) {
-      height: calc(100vh - 384px);
+      max-height: calc(100vh - 384px);
     }
 
     @media screen and (min-width: 1440px) {
       width: 354px;
-      height: calc(100vh - 292px);
+      /* height: calc(100vh - 292px); */
+      max-height: 100%;
+      min-height: 320px;
     }
   }
 

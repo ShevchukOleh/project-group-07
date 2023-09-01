@@ -25,6 +25,7 @@ import {
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
 import FormDialog from '../ModalBoard/ModalBoard';
+import { theme } from '../../constants';
 // import { useDispatch } from 'react-redux';
 // import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 // import { useNavigate } from 'react-router';
@@ -125,7 +126,8 @@ export const Sidebar = ({ setIsShowModal }) => {
                 minWidth: '40px',
                 height: '36px',
                 marginLeft: '8px',
-                background: '#BEDBB0',
+                background: `${theme?.themeSet?.sidebarCreateBtnBg}`,
+                color: `${theme?.themeSet?.sidebarCreateBoardText}`,
               }}
             >
               <PlusIcon>+</PlusIcon>

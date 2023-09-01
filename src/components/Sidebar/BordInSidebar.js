@@ -3,7 +3,7 @@ import { OneBoard } from './Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
+import { deleteBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const BordInSidebar = ({ filteredItems }) => {
   const dispatch = useDispatch();

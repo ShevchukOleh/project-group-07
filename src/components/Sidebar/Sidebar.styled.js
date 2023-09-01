@@ -55,7 +55,7 @@ const LogoText = styled.p`
   margin-left: 8px;
   margin: 0;
   color: ${props => {
-    return props?.theme?.themeSet?.sidebarLogoText;
+    return props?.theme?.themeSet?.sidebarText;
   }};
   font-weight: 600;
   font-size: 16px;
@@ -147,7 +147,7 @@ const NewBoardText = styled.p`
   font-weight: 600;
   margin: 0;
   color: ${props => {
-    return props?.theme?.themeSet?.sidebarCreateBoardText;
+    return props?.theme?.themeSet?.sidebarText;
   }};
 `;
 
@@ -167,7 +167,7 @@ const LogOutBlock = styled.button`
   display: flex;
   font-size: 16px;
   color: ${props => {
-    return props?.theme?.themeSet?.logoutBtn;
+    return props?.theme?.themeSet?.sidebarText;
   }};
   font-weight: 600;
   align-items: center;

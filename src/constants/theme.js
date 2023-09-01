@@ -15,6 +15,8 @@ const lightTheme = {
   sidebarCreateBoardText: '#161616',
   sidebarCreateBtnBg: '#BEDBB0',
   iconPlus: '#121212',
+  sidebarBlock: '#F6F6F7',
+  sidebarBlockLink: '#BEDBB0',
   logoutBtn: '#161616',
 
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
@@ -46,6 +48,8 @@ const darkTheme = {
   sidebarCreateBoardText: '#FFFFFF',
   sidebarCreateBtnBg: '#BEDBB0',
   iconPlus: '#121212',
+  sidebarBlock: '#1F1F1F',
+  sidebarBlockLink: '#BEDBB0',
   logoutBtn: '#FFFFFF',
 
   modalThemeLabel: 'rgba(255, 255, 255, 0.8)',
@@ -77,6 +81,8 @@ const coloredTheme = {
   sidebarCreateBoardText: '#FFFFFF',
   sidebarCreateBtnBg: '#B8BCFD',
   iconPlus: '#FFFFFF',
+  sidebarBlock: 'rgba(236, 237, 253, 0.4)',
+  sidebarBlockLink: '#5255BC',
   logoutBtn: '#FFFFFF',
 
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',

@@ -51,7 +51,6 @@ const getBackgroundBoard = createAsyncThunk(
         },
       });
       const { data } = response;
-      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed get background');

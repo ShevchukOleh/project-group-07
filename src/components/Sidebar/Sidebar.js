@@ -24,11 +24,14 @@ import {
   Helpbutton,
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
+
 import FormDialog from '../ModalBoard/ModalBoard';
+
 
 // import { useDispatch } from 'react-redux';
 // import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 // import { useNavigate } from 'react-router';
+
 
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +39,6 @@ import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import SideBarSearch from './SideBarSearch/SideBarSearch';
 import { selectBoards } from 'store/createSlices/board/boardSelectors';
 import { getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
-// import { createBoard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export const Sidebar = ({ setIsShowModal }) => {
   const dispatch = useDispatch();
@@ -62,9 +64,11 @@ export const Sidebar = ({ setIsShowModal }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const openModalBoard = () => {
+    setIsModalBoardOpen(true);
+  };
   const closeModalBoard = () => {
-    setIsShowModal(false);
+    // setIsShowModal(false);
     setIsModalBoardOpen(false);
   };
   const handleLogOut = () => {
@@ -114,6 +118,7 @@ export const Sidebar = ({ setIsShowModal }) => {
               <PlusIcon>+</PlusIcon>
             </CreateButton> */}
             <CreateButton
+
               onClick={() => {
                 setIsShowModal(true);
                 setIsModalBoardOpen(true);
@@ -125,6 +130,7 @@ export const Sidebar = ({ setIsShowModal }) => {
                 //   })
                 // );
               }}
+
               sx={{
                 minWidth: '40px',
                 height: '36px',

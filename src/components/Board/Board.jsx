@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectBoards,
@@ -46,9 +45,6 @@ export default function Board({ setIsShowModal }) {
             <ColumnTitle text={'To Do'} />
             <div className="containerColumnCard">
               <BoardCard />
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
             </div>
             <ButtonCreate
               text="Add another card"
@@ -59,9 +55,6 @@ export default function Board({ setIsShowModal }) {
             <ColumnTitle text={'In progress'} />
             <div className="containerColumnCard">
               <BoardCard />
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
             </div>
             <ButtonCreate
               text="Add another card"
@@ -71,9 +64,6 @@ export default function Board({ setIsShowModal }) {
           <div className="containerOneColumn">
             <ColumnTitle text={'Done'} />
             <div className="containerColumnCard">
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
               <BoardCard />
             </div>
             <ButtonCreate

@@ -72,6 +72,21 @@ export const Image = styled.img`
 width: 28px;
 height: 28px;
 `
+export const DescriptionFieldStyled = styled.textarea`
+caret-color: #BEDBB0;
+border: 1px solid #BEDBB0;
+border-radius: 8px;
+height: 154px;
+width: 100%;
+margin-bottom: 24px;
+padding-left: 18px;
+  ::placeholder {
+    color: #BEDBB0;
+  };
+  &&:hover {
+  border: 1px solid grey
+  };
+`
 
 export const TextFieldStyled = styled.input`
 caret-color: #BEDBB0;
@@ -90,4 +105,8 @@ padding-left: 18px;
   &&:hover {
   border: 1px solid grey
   };
+`
+
+export const DateField = styled.input`
+
 `

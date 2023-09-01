@@ -1,10 +1,15 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import Loader from 'components/Loader/Loader'
+// import Loader from 'components/Loader/Loader'
 import DialogContent from '@mui/material/DialogContent';
 import FormLabel from '@mui/material/FormLabel'
 import DialogTitle from '@mui/material/DialogTitle';
+// import dayjs from 'dayjs';
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
   IconContainer,
   RadioStyled,
@@ -12,79 +17,37 @@ import {
   TextFieldStyled,
   DialogActionsStyled,
   Icon,
-  FormControlLabelStyled,
+    FormControlLabelStyled,
+  DescriptionFieldStyled,
+  DateField,
 } from './CardModal.styled'
 import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
-import {  useSelector } from 'react-redux';
-import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+// import { useDispatch } from 'react-redux';
+// import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
+// import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 
 export default function CardFormDialog({hideModal, isShowModal}) {
 //   const dispatch = useDispatch();
   
   const [valueTitle, setValueTitle] = useState('');
-  const [labelColor, setLabelColor] = useState('#8FA1D0');
+  const [labelColor, setLabelColor] = useState('Low');
   const [valueDescription, setValueDescription] = useState('');
-  const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [dateDeadline, setDeadline] = useState('')
-//   const [icon, setIcon] = useState([]);
-//   const [image, setImage] = useState([]);
-
-  const token = useSelector(selectToken);
-  // const theme = useSelector(sele)
-// const isLoading = useSelector(selectLoading)
-  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzU1NjE2NCwiZXhwIjoxNjkzNjM4OTY0fQ.f_g-zrT_HWKr4PE0skH0u-gs_75dhuvjCqmIEAehq1c';
-
-  
-
-
-
-//   useEffect(() => {
-//     setIsLoading(true);
-//     getIcon(token).then(data => {
-//       setIcon(data);
-//     })
-//       .catch((error) => setError(error))
-//       .finally(() => {
-//         setIsLoading(false)
-//       })
-//   }, [token]);
-
-
-//   useEffect(() => {
-//     setIsLoading(true);
-//     setImage([]);
-//     getImage(token).then(data => {
-//       setImage(data);
-//     })
-//       .catch((error) => setError(error.message))
-//       .finally(() => {
-//         setIsLoading(false)
-//       })
-//   }, [token]);
-
-  
-//     const createBd = {
-//     title: valueInput,
-//     icon: valueIcon,
-//     background: valueImgBg,
-//   };
-
-//   const length = image.length - 3;
-//   const imageNew = image.slice(0, length);
-//   const lightImageBg = image[15];
-  // const darkImageBg = image[16];
-  // const violetImageBg = image[17];
-  // console.log(lightImageBg, darkImageBg, violetImageBg)
-
-  
+  const [dateDeadline, setDeadline] = useState('2023-09-01')
+   
+    const createCard = {
+    title: valueTitle,
+    description: valueDescription,
+        priority: labelColor,
+    deadline: dateDeadline,
+  };
+ 
   const handleClose = () => {
       hideModal();
-      setLabelColor('#8FA1D0')
+      setLabelColor('Low')
       setValueTitle('')
       setValueDescription('')
 
@@ -92,14 +55,11 @@ export default function CardFormDialog({hideModal, isShowModal}) {
 
   const handleCloseBtn = () => {
       hideModal();
-      setLabelColor('#8FA1D0')
+    //   dispatch(createTodo(createCard))
+      setLabelColor('Low')
       setValueTitle('')
       setValueDescription('')
-    // if (valueInput && valueImgBg) {
-    //   dispatch(createBoard(createBd));
-
-    // }
-    // else console.error('Please, fill in the required fields');
+      console.log(createCard)
   }
    
   const handleChangeTitle = event => {
@@ -115,15 +75,20 @@ export default function CardFormDialog({hideModal, isShowModal}) {
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
  console.log(event.target.value)
-  };
+    };
+
+    const handleDateDeadline = event => {
+        setDeadline(event.target.value)
+        console.log(event.target.value)
+    }
+    
+
 
     return (
    
         <div>
             <Dialog open={isShowModal} onClose={handleClose}>
                 <ContainerModal>
-                    {isLoading && <Loader />}
-                    {error && <div>Something went wrong. Try again later</div>}
                     <DialogTitle
                         sx={{
                             fontSize: 18,
@@ -146,15 +111,13 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         />
                       
-                        <TextFieldStyled
+                        <DescriptionFieldStyled
                             id="Description"
                             multiline
-                            maxRows
+                            row={4}
                             label="Title"
                             type="text"
-                                  sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
+                            value={valueDescription}
                             placeholder="Description"
                             onChange={handleChangeDescription}
                             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -180,7 +143,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                 onChange={handleChangeLabelColor}
                             >
                                 <FormControlLabelStyled
-                                    value='#8FA1D0'
+                                    value='Low'
                 
                                     // key={_id}
                                     control={<RadioStyled
@@ -194,7 +157,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                     />}
                                 />
                                 <FormControlLabelStyled
-                                    value='#E09CB5'
+                                    value='Medium'
                                     control={<RadioStyled
                                         sx={{
                                             color: '#E09CB5',
@@ -205,7 +168,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                     />}
                                 />
                                 <FormControlLabelStyled
-                                    value='#BEDBB0'
+                                    value='High'
                                     control={<RadioStyled
                                         sx={{
                                             color: '#BEDBB0',
@@ -215,7 +178,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                         }} />}
                                 />
                                 <FormControlLabelStyled
-                                    value='#161616'
+                                    value='Without priority'
                                     control={<RadioStyled
                                         sx={{
                                             color: '#161616',
@@ -226,6 +189,35 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                 />
                             </IconContainer>
                         </FormControl>
+                        <DialogTitle
+              sx={{
+                fontSize: 14,
+                fontWeight: 500,
+                padding: 0,
+                marginBottom: '14px',
+              }}
+            >
+              Deadline
+                        </DialogTitle>
+                        <DateField
+                            type='date'
+                            id='date'
+                            value={dateDeadline}
+                            onChange={handleDateDeadline}
+                            min='2023-09-01'
+                        >
+
+                        </DateField>
+    {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['DatePicker', 'DatePicker']}>
+        <DatePicker label="Uncontrolled picker" defaultValue={dayjs('2022-04-17')} />
+        <DatePicker
+          label="Controlled picker"
+          value={dateDeadline}
+          onChange={handleDateDeadline}
+        />
+      </DemoContainer>
+    </LocalizationProvider> */}
                     </DialogContent>
                     <DialogActionsStyled>
                         {valueTitle

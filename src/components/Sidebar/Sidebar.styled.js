@@ -4,7 +4,9 @@ import Button from '@mui/material/Button';
 const ContainerAside = styled.aside`
   width: 260px;
   height: 100vh;
-  background-color: #fff;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarBg;
+  }};
 
   @media screen and (min-width: 768px) {
     width: 260px;
@@ -38,12 +40,15 @@ const LogoImage = styled.img`
   width: 32px;
   height: 32px;
   margin-right: 8px;
+  fill: red;
 `;
 
 const LogoText = styled.p`
   margin-left: 8px;
-  color: #161616;
   margin: 0;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarLogoText;
+  }};
   font-weight: 600;
   font-size: 16px;
 `;
@@ -63,13 +68,15 @@ const StyledInput = styled.h2`
 const BlockContainerCreate = styled.div`
   display: flex;
   width: 212px;
-  background-color: #ffffff;
-  color: #161616;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarCreateConBg;
+  }};
   padding-top: 14px;
   padding-bottom: 14px;
   border-bottom: 1px solid rgba(22, 22, 22, 0.1);
   justify-content: space-between;
   align-items: center;
+
   @media (max-width: 375px) {
     width: 197px;
   }
@@ -116,6 +123,9 @@ const NewBoardText = styled.p`
   font-size: 14px;
   font-weight: 600;
   margin: 0;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarCreateBoardText;
+  }};
 `;
 
 const HelpText = styled.p`
@@ -158,7 +168,7 @@ const HelpBlock = styled.div`
 `;
 
 const PlusIcon = styled.p`
-  color:${props => {
+  color: ${props => {
     return props?.theme?.themeSet?.iconPlus;
   }};
   font-size: 26px;
@@ -169,7 +179,9 @@ const CreateButton = styled(Button)`
   min-width: 40px;
   height: 36px;
   margin-left: 8px;
-  background-color: #bedbb0;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarCreateBtnBg;
+  }};
 `;
 
 const PlantImg = styled.img`

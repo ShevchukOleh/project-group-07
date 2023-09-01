@@ -64,9 +64,9 @@ export const Sidebar = ({ setIsShowModal }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const openModalBoard = () => {
-    setIsModalBoardOpen(true);
-  };
+  // const openModalBoard = () => {
+  //   setIsModalBoardOpen(true);
+  // };
   const closeModalBoard = () => {
     // setIsShowModal(false);
     setIsModalBoardOpen(false);

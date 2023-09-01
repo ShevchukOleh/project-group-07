@@ -11,6 +11,7 @@ const lightTheme = {
 
   modalFiltersLabel: 'rgba(22, 22, 22, 0.8)',
   modalFiltersBg: '#FCFCFC',
+  modalFiltersOutBorder: '#BEDBB0',
 };
 
 const darkTheme = {
@@ -22,6 +23,7 @@ const darkTheme = {
 
   modalFiltersLabel: 'rgba(255, 255, 255, 0.8)',
   modalFiltersBg: '#151515',
+  modalFiltersOutBorder: '#BEDBB0',
 };
 
 const coloredTheme = {
@@ -33,6 +35,7 @@ const coloredTheme = {
 
   modalFiltersLabel: 'rgba(22, 22, 22, 0.8)',
   modalFiltersBg: '#FCFCFC',
+  modalFiltersOutBorder: '#BEDBB0',
 };
 
 const getTheme = theme => {

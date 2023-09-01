@@ -1,11 +1,14 @@
 import { createTheme } from '@mui/material';
 
-const currentTheme = 'light';
+const currentTheme = 'colored';
 
 const lightTheme = {
   headerBg: '#FCFCFC',
   headerMenuBtn: '#161616',
 
+  sidebarBg: '#FFFFFF',
+  sidebarLogoText: '#161616',
+  sidebarCreateConBg: '#FFFFFF',
   sidebarCreateBoardText: '#161616',
   sidebarCreateBtnBg: '#BEDBB0',
   iconPlus: '#121212',
@@ -30,6 +33,9 @@ const darkTheme = {
   headerBg: '#161616',
   headerMenuBtn: '#FFFFFF',
 
+  sidebarBg: '#121212',
+  sidebarLogoText: '#FFFFFF',
+  sidebarCreateConBg: '#121212',
   sidebarCreateBoardText: '#FFFFFF',
   sidebarCreateBtnBg: '#BEDBB0',
   iconPlus: '#121212',
@@ -54,7 +60,10 @@ const coloredTheme = {
   headerBg: '#FFFFFF',
   headerMenuBtn: '#161616',
 
-  sidebarCreateBoardText: '#161616',
+  sidebarBg: '#5255BC',
+  sidebarLogoText: '#FFFFFF',
+  sidebarCreateConBg: '#5255BC',
+  sidebarCreateBoardText: '#FFFFFF',
   sidebarCreateBtnBg: '#B8BCFD',
   iconPlus: '#FFFFFF',
 

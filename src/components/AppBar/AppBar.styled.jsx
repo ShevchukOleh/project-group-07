@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { Button } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 
 export const Header = styled.header`
   box-sizing: border-box;
@@ -10,7 +9,9 @@ export const Header = styled.header`
   width: 375px;
   height: 60px;
   padding: 14px 24px;
-  background-color: #fcfcfc;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.headerBg;
+  }};
   @media screen and (min-width: 768px) {
     width: 768px;
     height: 68px;
@@ -21,25 +22,6 @@ export const Header = styled.header`
     display: block;
     width: 1180px;
   }
-`;
-
-export const MenuBtn = styled(Button)`
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  justify-content: center;
-  min-width: 32px;
-  color: #161616;
-
-  @media screen and (min-width: 1440px) {
-    display: none;
-  }
-`;
-
-export const MenuIconNav = styled(MenuIcon)`
-  width: 32px;
-  height: 32px;
-  fill: currentColor;
 `;
 
 export const HeaderNav = styled.div`

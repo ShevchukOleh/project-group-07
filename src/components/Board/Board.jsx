@@ -11,6 +11,7 @@ import { BoardStyle } from './Board.styled';
 import BoardCard from 'components/BoardCard/BoardCard';
 import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
 import { FiltersModal } from 'components/FiltersModal';
+import { theme } from '../../constants';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
@@ -25,7 +26,8 @@ export default function Board({ setIsShowModal }) {
   const backgroundSrc = background?.background_lg_src || '';
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})` }
-    : { backgroundColor: '#f6f6f7' };
+    : { backgroundColor: theme?.themeSet?.boardBg };
+  
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (
@@ -37,6 +39,7 @@ export default function Board({ setIsShowModal }) {
       <div className="filtersPosition">
         <FiltersModal />
       </div>
+
       {boards.length !== 0 && (
         <div className="containerColumns">
           <div className="containerOneColumn">

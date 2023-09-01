@@ -3,20 +3,37 @@ import { createTheme } from '@mui/material';
 const currentTheme = 'light';
 
 const lightTheme = {
-  first: 'rgba(22, 22, 22, 0.8)',
-  second: '#161616',
-  third: '#BEDBB0',
-  fourth: '#FCFCFC',
+  modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
+  modalThemeTitle: '#161616',
+  modalThemeTitleFocus: '#BEDBB0',
+  modalThemeBorder: '#BEDBB0',
+  modalThemeBg: '#FCFCFC',
+
+  modalFiltersLabel: 'rgba(22, 22, 22, 0.8)',
+  modalFiltersBg: '#FCFCFC',
 };
 
 const darkTheme = {
-  first: 'rgba(255, 255, 255, 0.8)',
-  second: 'rgba(255, 255, 255, 0.5)',
-  third: '#BEDBB0',
-  fourth: 'rgba(21, 21, 21, 1)',
+  modalThemeLabel: 'rgba(255, 255, 255, 0.8)',
+  modalThemeTitle: 'rgba(255, 255, 255, 0.5)',
+  modalThemeTitleFocus: '#BEDBB0',
+  modalThemeBorder: '#BEDBB0',
+  modalThemeBg: '#151515',
+
+  modalFiltersLabel: 'rgba(255, 255, 255, 0.8)',
+  modalFiltersBg: '#151515',
 };
 
-const coloredTheme = { first: '#ececec', second: '#DBBEb0' };
+const coloredTheme = {
+  modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
+  modalThemeTitle: '#161616',
+  modalThemeTitleFocus: '#5255BC',
+  modalThemeBorder: '#5255BC',
+  modalThemeBg: '#FCFCFC',
+
+  modalFiltersLabel: 'rgba(22, 22, 22, 0.8)',
+  modalFiltersBg: '#FCFCFC',
+};
 
 const getTheme = theme => {
   switch (theme) {

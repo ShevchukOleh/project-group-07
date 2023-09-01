@@ -1,8 +1,11 @@
 import { createTheme } from '@mui/material';
 
-const currentTheme = 'light';
+const currentTheme = 'dark';
 
 const lightTheme = {
+  headerBg: '#FCFCFC',
+  headerMenuBtn: '#161616',
+
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',
   modalThemeTitleFocus: '#BEDBB0',
@@ -20,6 +23,9 @@ const lightTheme = {
 };
 
 const darkTheme = {
+  headerBg: '#161616',
+  headerMenuBtn: '#FFFFFF',
+
   modalThemeLabel: 'rgba(255, 255, 255, 0.8)',
   modalThemeTitle: 'rgba(255, 255, 255, 0.5)',
   modalThemeTitleFocus: '#BEDBB0',
@@ -37,6 +43,9 @@ const darkTheme = {
 };
 
 const coloredTheme = {
+  headerBg: '#FFFFFF',
+  headerMenuBtn: '#161616',
+
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',
   modalThemeTitleFocus: '#5255BC',

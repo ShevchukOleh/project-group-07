@@ -6,6 +6,10 @@ const lightTheme = {
   headerBg: '#FCFCFC',
   headerMenuBtn: '#161616',
 
+  sidebarCreateBoardText: '#161616',
+  sidebarCreateBtnBg: '#BEDBB0',
+  iconPlus: '#121212',
+
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',
   modalThemeTitleFocus: '#BEDBB0',
@@ -26,6 +30,10 @@ const darkTheme = {
   headerBg: '#161616',
   headerMenuBtn: '#FFFFFF',
 
+  sidebarCreateBoardText: '#FFFFFF',
+  sidebarCreateBtnBg: '#BEDBB0',
+  iconPlus: '#121212',
+
   modalThemeLabel: 'rgba(255, 255, 255, 0.8)',
   modalThemeTitle: 'rgba(255, 255, 255, 0.5)',
   modalThemeTitleFocus: '#BEDBB0',
@@ -45,6 +53,10 @@ const darkTheme = {
 const coloredTheme = {
   headerBg: '#FFFFFF',
   headerMenuBtn: '#161616',
+
+  sidebarCreateBoardText: '#161616',
+  sidebarCreateBtnBg: '#B8BCFD',
+  iconPlus: '#FFFFFF',
 
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',

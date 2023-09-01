@@ -49,7 +49,7 @@ const LogoText = styled.p`
 `;
 
 const InputContainer = styled.div`
-  margin-top: 60px;
+  margin-top: 40px;
   margin-bottom: 8px;
   font-size: 12px;
 `;

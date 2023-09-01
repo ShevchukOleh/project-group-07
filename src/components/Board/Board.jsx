@@ -1,6 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectBoards } from 'store/createSlices/board/boardSelectors';
+import {
+  selectBoards,
+  selectBackgrounds,
+} from 'store/createSlices/board/boardSelectors';
+import { useParams } from 'react-router-dom';
 
 import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
@@ -10,15 +14,29 @@ import { FiltersModal } from 'components/FiltersModal';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
+  const backgrounds = useSelector(selectBackgrounds);
+  const { boardName } = useParams();
+
+  const board = boards.find(board => board.title === boardName) || boards[0];
+  const backgroundId = board?.background;
+  const background = backgrounds.find(
+    background => background._id === backgroundId
+  );
+  const backgroundSrc = background?.background_lg_src || '';
+  const backgroundStyle = backgroundSrc
+    ? { backgroundImage: `url(${backgroundSrc})` }
+    : { backgroundColor: '#f6f6f7' };
   return (
-    <BoardStyle>
+    <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (
         <div className="containerTitle">
-          <h2 className="title">Project office</h2>
+          <h2 className="title">{board.title}</h2>
         </div>
       )}
 
-      <FiltersModal />
+      <div className="filtersPosition">
+        <FiltersModal />
+      </div>
       {boards.length !== 0 && (
         <div className="containerColumns">
           <div className="containerOneColumn">
@@ -66,6 +84,14 @@ export default function Board({ setIsShowModal }) {
               onClick={() => setIsShowModal(true)}
             />
           </div>
+        </div>
+      )}
+      {boards.length === 0 && (
+        <div className="emptyBoard">
+          Before starting your project, it is essential to create a board to
+          visualize and track all the necessary tasks and milestones. This board
+          serves as a powerful tool to organize the workflow and ensure
+          effective collaboration among team members.
         </div>
       )}
     </BoardStyle>

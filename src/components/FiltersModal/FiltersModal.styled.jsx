@@ -60,3 +60,8 @@ export const MenuLabelWrap = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const MenuWrap = styled.div`
+  position: relative;
+  padding: 26px 24px;
+`;

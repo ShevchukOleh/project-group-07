@@ -12,12 +12,12 @@ import Board from 'components/Board/Board';
 import {
   getAllBoards,
   getAllColums,
+  getBackgroundBoard,
 } from '../../store/AsyncThunk/asyncThunkBoards';
 import {
   selectBoards,
-  selectColumns,
+  // selectColumns,
 } from 'store/createSlices/board/boardSelectors';
-
 
 const Layout = () => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -45,14 +45,18 @@ const Layout = () => {
   const dispatch = useDispatch();
 
   const boards = useSelector(selectBoards);
-  console.log('boards: ', boards);
-  const columns = useSelector(selectColumns);
-  console.log('columns: ', columns);
+  // console.log('boards: ', boards);
+  // const columns = useSelector(selectColumns);
+  // console.log('columns: ', columns);
 
   useEffect(() => {
     dispatch(getAllBoards());
+    dispatch(getBackgroundBoard());
+
     boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   return (
     <Container>
@@ -64,7 +68,9 @@ const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      {isShowModal && <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>}
+      {isShowModal && (
+        <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>
+      )}
     </Container>
   );
 };

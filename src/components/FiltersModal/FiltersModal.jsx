@@ -53,12 +53,13 @@ export const FiltersModal = () => {
   };
   useEffect(() => {
     setArr(selectCards);
+    setFilterValue(selectPriority);
   }, []);
 
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
     const choosePriority = event.currentTarget.value;
-    // =====================================>sort
+    // ==========================================>sort
     dispatch(sortByPriority(choosePriority));
     if (choosePriority === 'without priority') {
       dispatch(sortByPriority(arr));

@@ -16,6 +16,7 @@ import {
   LogoContainer,
   SidebarContainer,
   BlockContainerBoard,
+  BlockLink,
   ContainerAside,
   PlusIcon,
   CreateButton,
@@ -142,17 +143,19 @@ export const Sidebar = ({ setIsShowModal }) => {
         ) : (
           <></>
         )}
+
         <Block>
           <BlockContainer marginBottom={24}>
             <PlantImg src={plant} alt="plant" />
+
             <HelpText>
               If you need help with{' '}
-              <a
+              <BlockLink
                 href="http://www.google.com"
-                style={{ color: '#BEDBB0', textDecoration: 'none' }}
+                style={{ textDecoration: 'none' }}
               >
                 TaskPro
-              </a>
+              </BlockLink>
               , check out our support resources or <br /> reach out to our
               <br />
               customer support team.

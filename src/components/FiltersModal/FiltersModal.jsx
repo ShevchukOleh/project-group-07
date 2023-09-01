@@ -110,9 +110,12 @@ export const FiltersModal = () => {
             padding: 0,
           },
           '& ul > div': {
-            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
             backgroundColor: `${theme?.themeSet?.modalFiltersBg}`,
             borderRadius: '8px',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: `${theme?.themeSet?.modalFiltersOutBorder}`,
+            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
           },
           '& ul > div > span': { color: '#161616' },
         }}

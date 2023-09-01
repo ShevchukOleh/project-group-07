@@ -12,6 +12,7 @@ export const Header = styled.header`
   background-color: ${props => {
     return props?.theme?.themeSet?.headerBg;
   }};
+
   @media screen and (min-width: 768px) {
     width: 768px;
     height: 68px;

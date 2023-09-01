@@ -75,23 +75,27 @@ export const Sidebar = ({ setIsShowModal }) => {
   return (
     <ContainerAside>
       <ModalForm />
+
       <SidebarContainer>
         <Block>
           <LogoContainer>
             <LogoImage src={logo} alt="Logo" />
             <LogoText>Task Pro</LogoText>
           </LogoContainer>
+
           <InputContainer>
             <SideBarSearch
               setFilteredItems={setFilteredItems}
               boardsList={boardsList}
             />
           </InputContainer>
+
           <BlockContainerCreate>
             <NewBoardText>
               Create a<br />
               new board
             </NewBoardText>
+
             <FormDialog
               isShowModal={isModalBoardOpen}
               hideModal={closeModalBoard}
@@ -121,19 +125,17 @@ export const Sidebar = ({ setIsShowModal }) => {
                 //   })
                 // );
               }}
-              color="primary"
               sx={{
                 minWidth: '40px',
                 height: '36px',
                 marginLeft: '8px',
-                background: `${theme?.themeSet?.sidebarCreateBtnBg}`,
-                color: `${theme?.themeSet?.sidebarCreateBoardText}`,
               }}
             >
               <PlusIcon>+</PlusIcon>
             </CreateButton>
           </BlockContainerCreate>
         </Block>
+
         {isBoard ? (
           <BlockContainerBoard>
             <BordInSidebar filteredItems={filteredItems} />
@@ -156,6 +158,7 @@ export const Sidebar = ({ setIsShowModal }) => {
               <br />
               customer support team.
             </HelpText>
+            
             <HelpBlock>
               <ModalForm isModalOpen={isModalOpen} closeModal={closeModal} />
               <Helpbutton onClick={openModal}>

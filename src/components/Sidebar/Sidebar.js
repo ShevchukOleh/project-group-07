@@ -25,7 +25,7 @@ import {
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
 import FormDialog from '../ModalBoard/ModalBoard';
-import { theme } from '../../constants';
+
 // import { useDispatch } from 'react-redux';
 // import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
 // import { useNavigate } from 'react-router';

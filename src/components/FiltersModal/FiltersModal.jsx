@@ -19,6 +19,7 @@ import {
   MenuLabelWrap,
   MenuWrap,
 } from './FiltersModal.styled';
+import { theme } from '../../constants';
 
 export const FiltersModal = () => {
   const [filterValue, setFilterValue] = useState('');
@@ -110,7 +111,7 @@ export const FiltersModal = () => {
           },
           '& ul > div': {
             boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
-            backgroundColor: '#FCFCFC',
+            backgroundColor: `${theme?.themeSet?.modalFiltersBg}`,
             borderRadius: '8px',
           },
           '& ul > div > span': { color: '#161616' },

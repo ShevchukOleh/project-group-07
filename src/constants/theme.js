@@ -16,6 +16,7 @@ const lightTheme = {
   modalFiltersTitle: '#161616',
   modalFiltersSubtitle: 'rgba(22, 22, 22, 0.5)',
   modalFiltersSubtitleFocus: '#161616',
+  modalFiltersMarkWithoutPr: 'rgba(22, 22, 22, 0.3)',
 };
 
 const darkTheme = {
@@ -32,6 +33,7 @@ const darkTheme = {
   modalFiltersTitle: '#FFFFFF',
   modalFiltersSubtitle: 'rgba(255, 255, 255, 0.5)',
   modalFiltersSubtitleFocus: '#FFFFFF',
+  modalFiltersMarkWithoutPr: 'rgba(255, 255, 255, 0.3)',
 };
 
 const coloredTheme = {
@@ -48,6 +50,7 @@ const coloredTheme = {
   modalFiltersTitle: '#161616',
   modalFiltersSubtitle: 'rgba(22, 22, 22, 0.5)',
   modalFiltersSubtitleFocus: '#161616',
+  modalFiltersMarkWithoutPr: 'rgba(22, 22, 22, 0.3)',
 };
 
 const getTheme = theme => {

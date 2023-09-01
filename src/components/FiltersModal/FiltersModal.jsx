@@ -32,7 +32,9 @@ export const FiltersModal = () => {
   const [highStatus, setHighStatus] = useState(null);
 
   const priorityColor = priorityStatus =>
-    priorityStatus ? 'rgba(22, 22, 22, 1)' : 'rgba(22, 22, 22, 0.5)';
+    priorityStatus
+      ? theme?.themeSet?.modalFiltersSubtitleFocus
+      : theme?.themeSet?.modalFiltersSubtitle;
 
   const bgPriorityColor = (priorityStatus, bgColor) =>
     priorityStatus ? 'transparent' : bgColor;
@@ -117,7 +119,7 @@ export const FiltersModal = () => {
             borderColor: `${theme?.themeSet?.modalFiltersOutBorder}`,
             boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
           },
-          '& ul > div > span': { color: '#161616' },
+          
         }}
       >
         <MenuWrap>
@@ -139,7 +141,7 @@ export const FiltersModal = () => {
                 sx={{
                   minWidth: '18px',
                   height: '18px',
-                  fill: 'rgba(22, 22, 22, 1)',
+                  fill: `${theme?.themeSet?.modalFiltersTitle}`,
                 }}
               />
             </Button>
@@ -158,7 +160,7 @@ export const FiltersModal = () => {
                 id="filters-radio-buttons-group-label"
                 sx={{
                   marginBottom: '10px',
-                  color: 'rgba(22, 22, 22, 1)',
+                  color: `${theme?.themeSet?.modalFiltersTitle}`,
                   fontFamily: 'Poppins',
                   fontWeight: 500,
                   fontSize: '14px',

@@ -158,7 +158,9 @@ const HelpBlock = styled.div`
 `;
 
 const PlusIcon = styled.p`
-  color: black;
+  color:${props => {
+    return props?.theme?.themeSet?.iconPlus;
+  }};
   font-size: 26px;
   margin: 0;
 `;

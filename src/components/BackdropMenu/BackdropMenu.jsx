@@ -1,10 +1,10 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { MenuBtn, MenuIconNav, Wrapper } from './BackdropMenu.styled';
 
 const BackdropMenu = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
@@ -19,7 +19,6 @@ const BackdropMenu = () => {
       </MenuBtn>
       <Backdrop
         sx={{
-          color: '#fff',
           zIndex: theme => theme.zIndex.drawer + 1,
           justifyContent: 'flex-start',
           alignItems: 'flex-start',

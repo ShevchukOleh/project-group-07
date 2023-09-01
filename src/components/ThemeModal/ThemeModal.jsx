@@ -25,7 +25,9 @@ export const ThemeModal = () => {
   const [thirdThemeStatus, setThirdThemeStatus] = useState(null);
 
   const themeBtnColor = themeStatus =>
-    themeStatus ? theme?.themeSet?.third : theme?.themeSet?.second;
+    themeStatus
+      ? theme?.themeSet?.modalThemeTitleFocus
+      : theme?.themeSet?.modalThemeTitle;
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -84,7 +86,7 @@ export const ThemeModal = () => {
             borderRadius: '4px',
             borderWidth: '1px',
             borderStyle: 'solid',
-            borderColor: `${ theme?.themeSet?.third}`,
+            borderColor: `${theme?.themeSet?.modalThemeBorder}`,
             boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.1)',
           },
         }}

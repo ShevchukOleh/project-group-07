@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
+import { TextField } from '@mui/material';
 
-const { TextField } = require('@mui/material');
-
-const Search = styled(TextField)`
+export const Search = styled(TextField)`
   font-size: 12px;
-  color: #161616;
+  outline: none;
+  color: black;
   font-family: 'poppins';
   opacity: 50%;
   width: 100%;
 `;
-export { Search };

@@ -19,12 +19,16 @@ import {
   MenuLabelWrap,
   MenuWrap,
 } from './FiltersModal.styled';
+
+import { theme } from '../../constants';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { sortByPriority } from 'store/createSlices/board/board';
 import {
   selectMyCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
+
 
 export const FiltersModal = () => {
   const selectPriority = useSelector(selectedInPriority);
@@ -40,7 +44,9 @@ export const FiltersModal = () => {
   const [highStatus, setHighStatus] = useState(null);
   const dispatch = useDispatch();
   const priorityColor = priorityStatus =>
-    priorityStatus ? 'rgba(22, 22, 22, 1)' : 'rgba(22, 22, 22, 0.5)';
+    priorityStatus
+      ? theme?.themeSet?.modalFiltersSubtitleFocus
+      : theme?.themeSet?.modalFiltersSubtitle;
 
   const bgPriorityColor = (priorityStatus, bgColor) =>
     priorityStatus ? 'transparent' : bgColor;
@@ -133,11 +139,13 @@ export const FiltersModal = () => {
             padding: 0,
           },
           '& ul > div': {
-            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
-            backgroundColor: '#FCFCFC',
+            backgroundColor: `${theme?.themeSet?.modalFiltersBg}`,
             borderRadius: '8px',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: `${theme?.themeSet?.modalFiltersOutBorder}`,
+            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
           },
-          '& ul > div > span': { color: '#161616' },
         }}
       >
         <MenuWrap>
@@ -159,7 +167,7 @@ export const FiltersModal = () => {
                 sx={{
                   minWidth: '18px',
                   height: '18px',
-                  fill: 'rgba(22, 22, 22, 1)',
+                  fill: `${theme?.themeSet?.modalFiltersTitle}`,
                 }}
               />
             </Button>
@@ -178,7 +186,7 @@ export const FiltersModal = () => {
                 id="filters-radio-buttons-group-label"
                 sx={{
                   marginBottom: '10px',
-                  color: 'rgba(22, 22, 22, 1)',
+                  color: `${theme?.themeSet?.modalFiltersTitle}`,
                   fontFamily: 'Poppins',
                   fontWeight: 500,
                   fontSize: '14px',
@@ -215,9 +223,11 @@ export const FiltersModal = () => {
                       sx={{
                         backgroundColor: bgPriorityColor(
                           withoutStatus,
-                          'rgba(22, 22, 22, 0.3)'
+                          `${theme?.themeSet?.modalFiltersMarkWithoutPr}`
                         ),
-                        '& span svg': { color: 'rgba(22, 22, 22, 0.3)' },
+                        '& span svg': {
+                          color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
+                        },
                       }}
                     />
                   }
@@ -233,11 +243,8 @@ export const FiltersModal = () => {
                   control={
                     <Radio
                       sx={{
-                        backgroundColor: bgPriorityColor(
-                          lowStatus,
-                          'rgba(143, 161, 208, 1)'
-                        ),
-                        '& span svg': { color: 'rgba(143, 161, 208, 1)' },
+                        backgroundColor: bgPriorityColor(lowStatus, '#8FA1D0'),
+                        '& span svg': { color: '#8FA1D0' },
                       }}
                     />
                   }
@@ -255,9 +262,9 @@ export const FiltersModal = () => {
                       sx={{
                         backgroundColor: bgPriorityColor(
                           mediumStatus,
-                          'rgba(224, 156, 181, 1)'
+                          '#E09CB5'
                         ),
-                        '& span svg': { color: 'rgba(224, 156, 181, 1)' },
+                        '& span svg': { color: '#E09CB5' },
                       }}
                     />
                   }
@@ -273,11 +280,8 @@ export const FiltersModal = () => {
                   control={
                     <Radio
                       sx={{
-                        backgroundColor: bgPriorityColor(
-                          highStatus,
-                          'rgba(190, 219, 176, 1)'
-                        ),
-                        '& span svg': { color: 'rgba(190, 219, 176, 1)' },
+                        backgroundColor: bgPriorityColor(highStatus, '#BEDBB0'),
+                        '& span svg': { color: '#BEDBB0' },
                       }}
                     />
                   }

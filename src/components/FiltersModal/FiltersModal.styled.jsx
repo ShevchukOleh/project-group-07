@@ -4,7 +4,9 @@ import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 
 export const FiltersBtn = styled(Button)`
   gap: 8px;
-  color: rgba(22, 22, 22, 0.8);
+  color: ${props => {
+    return props?.theme?.themeSet?.modalFiltersLabel;
+  }};
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
@@ -27,14 +29,18 @@ export const MenuLabel = styled.span`
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.02em;
-  color: rgba(22, 22, 22, 1);
+  color: ${props => {
+    return props?.theme?.themeSet?.modalFiltersTitle;
+  }};
 `;
 
 export const Border = styled.div`
   display: block;
   height: 1px;
   margin-bottom: 10px;
-  background-color: rgba(22, 22, 22, 0.1);
+  background-color: ${props => {
+    return props?.theme?.themeSet?.modalFiltersInnerBorder;
+  }};
 `;
 
 export const Wrapper = styled.div`
@@ -47,7 +53,9 @@ export const ShowAllBtn = styled(Button)`
   height: 18px;
   padding: 0;
   text-decoration: underline;
-  color: rgba(22, 22, 22, 0.5);
+  color: ${props => {
+    return props?.theme?.themeSet?.modalFiltersSubtitle;
+  }};
   font-family: Poppins;
   font-size: 12px;
   font-weight: 500;

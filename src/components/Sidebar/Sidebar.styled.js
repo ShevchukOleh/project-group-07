@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
+import BoltIcon from '@mui/icons-material/Bolt';
 
 const ContainerAside = styled.aside`
   width: 260px;
   height: 100vh;
-  background-color: #fff;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarBg;
+  }};
 
   @media screen and (min-width: 768px) {
     width: 260px;
@@ -29,21 +32,31 @@ const LogoContainer = styled.div`
 
 const Block = styled.div`
   padding: 24px;
+
   @media (max-width: 375px) {
     padding: 14px;
   }
 `;
 
-const LogoImage = styled.img`
+const Logo = styled(BoltIcon)`
   width: 32px;
   height: 32px;
   margin-right: 8px;
+  border-radius: 8px;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarLogoBg;
+  }};
+  fill: ${props => {
+    return props?.theme?.themeSet?.sidebarLogo;
+  }};
 `;
 
 const LogoText = styled.p`
   margin-left: 8px;
-  color: #161616;
   margin: 0;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarText;
+  }};
   font-weight: 600;
   font-size: 16px;
 `;
@@ -63,13 +76,22 @@ const StyledInput = styled.h2`
 const BlockContainerCreate = styled.div`
   display: flex;
   width: 212px;
-  background-color: #ffffff;
-  color: #161616;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarCreateConBg;
+  }};
   padding-top: 14px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(22, 22, 22, 0.1);
+  border-top: 1px solid
+    ${props => {
+      return props?.theme?.themeSet?.sidebarCreateConBorder;
+    }};
+  border-bottom: 1px solid
+    ${props => {
+      return props?.theme?.themeSet?.sidebarCreateConBorder;
+    }};
   justify-content: space-between;
   align-items: center;
+
   @media (max-width: 375px) {
     width: 197px;
   }
@@ -126,8 +148,12 @@ const OneBoard = styled.div`
 const BlockContainer = styled.div`
   width: 212px;
   padding: 20px;
-  background-color: #f6f6f7;
-  color: #161616;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarBlock;
+  }};
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarText;
+  }};
   border-radius: 8px;
   justify-content: space-between;
   margin-bottom: ${({ marginBottom }) => `${marginBottom}px`};
@@ -138,11 +164,20 @@ const BlockContainer = styled.div`
   }
 `;
 
+const BlockLink = styled.a`
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarBlockLink;
+  }};
+`;
+
 const NewBoardText = styled.p`
   margin-bottom: 14px;
   font-size: 14px;
   font-weight: 600;
   margin: 0;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarText;
+  }};
 `;
 
 const HelpText = styled.p`
@@ -160,7 +195,9 @@ const LogOutBlock = styled.button`
   background-color: inherit;
   display: flex;
   font-size: 16px;
-  color: #161616;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarText;
+  }};
   font-weight: 600;
   align-items: center;
   cursor: pointer;
@@ -185,7 +222,9 @@ const HelpBlock = styled.div`
 `;
 
 const PlusIcon = styled.p`
-  color: black;
+  color: ${props => {
+    return props?.theme?.themeSet?.iconPlus;
+  }};
   font-size: 26px;
   margin: 0;
 `;
@@ -194,7 +233,9 @@ const CreateButton = styled(Button)`
   min-width: 40px;
   height: 36px;
   margin-left: 8px;
-  background-color: #bedbb0;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.sidebarCreateBtnBg;
+  }};
 `;
 
 const PlantImg = styled.img`
@@ -210,6 +251,9 @@ const Helpbutton = styled.button`
   background-color: inherit;
   padding: 0;
   cursor: pointer;
+  color: ${props => {
+    return props?.theme?.themeSet?.sidebarText;
+  }};
 
   &:hover {
     background-color: transparent;
@@ -232,11 +276,12 @@ export {
   StyledInput,
   InputContainer,
   LogoText,
-  LogoImage,
+  Logo,
   LogoContainer,
   SidebarContainer,
   BlockContainerBoard,
   Block,
+  BlockLink,
   OneBoard,
   ContainerAside,
   PlusIcon,

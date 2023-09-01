@@ -5,11 +5,13 @@ import {
   getAllColums,
   createColumn,
   deleteBoard,
+  getBackgroundBoard,
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
   boards: [],
   columns: [],
+  backgrounds: [],
   loading: false,
   error: null,
 };
@@ -83,6 +85,19 @@ const boardSlice = createSlice({
       .addCase(deleteBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      //getAllbackgrounds===========================================================>
+      .addCase(getBackgroundBoard.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getBackgroundBoard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.backgrounds = action.payload;
+        state.error = null;
+      })
+      .addCase(getBackgroundBoard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });

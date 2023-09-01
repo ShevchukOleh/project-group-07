@@ -20,11 +20,11 @@ import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useSelector } from 'react';
 import {getIcon, getImage} from '../../components/ModalBoard/servises'
 import { useDispatch } from 'react-redux';
 import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
-// import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 
 export default function FormDialog({hideModal, isShowModal}) {
@@ -38,10 +38,10 @@ export default function FormDialog({hideModal, isShowModal}) {
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
 
-  // const token = useSelector(selectToken);
+  const token = useSelector(selectToken);
   // const theme = useSelector(sele)
 // const isLoading = useSelector(selectLoading)
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzU1NjE2NCwiZXhwIjoxNjkzNjM4OTY0fQ.f_g-zrT_HWKr4PE0skH0u-gs_75dhuvjCqmIEAehq1c';
+  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWRkMTIzZWFiZjkxMjVmMzI0ODNhMyIsImlhdCI6MTY5MzU1NjE2NCwiZXhwIjoxNjkzNjM4OTY0fQ.f_g-zrT_HWKr4PE0skH0u-gs_75dhuvjCqmIEAehq1c';
 
   
 

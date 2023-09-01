@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectBoards,
@@ -11,7 +10,6 @@ import { BoardStyle } from './Board.styled';
 import BoardCard from 'components/BoardCard/BoardCard';
 import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
 import { FiltersModal } from 'components/FiltersModal';
-
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
   const backgrounds = useSelector(selectBackgrounds);
@@ -43,9 +41,6 @@ export default function Board({ setIsShowModal }) {
             <ColumnTitle text={'To Do'} />
             <div className="containerColumnCard">
               <BoardCard />
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
             </div>
             <ButtonCreate
               text="Add another card"
@@ -56,9 +51,6 @@ export default function Board({ setIsShowModal }) {
             <ColumnTitle text={'In progress'} />
             <div className="containerColumnCard">
               <BoardCard />
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
             </div>
             <ButtonCreate
               text="Add another card"
@@ -68,9 +60,6 @@ export default function Board({ setIsShowModal }) {
           <div className="containerOneColumn">
             <ColumnTitle text={'Done'} />
             <div className="containerColumnCard">
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
               <BoardCard />
             </div>
             <ButtonCreate

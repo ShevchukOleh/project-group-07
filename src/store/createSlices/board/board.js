@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import objectCards from 'components/cards-object/cards';
 import {
   getAllBoards,
   createBoard,
@@ -11,15 +12,26 @@ import {
 const initialState = {
   boards: [],
   columns: [],
+  cardsCollection: objectCards,
   backgrounds: [],
   loading: false,
   error: null,
+  selectedPriority: '',
 };
 
 const boardSlice = createSlice({
   name: 'board',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedPriority: (state, action) => {
+      state.selectedPriority = action.payload;
+    },
+    sortByPriority: (state, action) => {
+      console.log(action.payload);
+      state.cardsCollection = action.payload;
+    },
+  },
+
   extraReducers: builder => {
     builder
       //getAllboards===========================================================>
@@ -101,5 +113,5 @@ const boardSlice = createSlice({
       });
   },
 });
-
+export const { setSelectedPriority, sortByPriority } = boardSlice.actions;
 export default boardSlice.reducer;

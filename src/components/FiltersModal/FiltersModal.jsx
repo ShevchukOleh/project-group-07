@@ -196,9 +196,11 @@ export const FiltersModal = () => {
                       sx={{
                         backgroundColor: bgPriorityColor(
                           withoutStatus,
-                          'rgba(22, 22, 22, 0.3)'
+                          `${theme?.themeSet?.modalFiltersMarkWithoutPr}`
                         ),
-                        '& span svg': { color: 'rgba(22, 22, 22, 0.3)' },
+                        '& span svg': {
+                          color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
+                        },
                       }}
                     />
                   }
@@ -214,11 +216,8 @@ export const FiltersModal = () => {
                   control={
                     <Radio
                       sx={{
-                        backgroundColor: bgPriorityColor(
-                          lowStatus,
-                          'rgba(143, 161, 208, 1)'
-                        ),
-                        '& span svg': { color: 'rgba(143, 161, 208, 1)' },
+                        backgroundColor: bgPriorityColor(lowStatus, '#8FA1D0'),
+                        '& span svg': { color: '#8FA1D0' },
                       }}
                     />
                   }
@@ -236,9 +235,9 @@ export const FiltersModal = () => {
                       sx={{
                         backgroundColor: bgPriorityColor(
                           mediumStatus,
-                          'rgba(224, 156, 181, 1)'
+                          '#E09CB5'
                         ),
-                        '& span svg': { color: 'rgba(224, 156, 181, 1)' },
+                        '& span svg': { color: '#E09CB5' },
                       }}
                     />
                   }
@@ -254,11 +253,8 @@ export const FiltersModal = () => {
                   control={
                     <Radio
                       sx={{
-                        backgroundColor: bgPriorityColor(
-                          highStatus,
-                          'rgba(190, 219, 176, 1)'
-                        ),
-                        '& span svg': { color: 'rgba(190, 219, 176, 1)' },
+                        backgroundColor: bgPriorityColor(highStatus, '#BEDBB0'),
+                        '& span svg': { color: '#BEDBB0' },
                       }}
                     />
                   }

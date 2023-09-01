@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 const CalendarContainer = styled.div`
   position: absolute;
   top: 30px;

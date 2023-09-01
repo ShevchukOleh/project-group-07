@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectBoards } from 'store/createSlices/board/boardSelectors';
-
 import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
 import BoardCard from 'components/BoardCard/BoardCard';
 import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
 import { FiltersModal } from 'components/FiltersModal';
-
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
+
   return (
     <BoardStyle>
       {boards.length !== 0 && (
@@ -18,7 +17,7 @@ export default function Board({ setIsShowModal }) {
         </div>
       )}
 
-      <div className='filtersPosition'>
+      <div className="filtersPosition">
         <FiltersModal />
       </div>
       {boards.length !== 0 && (
@@ -26,9 +25,6 @@ export default function Board({ setIsShowModal }) {
           <div className="containerOneColumn">
             <ColumnTitle text={'To Do'} />
             <div className="containerColumnCard">
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
               <BoardCard />
             </div>
             <ButtonCreate
@@ -40,9 +36,6 @@ export default function Board({ setIsShowModal }) {
             <ColumnTitle text={'In progress'} />
             <div className="containerColumnCard">
               <BoardCard />
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
             </div>
             <ButtonCreate
               text="Add another card"
@@ -52,9 +45,6 @@ export default function Board({ setIsShowModal }) {
           <div className="containerOneColumn">
             <ColumnTitle text={'Done'} />
             <div className="containerColumnCard">
-              <BoardCard />
-              <BoardCard />
-              <BoardCard />
               <BoardCard />
             </div>
             <ButtonCreate

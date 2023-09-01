@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Button,
   Menu,
@@ -18,17 +18,26 @@ import {
   ShowAllBtn,
   MenuLabelWrap,
 } from './FiltersModal.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { sortByPriority } from 'store/createSlices/board/board';
+import {
+  selectMyCards,
+  selectedInPriority,
+} from 'store/createSlices/board/boardSelectors';
 
 export const FiltersModal = () => {
+  const selectPriority = useSelector(selectedInPriority);
+  const selectCards = useSelector(selectMyCards);
   const [filterValue, setFilterValue] = useState('');
   const [filtersEl, setFiltersEl] = useState(null);
   const open = Boolean(filtersEl);
+  const [arr, setArr] = useState([]);
 
   const [withoutStatus, setWithoutStatus] = useState(null);
   const [lowStatus, setLowStatus] = useState(null);
   const [mediumStatus, setMediumStatus] = useState(null);
   const [highStatus, setHighStatus] = useState(null);
-
+  const dispatch = useDispatch();
   const priorityColor = priorityStatus =>
     priorityStatus ? 'rgba(22, 22, 22, 1)' : 'rgba(22, 22, 22, 0.5)';
 
@@ -42,11 +51,24 @@ export const FiltersModal = () => {
   const handleClose = () => {
     setFiltersEl(null);
   };
+  useEffect(() => {
+    setArr(selectCards);
+  }, []);
 
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
-    console.log(event.currentTarget.value);
-
+    const choosePriority = event.currentTarget.value;
+    // =====================================>sort
+    dispatch(sortByPriority(choosePriority));
+    if (choosePriority === 'without priority') {
+      dispatch(sortByPriority(arr));
+    } else {
+      const filtered = arr.filter(item =>
+        item.priority.toLowerCase().includes(choosePriority.toLowerCase())
+      );
+      dispatch(sortByPriority(filtered));
+    }
+    // ===========================================>sort
     if (event.currentTarget.value === 'without priority') {
       setWithoutStatus(true);
       setLowStatus(null);

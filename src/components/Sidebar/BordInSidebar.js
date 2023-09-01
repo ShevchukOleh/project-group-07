@@ -2,66 +2,46 @@ import React from 'react';
 import { OneBoard } from './Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
-import { deleteBoard } from 'store/AsyncThunk/asyncThunkBoards';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
+import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
 
-export const BordInSidebar = ({ filteredItems }) => {
+export const BordInSidebar = () => {
   const dispatch = useDispatch();
-
-  // const [boards, setBoards] = useState(boardsInSidebar);
-
+  const boardsInSidebar = useSelector(state => state.board.boards);
+  // const collect = useSelector(state => state);
+  // console.log(collect);
   // console.log(boardsInSidebar);
+
   const handleDeleteBoard = id => {
-    dispatch(deleteBoard(id));
+    dispatch(deleteBoard(id)).then(() => {
+      dispatch(getAllBoards());
+    });
   };
 
-  // const handleDragStart = (e, index) => {
-  //   e.dataTransfer.setData('text/plain', index);
-  // };
+  const boardColor = 'green';
 
-  // const handleDragOver = (e, index) => {
-  //   e.preventDefault();
-  // };
-
-  // const handleDrop = (e, dropIndex) => {
-  //   const draggedIndex = e.dataTransfer.getData('text/plain');
-  //   const updatedBoards = [...boards];
-  //   const [draggedBoard] = updatedBoards.splice(draggedIndex, 1);
-  //   updatedBoards.splice(dropIndex, 0, draggedBoard);
-  //   setBoards(updatedBoards);
-  // };
   return (
-    <div className="board-list">
-      {filteredItems &&
-        filteredItems.map((board, index) => (
-          <div
-            key={index}
-            className="board"
-            draggable
-            // onDragStart={e => handleDragStart(e, index)}
-            // onDragOver={e => handleDragOver(e, index)}
-            // onDrop={e => handleDrop(e, index)}
-          >
-            <OneBoard>
-              <div style={{ marginRight: '16px' }}>
-                <div>{/* <img src={board.icon.icon_src} alt="icon" /> */}</div>
-                {/* {board.icon} */}
-                {/* <svg width={18} height={18}>
-                <use
-                  xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-IconProject`}
-                />
-              </svg> */}
-              </div>
-              <div style={{ flex: 1 }}>{board.title}</div>
-              <div style={{ marginRight: '8px' }}>
-                <FiEdit2 />
-              </div>
-              <div>
-                <AiOutlineDelete onClick={() => handleDeleteBoard(board._id)} />
-              </div>
-            </OneBoard>
-          </div>
-        ))}
+    <div>
+      {boardsInSidebar.map((board, index) => (
+        <div key={index}>
+          <OneBoard color={boardColor}>
+            <ImgBox>
+              <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
+            </ImgBox>
+            <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
+            <EditIcon className="icon">
+              <FiEdit2 size={16} />
+            </EditIcon>
+            <div className="icon">
+              <AiOutlineDelete
+                size={16}
+                onClick={() => handleDeleteBoard(board._id)}
+              />
+            </div>
+          </OneBoard>
+        </div>
+      ))}
     </div>
   );
 };

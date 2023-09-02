@@ -6,6 +6,7 @@ import { FiEdit2 } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
+import { theme } from 'constants';
 // import Layout from 'components/Layout/Layout';
 
 export const BordInSidebar = ({ filteredItems }) => {
@@ -27,7 +28,7 @@ export const BordInSidebar = ({ filteredItems }) => {
     setSelectedItem(index);
   };
 
-  const boardIndicationColor = '#BEDBB0';
+  const boardIndicationColor = theme.themeSet.sidebarBoardIndication;
 
   return (
     <div>
@@ -42,8 +43,7 @@ export const BordInSidebar = ({ filteredItems }) => {
             color={boardIndicationColor}
             isSelected={selectedItem === index}
           >
-
-         {/* <div key={index} onClick={() => handleItemClick(index)}>
+            {/* <div key={index} onClick={() => handleItemClick(index)}>
            <OneBoard
              color={boardIndicationColor}
              isSelected={selectedItem === index}

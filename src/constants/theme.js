@@ -33,6 +33,11 @@ const lightTheme = {
   modalFiltersSubtitle: 'rgba(22, 22, 22, 0.5)',
   modalFiltersSubtitleFocus: '#161616',
   modalFiltersMarkWithoutPr: 'rgba(22, 22, 22, 0.3)',
+
+  modalHelpBg: '#FCFCFC',
+  modalHelpTitle: '#161616',
+  modalHelpSendBg: '#BEDBB0',
+  modalHelpSendText: '#161616',
 };
 
 const darkTheme = {
@@ -66,6 +71,11 @@ const darkTheme = {
   modalFiltersSubtitle: 'rgba(255, 255, 255, 0.5)',
   modalFiltersSubtitleFocus: '#FFFFFF',
   modalFiltersMarkWithoutPr: 'rgba(255, 255, 255, 0.3)',
+
+  modalHelpBg: '#151515',
+  modalHelpTitle: '#FFFFFF',
+  modalHelpSendBg: '#BEDBB0',
+  modalHelpSendText: '#161616',
 };
 
 const coloredTheme = {
@@ -99,6 +109,11 @@ const coloredTheme = {
   modalFiltersSubtitle: 'rgba(22, 22, 22, 0.5)',
   modalFiltersSubtitleFocus: '#161616',
   modalFiltersMarkWithoutPr: 'rgba(22, 22, 22, 0.3)',
+
+  modalHelpBg: '#FCFCFC',
+  modalHelpTitle: '#161616',
+  modalHelpSendBg: '#5255BC',
+  modalHelpSendText: '#FFFFFF',
 };
 
 const getTheme = theme => {

@@ -10,6 +10,10 @@ const lightTheme = {
   boardBg: '#F6F6F7',
   boardEmptyText: 'rgba(22, 22, 22, 0.7)',
 
+  cardDescription: 'rgba(22, 22, 22, 0.7)',
+  cardPriorityTitle: 'rgba(22, 22, 22, 0.5)',
+  cardPriorityIcon: 'rgba(22, 22, 22, 0.5)',
+
   sidebarBg: '#FFFFFF',
   sidebarLogo: '#FFFFFF',
   sidebarLogoBg: '#1F1F1F',
@@ -57,6 +61,10 @@ const darkTheme = {
   boardBg: '#121212',
   boardEmptyText: 'rgba(255, 255, 255, 0.5)',
 
+  cardDescription: 'rgba(255, 255, 255, 0.5)',
+  cardPriorityTitle: 'rgba(255, 255, 255, 0.5)',
+  cardPriorityIcon: 'rgba(255, 255, 255, 0.5)',
+
   sidebarBg: '#121212',
   sidebarLogo: '#FFFFFF',
   sidebarLogoBg: '#1F1F1F',
@@ -103,6 +111,10 @@ const coloredTheme = {
   boardTitle: '#161616',
   boardBg: '#ECEDFD',
   boardEmptyText: 'rgba(22, 22, 22, 0.7)',
+
+  cardDescription: 'rgba(22, 22, 22, 0.7)',
+  cardPriorityTitle: 'rgba(22, 22, 22, 0.5)',
+  cardPriorityIcon: 'rgba(22, 22, 22, 0.5)',
 
   sidebarBg: '#5255BC',
   sidebarLogo: '#5255BC',

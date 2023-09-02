@@ -106,8 +106,14 @@ const OneBoard = styled.div`
   padding: 22px 20px 22px 24px;
   display: flex;
   align-items: center;
-  background-color: ${props => (props.isSelected ? '#f6f6f7' : '#ffffff')};
-  color: ${props => (props.isSelected ? '#121212' : 'rgba(22, 22, 22, 0.5)')};
+  background-color: ${props =>
+    props.isSelected
+      ? props?.theme?.themeSet?.sidebarBlock
+      : props?.theme?.themeSet?.sidebarBg};
+  color: ${props =>
+    props.isSelected
+      ? props?.theme?.themeSet?.sidebarText
+      : props?.theme?.themeSet?.sidebarTextWitoutHover};
 
   .icon {
     opacity: ${props => (props.isSelected ? 1 : 0)};
@@ -115,8 +121,12 @@ const OneBoard = styled.div`
   }
 
   &:hover {
-    background-color: #f6f6f7;
-    color: #121212;
+    background-color: ${props => {
+      return props?.theme?.themeSet?.sidebarBlock;
+    }};
+    color: ${props => {
+      return props?.theme?.themeSet?.sidebarText;
+    }};
     .icon {
       opacity: 1;
       transition: opacity 0.3s;

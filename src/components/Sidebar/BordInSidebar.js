@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { OneBoard } from './Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
 // import Layout from 'components/Layout/Layout';
 
 export const BordInSidebar = ({ filteredItems }) => {
   const dispatch = useDispatch();
-  const boardsInSidebar = useSelector(state => state.board.boards);
+  // const boardsInSidebar = useSelector(state => state.board.boards);
   // const collect = useSelector(state => state);
   // console.log(collect);
   // console.log(boardsInSidebar);

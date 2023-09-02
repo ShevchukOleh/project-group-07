@@ -12,7 +12,10 @@ export const BoardCardStyle = styled.div`
   background: linear-gradient(
     90deg,
     rgba(143, 161, 208, 1) 4px,
-    rgba(255, 255, 255, 1) 4px
+    ${props => {
+        return props?.theme?.themeSet?.cardBg;
+      }}
+      4px
   );
 
   & p,
@@ -24,8 +27,8 @@ export const BoardCardStyle = styled.div`
   & .title {
     margin-bottom: 8px;
     color: ${props => {
-    return props?.theme?.themeSet?.boardTitle;
-  }};
+      return props?.theme?.themeSet?.boardTitle;
+    }};
     font-size: 14px;
     font-weight: 600;
     line-height: normal;
@@ -35,8 +38,8 @@ export const BoardCardStyle = styled.div`
   & .description {
     margin-bottom: 14px;
     color: ${props => {
-    return props?.theme?.themeSet?.cardDescription;
-  }};
+      return props?.theme?.themeSet?.cardDescription;
+    }};
     font-size: 12px;
     font-weight: 400;
     line-height: 16px; /* 133.333% */
@@ -65,8 +68,8 @@ export const BoardCardStyle = styled.div`
   & .priorityTitle {
     margin-bottom: 4px;
     color: ${props => {
-    return props?.theme?.themeSet?.cardPriorityTitle;
-  }};
+      return props?.theme?.themeSet?.cardPriorityTitle;
+    }};
     font-size: 8px;
     line-height: normal;
     letter-spacing: -0.16px;
@@ -74,8 +77,8 @@ export const BoardCardStyle = styled.div`
 
   & .priorityText {
     color: ${props => {
-    return props?.theme?.themeSet?.boardTitle;
-  }};
+      return props?.theme?.themeSet?.boardTitle;
+    }};
     font-size: 10px;
     font-weight: 400;
     line-height: normal;

@@ -107,7 +107,7 @@ const getTheme = theme => {
       return lightTheme;
     case 'dark':
       return darkTheme;
-    case 'colored':
+    case 'violet':
       return coloredTheme;
     default:
       return lightTheme;

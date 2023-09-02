@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import {
   StyledTextArea,
@@ -10,8 +11,17 @@ import {
   IconClose,
   CloseBtn,
 } from './NeedHelpModal.styled';
+import { theme } from '../../../constants';
 
 const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
+  const [focusInput, setFocusInput] = useState(false);
+  const [focusComment, setFocusComment] = useState(false);
+
+  const inputBorderColor = inputStatus =>
+    inputStatus
+      ? theme?.themeSet?.inputBorderFocus
+      : theme?.themeSet?.inputBorder;
+
   const initialValues = {
     email: '',
     comment: '',
@@ -42,12 +52,18 @@ const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
                   name="email"
                   placeholder="Email Address"
                   required
+                  onFocus={() => setFocusInput(true)}
+                  onBlur={() => setFocusInput(false)}
+                  style={{ borderColor: inputBorderColor(focusInput) }}
                 />
                 <StyledTextArea
                   component="textarea"
                   name="comment"
                   placeholder="Comment"
                   required
+                  onFocus={() => setFocusComment(true)}
+                  onBlur={() => setFocusComment(false)}
+                  style={{ borderColor: inputBorderColor(focusComment) }}
                 />
                 <ModalButton type="submit">Send</ModalButton>
               </Form>

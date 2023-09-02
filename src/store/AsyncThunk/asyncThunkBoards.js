@@ -138,7 +138,7 @@ const getAllColums = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.get(
-        `${BASE_URL}/api/board/${boardId}/column`,
+        `${BASE_URL}api/board/${boardId}/column`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -155,13 +155,16 @@ const getAllColums = createAsyncThunk(
 
 const createColumn = createAsyncThunk(
   'board/postColumn',
-  async ({ boardId, params }, thunkAPI) => {
+  async ({ boardId, title }, thunkAPI) => {
+    const requestData = {
+      title,
+    };
     try {
       const token = thunkAPI.getState().user.token;
 
       const response = await axios.post(
-        `${BASE_URL}/api/board/${boardId}/column`,
-        params,
+        `${BASE_URL}api/board/${boardId}/column`,
+        requestData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -169,6 +172,7 @@ const createColumn = createAsyncThunk(
         }
       );
       const { data } = response;
+      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed to post new column');
@@ -204,7 +208,7 @@ const deleteColumn = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.delete(
-        `${BASE_URL}/api/board/${boardId}/column/${columnId}`,
+        `${BASE_URL}api/board/${boardId}/column/${columnId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -212,7 +216,6 @@ const deleteColumn = createAsyncThunk(
         }
       );
       const { data } = response;
-      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed delete Board');

@@ -5,6 +5,8 @@ import { AppBar } from 'components/AppBar';
 import { Container } from './Layout.styled';
 import BackDrop from 'components/BackDrop/BackDrop';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 // import FormDialog from 'components/ModalBoard/ModalBoard';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,11 +18,12 @@ import {
 } from '../../store/AsyncThunk/asyncThunkBoards';
 import {
   selectBoards,
-  // selectColumns,
+  selectColumns,
 } from 'store/createSlices/board/boardSelectors';
 
 const Layout = () => {
   const [showSidebar, setShowSidebar] = useState(true);
+  const { boardName } = useParams();
 
   const handleResize = () => {
     if (window.innerWidth <= 1439) {
@@ -45,19 +48,21 @@ const Layout = () => {
   const dispatch = useDispatch();
 
   const boards = useSelector(selectBoards);
-  // console.log('boards: ', boards);
-  // const columns = useSelector(selectColumns);
-  // console.log('columns: ', columns);
+  const columns = useSelector(selectColumns);
+
+  const board =
+    boards.find(board => `:${board.title}` === boardName) || boards[0];
+  const boardId = board?._id;
 
   useEffect(() => {
     dispatch(getAllBoards());
     dispatch(getBackgroundBoard());
 
-    boards.length !== 0 && dispatch(getAllColums(boards[0]._id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
+  useEffect(() => {
+    boards.length !== 0 && dispatch(getAllColums(boardId));
+  }, [boardId]);
   return (
     <Container>
       {showSidebar && <Sidebar setIsShowModal={setIsShowModal} />}

@@ -10,6 +10,7 @@ const lightTheme = {
   boardBg: '#F6F6F7',
   boardEmptyText: 'rgba(22, 22, 22, 0.7)',
 
+  cardBg: '#FFFFFF',
   cardDescription: 'rgba(22, 22, 22, 0.7)',
   cardPriorityTitle: 'rgba(22, 22, 22, 0.5)',
   cardPriorityIcon: 'rgba(22, 22, 22, 0.5)',

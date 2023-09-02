@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 
-const currentTheme = 'light';
+const currentTheme = 'violet';
 
 const lightTheme = {
   headerBg: '#FCFCFC',
@@ -46,12 +46,18 @@ const lightTheme = {
   modalHelpBg: '#FCFCFC',
   modalHelpBorder: '#FCFCFC',
   modalHelpTitle: '#161616',
-  modalHelpSendBg: '#BEDBB0',
+  modalHelpSendBg: '#FCFCFC',
+  modalHelpSendBorder: '#BEDBB0',
   modalHelpSendText: '#161616',
+  modalHelpSendHover: '#BEDBB0',
+  modalHelpSendHoverText: '#161616',
   inputBorder: '#CCC',
   inputBorderFocus: '#BEDBB0',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+
+  createBtnIcon: '#FFFFFF',
+  createBtnIconBg: '#161616',
 };
 
 const darkTheme = {
@@ -98,12 +104,18 @@ const darkTheme = {
   modalHelpBg: '#151515',
   modalHelpBorder: 'rgba(190, 219, 176, 0.5)',
   modalHelpTitle: '#FFFFFF',
-  modalHelpSendBg: '#BEDBB0',
-  modalHelpSendText: '#161616',
+  modalHelpSendBg: '#1F1F1F',
+  modalHelpSendBorder: '#BEDBB0',
+  modalHelpSendText: '#FFFFFF',
+  modalHelpSendHover: '#BEDBB0',
+  modalHelpSendHoverText: '#161616',
   inputBorder: 'rgba(255, 255, 255, 0.5)',
   inputBorderFocus: '#BEDBB0',
   inputColor: '#FFFFFF',
   inputBgColor: '#1F1F1F',
+
+  createBtnIcon: '#FFFFFF',
+  createBtnIconBg: '#161616',
 };
 
 const coloredTheme = {
@@ -150,12 +162,18 @@ const coloredTheme = {
   modalHelpBg: '#FCFCFC',
   modalHelpBorder: '#FCFCFC',
   modalHelpTitle: '#161616',
-  modalHelpSendBg: '#5255BC',
-  modalHelpSendText: '#FFFFFF',
+  modalHelpSendBg: '#FCFCFC',
+  modalHelpSendBorder: '#5255BC',
+  modalHelpSendText: '#161616',
+  modalHelpSendHover: '#5255BC',
+  modalHelpSendHoverText: '#FCFCFC',
   inputBorder: '#CCC',
   inputBorderFocus: '#5255BC',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+
+  createBtnIcon: '#161616',
+  createBtnIconBg: '#FFFFFF',
 };
 
 const getTheme = theme => {

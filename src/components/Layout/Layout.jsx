@@ -18,7 +18,7 @@ import {
 } from '../../store/AsyncThunk/asyncThunkBoards';
 import {
   selectBoards,
-  selectColumns,
+  // selectColumns,
 } from 'store/createSlices/board/boardSelectors';
 
 const Layout = () => {
@@ -48,7 +48,6 @@ const Layout = () => {
   const dispatch = useDispatch();
 
   const boards = useSelector(selectBoards);
-  const columns = useSelector(selectColumns);
 
   const board =
     boards.find(board => `:${board.title}` === boardName) || boards[0];
@@ -61,8 +60,8 @@ const Layout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
-    boards.length !== 0 && dispatch(getAllColums(boardId));
-  }, [boardId]);
+    dispatch(getAllColums(boardId));
+  }, [boardId, dispatch]);
   return (
     <Container>
       {showSidebar && <Sidebar setIsShowModal={setIsShowModal} />}

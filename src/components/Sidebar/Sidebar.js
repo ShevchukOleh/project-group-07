@@ -55,6 +55,13 @@ export const Sidebar = () => {
     setCreateOpenModal(!isCreateOpenModal);
   };
 
+//   const openModalBoard = () => {
+//     setIsModalBoardOpen(true);
+//   };
+//   const closeModalBoard = () => {
+//     setIsModalBoardOpen(false);
+
+
   const needHelpModalShow = e => {
     if (e.target.id === 'backdropNeedHelp') {
       setisNeedHelpModal(!isNeedHelpModal);

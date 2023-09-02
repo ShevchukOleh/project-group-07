@@ -29,18 +29,21 @@ export default function Board({ setIsShowModal }) {
   const openModalCard = () => {
     setIsModalCardOpen(true);
   };
+
   const closeModalCard = () => {
     setIsModalCardOpen(false);
   };
 
   const board =
     boards.find(board => `:${board.title}` === boardName) || boards[0];
+
   const backgroundId = board?.background?._id;
   const boardId = board?._id;
 
   const background = backgrounds.find(
     background => background._id === backgroundId
   );
+
   const backgroundSrc = background?.background_lg_src || '';
 
   const backgroundStyle = backgroundSrc
@@ -69,10 +72,13 @@ export default function Board({ setIsShowModal }) {
                   columnId={column._id}
                   text={`${column.title}`}
                 />
+
                 <div className="containerColumnCard">
                   <BoardCard />
                 </div>
+
                 <ButtonCreate text="Add another card" onClick={openModalCard} />
+
                 <CardFormDialog
                   isShowModal={isModalCardOpen}
                   hideModal={closeModalCard}
@@ -106,6 +112,7 @@ export default function Board({ setIsShowModal }) {
           </div>
         </div>
       )}
+
       {boards.length === 0 && (
         <div className="emptyBoard">
           Before starting your project, it is essential to create a board to

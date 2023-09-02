@@ -6,6 +6,7 @@ import {
   getAllColums,
   createColumn,
   deleteBoard,
+  deleteColumn,
   getBackgroundBoard,
 } from 'store/AsyncThunk/asyncThunkBoards';
 
@@ -27,7 +28,6 @@ const boardSlice = createSlice({
       state.selectedPriority = action.payload;
     },
     sortByPriority: (state, action) => {
-      console.log(action.payload);
       state.cardsCollection = action.payload;
     },
   },
@@ -58,6 +58,19 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+      //deleteBoard==========================================================>
+      .addCase(deleteBoard.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteBoard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.boards = state.boards.filter(el => el.id !== action.payload.id);
+      })
+      .addCase(deleteBoard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
 
       //Column
 
@@ -75,9 +88,9 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      //createBoard===========================================================>
-
+      //createColum==========================================================>
       .addCase(createColumn.fulfilled, (state, action) => {
+        console.log('action: ', action);
         state.loading = false;
         state.columns.push(action.payload);
         state.error = null;
@@ -86,15 +99,21 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(deleteBoard.pending, (state, action) => {
+      //deleteColum==========================================================>
+      .addCase(deleteColumn.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(deleteBoard.fulfilled, (state, action) => {
+      .addCase(deleteColumn.fulfilled, (state, action) => {
+        console.log('action: ', action);
         state.loading = false;
         state.error = null;
-        state.boards = state.boards.filter(el => el.id !== action.payload.id);
+        state.columns = state.columns.filter(el => {
+          console.log('id', el._id);
+          console.log('action.payload.id', action.payload._id);
+          return el._id !== action.payload._id;
+        });
       })
-      .addCase(deleteBoard.rejected, (state, action) => {
+      .addCase(deleteColumn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

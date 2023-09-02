@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import {
   StyledTextArea,
@@ -8,9 +9,19 @@ import {
   ModalContent,
   ModalOverlay,
   IconClose,
+  CloseBtn,
 } from './NeedHelpModal.styled';
+import { theme } from '../../../constants';
 
 const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
+  const [focusInput, setFocusInput] = useState(false);
+  const [focusComment, setFocusComment] = useState(false);
+
+  const inputBorderColor = inputStatus =>
+    inputStatus
+      ? theme?.themeSet?.inputBorderFocus
+      : theme?.themeSet?.inputBorder;
+
   const initialValues = {
     email: '',
     comment: '',
@@ -30,12 +41,10 @@ const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
         <ModalOverlay onClick={needHelpModalShow} id="backdropNeedHelp">
           <ModalContent>
             <ModalTitle>Need Help</ModalTitle>
-            <IconClose>
-              <use
-                xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-x-close`}
-                fill="black"
-              />
-            </IconClose>
+            <CloseBtn>
+              <IconClose />
+            </CloseBtn>
+
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
               <Form>
                 <StyledInput
@@ -43,12 +52,18 @@ const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
                   name="email"
                   placeholder="Email Address"
                   required
+                  onFocus={() => setFocusInput(true)}
+                  onBlur={() => setFocusInput(false)}
+                  style={{ borderColor: inputBorderColor(focusInput) }}
                 />
                 <StyledTextArea
                   component="textarea"
                   name="comment"
                   placeholder="Comment"
                   required
+                  onFocus={() => setFocusComment(true)}
+                  onBlur={() => setFocusComment(false)}
+                  style={{ borderColor: inputBorderColor(focusComment) }}
                 />
                 <ModalButton type="submit">Send</ModalButton>
               </Form>

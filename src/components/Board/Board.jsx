@@ -30,16 +30,18 @@ export default function Board({ setIsShowModal }) {
     setIsModalCardOpen(false);
   };
 
-  const board = boards.find(board => board.title === boardName) || boards[0];
-  const backgroundId = board?.background;
+  const board =
+    boards.find(board => `:${board.title}` === boardName) || boards[0];
+  const backgroundId = board?.background?._id;
   const background = backgrounds.find(
     background => background._id === backgroundId
   );
   const backgroundSrc = background?.background_lg_src || '';
+
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})` }
     : { backgroundColor: theme?.themeSet?.boardBg };
-  
+
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (

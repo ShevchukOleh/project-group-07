@@ -29,7 +29,7 @@ export const BordInSidebar = ({ filteredItems }) => {
 
   return (
     <div>
-      {boardsInSidebar.map((board, index) => (
+      {filteredItems.map((board, index) => (
         <div key={index} onClick={() => handleItemClick(index)}>
           <OneBoard
             color={boardIndicationColor}

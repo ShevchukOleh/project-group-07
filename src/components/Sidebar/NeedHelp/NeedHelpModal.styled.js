@@ -38,6 +38,11 @@ const ModalContent = styled.div`
   position: relative;
   width: 400px;
   padding: 24px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${props => {
+    return props?.theme?.themeSet?.modalHelpBorder;
+  }};
   border-radius: 8px;
    background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
@@ -73,21 +78,37 @@ const StyledInput = styled(Field)`
   width: 100%;
   height: 40px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border-width: 1px;
+  border-style: solid;
+  outline: none;
   border-radius: 4px;
   margin-top: 16px;
   padding: 8px;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.inputBgColor;
+  }};
+  color: ${props => {
+    return props?.theme?.themeSet?.inputColor;
+  }};
 `;
 
 const StyledTextArea = styled(Field)`
   width: 100%;
   height: 120px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border-width: 1px;
+  border-style: solid;
+  outline: none;
   border-radius: 4px;
   margin-top: 16px;
   padding: 8px;
   resize: none;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.inputBgColor;
+  }};
+  color: ${props => {
+    return props?.theme?.themeSet?.inputColor;
+  }};
 `;
 
 export {

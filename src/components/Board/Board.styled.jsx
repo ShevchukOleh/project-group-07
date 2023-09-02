@@ -80,7 +80,8 @@ export const BoardStyle = styled.section`
 
     @media screen and (min-width: 1440px) {
       width: 354px;
-      max-height: calc(100vh - 292px); 
+      /* max-height: calc(100vh - 292px);  */
+      max-height: 100%;
     }
   }
 

@@ -82,6 +82,8 @@ export const BoardStyle = styled.section`
       width: 354px;
       /* max-height: calc(100vh - 292px);  */
       max-height: 100%;
+            min-height: 300px;
+
     }
   }
 

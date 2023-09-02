@@ -19,11 +19,12 @@ export default function Board({ setIsShowModal }) {
 
   const board =
     boards.find(board => `:${board.title}` === boardName) || boards[0];
-  const backgroundId = board?.background;
+  const backgroundId = board?.background?._id;
   const background = backgrounds.find(
     background => background._id === backgroundId
   );
   const backgroundSrc = background?.background_lg_src || '';
+
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})` }
     : { backgroundColor: theme?.themeSet?.boardBg };

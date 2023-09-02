@@ -8,6 +8,7 @@ import {
   ModalContent,
   ModalOverlay,
   IconClose,
+  CloseBtn,
 } from './NeedHelpModal.styled';
 
 const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
@@ -30,12 +31,10 @@ const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
         <ModalOverlay onClick={needHelpModalShow} id="backdropNeedHelp">
           <ModalContent>
             <ModalTitle>Need Help</ModalTitle>
-            <IconClose>
-              <use
-                xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-x-close`}
-                fill="black"
-              />
-            </IconClose>
+            <CloseBtn>
+              <IconClose />
+            </CloseBtn>
+
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
               <Form>
                 <StyledInput

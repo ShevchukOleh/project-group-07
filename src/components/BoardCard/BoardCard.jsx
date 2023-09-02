@@ -6,6 +6,7 @@ import {
   selectMyCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
+import { theme } from '../../constants';
 
 export default function BoardCard() {
   const selectPriority = useSelector(selectedInPriority);
@@ -26,6 +27,24 @@ export default function BoardCard() {
 }
 
 function BoardCardItem({ card }) {
+  const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
+  const lowPriorityColor = '#8FA1D0';
+  const mediumPriorityColor = '#E09CB5';
+  const highPriorityColor = '#BEDBB0';
+
+  const priorityColor = priority => {
+    switch (priority) {
+      case 'low':
+        return lowPriorityColor;
+      case 'medium':
+        return mediumPriorityColor;
+      case 'high':
+        return highPriorityColor;
+      default:
+        return withoutPriorityColor;
+    }
+  };
+
   return (
     <BoardCardStyle>
       <h3 className="title">{card.title}</h3>
@@ -38,7 +57,10 @@ function BoardCardItem({ card }) {
           <span className="priorityTitle">Priority</span>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span className="priorityColor"></span>
+            <span
+              className="priorityColor"
+              style={{ backgroundColor: priorityColor(card.priority) }}
+            ></span>
 
             <span className="priorityText">{card.priority}</span>
           </div>
@@ -55,15 +77,15 @@ function BoardCardItem({ card }) {
 
       <div className="containerCardIcon">
         <FiArrowRightCircle
-          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
         />
 
         <FiEdit2
-          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
         />
-        
+
         <FiTrash
-          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
         />
       </div>
     </BoardCardStyle>

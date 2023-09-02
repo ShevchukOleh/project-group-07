@@ -35,9 +35,14 @@ const lightTheme = {
   modalFiltersMarkWithoutPr: 'rgba(22, 22, 22, 0.3)',
 
   modalHelpBg: '#FCFCFC',
+  modalHelpBorder: '#FCFCFC',
   modalHelpTitle: '#161616',
   modalHelpSendBg: '#BEDBB0',
   modalHelpSendText: '#161616',
+  inputBorder: '#CCC',
+  inputBorderFocus: '#BEDBB0',
+  inputColor: '#161616',
+  inputBgColor: '#FCFCFC',
 };
 
 const darkTheme = {
@@ -73,9 +78,14 @@ const darkTheme = {
   modalFiltersMarkWithoutPr: 'rgba(255, 255, 255, 0.3)',
 
   modalHelpBg: '#151515',
+  modalHelpBorder: 'rgba(190, 219, 176, 0.5)',
   modalHelpTitle: '#FFFFFF',
   modalHelpSendBg: '#BEDBB0',
   modalHelpSendText: '#161616',
+  inputBorder: 'rgba(255, 255, 255, 0.5)',
+  inputBorderFocus: '#BEDBB0',
+  inputColor: '#FFFFFF',
+  inputBgColor: '#1F1F1F',
 };
 
 const coloredTheme = {
@@ -111,9 +121,14 @@ const coloredTheme = {
   modalFiltersMarkWithoutPr: 'rgba(22, 22, 22, 0.3)',
 
   modalHelpBg: '#FCFCFC',
+  modalHelpBorder: '#FCFCFC',
   modalHelpTitle: '#161616',
   modalHelpSendBg: '#5255BC',
   modalHelpSendText: '#FFFFFF',
+  inputBorder: '#CCC',
+  inputBorderFocus: '#5255BC',
+  inputColor: '#161616',
+  inputBgColor: '#FCFCFC',
 };
 
 const getTheme = theme => {

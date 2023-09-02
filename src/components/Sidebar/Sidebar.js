@@ -34,18 +34,14 @@ import SideBarSearch from './SideBarSearch/SideBarSearch';
 import { selectBoards } from 'store/createSlices/board/boardSelectors';
 import { getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 
-export const Sidebar = ({ setIsShowModal }) => {
+export const Sidebar = () => {
   const dispatch = useDispatch();
   const userToken = useSelector(selectToken);
   const boardsInSidebar = useSelector(selectBoards);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
+  const [isCreateOpenModal, setCreateOpenModal] = useState(false);
+  const [isNeedHelpModal, setisNeedHelpModal] = useState(false);
   const [boardsList, setBoardsList] = useState(boardsInSidebar); //collection boards
   const [filteredItems, setFilteredItems] = useState(boardsList); //search
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
   // ===============================search
   useEffect(() => {
     dispatch(getAllBoards());
@@ -55,12 +51,14 @@ export const Sidebar = ({ setIsShowModal }) => {
     setBoardsList(boardsInSidebar);
   }, [boardsInSidebar]);
   // =============================search
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const createOpenModalShow = () => {
+    setCreateOpenModal(!isCreateOpenModal);
   };
 
-  const closeModalBoard = () => {
-    setIsModalBoardOpen(false);
+  const needHelpModalShow = e => {
+    if (e.target.id === 'backdropNeedHelp') {
+      setisNeedHelpModal(!isNeedHelpModal);
+    }
   };
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
@@ -69,8 +67,6 @@ export const Sidebar = ({ setIsShowModal }) => {
 
   return (
     <ContainerAside>
-      <ModalForm />
-
       <SidebarContainer>
         <Block>
           <LogoContainer>
@@ -92,8 +88,8 @@ export const Sidebar = ({ setIsShowModal }) => {
             </NewBoardText>
 
             <FormDialog
-              isShowModal={isModalBoardOpen}
-              hideModal={closeModalBoard}
+              createOpenModalShow={createOpenModalShow}
+              isCreateOpenModal={isCreateOpenModal}
             />
             {/* <CreateButton
               onClick={() => {
@@ -109,10 +105,18 @@ export const Sidebar = ({ setIsShowModal }) => {
               <PlusIcon>+</PlusIcon>
             </CreateButton> */}
             <CreateButton
-              onClick={() => {
-                setIsShowModal(true);
-                setIsModalBoardOpen(true);
-              }}
+
+              onClick={
+                () => setCreateOpenModal(!isCreateOpenModal)
+                // dispatch(
+                //   createBoard({
+                //     title: 'Some title',
+                //     icon: '64eb3c2a8408f19231b21fc5',
+                //     background: '64eb2ce10d0d1b1e0a8b9bb2',
+                //   })
+                // );
+              }
+
               sx={{
                 minWidth: '40px',
                 height: '36px',
@@ -150,8 +154,11 @@ export const Sidebar = ({ setIsShowModal }) => {
             </HelpText>
 
             <HelpBlock>
-              <ModalForm isModalOpen={isModalOpen} closeModal={closeModal} />
-              <Helpbutton onClick={openModal}>
+              <ModalForm
+                isNeedHelpModal={isNeedHelpModal}
+                needHelpModalShow={needHelpModalShow}
+              />
+              <Helpbutton onClick={() => setisNeedHelpModal(!isNeedHelpModal)}>
                 <BiHelpCircle size={20} />
                 <p style={{ margin: '0', marginLeft: '8px' }}> Need help?</p>
               </Helpbutton>

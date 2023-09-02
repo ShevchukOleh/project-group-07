@@ -81,10 +81,6 @@ const BlockContainerCreate = styled.div`
   }};
   padding-top: 14px;
   padding-bottom: 14px;
-  border-top: 1px solid
-    ${props => {
-      return props?.theme?.themeSet?.sidebarCreateConBorder;
-    }};
   border-bottom: 1px solid
     ${props => {
       return props?.theme?.themeSet?.sidebarCreateConBorder;

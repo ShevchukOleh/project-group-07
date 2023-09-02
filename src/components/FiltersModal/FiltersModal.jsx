@@ -29,7 +29,6 @@ import {
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
 
-
 export const FiltersModal = () => {
   const selectPriority = useSelector(selectedInPriority);
   const selectCards = useSelector(selectMyCards);
@@ -69,7 +68,7 @@ export const FiltersModal = () => {
     const choosePriority = event.currentTarget.value;
     // ==========================================>sort
     dispatch(sortByPriority(choosePriority));
-    if (choosePriority === 'without priority') {
+    if (choosePriority === 'Show all') {
       dispatch(sortByPriority(arr));
     } else {
       const filtered = arr.filter(item =>
@@ -105,7 +104,13 @@ export const FiltersModal = () => {
   };
 
   const handleShowAllBtnClick = event => {
-    console.log('Show all');
+    if (event.target.id === 'Show all') {
+      dispatch(sortByPriority(arr));
+      setWithoutStatus(null);
+      setLowStatus(null);
+      setMediumStatus(null);
+      setHighStatus(null);
+    }
   };
 
   return (
@@ -294,7 +299,9 @@ export const FiltersModal = () => {
                 />
               </RadioGroup>
             </FormControl>
-            <ShowAllBtn onClick={handleShowAllBtnClick}>Show all</ShowAllBtn>
+            <ShowAllBtn onClick={handleShowAllBtnClick} id="Show all">
+              Show all
+            </ShowAllBtn>
           </Wrapper>
         </MenuWrap>
       </Menu>

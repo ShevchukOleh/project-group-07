@@ -1,30 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
+import {
+  selectMyCards,
+  selectedInPriority,
+} from 'store/createSlices/board/boardSelectors';
 
 export default function BoardCard() {
+  const selectPriority = useSelector(selectedInPriority);
+  const selectCards = useSelector(selectMyCards);
+  const [cards, setCards] = useState([]);
+  useEffect(() => {
+    setCards(selectCards);
+  }, [selectPriority, selectCards]);
+  return (
+    <>
+      {cards.map((item, index) => (
+        <BoardCardItem key={index} card={item} />
+      ))}
+    </>
+  );
+}
+
+function BoardCardItem({ card }) {
   return (
     <BoardCardStyle>
-      <h3 className=" title">The Watch Spot Design</h3>
-      <p className="description clip">
-        Create a visually stunning and eye-catching watch dial design that
-        embodies our brand's essence of sleek aesthetics and modern elegance.
-        Your design should be unique, innovative, and reflective of the latest
-        trends in watch design.
-      </p>
-      <hr></hr>
+      <h3 className="title">{card.title}</h3>
+      <p className="description clip">{card.description}</p>
+      <hr />
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
         <div>
           <span className="priorityTitle">Priority</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span className="priorityColor"></span>
-            <span className="priorityText">Low</span>
+            <span className="priorityText">{card.priority}</span>
           </div>
         </div>
         <div>
           <span className="priorityTitle">Deadline</span>
           <div>
-            <span className="priorityText">12/05/2023</span>
+            <span className="priorityText">{card.deadline}</span>
           </div>
         </div>
       </div>

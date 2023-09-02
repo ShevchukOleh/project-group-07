@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Button,
   Menu,
@@ -20,18 +20,32 @@ import {
   MenuWrap,
 } from './FiltersModal.styled';
 
+import { theme } from '../../constants';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { sortByPriority } from 'store/createSlices/board/board';
+import {
+  selectMyCards,
+  selectedInPriority,
+} from 'store/createSlices/board/boardSelectors';
+
 export const FiltersModal = () => {
+  const selectPriority = useSelector(selectedInPriority);
+  const selectCards = useSelector(selectMyCards);
   const [filterValue, setFilterValue] = useState('');
   const [filtersEl, setFiltersEl] = useState(null);
   const open = Boolean(filtersEl);
+  const [arr, setArr] = useState([]);
 
   const [withoutStatus, setWithoutStatus] = useState(null);
   const [lowStatus, setLowStatus] = useState(null);
   const [mediumStatus, setMediumStatus] = useState(null);
   const [highStatus, setHighStatus] = useState(null);
-
+  const dispatch = useDispatch();
   const priorityColor = priorityStatus =>
-    priorityStatus ? 'rgba(22, 22, 22, 1)' : 'rgba(22, 22, 22, 0.5)';
+    priorityStatus
+      ? theme?.themeSet?.modalFiltersSubtitleFocus
+      : theme?.themeSet?.modalFiltersSubtitle;
 
   const bgPriorityColor = (priorityStatus, bgColor) =>
     priorityStatus ? 'transparent' : bgColor;
@@ -43,11 +57,26 @@ export const FiltersModal = () => {
   const handleClose = () => {
     setFiltersEl(null);
   };
+  useEffect(() => {
+    setArr(selectCards);
+    setFilterValue(selectPriority);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
-    console.log(event.currentTarget.value);
-
+    const choosePriority = event.currentTarget.value;
+    // ==========================================>sort
+    dispatch(sortByPriority(choosePriority));
+    if (choosePriority === 'Show all') {
+      dispatch(sortByPriority(arr));
+    } else {
+      const filtered = arr.filter(item =>
+        item.priority.toLowerCase().includes(choosePriority.toLowerCase())
+      );
+      dispatch(sortByPriority(filtered));
+    }
+    // ===========================================>sort
     if (event.currentTarget.value === 'without priority') {
       setWithoutStatus(true);
       setLowStatus(null);
@@ -75,7 +104,13 @@ export const FiltersModal = () => {
   };
 
   const handleShowAllBtnClick = event => {
-    console.log('Show all');
+    if (event.target.id === 'Show all') {
+      dispatch(sortByPriority(arr));
+      setWithoutStatus(null);
+      setLowStatus(null);
+      setMediumStatus(null);
+      setHighStatus(null);
+    }
   };
 
   return (
@@ -109,11 +144,13 @@ export const FiltersModal = () => {
             padding: 0,
           },
           '& ul > div': {
-            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
-            backgroundColor: '#FCFCFC',
+            backgroundColor: `${theme?.themeSet?.modalFiltersBg}`,
             borderRadius: '8px',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: `${theme?.themeSet?.modalFiltersOutBorder}`,
+            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
           },
-          '& ul > div > span': { color: '#161616' },
         }}
       >
         <MenuWrap>
@@ -135,7 +172,7 @@ export const FiltersModal = () => {
                 sx={{
                   minWidth: '18px',
                   height: '18px',
-                  fill: 'rgba(22, 22, 22, 1)',
+                  fill: `${theme?.themeSet?.modalFiltersTitle}`,
                 }}
               />
             </Button>
@@ -154,7 +191,7 @@ export const FiltersModal = () => {
                 id="filters-radio-buttons-group-label"
                 sx={{
                   marginBottom: '10px',
-                  color: 'rgba(22, 22, 22, 1)',
+                  color: `${theme?.themeSet?.modalFiltersTitle}`,
                   fontFamily: 'Poppins',
                   fontWeight: 500,
                   fontSize: '14px',
@@ -191,9 +228,11 @@ export const FiltersModal = () => {
                       sx={{
                         backgroundColor: bgPriorityColor(
                           withoutStatus,
-                          'rgba(22, 22, 22, 0.3)'
+                          `${theme?.themeSet?.modalFiltersMarkWithoutPr}`
                         ),
-                        '& span svg': { color: 'rgba(22, 22, 22, 0.3)' },
+                        '& span svg': {
+                          color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
+                        },
                       }}
                     />
                   }
@@ -209,11 +248,8 @@ export const FiltersModal = () => {
                   control={
                     <Radio
                       sx={{
-                        backgroundColor: bgPriorityColor(
-                          lowStatus,
-                          'rgba(143, 161, 208, 1)'
-                        ),
-                        '& span svg': { color: 'rgba(143, 161, 208, 1)' },
+                        backgroundColor: bgPriorityColor(lowStatus, '#8FA1D0'),
+                        '& span svg': { color: '#8FA1D0' },
                       }}
                     />
                   }
@@ -231,9 +267,9 @@ export const FiltersModal = () => {
                       sx={{
                         backgroundColor: bgPriorityColor(
                           mediumStatus,
-                          'rgba(224, 156, 181, 1)'
+                          '#E09CB5'
                         ),
-                        '& span svg': { color: 'rgba(224, 156, 181, 1)' },
+                        '& span svg': { color: '#E09CB5' },
                       }}
                     />
                   }
@@ -249,11 +285,8 @@ export const FiltersModal = () => {
                   control={
                     <Radio
                       sx={{
-                        backgroundColor: bgPriorityColor(
-                          highStatus,
-                          'rgba(190, 219, 176, 1)'
-                        ),
-                        '& span svg': { color: 'rgba(190, 219, 176, 1)' },
+                        backgroundColor: bgPriorityColor(highStatus, '#BEDBB0'),
+                        '& span svg': { color: '#BEDBB0' },
                       }}
                     />
                   }
@@ -266,7 +299,9 @@ export const FiltersModal = () => {
                 />
               </RadioGroup>
             </FormControl>
-            <ShowAllBtn onClick={handleShowAllBtnClick}>Show all</ShowAllBtn>
+            <ShowAllBtn onClick={handleShowAllBtnClick} id="Show all">
+              Show all
+            </ShowAllBtn>
           </Wrapper>
         </MenuWrap>
       </Menu>

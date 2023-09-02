@@ -6,7 +6,7 @@ export const ThemeBtn = styled(Button)`
   padding-top: 5px;
   padding-bottom: 5px;
   color: ${props => {
-    return props?.theme?.themeSet?.first;
+    return props?.theme?.themeSet?.modalThemeLabel;
   }};
   font-family: Poppins;
   font-size: 14px;
@@ -14,7 +14,6 @@ export const ThemeBtn = styled(Button)`
   line-height: 1.5;
   text-transform: none;
   letter-spacing: 0.02em;
-  }}
 `;
 
 export const ThemeIcon = styled.svg`
@@ -25,6 +24,6 @@ export const ThemeIcon = styled.svg`
 
 export const Wrapper = styled.div`
   background-color: ${props => {
-    return props?.theme?.themeSet?.fourth;
+    return props?.theme?.themeSet?.modalThemeBg;
   }};
 `;

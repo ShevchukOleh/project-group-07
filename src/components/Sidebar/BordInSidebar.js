@@ -1,67 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { OneBoard } from './Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import { deleteBoard } from 'store/AsyncThunk/asyncThunkBoards';
+import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
+import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
 
 export const BordInSidebar = ({ filteredItems }) => {
   const dispatch = useDispatch();
-
-  // const [boards, setBoards] = useState(boardsInSidebar);
-
+  // const boardsInSidebar = useSelector(state => state.board.boards);
+  // const collect = useSelector(state => state);
+  // console.log(collect);
   // console.log(boardsInSidebar);
+
   const handleDeleteBoard = id => {
-    dispatch(deleteBoard(id));
+    dispatch(deleteBoard(id)).then(() => {
+      dispatch(getAllBoards());
+    });
   };
 
-  // const handleDragStart = (e, index) => {
-  //   e.dataTransfer.setData('text/plain', index);
-  // };
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  // const handleDragOver = (e, index) => {
-  //   e.preventDefault();
-  // };
+  const handleItemClick = index => {
+    setSelectedItem(index);
+  };
 
-  // const handleDrop = (e, dropIndex) => {
-  //   const draggedIndex = e.dataTransfer.getData('text/plain');
-  //   const updatedBoards = [...boards];
-  //   const [draggedBoard] = updatedBoards.splice(draggedIndex, 1);
-  //   updatedBoards.splice(dropIndex, 0, draggedBoard);
-  //   setBoards(updatedBoards);
-  // };
+  const boardIndicationColor = '#BEDBB0';
+
   return (
-    <div className="board-list">
-      {filteredItems &&
-        filteredItems.map((board, index) => (
-          <div
-            key={index}
-            className="board"
-            draggable
-            // onDragStart={e => handleDragStart(e, index)}
-            // onDragOver={e => handleDragOver(e, index)}
-            // onDrop={e => handleDrop(e, index)}
+    <div>
+      {boardsInSidebar.map((board, index) => (
+        <div key={index} onClick={() => handleItemClick(index)}>
+          <OneBoard
+            color={boardIndicationColor}
+            isSelected={selectedItem === index}
           >
-            <OneBoard>
-              <div style={{ marginRight: '16px' }}>
-                <div>{/* <img src={board.icon.icon_src} alt="icon" /> */}</div>
-                {/* {board.icon} */}
-                {/* <svg width={18} height={18}>
-                <use
-                  xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#icon-IconProject`}
-                />
-              </svg> */}
-              </div>
-              <div style={{ flex: 1 }}>{board.title}</div>
-              <div style={{ marginRight: '8px' }}>
-                <FiEdit2 />
-              </div>
-              <div>
-                <AiOutlineDelete onClick={() => handleDeleteBoard(board._id)} />
-              </div>
-            </OneBoard>
-          </div>
-        ))}
+            <ImgBox>
+              <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
+            </ImgBox>
+            <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
+            <EditIcon className="icon">
+              <FiEdit2 size={16} color="rgba(22, 22, 22, 0.5)" />
+            </EditIcon>
+            <div className="icon">
+              <AiOutlineDelete
+                size={16}
+                color="rgba(22, 22, 22, 0.5)"
+                onClick={() => handleDeleteBoard(board._id)}
+              />
+            </div>
+          </OneBoard>
+        </div>
+      ))}
     </div>
   );
 };

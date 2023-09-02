@@ -10,7 +10,7 @@ import {
   IconClose,
 } from './NeedHelpModal.styled';
 
-const ModalForm = ({ isModalOpen, closeModal }) => {
+const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
   const initialValues = {
     email: '',
     comment: '',
@@ -18,23 +18,16 @@ const ModalForm = ({ isModalOpen, closeModal }) => {
 
   const handleSubmit = values => {
     if (values.email && values.comment) {
-      closeModal();
       console.log(values);
     } else {
       alert('Sorry');
     }
   };
 
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      closeModal();
-    }
-  };
-
   return (
     <div>
-      {isModalOpen && (
-        <ModalOverlay onClick={handleBackdropClick}>
+      {isNeedHelpModal && (
+        <ModalOverlay onClick={needHelpModalShow} id="backdropNeedHelp">
           <ModalContent>
             <ModalTitle>Need Help</ModalTitle>
             <IconClose>

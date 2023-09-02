@@ -8,7 +8,9 @@ export const MenuBtn = styled(Button)`
   padding: 0;
   justify-content: center;
   min-width: 32px;
-  color: #161616;
+  color: ${props => {
+    return props?.theme?.themeSet?.headerMenuBtn;
+  }};
 
   @media screen and (min-width: 1440px) {
     display: none;

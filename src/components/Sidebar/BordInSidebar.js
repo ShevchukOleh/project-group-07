@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { OneBoard } from './Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
@@ -19,23 +19,33 @@ export const BordInSidebar = ({ filteredItems }) => {
     });
   };
 
-  const boardColor = 'green';
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemClick = index => {
+    setSelectedItem(index);
+  };
+
+  const boardIndicationColor = '#BEDBB0';
 
   return (
     <div>
-      {filteredItems.map((board, index) => (
-        <div key={index}>
-          <OneBoard color={boardColor}>
+      {boardsInSidebar.map((board, index) => (
+        <div key={index} onClick={() => handleItemClick(index)}>
+          <OneBoard
+            color={boardIndicationColor}
+            isSelected={selectedItem === index}
+          >
             <ImgBox>
               <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
             </ImgBox>
             <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
             <EditIcon className="icon">
-              <FiEdit2 size={16} />
+              <FiEdit2 size={16} color="rgba(22, 22, 22, 0.5)" />
             </EditIcon>
             <div className="icon">
               <AiOutlineDelete
                 size={16}
+                color="rgba(22, 22, 22, 0.5)"
                 onClick={() => handleDeleteBoard(board._id)}
               />
             </div>

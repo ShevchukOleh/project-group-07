@@ -27,10 +27,6 @@ import ModalForm from './NeedHelp/NeedHelpModal';
 
 import FormDialog from '../ModalBoard/ModalBoard';
 
-// import { useDispatch } from 'react-redux';
-// import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
-// import { useNavigate } from 'react-router';
-
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
@@ -58,6 +54,7 @@ export const Sidebar = () => {
   const createOpenModalShow = () => {
     setCreateOpenModal(!isCreateOpenModal);
   };
+
   const needHelpModalShow = e => {
     if (e.target.id === 'backdropNeedHelp') {
       setisNeedHelpModal(!isNeedHelpModal);
@@ -108,6 +105,7 @@ export const Sidebar = () => {
               <PlusIcon>+</PlusIcon>
             </CreateButton> */}
             <CreateButton
+
               onClick={
                 () => setCreateOpenModal(!isCreateOpenModal)
                 // dispatch(
@@ -118,6 +116,7 @@ export const Sidebar = () => {
                 //   })
                 // );
               }
+
               sx={{
                 minWidth: '40px',
                 height: '36px',

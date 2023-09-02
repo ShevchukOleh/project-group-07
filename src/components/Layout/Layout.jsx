@@ -70,7 +70,7 @@ const Layout = () => {
         <Board setIsShowModal={setIsShowModal} />
       </div>
       <Suspense fallback={null}>
-        <Outlet />
+        <Outlet />z
       </Suspense>
       {isShowModal && (
         <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>

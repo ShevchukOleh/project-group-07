@@ -16,16 +16,16 @@ import {
   Icon,
   FormControlLabelStyled,
 } from './ModalBoard.styled';
-import Plus from '../../images/icons/plus.svg';
+import Plus from '../../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { getIcon, getImage } from '../../components/ModalBoard/servises';
+import { getIcon, getImage } from './servises';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { createBoard } from '../../store/AsyncThunk/asyncThunkBoards';
+import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {

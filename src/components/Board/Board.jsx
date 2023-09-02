@@ -9,24 +9,39 @@ import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
 import BoardCard from 'components/BoardCard/BoardCard';
 import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
+import CardFormDialog from 'components/CardModal/CardModal'
 import { FiltersModal } from 'components/FiltersModal';
+
+import { useState } from 'react';
+
 import { theme } from '../../constants';
+
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
+  const [isModalCardOpen, setIsModalCardOpen] = useState(false);
 
-  const board = boards.find(board => board.title === boardName) || boards[0];
-  const backgroundId = board?.background;
+    const openModalCard = () => {
+    setIsModalCardOpen(true);
+  };
+  const closeModalCard = () => {
+    setIsModalCardOpen(false);
+  };
+
+  const board =
+    boards.find(board => `:${board.title}` === boardName) || boards[0];
+  const backgroundId = board?.background?._id;
   const background = backgrounds.find(
     background => background._id === backgroundId
   );
   const backgroundSrc = background?.background_lg_src || '';
+
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})` }
     : { backgroundColor: theme?.themeSet?.boardBg };
-  
+
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (
@@ -48,7 +63,11 @@ export default function Board({ setIsShowModal }) {
             </div>
             <ButtonCreate
               text="Add another card"
-              onClick={() => setIsShowModal(true)}
+              onClick={openModalCard}
+            />
+            <CardFormDialog
+              isShowModal={isModalCardOpen}
+              hideModal={closeModalCard}
             />
           </div>
           <div className="containerOneColumn">
@@ -58,7 +77,7 @@ export default function Board({ setIsShowModal }) {
             </div>
             <ButtonCreate
               text="Add another card"
-              onClick={() => setIsShowModal(true)}
+              onClick={openModalCard}
             />
           </div>
           <div className="containerOneColumn">
@@ -68,7 +87,7 @@ export default function Board({ setIsShowModal }) {
             </div>
             <ButtonCreate
               text="Add another card"
-              onClick={() => setIsShowModal(true)}
+              onClick={openModalCard}
             />
           </div>
           <div>

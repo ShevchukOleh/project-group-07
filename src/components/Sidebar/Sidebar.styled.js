@@ -81,10 +81,6 @@ const BlockContainerCreate = styled.div`
   }};
   padding-top: 14px;
   padding-bottom: 14px;
-  border-top: 1px solid
-    ${props => {
-      return props?.theme?.themeSet?.sidebarCreateConBorder;
-    }};
   border-bottom: 1px solid
     ${props => {
       return props?.theme?.themeSet?.sidebarCreateConBorder;
@@ -110,11 +106,11 @@ const OneBoard = styled.div`
   padding: 22px 20px 22px 24px;
   display: flex;
   align-items: center;
-  color: rgba(22, 22, 22, 0.5);
-  background-color: #ffffff;
+  background-color: ${props => (props.isSelected ? '#f6f6f7' : '#ffffff')};
+  color: ${props => (props.isSelected ? '#121212' : 'rgba(22, 22, 22, 0.5)')};
 
   .icon {
-    opacity: 0;
+    opacity: ${props => (props.isSelected ? 1 : 0)};
     transition: opacity 0.3s;
   }
 
@@ -137,12 +133,13 @@ const OneBoard = styled.div`
     background-color: ${props => props.color};
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    transform: scaleX(0);
+    transform: scaleX(${props => (props.isSelected ? 1 : 0)});
     transition: transform 0.3s;
   }
-  &:hover:before {
+
+  /* &:hover:before {
     transform: scaleX(1);
-  }
+  } */
 `;
 
 const BlockContainer = styled.div`

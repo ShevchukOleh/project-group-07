@@ -14,7 +14,6 @@ export const ThemeBtn = styled(Button)`
   line-height: 1.5;
   text-transform: none;
   letter-spacing: 0.02em;
-  }}
 `;
 
 export const ThemeIcon = styled.svg`

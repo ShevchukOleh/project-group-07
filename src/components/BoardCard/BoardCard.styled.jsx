@@ -14,30 +14,39 @@ export const BoardCardStyle = styled.div`
     rgba(143, 161, 208, 1) 4px,
     rgba(255, 255, 255, 1) 4px
   );
+
   & p,
   h3 {
     margin: 0;
     padding: 0;
   }
+
   & .title {
     margin-bottom: 8px;
-    color: #161616;
+    color: ${props => {
+    return props?.theme?.themeSet?.boardTitle;
+  }};
     font-size: 14px;
     font-weight: 600;
     line-height: normal;
     letter-spacing: -0.28px;
   }
+
   & .description {
     margin-bottom: 14px;
-    color: rgba(22, 22, 22, 0.7);
+    color: ${props => {
+    return props?.theme?.themeSet?.cardDescription;
+  }};
     font-size: 12px;
     font-weight: 400;
     line-height: 16px; /* 133.333% */
     letter-spacing: -0.24px;
   }
+
   & hr {
     margin-bottom: 14px;
   }
+
   & .clip {
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
@@ -52,27 +61,34 @@ export const BoardCardStyle = styled.div`
     -webkit-box-orient: vertical;
     box-orient: vertical;
   }
+
   & .priorityTitle {
     margin-bottom: 4px;
-    color: rgba(22, 22, 22, 0.5);
+    color: ${props => {
+    return props?.theme?.themeSet?.cardPriorityTitle;
+  }};
     font-size: 8px;
     line-height: normal;
     letter-spacing: -0.16px;
   }
+
   & .priorityText {
-    color: #161616;
+    color: ${props => {
+    return props?.theme?.themeSet?.boardTitle;
+  }};
     font-size: 10px;
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.2px;
   }
+
   & .priorityColor {
     display: block;
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #e09cb5;
   }
+
   & .containerCardIcon {
     position: absolute;
     bottom: 14px;

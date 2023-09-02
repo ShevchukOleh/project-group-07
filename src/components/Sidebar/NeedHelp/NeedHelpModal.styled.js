@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Field } from 'formik';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { Button } from '@mui/material';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -15,27 +17,49 @@ const ModalOverlay = styled.div`
   cursor: pointer;
 `;
 
-const IconClose = styled.svg`
+const CloseBtn = styled(Button)`
+  padding: 0;
+  min-width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+`;
+
+const IconClose = styled(CloseOutlinedIcon)`
   width: 18px;
   height: 18px;
+  fill: ${props => {
+    return props?.theme?.themeSet?.modalHelpTitle;
+  }};
 `;
 
 const ModalContent = styled.div`
-  background-color: white;
+  position: relative;
   width: 400px;
   padding: 24px;
   border-radius: 8px;
+   background-color: ${props => {
+    return props?.theme?.themeSet?.modalHelpBg;
+  }};
 `;
 
 const ModalTitle = styled.h2`
   margin-bottom: 18px;
   font-weight: 500;
   margin: 0;
+  color: ${props => {
+    return props?.theme?.themeSet?.modalHelpTitle;
+  }};
 `;
 
 const ModalButton = styled.button`
-  background-color: #bedbb0;
-  color: #161616;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.modalHelpSendBg;
+  }};
+  color: ${props => {
+    return props?.theme?.themeSet?.modalHelpSendText;
+  }};
   width: 100%;
   font-size: 14px;
   height: 50px;
@@ -74,4 +98,5 @@ export {
   ModalContent,
   ModalOverlay,
   IconClose,
+  CloseBtn,
 };

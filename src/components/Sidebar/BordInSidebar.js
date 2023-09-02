@@ -31,8 +31,7 @@ export const BordInSidebar = ({ filteredItems }) => {
 
   return (
     <div>
-      {boardsInSidebar.map((board, index) => (
-
+      {filteredItems.map((board, index) => (
         <Link
           onClick={() => handleItemClick(index)}
           style={{ textDecoration: 'none' }}

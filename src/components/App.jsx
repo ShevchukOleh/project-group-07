@@ -30,6 +30,14 @@ export const App = () => {
           </PrivateRoute>
         }
       />
+      <Route
+        path="home/:boardName"
+        element={
+          <PrivateRoute isLoggedIn={isLoggedIn}>
+            <Layout />
+          </PrivateRoute>
+        }
+      />
       <Route path="*" element={<Navigate to="/welcome" replace={true} />} />
     </Routes>
   );

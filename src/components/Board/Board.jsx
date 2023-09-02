@@ -17,7 +17,8 @@ export default function Board({ setIsShowModal }) {
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
 
-  const board = boards.find(board => board.title === boardName) || boards[0];
+  const board =
+    boards.find(board => `:${board.title}` === boardName) || boards[0];
   const backgroundId = board?.background;
   const background = backgrounds.find(
     background => background._id === backgroundId
@@ -26,7 +27,7 @@ export default function Board({ setIsShowModal }) {
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})` }
     : { backgroundColor: theme?.themeSet?.boardBg };
-  
+
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (

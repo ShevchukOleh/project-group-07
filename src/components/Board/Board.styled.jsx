@@ -80,9 +80,10 @@ export const BoardStyle = styled.section`
 
     @media screen and (min-width: 1440px) {
       width: 354px;
-      /* height: calc(100vh - 292px); */
+      /* max-height: calc(100vh - 292px);  */
       max-height: 100%;
-      min-height: 320px;
+            min-height: 300px;
+
     }
   }
 
@@ -153,7 +154,7 @@ export const BoardStyle = styled.section`
     top: 0;
     right: 24px;
   }
-  
+
   & .emptyBoard {
     position: absolute;
     top: 50%;

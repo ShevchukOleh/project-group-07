@@ -58,7 +58,6 @@ const ModalTitle = styled.h2`
   }};
 `;
 
-
 const ModalButton = styled.button`
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpSendBg;

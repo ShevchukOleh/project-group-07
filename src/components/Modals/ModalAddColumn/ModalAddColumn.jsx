@@ -1,4 +1,3 @@
-import { AiOutlinePlus } from 'react-icons/ai';
 import {
   ColumnModalContainer,
   ColumnModalTitle,
@@ -6,22 +5,23 @@ import {
   ColumnModalFormInput,
   ColumnModalFormBtn,
   IconPlusWrapper,
+  IconCrossWrapper,
 } from '../UI/ModalCulumn.styled';
-import { useState } from 'react';
-const EditColumn = () => {
-  const [change, setChange] = useState('');
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(change);
-  };
+import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+const ModalAddColumn = ({
+  handleSubmit,
+  setOpenAddModal,
+  setAddColumn,
+  addColumn,
+}) => {
   return (
     <ColumnModalContainer>
-      <ColumnModalTitle>Edit column</ColumnModalTitle>
+      <ColumnModalTitle>Add column</ColumnModalTitle>
       <ColumnModalForm>
         <ColumnModalFormInput
           placeholder="To Do"
-          value={change}
-          onChange={e => setChange(e.target.value)}
+          value={addColumn}
+          onChange={e => setAddColumn(e.target.value)}
         />
         <ColumnModalFormBtn onClick={handleSubmit}>
           <IconPlusWrapper>
@@ -30,7 +30,10 @@ const EditColumn = () => {
           Add
         </ColumnModalFormBtn>
       </ColumnModalForm>
+      <IconCrossWrapper onClick={() => setOpenAddModal(prev => !prev)}>
+        <AiOutlineClose size={18} color="#fff" />
+      </IconCrossWrapper>
     </ColumnModalContainer>
   );
 };
-export default EditColumn;
+export default ModalAddColumn;

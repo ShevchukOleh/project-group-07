@@ -5,7 +5,8 @@ const ColumnModalContainer = styled.div`
   background-color: #151515;
   width: 335px;
   padding: 24px;
-  border-radius: 8px;
+  position: relative;
+  border-radius: 5px;
   border: 1px solid rgba(190, 219, 176, 0.5);
   @media screen and (min-width: 480px) {
     width: 350px;
@@ -24,6 +25,7 @@ const ColumnModalTitle = styled.h3`
 `;
 const ColumnModalForm = styled.form`
   max-width: 302px;
+  border-radius: 8px;
 `;
 const ColumnModalFormInput = styled.input`
   border-radius: 8px;
@@ -45,6 +47,7 @@ const ColumnModalFormBtn = styled.button`
   gap: 5px;
   background: #bedbb0;
   width: 100%;
+  cursor: pointer;
 `;
 const IconPlusWrapper = styled.div`
   width: 28px;
@@ -55,6 +58,14 @@ const IconPlusWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const IconCrossWrapper = styled.div`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+`;
 export {
   ColumnModalContainer,
   ColumnModalTitle,
@@ -62,4 +73,5 @@ export {
   ColumnModalFormInput,
   ColumnModalFormBtn,
   IconPlusWrapper,
+  IconCrossWrapper,
 };

@@ -23,8 +23,7 @@ import {
   PlantImg,
   Helpbutton,
 } from './Sidebar.styled';
-import ModalForm from './NeedHelp/NeedHelpModal';
-
+import ModalForm from '../Modals/NeedHelp/NeedHelpModal';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';

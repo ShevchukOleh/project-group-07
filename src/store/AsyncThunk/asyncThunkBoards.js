@@ -179,14 +179,18 @@ const createColumn = createAsyncThunk(
     }
   }
 );
-
 const editColumnById = createAsyncThunk(
   'board/editColumnById',
-  async ({ boardId, columnId }, thunkAPI) => {
+  async ({ params, title }, thunkAPI) => {
+    const { columnId, boardId } = params;
+    const requestData = {
+      title,
+    };
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
         `${BASE_URL}/api/board/${boardId}/column/${columnId}`,
+        requestData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -194,14 +198,14 @@ const editColumnById = createAsyncThunk(
         }
       );
       const { data } = response;
-      console.log('data: ', data);
+      console.log(data);
+
       return data;
     } catch (error) {
       throw new Error('Failed edit column by id');
     }
   }
 );
-
 const deleteColumn = createAsyncThunk(
   'board/deleteColumn',
   async ({ boardId, columnId }, thunkAPI) => {

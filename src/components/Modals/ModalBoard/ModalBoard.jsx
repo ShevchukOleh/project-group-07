@@ -100,7 +100,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
   };
-  console.log(isCreateOpenModal);
   return (
     <div>
       <Dialog open={isCreateOpenModal} onClose={createOpenModalShow}>

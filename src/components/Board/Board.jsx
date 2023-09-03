@@ -3,6 +3,8 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
+  selectLoading,
+  selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';
 
@@ -17,6 +19,9 @@ import { useState } from 'react';
 
 import { theme } from '../../constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
+import { Dialog } from '@mui/material';
+import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
+import LoaderComponent from 'components/Loader/Loader';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
@@ -24,8 +29,12 @@ export default function Board({ setIsShowModal }) {
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [openAddModal, setOpenAddModal] = useState(false);
+  const [addColumn, setAddColumn] = useState('');
 
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
   const openModalCard = () => {
     setIsModalCardOpen(true);
   };
@@ -33,7 +42,17 @@ export default function Board({ setIsShowModal }) {
   const closeModalCard = () => {
     setIsModalCardOpen(false);
   };
-
+  const openModal = () => {
+    setOpenAddModal(!openAddModal);
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (addColumn) {
+      dispatch(createColumn({ boardId, title: addColumn }));
+      setAddColumn('');
+      setOpenAddModal(!openAddModal);
+    }
+  };
   const board =
     boards.find(board => `:${board.title}` === boardName) || boards[0];
 
@@ -101,14 +120,18 @@ export default function Board({ setIsShowModal }) {
             <ButtonCreate text="Add another card" onClick={openModalCard} />
           </div> */}
           <div>
-            <ButtonCreate
-              text="Add another column"
-              onClick={() => {
-                setIsShowModal(true);
-
-                dispatch(createColumn({ boardId, title: 'NewTitle' }));
-              }}
-            />
+            <ButtonCreate text="Add another column" onClick={openModal} />
+            {/* =========================modal */}
+            <Dialog open={openAddModal} onClose={openModal}>
+              <ModalAddColumn
+                handleSubmit={handleSubmit}
+                setAddColumn={setAddColumn}
+                addColumn={addColumn}
+                setOpenAddModal={setOpenAddModal}
+              />
+            </Dialog>
+            {isLoading && <LoaderComponent />}
+            {/* ===================modal */}
           </div>
         </div>
       )}

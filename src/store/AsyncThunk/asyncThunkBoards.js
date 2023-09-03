@@ -179,14 +179,14 @@ const createColumn = createAsyncThunk(
     }
   }
 );
-
 const editColumnById = createAsyncThunk(
   'board/editColumnById',
-  async ({ boardId, columnId }, thunkAPI) => {
+  async ({ requestData, title }, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
-        `${BASE_URL}/api/board/${boardId}/column/${columnId}`,
+        `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
+        { title },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -194,14 +194,13 @@ const editColumnById = createAsyncThunk(
         }
       );
       const { data } = response;
-      console.log('data: ', data);
+
       return data;
     } catch (error) {
       throw new Error('Failed edit column by id');
     }
   }
 );
-
 const deleteColumn = createAsyncThunk(
   'board/deleteColumn',
   async ({ boardId, columnId }, thunkAPI) => {
@@ -222,7 +221,12 @@ const deleteColumn = createAsyncThunk(
     }
   }
 );
-
+// const SwaggerUI = async () => {
+// const { data } = await axios.get(
+// `https://taskpro-backend-zulp.onrender.com/api-docs/Swagger_UI`
+// );
+// console.log(data);
+// };
 export {
   getAllBoards,
   createBoard,

@@ -23,8 +23,6 @@ import {
   PlantImg,
   Helpbutton,
 } from './Sidebar.styled';
-import ModalForm from './NeedHelp/NeedHelpModal';
-
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
@@ -32,6 +30,7 @@ import SideBarSearch from './SideBarSearch/SideBarSearch';
 import { selectBoards } from 'store/createSlices/board/boardSelectors';
 import { getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 import FormDialog from 'components/Modals/ModalBoard/ModalBoard';
+import ModalForm from 'components/Modals/NeedHelp/NeedHelpModal';
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
@@ -102,9 +101,9 @@ export const Sidebar = () => {
               createOpenModalShow={createOpenModalShow}
               isCreateOpenModal={isCreateOpenModal}
             />
-
             <CreateButton
               onClick={() => setCreateOpenModal(!isCreateOpenModal)}
+
               sx={{
                 minWidth: '40px',
                 height: '36px',

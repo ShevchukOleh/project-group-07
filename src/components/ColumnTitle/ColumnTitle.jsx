@@ -14,6 +14,7 @@ export default function ColumnTitle(params) {
   return (
     <ColumnTitleStyle>
       <p className="titleColumn">{params.text}</p>
+
       <div
         style={{
           position: 'absolute',
@@ -26,6 +27,7 @@ export default function ColumnTitle(params) {
         <FiEdit2
           style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
         />
+
         <FiTrash
           onClick={() => dispatch(deleteColumn(requestData))}
           style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}

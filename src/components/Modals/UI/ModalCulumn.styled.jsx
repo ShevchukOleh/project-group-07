@@ -1,4 +1,4 @@
-const { default: styled } = require('styled-components');
+import styled from '@emotion/styled';
 
 const ColumnModalContainer = styled.div`
   height: 221px;
@@ -7,10 +7,12 @@ const ColumnModalContainer = styled.div`
   padding: 24px;
   border-radius: 8px;
   border: 1px solid rgba(190, 219, 176, 0.5);
+
   @media screen and (min-width: 480px) {
     width: 350px;
   }
 `;
+
 const ColumnModalTitle = styled.h3`
   color: #fff;
   font-family: Poppins;
@@ -22,9 +24,11 @@ const ColumnModalTitle = styled.h3`
   letter-spacing: -0.36px;
   margin-bottom: 24px;
 `;
+
 const ColumnModalForm = styled.form`
   max-width: 302px;
 `;
+
 const ColumnModalFormInput = styled.input`
   border-radius: 8px;
   border: 1px solid #bedbb0;
@@ -36,6 +40,7 @@ const ColumnModalFormInput = styled.input`
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   margin-bottom: 24px;
 `;
+
 const ColumnModalFormBtn = styled.button`
   display: flex;
   padding: 10px 0px 10px 0px;
@@ -46,6 +51,7 @@ const ColumnModalFormBtn = styled.button`
   background: #bedbb0;
   width: 100%;
 `;
+
 const IconPlusWrapper = styled.div`
   width: 28px;
   height: 28px;
@@ -55,6 +61,7 @@ const IconPlusWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 export {
   ColumnModalContainer,
   ColumnModalTitle,

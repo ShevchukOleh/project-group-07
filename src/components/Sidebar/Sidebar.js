@@ -60,14 +60,20 @@ export const Sidebar = () => {
   //     setIsModalBoardOpen(false);
 
   const needHelpModalShow = e => {
-    if (e.target.id === 'backdropNeedHelp') {
+    if (
+      e.target.id === 'backdropNeedHelp' ||
+      e.target.tagName === 'svg' ||
+      e.target.tagName === 'path'
+    ) {
       setisNeedHelpModal(!isNeedHelpModal);
     }
+
+    console.log(e.target);
   };
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };
-  const isBoard = true;
+  // const isBoard = true;
 
   return (
     <ContainerAside>
@@ -95,30 +101,9 @@ export const Sidebar = () => {
               createOpenModalShow={createOpenModalShow}
               isCreateOpenModal={isCreateOpenModal}
             />
-            {/* <CreateButton
-                onClick={() => {
-                  setIsShowModal(true);
-                  // dispatch(
-                  //   createBoard({
-                  //     title: 'hello',
-                  //     icon: '434343434343',
-                  //   })
-                  // );
-                }}
-              >
-                <PlusIcon>+</PlusIcon>
-              </CreateButton> */}
             <CreateButton
-              onClick={
-                () => setCreateOpenModal(!isCreateOpenModal)
-                // dispatch(
-                //   createBoard({
-                //     title: 'Some title',
-                //     icon: '64eb3c2a8408f19231b21fc5',
-                //     background: '64eb2ce10d0d1b1e0a8b9bb2',
-                //   })
-                // );
-              }
+              onClick={() => setCreateOpenModal(!isCreateOpenModal)}
+
               sx={{
                 minWidth: '40px',
                 height: '36px',
@@ -130,7 +115,7 @@ export const Sidebar = () => {
           </BlockContainerCreate>
         </Block>
 
-        {isBoard ? (
+        {filteredItems ? (
           <BlockContainerBoard>
             <BordInSidebar filteredItems={filteredItems} />
           </BlockContainerBoard>
@@ -158,6 +143,7 @@ export const Sidebar = () => {
               <ModalForm
                 isNeedHelpModal={isNeedHelpModal}
                 needHelpModalShow={needHelpModalShow}
+                setisNeedHelpModal={setisNeedHelpModal}
               />
               <Helpbutton onClick={() => setisNeedHelpModal(!isNeedHelpModal)}>
                 <BiHelpCircle size={20} />

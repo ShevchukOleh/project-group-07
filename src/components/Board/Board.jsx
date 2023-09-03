@@ -47,7 +47,7 @@ export default function Board({ setIsShowModal }) {
   const backgroundSrc = background?.background_lg_src || '';
 
   const backgroundStyle = backgroundSrc
-    ? { backgroundImage: `url(${backgroundSrc})` }
+    ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
     : { backgroundColor: theme?.themeSet?.boardBg };
 
   return (

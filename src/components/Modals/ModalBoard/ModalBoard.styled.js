@@ -60,7 +60,8 @@ export const ContainerModal = styled.div`
   height: auto;
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
-  }};
+}};
+  border-radius: 4px;
   border-width: 1px;
   border-style: solid;
   border-color: ${props => {
@@ -88,6 +89,7 @@ export const FormControlLabelStyled = styled(FormControlLabel)`
 export const IconContainer = styled(RadioGroup)`
   display: flex;
   gap: 8px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
   }};
@@ -125,6 +127,7 @@ export const DialogActionsStyled = styled(DialogActions)`
 export const Icon = styled(AddIcon)`
   width: 18px;
   height: 18px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   fill: ${props => {
     return props?.theme?.themeSet?.iconFill;
   }};

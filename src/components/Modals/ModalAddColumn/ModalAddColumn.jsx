@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ColumnModalContainer,
   ColumnModalTitle,
@@ -7,6 +8,8 @@ import {
   IconPlusWrapper,
   IconPlus,
 } from '../UI/ModalCulumn.styled';
+import { IconCrossWrapper } from '../ModalBoard/ModalBoard.styled';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const AddColumn = () => {
   const [addColumn, setAddColumn] = useState('');

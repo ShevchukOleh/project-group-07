@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
-import { ColumnTitleStyle, OpenModalBtn } from './ColumnTitle.styled';
+import { ColumnTitleStyle } from './ColumnTitle.styled';
 import { FiTrash, FiEdit2 } from 'react-icons/fi';
 
-import { useDispatch } from 'react-redux';
-import { deleteColumn } from 'store/AsyncThunk/asyncThunkBoards';
 import { theme } from '../../constants';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   deleteColumn,
   editColumnById,
 } from 'store/AsyncThunk/asyncThunkBoards';
-import {
-  // selectError,
-  selectLoading,
-} from 'store/createSlices/board/boardSelectors';
 
 
 export default function ColumnTitle(params) {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  // const isLoading = useSelector(selectLoading);
   // const isError = useSelector(selectError);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [editColumn, setEditColumn] = useState('');
@@ -28,9 +22,9 @@ export default function ColumnTitle(params) {
     boardId: params.boardId,
     columnId: params.columnId,
   };
-  const openModal = () => {
-    setOpenEditModal(!openEditModal);
-  };
+  // const openModal = () => {
+  //   setOpenEditModal(!openEditModal);
+  // };
   const handleSubmit = e => {
     e.preventDefault();
     if (editColumn) {

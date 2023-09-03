@@ -1,22 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
-// import { useDispatch } from 'react-redux';
-// import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
+import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
 
-// export default function BoardCard({ boardId, columnId, card }) {
-//   const dispatch = useDispatch();
-
-
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectMyCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
 import { theme } from '../../constants';
 
-export default function BoardCard() {
+// export default function BoardCard() {
+export default function BoardCard({ boardId, columnId, card }) {
+
+  const dispatch = useDispatch();
   const selectPriority = useSelector(selectedInPriority);
   const selectCards = useSelector(selectMyCards);
   const [cards, setCards] = useState([]);

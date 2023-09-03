@@ -185,10 +185,10 @@ const editColumnById = createAsyncThunk(
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
 
-        `${BASE_URL}api/board/${boardId}/column/${columnId}`,
+        // `${BASE_URL}api/board/${boardId}/column/${columnId}`,
 
-//         `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
-//         { title },
+        `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
+        { title },
 
         {
           headers: {

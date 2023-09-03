@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 
-const currentTheme = 'violet';
+const currentTheme = 'light';
 
 const lightTheme = {
   headerBg: '#FCFCFC',

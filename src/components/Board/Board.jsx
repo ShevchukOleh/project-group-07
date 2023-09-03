@@ -3,6 +3,8 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
+  selectLoading,
+  selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';
 
@@ -19,6 +21,7 @@ import { theme } from '../../constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
 import { Dialog } from '@mui/material';
 import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
+import LoaderComponent from 'components/Loader/Loader';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
@@ -30,7 +33,8 @@ export default function Board({ setIsShowModal }) {
   const [addColumn, setAddColumn] = useState('');
 
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
   const openModalCard = () => {
     setIsModalCardOpen(true);
   };
@@ -46,6 +50,7 @@ export default function Board({ setIsShowModal }) {
     if (addColumn) {
       dispatch(createColumn({ boardId, title: addColumn }));
       setAddColumn('');
+      setOpenAddModal(!openAddModal);
     }
   };
   const board =
@@ -125,6 +130,7 @@ export default function Board({ setIsShowModal }) {
                 setOpenAddModal={setOpenAddModal}
               />
             </Dialog>
+            {isLoading && <LoaderComponent />}
             {/* ===================modal */}
           </div>
         </div>

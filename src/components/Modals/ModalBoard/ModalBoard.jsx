@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
@@ -15,11 +14,15 @@ import {
   DialogActionsStyled,
   Icon,
   FormControlLabelStyled,
+
+  ErrorTextWrap,
+  StyledButton,
+  StyledBox,
   IconCrossWrapper,
+
 } from './ModalBoard.styled';
-import Plus from '../../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
-import { Box } from '@mui/material';
+import { theme } from '../../../constants';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -102,19 +105,22 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
   };
+  console.log(isCreateOpenModal);
+
 
   return (
     <div>
       <Dialog open={isCreateOpenModal} onClose={createOpenModalShow}>
         <ContainerModal>
           {isLoading && <Loader />}
-          {error && <div>Something went wrong. Try again later</div>}
+          {error && <ErrorTextWrap>Something went wrong. Try again later</ErrorTextWrap>}
           <DialogTitle
             sx={{
               fontSize: 18,
               fontWeight: 500,
               padding: 0,
               marginBottom: '24px',
+              color: `${theme?.themeSet?.modalHelpTitle}`,
             }}
           >
             New board
@@ -147,10 +153,12 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   fontWeight: 500,
                   padding: 0,
                   marginBottom: '14px',
+                  color: `${theme?.themeSet?.modalHelpTitle}`,
                 }}
               >
                 Icons
               </DialogTitle>
+
               <IconContainer
                 row
                 aria-labelledby="icons-group"
@@ -184,6 +192,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                 fontWeight: 500,
                 padding: 0,
                 marginBottom: '14px',
+                color: `${theme?.themeSet?.modalHelpTitle}`,
               }}
             >
               Background
@@ -238,23 +247,27 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                 ))}
             </ImageBgContainer>
           </DialogContent>
+
           <DialogActionsStyled>
-            <Button
+            <StyledButton
               onClick={handleCloseBtn}
               sx={{
                 fontFamily: 'Poppins',
-                backgroundColor: '#BEDBB0',
-                color: '#161616',
+                backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
+                color: `${theme?.themeSet?.modalHelpSendText}`,
                 fontWeight: 500,
                 height: 49,
                 width: '100%',
                 padding: 0,
                 textTransform: 'capitalize',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: `${theme?.themeSet?.modalHelpSendBorder}`,
+                borderRadius: '8px',
               }}
             >
-              <Box
+              <StyledBox
                 sx={{
-                  backgroundColor: '#161616',
                   height: 28,
                   width: 28,
                   display: 'flex',
@@ -264,10 +277,10 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   marginRight: 1,
                 }}
               >
-                <Icon src={Plus} />
-              </Box>
+                <Icon />
+              </StyledBox>
               Create
-            </Button>
+            </StyledButton>
           </DialogActionsStyled>
           <IconCrossWrapper onClick={() => createOpenModalShow(prev => !prev)}>
             <AiOutlineClose size={18} color="#161616" />

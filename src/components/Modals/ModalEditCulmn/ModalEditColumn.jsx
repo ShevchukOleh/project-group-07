@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 import {
   ColumnModalContainer,
@@ -7,18 +6,6 @@ import {
   ColumnModalFormInput,
   ColumnModalFormBtn,
   IconPlusWrapper,
-
-  //   IconPlus,
-// } from '../UI/ModalCulumn.styled';
-
-// const EditColumn = () => {
-//   const [change, setChange] = useState('');
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     console.log(change);
-//   };
-
   IconCrossWrapper,
 } from '../UI/ModalCulumn.styled';
 const ModalEditColumn = ({
@@ -30,17 +17,15 @@ const ModalEditColumn = ({
   return (
     <ColumnModalContainer>
       <ColumnModalTitle>Edit column</ColumnModalTitle>
-
       <ColumnModalForm>
         <ColumnModalFormInput
           placeholder="Title"
           value={editColumn}
           onChange={e => setEditColumn(e.target.value)}
         />
-
         <ColumnModalFormBtn onClick={handleSubmit}>
           <IconPlusWrapper>
-            <IconPlus />
+            <AiOutlinePlus size={16} color="white" />
           </IconPlusWrapper>
           Add
         </ColumnModalFormBtn>
@@ -51,6 +36,4 @@ const ModalEditColumn = ({
     </ColumnModalContainer>
   );
 };
-
-// export default EditColumn;
 export default ModalEditColumn;

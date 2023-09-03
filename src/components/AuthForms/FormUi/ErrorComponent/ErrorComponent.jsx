@@ -3,4 +3,11 @@ import { ErrorMessage } from 'formik';
 const ErrorComponent = ({ name }) => (
   <ErrorMessage name={name} component="div" className="error-message" />
 );
-export default ErrorComponent;
+const ErrorIncorrectLogin = ({ loginError }) => {
+  return (
+    <div component="div" className="error-message">
+      {loginError.objError}
+    </div>
+  );
+};
+export { ErrorComponent, ErrorIncorrectLogin };

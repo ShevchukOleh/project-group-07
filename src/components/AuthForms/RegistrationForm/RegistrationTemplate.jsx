@@ -10,7 +10,7 @@ import {
 import { RiEyeCloseLine, RiEyeLine } from 'react-icons/ri';
 import {
   ErrorComponent,
-  ErrorIncorrectLogin,
+  // ErrorIncorrectLogin,
 } from '../FormUi/ErrorComponent/ErrorComponent';
 const RegistrationTemplate = ({
   formikProps,

@@ -2,7 +2,7 @@ const { default: styled } = require('styled-components');
 
 const ColumnModalContainer = styled.div`
   height: 221px;
-  background-color: #151515;
+  background-color: #ffffff;
   width: 335px;
   padding: 24px;
   position: relative;
@@ -13,7 +13,7 @@ const ColumnModalContainer = styled.div`
   }
 `;
 const ColumnModalTitle = styled.h3`
-  color: #fff;
+  color: #161616;
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;
@@ -32,9 +32,9 @@ const ColumnModalFormInput = styled.input`
   border: 1px solid #bedbb0;
   opacity: 0.4;
   width: 100%;
-  color: #fff;
+  color: #161616;
   padding: 14px 0 14px 18px;
-  background-color: #1f1f1f;
+  background-color: #fff;
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   margin-bottom: 24px;
 `;
@@ -46,6 +46,8 @@ const ColumnModalFormBtn = styled.button`
   border-radius: 8px;
   gap: 5px;
   background: #bedbb0;
+  outline: none;
+  border: none;
   width: 100%;
   cursor: pointer;
 `;

@@ -12,6 +12,7 @@ export const ButtonStyled = styled(Button)`
   height: 49px;
   width: '100%';
   padding: 0;
+  position: relative;
   text-transform: 'capitalize';
   &&:hover {
     background-color: '#9DC888';
@@ -88,4 +89,12 @@ export const TextFieldStyled = styled.input`
   &&:hover {
     border: 1px solid grey;
   }
+`;
+export const IconCrossWrapper = styled.div`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 14px;
+  right: 14px;
 `;

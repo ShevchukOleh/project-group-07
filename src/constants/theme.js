@@ -57,9 +57,17 @@ const lightTheme = {
   inputBorderFocus: '#BEDBB0',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+  inputPlaceholder: 'rgba(22, 22, 22, 0.5)',
+  inputOtherBorder: '#CCC',
+  inputOtherHover: '#BEDBB0',
 
   createBtnIcon: '#FFFFFF',
   createBtnIconBg: '#161616',
+
+  boxIconBg: '#121212',
+  boxIconBgHover: '#121212',
+  iconFill: '#FFFFFF',
+  iconFillHover: '#FFFFFF',
 };
 
 const darkTheme = {
@@ -117,9 +125,17 @@ const darkTheme = {
   inputBorderFocus: '#BEDBB0',
   inputColor: '#FFFFFF',
   inputBgColor: '#1F1F1F',
+  inputPlaceholder: 'rgba(255, 255, 255, 0.5)',
+  inputOtherBorder: '#BEDBB0',
+  inputOtherHover: '#FFFFFF',
 
   createBtnIcon: '#FFFFFF',
   createBtnIconBg: '#161616',
+
+  boxIconBg: '#FFFFFF',
+  boxIconBgHover: '#121212',
+  iconFill: '#121212',
+  iconFillHover: '#FFFFFF',
 };
 
 const coloredTheme = {
@@ -177,9 +193,17 @@ const coloredTheme = {
   inputBorderFocus: '#5255BC',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+  inputPlaceholder: 'rgba(22, 22, 22, 0.5)',
+  inputOtherBorder: '#CCC',
+  inputOtherHover: '#5255BC',
 
   createBtnIcon: '#161616',
   createBtnIconBg: '#FFFFFF',
+
+  boxIconBg: '#5255BC',
+  boxIconBgHover: '#FFFFFF',
+  iconFill: '#FFFFFF',
+  iconFillHover: '#121212',
 };
 
 const getTheme = theme => {

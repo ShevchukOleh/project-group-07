@@ -17,7 +17,7 @@ import BoardCard from 'components/BoardCard/BoardCard';
 import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
 import CardFormDialog from 'components/CardModal/CardModal';
 import { FiltersModal } from 'components/FiltersModal';
-import { BoardStyle } from './Board.styled';
+import { BoardStyle } from './BoardCard.styled';
 
 
 import { useState } from 'react';

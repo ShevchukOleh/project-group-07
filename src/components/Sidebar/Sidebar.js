@@ -73,7 +73,7 @@ export const Sidebar = () => {
   return (
     <ContainerAside>
       <SidebarContainer>
-        <div>
+        <>
           <Block>
             <LogoContainer>
               <Logo />
@@ -139,7 +139,7 @@ export const Sidebar = () => {
           ) : (
             <></>
           )}
-        </div>
+        </>
 
         <Block>
           <BlockContainer marginBottom={24}>

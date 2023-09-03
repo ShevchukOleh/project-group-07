@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import plant from '../../images/cup.png';
-import { BordInSidebar } from './BordInSidebar';
+import { BordInSidebar } from './BordInSidebar/BordInSidebar';
 import { BiHelpCircle } from 'react-icons/bi';
 import {
   Block,
@@ -25,14 +25,13 @@ import {
 } from './Sidebar.styled';
 import ModalForm from './NeedHelp/NeedHelpModal';
 
-import FormDialog from '../ModalBoard/ModalBoard';
-
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import SideBarSearch from './SideBarSearch/SideBarSearch';
 import { selectBoards } from 'store/createSlices/board/boardSelectors';
 import { getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
+import FormDialog from 'components/Modals/ModalBoard/ModalBoard';
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
@@ -55,12 +54,11 @@ export const Sidebar = () => {
     setCreateOpenModal(!isCreateOpenModal);
   };
 
-//   const openModalBoard = () => {
-//     setIsModalBoardOpen(true);
-//   };
-//   const closeModalBoard = () => {
-//     setIsModalBoardOpen(false);
-
+  //   const openModalBoard = () => {
+  //     setIsModalBoardOpen(true);
+  //   };
+  //   const closeModalBoard = () => {
+  //     setIsModalBoardOpen(false);
 
   const needHelpModalShow = e => {
     if (e.target.id === 'backdropNeedHelp') {
@@ -112,7 +110,6 @@ export const Sidebar = () => {
               <PlusIcon>+</PlusIcon>
             </CreateButton> */}
             <CreateButton
-
               onClick={
                 () => setCreateOpenModal(!isCreateOpenModal)
                 // dispatch(
@@ -123,7 +120,6 @@ export const Sidebar = () => {
                 //   })
                 // );
               }
-
               sx={{
                 minWidth: '40px',
                 height: '36px',

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const BoardCardStyle = styled.div`
+export const BoardStyle = styled.div`
   position: relative;
   margin-bottom: 8px;
 

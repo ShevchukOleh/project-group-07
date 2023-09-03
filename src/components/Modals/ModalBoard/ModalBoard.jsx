@@ -40,6 +40,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
+  const [errorField, setErrorField] = useState(null);
 
   // const theme = useSelector(sele)
   // const isLoading = useSelector(selectLoading)
@@ -76,7 +77,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
     icon: valueIcon,
     background: valueImgBg,
   };
-
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
@@ -86,11 +86,13 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const handleCloseBtn = () => {
     if (valueInput && valueImgBg) {
       dispatch(createBoard(createBd));
+      setErrorField('');
+      setValueInput('');
+      createOpenModalShow();
     } else {
-      console.error('Please, fill in the required fields');
+      setErrorField('Please, fill in the required fields');
     }
   };
-
   const handleChange = event => {
     setValueInput(event.target.value);
   };
@@ -130,6 +132,11 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               onChange={handleChange}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
+            {errorField && (
+              <div style={{ color: 'red', position: 'absolute', top: 130 }}>
+                Please, fill in the required fields
+              </div>
+            )}
             {/* <TextField
           error
           id="filled-error-helper-text"
@@ -269,7 +276,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               Create
             </Button>
           </DialogActionsStyled>
-          <IconCrossWrapper onClick={() => createOpenModalShow(prev => !prev)}>
+          <IconCrossWrapper onClick={createOpenModalShow}>
             <AiOutlineClose size={18} color="#161616" />
           </IconCrossWrapper>
         </ContainerModal>

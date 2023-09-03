@@ -12,8 +12,13 @@ import {
   CloseBtn,
 } from './NeedHelpModal.styled';
 import { theme } from '../../../constants';
+import { AiOutlineClose } from 'react-icons/ai';
 
-const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
+const ModalForm = ({
+  isNeedHelpModal,
+  needHelpModalShow,
+  setisNeedHelpModal,
+}) => {
   const [focusInput, setFocusInput] = useState(false);
   const [focusComment, setFocusComment] = useState(false);
 
@@ -30,6 +35,7 @@ const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
   const handleSubmit = values => {
     if (values.email && values.comment) {
       console.log(values);
+      setisNeedHelpModal(false);
     } else {
       alert('Sorry');
     }
@@ -42,7 +48,7 @@ const ModalForm = ({ isNeedHelpModal, needHelpModalShow }) => {
           <ModalContent>
             <ModalTitle>Need Help</ModalTitle>
             <CloseBtn>
-              <IconClose />
+              <IconClose onClick={needHelpModalShow} />
             </CloseBtn>
 
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>

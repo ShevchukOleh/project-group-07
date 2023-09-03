@@ -3,7 +3,12 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
+
   selectAllCards,
+
+  selectLoading,
+  // selectError,
+
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';
 
@@ -18,6 +23,9 @@ import { useState } from 'react';
 
 import { theme } from '../../constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
+import { Dialog } from '@mui/material';
+import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
+import LoaderComponent from 'components/Loader/Loader';
 
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
@@ -26,27 +34,44 @@ export default function Board({ setIsShowModal }) {
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [openAddModal, setOpenAddModal] = useState(false);
+  const [addColumn, setAddColumn] = useState('');
 
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
+  // const isError = useSelector(selectError);
   const openModalCard = () => {
     setIsModalCardOpen(true);
   };
+
   const closeModalCard = () => {
     setIsModalCardOpen(false);
   };
-
+  const openModal = () => {
+    setOpenAddModal(!openAddModal);
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (addColumn) {
+      dispatch(createColumn({ boardId, title: addColumn }));
+      setAddColumn('');
+      setOpenAddModal(!openAddModal);
+    }
+  };
   const board =
     boards.find(board => `:${board.title}` === boardName) || boards[0];
+
   const backgroundId = board?.background?._id;
   const boardId = board?._id;
 
   const background = backgrounds.find(
     background => background._id === backgroundId
   );
+
   const backgroundSrc = background?.background_lg_src || '';
 
   const backgroundStyle = backgroundSrc
-    ? { backgroundImage: `url(${backgroundSrc})` }
+    ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
     : { backgroundColor: theme?.themeSet?.boardBg };
   return (
     <BoardStyle style={backgroundStyle}>
@@ -70,6 +95,7 @@ export default function Board({ setIsShowModal }) {
                   columnId={column._id}
                   text={`${column.title}`}
                 />
+
                 <div className="containerColumnCard">
                   {cards.map(card => {
                     return (
@@ -84,7 +110,9 @@ export default function Board({ setIsShowModal }) {
                     );
                   })}
                 </div>
+
                 <ButtonCreate text="Add another card" onClick={openModalCard} />
+
                 <CardFormDialog
                   boardId={boardId}
                   columnId={column._id}
@@ -96,17 +124,22 @@ export default function Board({ setIsShowModal }) {
           })}
 
           <div>
-            <ButtonCreate
-              text="Add another column"
-              onClick={() => {
-                setIsShowModal(true);
-
-                dispatch(createColumn({ boardId, title: 'NewTitle' }));
-              }}
-            />
+            <ButtonCreate text="Add another column" onClick={openModal} />
+            {/* =========================modal */}
+            <Dialog open={openAddModal} onClose={openModal}>
+              <ModalAddColumn
+                handleSubmit={handleSubmit}
+                setAddColumn={setAddColumn}
+                addColumn={addColumn}
+                setOpenAddModal={setOpenAddModal}
+              />
+            </Dialog>
+            {isLoading && <LoaderComponent />}
+            {/* ===================modal */}
           </div>
         </div>
       )}
+
       {boards.length === 0 && (
         <div className="emptyBoard">
           Before starting your project, it is essential to create a board to

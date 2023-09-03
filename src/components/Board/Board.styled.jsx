@@ -105,7 +105,9 @@ export const BoardStyle = styled.section`
   }
 
   & .title {
-    color: #161616;
+    color: ${props => {
+    return props?.theme?.themeSet?.boardTitle;
+  }};
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -162,7 +164,9 @@ export const BoardStyle = styled.section`
     transform: translate(-50%, -50%);
     width: calc(100% - 40px);
 
-    color: rgba(22, 22, 22, 0.7);
+    color: ${props => {
+    return props?.theme?.themeSet?.boardEmptyText;
+  }};
     text-align: center;
     font-size: 12px;
     line-height: 16px;

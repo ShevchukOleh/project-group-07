@@ -8,9 +8,13 @@ import {
   deleteBoard,
   deleteColumn,
   getBackgroundBoard,
+
   getAllCards,
   createOneCard,
   deleteCard,
+
+  editColumnById,
+
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
@@ -117,6 +121,19 @@ const boardSlice = createSlice({
         });
       })
       .addCase(deleteColumn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      //editColumnById====================================================
+      .addCase(editColumnById.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(editColumnById.fulfilled, (state, action) => {
+        console.log('action: ', action);
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(editColumnById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

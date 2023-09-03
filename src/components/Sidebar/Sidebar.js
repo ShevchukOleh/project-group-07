@@ -61,83 +61,68 @@ export const Sidebar = () => {
   //     setIsModalBoardOpen(false);
 
   const needHelpModalShow = e => {
-    if (e.target.id === 'backdropNeedHelp') {
+    if (
+      e.target.id === 'backdropNeedHelp' ||
+      e.target.tagName === 'svg' ||
+      e.target.tagName === 'path'
+    ) {
       setisNeedHelpModal(!isNeedHelpModal);
     }
+
+    console.log(e.target);
   };
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };
-  const isBoard = true;
+  // const isBoard = true;
 
   return (
     <ContainerAside>
       <SidebarContainer>
-          <Block>
-            <LogoContainer>
-              <Logo />
-              <LogoText>Task Pro</LogoText>
-            </LogoContainer>
+        <Block>
+          <LogoContainer>
+            <Logo />
+            <LogoText>Task Pro</LogoText>
+          </LogoContainer>
 
-            <InputContainer>
-              <SideBarSearch
-                setFilteredItems={setFilteredItems}
-                boardsList={boardsList}
-              />
-            </InputContainer>
+          <InputContainer>
+            <SideBarSearch
+              setFilteredItems={setFilteredItems}
+              boardsList={boardsList}
+            />
+          </InputContainer>
 
-            <BlockContainerCreate>
-              <NewBoardText>
-                Create a<br />
-                new board
-              </NewBoardText>
+          <BlockContainerCreate>
+            <NewBoardText>
+              Create a<br />
+              new board
+            </NewBoardText>
 
-              <FormDialog
-                createOpenModalShow={createOpenModalShow}
-                isCreateOpenModal={isCreateOpenModal}
-              />
-              {/* <CreateButton
-                onClick={() => {
-                  setIsShowModal(true);
-                  // dispatch(
-                  //   createBoard({
-                  //     title: 'hello',
-                  //     icon: '434343434343',
-                  //   })
-                  // );
-                }}
-              >
-                <PlusIcon>+</PlusIcon>
-              </CreateButton> */}
-              <CreateButton
-                onClick={
-                  () => setCreateOpenModal(!isCreateOpenModal)
-                  // dispatch(
-                  //   createBoard({
-                  //     title: 'Some title',
-                  //     icon: '64eb3c2a8408f19231b21fc5',
-                  //     background: '64eb2ce10d0d1b1e0a8b9bb2',
-                  //   })
-                  // );
-                }
-                sx={{
-                  minWidth: '40px',
-                  height: '36px',
-                  marginLeft: '8px',
-                }}
-              >
-                <PlusIcon>+</PlusIcon>
-              </CreateButton>
-            </BlockContainerCreate>
-          </Block>
+            <FormDialog
+              createOpenModalShow={createOpenModalShow}
+              isCreateOpenModal={isCreateOpenModal}
+            />
 
-          {isBoard ? (
-            <BlockContainerBoard>
-              <BordInSidebar filteredItems={filteredItems} />
-            </BlockContainerBoard>
-          ) : (
-            <></>
-          )}
+            <CreateButton
+              onClick={() => setCreateOpenModal(!isCreateOpenModal)}
+              sx={{
+                minWidth: '40px',
+                height: '36px',
+                marginLeft: '8px',
+              }}
+            >
+              <PlusIcon>+</PlusIcon>
+            </CreateButton>
+          </BlockContainerCreate>
+        </Block>
+
+        {filteredItems ? (
+          <BlockContainerBoard>
+            <BordInSidebar filteredItems={filteredItems} />
+          </BlockContainerBoard>
+        ) : (
+          <></>
+        )}
         <Block>
           <BlockContainer marginBottom={24}>
             <PlantImg src={plant} alt="plant" />
@@ -159,6 +144,7 @@ export const Sidebar = () => {
               <ModalForm
                 isNeedHelpModal={isNeedHelpModal}
                 needHelpModalShow={needHelpModalShow}
+                setisNeedHelpModal={setisNeedHelpModal}
               />
               <Helpbutton onClick={() => setisNeedHelpModal(!isNeedHelpModal)}>
                 <BiHelpCircle size={20} />

@@ -22,7 +22,7 @@ export default function ColumnTitle(params) {
   const handleSubmit = e => {
     e.preventDefault();
     if (editColumn) {
-      dispatch(editColumnById({ params, title: editColumn }));
+      dispatch(editColumnById({ requestData, title: editColumn }));
       setEditColumn('');
     }
   };

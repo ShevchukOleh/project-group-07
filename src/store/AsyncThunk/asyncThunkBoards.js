@@ -181,16 +181,12 @@ const createColumn = createAsyncThunk(
 );
 const editColumnById = createAsyncThunk(
   'board/editColumnById',
-  async ({ params, title }, thunkAPI) => {
-    const { columnId, boardId } = params;
-    const requestData = {
-      title,
-    };
+  async ({ requestData, title }, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
-        `${BASE_URL}/api/board/${boardId}/column/${columnId}`,
-        requestData,
+        `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
+        { title },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -226,7 +222,12 @@ const deleteColumn = createAsyncThunk(
     }
   }
 );
-
+// const SwaggerUI = async () => {
+// const { data } = await axios.get(
+// `https://taskpro-backend-zulp.onrender.com/api-docs/Swagger_UI`
+// );
+// console.log(data);
+// };
 export {
   getAllBoards,
   createBoard,

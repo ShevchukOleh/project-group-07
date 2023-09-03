@@ -2,11 +2,15 @@ import styled from '@emotion/styled';
 
 const ColumnModalContainer = styled.div`
   height: 221px;
-  background-color: #151515;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.modalHelpBg;
+  }};
   width: 335px;
   padding: 24px;
   border-radius: 8px;
-  border: 1px solid rgba(190, 219, 176, 0.5);
+  border: 1px solid ${props => {
+    return props?.theme?.themeSet?.modalHelpBorder;
+  }};
 
   @media screen and (min-width: 480px) {
     width: 350px;
@@ -14,7 +18,9 @@ const ColumnModalContainer = styled.div`
 `;
 
 const ColumnModalTitle = styled.h3`
-  color: #fff;
+  color: ${props => {
+    return props?.theme?.themeSet?.modalHelpTitle;
+  }};
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;

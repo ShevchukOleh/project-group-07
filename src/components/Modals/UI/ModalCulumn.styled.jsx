@@ -3,26 +3,18 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 const ColumnModalContainer = styled.div`
   height: 221px;
-  background-color: ${props => {
-    return props?.theme?.themeSet?.modalHelpBg;
-  }};
+  background-color: #151515;
   width: 335px;
   padding: 24px;
   border-radius: 8px;
-  border: 1px solid
-    ${props => {
-      return props?.theme?.themeSet?.modalHelpBorder;
-    }};
-
+  border: 1px solid rgba(190, 219, 176, 0.5);
   @media screen and (min-width: 480px) {
     width: 350px;
   }
 `;
 
 const ColumnModalTitle = styled.h3`
-  color: ${props => {
-    return props?.theme?.themeSet?.modalHelpTitle;
-  }};
+  color: #fff;
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;
@@ -35,6 +27,7 @@ const ColumnModalTitle = styled.h3`
 
 const ColumnModalForm = styled.form`
   max-width: 302px;
+  border-radius: 8px;
 `;
 
 const ColumnModalFormInput = styled.input`
@@ -46,13 +39,9 @@ const ColumnModalFormInput = styled.input`
   outline: none;
   opacity: 0.4;
   width: 100%;
-  color: ${props => {
-    return props?.theme?.themeSet?.inputColor;
-  }};
+  color: #fff;
   padding: 14px 0 14px 18px;
-  background-color: ${props => {
-    return props?.theme?.themeSet?.inputBgColor;
-  }};
+  background-color: #1f1f1f;
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   margin-bottom: 24px;
 
@@ -82,35 +71,8 @@ const ColumnModalFormBtn = styled.button`
     return props?.theme?.themeSet?.modalHelpSendBorder;
   }};
   gap: 5px;
-  background-color: ${props => {
-    return props?.theme?.themeSet?.modalHelpSendBg;
-  }};
-  color: ${props => {
-    return props?.theme?.themeSet?.modalHelpSendText;
-  }};
+  background: #bedbb0;
   width: 100%;
-  transition: color, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    color: ${props => {
-      return props?.theme?.themeSet?.modalHelpSendHoverText;
-    }};
-    background-color: ${props => {
-      return props?.theme?.themeSet?.modalHelpSendHover;
-    }};
-  }
-
-  &:hover > div {
-    background-color: ${props => {
-      return props?.theme?.themeSet?.boxIconBgHover;
-    }};
-  }
-
-  &:hover > div > svg {
-    fill: ${props => {
-      return props?.theme?.themeSet?.iconFillHover;
-    }};
-  }
 `;
 
 const IconPlusWrapper = styled.div`
@@ -134,7 +96,6 @@ const IconPlus = styled(AiOutlinePlus)`
     return props?.theme?.themeSet?.iconFill;
   }};
 `;
-
 export {
   ColumnModalContainer,
   ColumnModalTitle,
@@ -142,5 +103,4 @@ export {
   ColumnModalFormInput,
   ColumnModalFormBtn,
   IconPlusWrapper,
-  IconPlus,
 };

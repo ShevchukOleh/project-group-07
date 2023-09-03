@@ -115,11 +115,6 @@ const OneBoard = styled.div`
       ? props?.theme?.themeSet?.sidebarText
       : props?.theme?.themeSet?.sidebarTextWitoutHover};
 
-  .icon {
-    opacity: ${props => (props.isSelected ? 1 : 0)};
-    transition: opacity 0.3s;
-  }
-
   &:hover {
     background-color: ${props => {
       return props?.theme?.themeSet?.sidebarBlock;
@@ -127,9 +122,27 @@ const OneBoard = styled.div`
     color: ${props => {
       return props?.theme?.themeSet?.sidebarText;
     }};
+
     .icon {
+      color: ${props => {
+        return props?.theme?.themeSet?.sidebarTextWitoutHover;
+      }};
       opacity: 1;
-      transition: opacity 0.3s;
+      transition: opacity 300ms;
+    }
+  }
+
+  .icon {
+    opacity: ${props => (props.isSelected ? 1 : 0)};
+    transition: opacity 0.3s;
+
+    &:hover.delete {
+      transform: scale(2);
+      color: rgb(209 92 92);
+    }
+    &:hover.edit {
+      transform: scale(2);
+      color: rgb(104 177 39);
     }
   }
 

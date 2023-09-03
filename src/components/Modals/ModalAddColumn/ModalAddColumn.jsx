@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   ColumnModalContainer,
   ColumnModalTitle,
@@ -17,7 +16,18 @@ const AddColumn = () => {
     console.log(addColumn);
   };
 
-  return (
+//   IconCrossWrapper,
+// } from '../UI/ModalCulumn.styled';
+// import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+// const ModalAddColumn = ({
+//   handleSubmit,
+//   setOpenAddModal,
+//   setAddColumn,
+//   addColumn,
+// }) => {
+
+
+return (
     <ColumnModalContainer>
       <ColumnModalTitle>Add column</ColumnModalTitle>
 
@@ -35,8 +45,12 @@ const AddColumn = () => {
           Add
         </ColumnModalFormBtn>
       </ColumnModalForm>
+      <IconCrossWrapper onClick={() => setOpenAddModal(prev => !prev)}>
+        <AiOutlineClose size={18} color="#161616" />
+      </IconCrossWrapper>
     </ColumnModalContainer>
   );
 };
 
 export default AddColumn;
+// export default ModalAddColumn;

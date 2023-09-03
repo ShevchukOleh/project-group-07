@@ -32,6 +32,11 @@ const IconClose = styled(CloseOutlinedIcon)`
   fill: ${props => {
     return props?.theme?.themeSet?.modalHelpTitle;
   }};
+
+  &:hover {
+    transform: scale(1.1);
+    fill: red;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -44,9 +49,13 @@ const ModalContent = styled.div`
     return props?.theme?.themeSet?.modalHelpBorder;
   }};
   border-radius: 8px;
-   background-color: ${props => {
+  background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
   }};
+
+  @media (max-width: 375px) {
+    width: 335px;
+  }
 `;
 
 const ModalTitle = styled.h2`
@@ -78,13 +87,13 @@ const ModalButton = styled.button`
   cursor: pointer;
   transition: color, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-   &:hover {
+  &:hover {
     color: ${props => {
-    return props?.theme?.themeSet?.modalHelpSendHoverText;
-  }};
+      return props?.theme?.themeSet?.modalHelpSendHoverText;
+    }};
     background-color: ${props => {
-    return props?.theme?.themeSet?.modalHelpSendHover;
-  }};
+      return props?.theme?.themeSet?.modalHelpSendHover;
+    }};
   }
 `;
 

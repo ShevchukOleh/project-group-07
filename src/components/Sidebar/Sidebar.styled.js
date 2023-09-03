@@ -253,19 +253,9 @@ const CreateButton = styled(Button)`
   min-width: 40px;
   height: 36px;
   margin-left: 8px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${props => {
-    return props?.theme?.themeSet?.sidebarCreateBtnBorder;
-  }};
   background-color: ${props => {
     return props?.theme?.themeSet?.sidebarCreateBtnBg;
   }};
-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  
-&:hover {background-color: ${props => {
-  return props?.theme?.themeSet?.sidebarCreateBtnBgHover;
-}};
 `;
 
 const PlantImg = styled.img`

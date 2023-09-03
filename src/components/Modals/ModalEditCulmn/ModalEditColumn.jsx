@@ -31,7 +31,7 @@ const ModalEditColumn = ({
         </ColumnModalFormBtn>
       </ColumnModalForm>
       <IconCrossWrapper onClick={() => setOpenEditModal(prev => !prev)}>
-        <AiOutlineClose size={18} color="#161616" />
+        <AiOutlineClose size={18} color="#fff" />
       </IconCrossWrapper>
     </ColumnModalContainer>
   );

@@ -3,12 +3,8 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
-
-  selectAllCards,
-
   selectLoading,
   // selectError,
-
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';
 
@@ -30,7 +26,6 @@ import LoaderComponent from 'components/Loader/Loader';
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
-  const cards = useSelector(selectAllCards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
@@ -73,6 +68,7 @@ export default function Board({ setIsShowModal }) {
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
     : { backgroundColor: theme?.themeSet?.boardBg };
+
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (
@@ -97,32 +93,32 @@ export default function Board({ setIsShowModal }) {
                 />
 
                 <div className="containerColumnCard">
-                  {cards.map(card => {
-                    return (
-                      card.column === column._id && (
-                        <BoardCard
-                          key={card._id}
-                          boardId={boardId}
-                          columnId={column._id}
-                          card={card}
-                        />
-                      )
-                    );
-                  })}
+                  <BoardCard />
                 </div>
 
                 <ButtonCreate text="Add another card" onClick={openModalCard} />
 
                 <CardFormDialog
-                  boardId={boardId}
-                  columnId={column._id}
                   isShowModal={isModalCardOpen}
                   hideModal={closeModalCard}
                 />
               </div>
             );
           })}
-
+          {/* <div className="containerOneColumn">
+            <ColumnTitle text={'In progress'} />
+            <div className="containerColumnCard">
+              <BoardCard />
+            </div>
+            <ButtonCreate text="Add another card" onClick={openModalCard} />
+          </div>
+          <div className="containerOneColumn">
+            <ColumnTitle text={'Done'} />
+            <div className="containerColumnCard">
+              <BoardCard />
+            </div>
+            <ButtonCreate text="Add another card" onClick={openModalCard} />
+          </div> */}
           <div>
             <ButtonCreate text="Add another column" onClick={openModal} />
             {/* =========================modal */}

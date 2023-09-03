@@ -31,7 +31,7 @@ export const App = () => {
         }
       />
       <Route
-        path="home/boardName"
+        path="home/:boardName"
         element={
           <PrivateRoute isLoggedIn={isLoggedIn}>
             <Layout />

@@ -1,154 +1,93 @@
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { BoardCardStyle } from './BoardCard.styled';
+import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 import {
-  selectBoards,
-  selectBackgrounds,
-  selectColumns,
-
-  selectAllCards,
-
-  selectLoading,
-  // selectError,
-
+  selectMyCards,
+  selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
-import { useParams } from 'react-router-dom';
-
-import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
-import BoardCard from 'components/BoardCard/BoardCard';
-import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
-import CardFormDialog from 'components/CardModal/CardModal';
-import { FiltersModal } from 'components/FiltersModal';
-import { BoardStyle } from './BoardCard.styled';
-
-
-import { useState } from 'react';
-
 import { theme } from '../../constants';
-import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
-import { Dialog } from '@mui/material';
-import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
-import LoaderComponent from 'components/Loader/Loader';
 
-export default function Board({ setIsShowModal }) {
-  const boards = useSelector(selectBoards);
-  const columns = useSelector(selectColumns);
-  const cards = useSelector(selectAllCards);
-  const backgrounds = useSelector(selectBackgrounds);
-  const { boardName } = useParams();
-  const [isModalCardOpen, setIsModalCardOpen] = useState(false);
-  const [openAddModal, setOpenAddModal] = useState(false);
-  const [addColumn, setAddColumn] = useState('');
+export default function BoardCard() {
+  const selectPriority = useSelector(selectedInPriority);
+  const selectCards = useSelector(selectMyCards);
+  const [cards, setCards] = useState([]);
 
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  // const isError = useSelector(selectError);
-  const openModalCard = () => {
-    setIsModalCardOpen(true);
-  };
+  useEffect(() => {
+    setCards(selectCards);
+  }, [selectPriority, selectCards]);
 
-  const closeModalCard = () => {
-    setIsModalCardOpen(false);
-  };
-  const openModal = () => {
-    setOpenAddModal(!openAddModal);
-  };
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (addColumn) {
-      dispatch(createColumn({ boardId, title: addColumn }));
-      setAddColumn('');
-      setOpenAddModal(!openAddModal);
+  return (
+    <>
+      {cards.map((item, index) => (
+        <BoardCardItem key={index} card={item} />
+      ))}
+    </>
+  );
+}
+
+function BoardCardItem({ card }) {
+  const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
+  const lowPriorityColor = '#8FA1D0';
+  const mediumPriorityColor = '#E09CB5';
+  const highPriorityColor = '#BEDBB0';
+
+  const priorityColor = priority => {
+    switch (priority) {
+      case 'low':
+        return lowPriorityColor;
+      case 'medium':
+        return mediumPriorityColor;
+      case 'high':
+        return highPriorityColor;
+      default:
+        return withoutPriorityColor;
     }
   };
-  const board =
-    boards.find(board => `:${board.title}` === boardName) || boards[0];
 
-  const backgroundId = board?.background?._id;
-  const boardId = board?._id;
-
-  const background = backgrounds.find(
-    background => background._id === backgroundId
-  );
-
-  const backgroundSrc = background?.background_lg_src || '';
-
-  const backgroundStyle = backgroundSrc
-    ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
-    : { backgroundColor: theme?.themeSet?.boardBg };
   return (
-    <BoardStyle style={backgroundStyle}>
-      {boards.length !== 0 && (
-        <div className="containerTitle">
-          <h2 className="title">{board.title}</h2>
-        </div>
-      )}
+    <BoardCardStyle>
+      <h3 className="title">{card.title}</h3>
 
-      <div className="filtersPosition">
-        <FiltersModal />
-      </div>
+      <p className="description clip">{card.description}</p>
+      <hr />
 
-      {boards.length !== 0 && (
-        <div className="containerColumns">
-          {columns.map(column => {
-            return (
-              <div key={column._id} className="containerOneColumn">
-                <ColumnTitle
-                  boardId={boardId}
-                  columnId={column._id}
-                  text={`${column.title}`}
-                />
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+        <div>
+          <span className="priorityTitle">Priority</span>
 
-                <div className="containerColumnCard">
-                  {cards.map(card => {
-                    return (
-                      card.column === column._id && (
-                        <BoardCard
-                          key={card._id}
-                          boardId={boardId}
-                          columnId={column._id}
-                          card={card}
-                        />
-                      )
-                    );
-                  })}
-                </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span
+              className="priorityColor"
+              style={{ backgroundColor: priorityColor(card.priority) }}
+            ></span>
 
-                <ButtonCreate text="Add another card" onClick={openModalCard} />
-
-                <CardFormDialog
-                  boardId={boardId}
-                  columnId={column._id}
-                  isShowModal={isModalCardOpen}
-                  hideModal={closeModalCard}
-                />
-              </div>
-            );
-          })}
-
-          <div>
-            <ButtonCreate text="Add another column" onClick={openModal} />
-            {/* =========================modal */}
-            <Dialog open={openAddModal} onClose={openModal}>
-              <ModalAddColumn
-                handleSubmit={handleSubmit}
-                setAddColumn={setAddColumn}
-                addColumn={addColumn}
-                setOpenAddModal={setOpenAddModal}
-              />
-            </Dialog>
-            {isLoading && <LoaderComponent />}
-            {/* ===================modal */}
+            <span className="priorityText">{card.priority}</span>
           </div>
         </div>
-      )}
 
-      {boards.length === 0 && (
-        <div className="emptyBoard">
-          Before starting your project, it is essential to create a board to
-          visualize and track all the necessary tasks and milestones. This board
-          serves as a powerful tool to organize the workflow and ensure
-          effective collaboration among team members.
+        <div>
+          <span className="priorityTitle">Deadline</span>
+
+          <div>
+            <span className="priorityText">{card.deadline}</span>
+          </div>
         </div>
-      )}
-    </BoardStyle>
+      </div>
+
+      <div className="containerCardIcon">
+        <FiArrowRightCircle
+          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+        />
+
+        <FiEdit2
+          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+        />
+
+        <FiTrash
+          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+        />
+      </div>
+    </BoardCardStyle>
   );
 }

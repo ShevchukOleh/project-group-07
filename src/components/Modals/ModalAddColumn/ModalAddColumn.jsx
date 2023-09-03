@@ -31,7 +31,7 @@ const ModalAddColumn = ({
         </ColumnModalFormBtn>
       </ColumnModalForm>
       <IconCrossWrapper onClick={() => setOpenAddModal(prev => !prev)}>
-        <AiOutlineClose size={18} color="#161616" />
+        <AiOutlineClose size={18} color="#fff" />
       </IconCrossWrapper>
     </ColumnModalContainer>
   );

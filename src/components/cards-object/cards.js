@@ -28,5 +28,4 @@ const objectCards = [
     deadline: ' 30.06.03',
   },
 ];
-
 export default objectCards;

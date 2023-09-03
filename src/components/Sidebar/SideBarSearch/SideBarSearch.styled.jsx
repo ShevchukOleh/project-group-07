@@ -8,16 +8,4 @@ export const Search = styled(TextField)`
   font-family: 'poppins';
   opacity: 50%;
   width: 100%;
-
-  .MuiInputLabel-root.Mui-focused {
-    color: #161616;
-  }
-
-  .MuiInput-underline:after {
-    border-bottom-color: #bedbb0;
-  }
-
-  .MuiInputBase-input {
-    color: #161616;
-  }
 `;

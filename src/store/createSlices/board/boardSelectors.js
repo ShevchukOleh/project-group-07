@@ -1,6 +1,5 @@
 export const selectBoards = state => state.board.boards;
 export const selectColumns = state => state.board.columns;
-export const selectAllCards = state => state.board.cards;
 
 export const selectBackgrounds = state => state.board.backgrounds;
 

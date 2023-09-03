@@ -1,4 +1,4 @@
-import { AiOutlinePlus } from 'react-icons/ai';
+import { useState } from 'react';
 import {
   ColumnModalContainer,
   ColumnModalTitle,
@@ -6,8 +6,8 @@ import {
   ColumnModalFormInput,
   ColumnModalFormBtn,
   IconPlusWrapper,
+  IconPlus,
 } from '../UI/ModalCulumn.styled';
-import { useState } from 'react';
 
 const EditColumn = () => {
   const [change, setChange] = useState('');
@@ -30,7 +30,7 @@ const EditColumn = () => {
 
         <ColumnModalFormBtn onClick={handleSubmit}>
           <IconPlusWrapper>
-            <AiOutlinePlus size={16} color="white" />
+            <IconPlus />
           </IconPlusWrapper>
           Add
         </ColumnModalFormBtn>

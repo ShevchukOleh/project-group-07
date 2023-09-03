@@ -1,6 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
+
+// import { useDispatch } from 'react-redux';
+// import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
+
+// export default function BoardCard({ boardId, columnId, card }) {
+//   const dispatch = useDispatch();
+
+
 import { useSelector } from 'react-redux';
 import {
   selectMyCards,
@@ -85,7 +93,14 @@ function BoardCardItem({ card }) {
         />
 
         <FiTrash
-          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+
+          onClick={() =>
+            dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
+          }
+          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+
+//           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+
         />
       </div>
     </BoardCardStyle>

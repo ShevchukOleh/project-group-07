@@ -73,71 +73,73 @@ export const Sidebar = () => {
   return (
     <ContainerAside>
       <SidebarContainer>
-        <Block>
-          <LogoContainer>
-            <Logo />
-            <LogoText>Task Pro</LogoText>
-          </LogoContainer>
+        <div>
+          <Block>
+            <LogoContainer>
+              <Logo />
+              <LogoText>Task Pro</LogoText>
+            </LogoContainer>
 
-          <InputContainer>
-            <SideBarSearch
-              setFilteredItems={setFilteredItems}
-              boardsList={boardsList}
-            />
-          </InputContainer>
+            <InputContainer>
+              <SideBarSearch
+                setFilteredItems={setFilteredItems}
+                boardsList={boardsList}
+              />
+            </InputContainer>
 
-          <BlockContainerCreate>
-            <NewBoardText>
-              Create a<br />
-              new board
-            </NewBoardText>
+            <BlockContainerCreate>
+              <NewBoardText>
+                Create a<br />
+                new board
+              </NewBoardText>
 
-            <FormDialog
-              createOpenModalShow={createOpenModalShow}
-              isCreateOpenModal={isCreateOpenModal}
-            />
-            {/* <CreateButton
-              onClick={() => {
-                setIsShowModal(true);
-                // dispatch(
-                //   createBoard({
-                //     title: 'hello',
-                //     icon: '434343434343',
-                //   })
-                // );
-              }}
-            >
-              <PlusIcon>+</PlusIcon>
-            </CreateButton> */}
-            <CreateButton
-              onClick={
-                () => setCreateOpenModal(!isCreateOpenModal)
-                // dispatch(
-                //   createBoard({
-                //     title: 'Some title',
-                //     icon: '64eb3c2a8408f19231b21fc5',
-                //     background: '64eb2ce10d0d1b1e0a8b9bb2',
-                //   })
-                // );
-              }
-              sx={{
-                minWidth: '40px',
-                height: '36px',
-                marginLeft: '8px',
-              }}
-            >
-              <PlusIcon>+</PlusIcon>
-            </CreateButton>
-          </BlockContainerCreate>
-        </Block>
+              <FormDialog
+                createOpenModalShow={createOpenModalShow}
+                isCreateOpenModal={isCreateOpenModal}
+              />
+              {/* <CreateButton
+                onClick={() => {
+                  setIsShowModal(true);
+                  // dispatch(
+                  //   createBoard({
+                  //     title: 'hello',
+                  //     icon: '434343434343',
+                  //   })
+                  // );
+                }}
+              >
+                <PlusIcon>+</PlusIcon>
+              </CreateButton> */}
+              <CreateButton
+                onClick={
+                  () => setCreateOpenModal(!isCreateOpenModal)
+                  // dispatch(
+                  //   createBoard({
+                  //     title: 'Some title',
+                  //     icon: '64eb3c2a8408f19231b21fc5',
+                  //     background: '64eb2ce10d0d1b1e0a8b9bb2',
+                  //   })
+                  // );
+                }
+                sx={{
+                  minWidth: '40px',
+                  height: '36px',
+                  marginLeft: '8px',
+                }}
+              >
+                <PlusIcon>+</PlusIcon>
+              </CreateButton>
+            </BlockContainerCreate>
+          </Block>
 
-        {isBoard ? (
-          <BlockContainerBoard>
-            <BordInSidebar filteredItems={filteredItems} />
-          </BlockContainerBoard>
-        ) : (
-          <></>
-        )}
+          {isBoard ? (
+            <BlockContainerBoard>
+              <BordInSidebar filteredItems={filteredItems} />
+            </BlockContainerBoard>
+          ) : (
+            <></>
+          )}
+        </div>
 
         <Block>
           <BlockContainer marginBottom={24}>

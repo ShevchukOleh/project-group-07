@@ -8,10 +8,7 @@ import {
 } from 'store/AsyncThunk/asyncThunkBoards';
 import ModalEditColumn from 'components/Modals/ModalEditCulmn/ModalEditColumn';
 import Dialog from '@mui/material/Dialog';
-import {
-  // selectError,
-  selectLoading,
-} from 'store/createSlices/board/boardSelectors';
+import { selectLoading } from 'store/createSlices/board/boardSelectors';
 import LoaderComponent from 'components/Loader/Loader';
 export default function ColumnTitle(params) {
   const dispatch = useDispatch();

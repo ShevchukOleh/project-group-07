@@ -37,7 +37,7 @@ export const BordInSidebar = ({ filteredItems }) => {
           onClick={() => handleItemClick(index)}
           style={{ textDecoration: 'none' }}
           key={index}
-          to={`/home/:${board.title}`}
+          to={`/home/${board.title}`}
         >
           <OneBoard
             color={boardIndicationColor}

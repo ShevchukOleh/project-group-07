@@ -9,14 +9,14 @@ import {
 import ModalEditColumn from 'components/Modals/ModalEditCulmn/ModalEditColumn';
 import Dialog from '@mui/material/Dialog';
 import {
-  selectError,
+  // selectError,
   selectLoading,
 } from 'store/createSlices/board/boardSelectors';
 import LoaderComponent from 'components/Loader/Loader';
 export default function ColumnTitle(params) {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
-  const isError = useSelector(selectError);
+  // const isError = useSelector(selectError);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [editColumn, setEditColumn] = useState('');
 

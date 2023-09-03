@@ -4,7 +4,7 @@ import {
   selectBackgrounds,
   selectColumns,
   selectLoading,
-  selectError,
+  // selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ export default function Board({ setIsShowModal }) {
 
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
-  const isError = useSelector(selectError);
+  // const isError = useSelector(selectError);
   const openModalCard = () => {
     setIsModalCardOpen(true);
   };

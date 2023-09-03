@@ -172,7 +172,6 @@ const createColumn = createAsyncThunk(
         }
       );
       const { data } = response;
-      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed to post new column');
@@ -186,7 +185,7 @@ const editColumnById = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
-        `${BASE_URL}/api/board/${boardId}/column/${columnId}`,
+        `${BASE_URL}api/board/${boardId}/column/${columnId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -218,7 +217,77 @@ const deleteColumn = createAsyncThunk(
       const { data } = response;
       return data;
     } catch (error) {
-      throw new Error('Failed delete Board');
+      throw new Error('Failed delete Column');
+    }
+  }
+);
+
+/***********************************************Cards******************************************************/
+
+const getAllCards = createAsyncThunk(
+  'board/getCards',
+  async ({ boardId, columnId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.get(
+        `${BASE_URL}api/board/${boardId}/column/${columnId}/card`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed get cards');
+    }
+  }
+);
+
+const createOneCard = createAsyncThunk(
+  'board/postCard',
+  async ({ boardId, columnId, createCard }, thunkAPI) => {
+    console.log('columnId: ', columnId);
+    console.log('boardId: ', boardId);
+    console.log('createCard: ', createCard);
+    try {
+      const token = thunkAPI.getState().user.token;
+
+      const response = await axios.post(
+        `${BASE_URL}api/board/${boardId}/column/${columnId}/card`,
+        createCard,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      console.log('data: ', data);
+      return data;
+    } catch (error) {
+      throw new Error('Failed to post new card');
+    }
+  }
+);
+const deleteCard = createAsyncThunk(
+  'board/deleteCard',
+  async ({ boardId, columnId, cardId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.delete(
+        `${BASE_URL}api/board/${boardId}/column/${columnId}/card/${cardId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed delete Card');
     }
   }
 );
@@ -235,4 +304,7 @@ export {
   createColumn,
   editColumnById,
   deleteColumn,
+  getAllCards,
+  createOneCard,
+  deleteCard,
 };

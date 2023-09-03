@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
-import {
-  selectMyCards,
-  selectedInPriority,
-} from 'store/createSlices/board/boardSelectors';
+import { useDispatch } from 'react-redux';
+import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
 
-export default function BoardCard() {
-  const selectPriority = useSelector(selectedInPriority);
-  const selectCards = useSelector(selectMyCards);
-  const [cards, setCards] = useState([]);
-  useEffect(() => {
-    setCards(selectCards);
-  }, [selectPriority, selectCards]);
-  return (
-    <>
-      {cards.map((item, index) => (
-        <BoardCardItem key={index} card={item} />
-      ))}
-    </>
-  );
-}
+export default function BoardCard({ boardId, columnId, card }) {
+  const dispatch = useDispatch();
 
-function BoardCardItem({ card }) {
   return (
     <BoardCardStyle>
       <h3 className="title">{card.title}</h3>
@@ -52,6 +35,9 @@ function BoardCardItem({ card }) {
           style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
         />
         <FiTrash
+          onClick={() =>
+            dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
+          }
           style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
         />
       </div>

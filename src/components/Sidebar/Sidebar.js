@@ -23,7 +23,6 @@ import {
   PlantImg,
   Helpbutton,
 } from './Sidebar.styled';
-import ModalForm from '../Modals/NeedHelp/NeedHelpModal';
 import { logoutUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
@@ -31,6 +30,7 @@ import SideBarSearch from './SideBarSearch/SideBarSearch';
 import { selectBoards } from 'store/createSlices/board/boardSelectors';
 import { getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 import FormDialog from 'components/Modals/ModalBoard/ModalBoard';
+import ModalForm from 'components/Modals/NeedHelp/NeedHelpModal';
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
@@ -72,30 +72,30 @@ export const Sidebar = () => {
   return (
     <ContainerAside>
       <SidebarContainer>
-          <Block>
-            <LogoContainer>
-              <Logo />
-              <LogoText>Task Pro</LogoText>
-            </LogoContainer>
+        <Block>
+          <LogoContainer>
+            <Logo />
+            <LogoText>Task Pro</LogoText>
+          </LogoContainer>
 
-            <InputContainer>
-              <SideBarSearch
-                setFilteredItems={setFilteredItems}
-                boardsList={boardsList}
-              />
-            </InputContainer>
+          <InputContainer>
+            <SideBarSearch
+              setFilteredItems={setFilteredItems}
+              boardsList={boardsList}
+            />
+          </InputContainer>
 
-            <BlockContainerCreate>
-              <NewBoardText>
-                Create a<br />
-                new board
-              </NewBoardText>
+          <BlockContainerCreate>
+            <NewBoardText>
+              Create a<br />
+              new board
+            </NewBoardText>
 
-              <FormDialog
-                createOpenModalShow={createOpenModalShow}
-                isCreateOpenModal={isCreateOpenModal}
-              />
-              {/* <CreateButton
+            <FormDialog
+              createOpenModalShow={createOpenModalShow}
+              isCreateOpenModal={isCreateOpenModal}
+            />
+            {/* <CreateButton
                 onClick={() => {
                   setIsShowModal(true);
                   // dispatch(
@@ -108,35 +108,35 @@ export const Sidebar = () => {
               >
                 <PlusIcon>+</PlusIcon>
               </CreateButton> */}
-              <CreateButton
-                onClick={
-                  () => setCreateOpenModal(!isCreateOpenModal)
-                  // dispatch(
-                  //   createBoard({
-                  //     title: 'Some title',
-                  //     icon: '64eb3c2a8408f19231b21fc5',
-                  //     background: '64eb2ce10d0d1b1e0a8b9bb2',
-                  //   })
-                  // );
-                }
-                sx={{
-                  minWidth: '40px',
-                  height: '36px',
-                  marginLeft: '8px',
-                }}
-              >
-                <PlusIcon>+</PlusIcon>
-              </CreateButton>
-            </BlockContainerCreate>
-          </Block>
+            <CreateButton
+              onClick={
+                () => setCreateOpenModal(!isCreateOpenModal)
+                // dispatch(
+                //   createBoard({
+                //     title: 'Some title',
+                //     icon: '64eb3c2a8408f19231b21fc5',
+                //     background: '64eb2ce10d0d1b1e0a8b9bb2',
+                //   })
+                // );
+              }
+              sx={{
+                minWidth: '40px',
+                height: '36px',
+                marginLeft: '8px',
+              }}
+            >
+              <PlusIcon>+</PlusIcon>
+            </CreateButton>
+          </BlockContainerCreate>
+        </Block>
 
-          {isBoard ? (
-            <BlockContainerBoard>
-              <BordInSidebar filteredItems={filteredItems} />
-            </BlockContainerBoard>
-          ) : (
-            <></>
-          )}
+        {isBoard ? (
+          <BlockContainerBoard>
+            <BordInSidebar filteredItems={filteredItems} />
+          </BlockContainerBoard>
+        ) : (
+          <></>
+        )}
         <Block>
           <BlockContainer marginBottom={24}>
             <PlantImg src={plant} alt="plant" />

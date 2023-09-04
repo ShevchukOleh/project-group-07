@@ -77,11 +77,7 @@ const ModalButton = styled.button`
   width: 100%;
   font-size: 14px;
   height: 50px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${props => {
-    return props?.theme?.themeSet?.modalHelpSendBorder;
-  }};
+  border: none;
   border-radius: 8px;
   margin-top: 24px;
   cursor: pointer;

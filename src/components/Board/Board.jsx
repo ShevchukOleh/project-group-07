@@ -16,13 +16,17 @@ import CardFormDialog from 'components/CardModal/CardModal';
 import { FiltersModal } from 'components/FiltersModal';
 
 import { useState } from 'react';
-
-import { theme } from '../../constants';
+import { getTheme } from 'constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
 import { Dialog } from '@mui/material';
 import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function Board() {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
   const backgrounds = useSelector(selectBackgrounds);

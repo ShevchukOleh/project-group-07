@@ -6,8 +6,10 @@ import {
   ColumnModalFormBtn,
   IconPlusWrapper,
   IconCrossWrapper,
+  IconPlus,
+  IconClose,
 } from '../UI/ModalCulumn.styled';
-import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+
 const ModalAddColumn = ({
   handleSubmit,
   setOpenAddModal,
@@ -17,23 +19,28 @@ const ModalAddColumn = ({
   return (
     <ColumnModalContainer>
       <ColumnModalTitle>Add column</ColumnModalTitle>
+
       <ColumnModalForm>
         <ColumnModalFormInput
           placeholder="To Do"
           value={addColumn}
           onChange={e => setAddColumn(e.target.value)}
         />
+
         <ColumnModalFormBtn onClick={handleSubmit}>
           <IconPlusWrapper>
-            <AiOutlinePlus size={16} color="white" />
+            <IconPlus />
           </IconPlusWrapper>
+
           Add
         </ColumnModalFormBtn>
       </ColumnModalForm>
+
       <IconCrossWrapper onClick={() => setOpenAddModal(prev => !prev)}>
-        <AiOutlineClose size={18} color="#fff" />
+        <IconClose />
       </IconCrossWrapper>
     </ColumnModalContainer>
   );
 };
+
 export default ModalAddColumn;

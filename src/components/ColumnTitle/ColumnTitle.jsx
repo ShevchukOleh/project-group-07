@@ -10,6 +10,8 @@ import ModalEditColumn from 'components/Modals/ModalEditCulmn/ModalEditColumn';
 import Dialog from '@mui/material/Dialog';
 import { selectLoading } from 'store/createSlices/board/boardSelectors';
 import LoaderComponent from 'components/Loader/Loader';
+import { theme } from '../../constants';
+
 export default function ColumnTitle(params) {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
@@ -21,9 +23,11 @@ export default function ColumnTitle(params) {
     boardId: params.boardId,
     columnId: params.columnId,
   };
+
   const openModal = () => {
     setOpenEditModal(!openEditModal);
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (editColumn) {
@@ -32,13 +36,21 @@ export default function ColumnTitle(params) {
       setOpenEditModal(!openEditModal);
     }
   };
+
   return (
     <ColumnTitleStyle>
       <p className="titleColumn">{params.text}</p>
+
       <div style={{ display: 'flex', gap: 5 }}>
         <OpenModalBtn onClick={openModal}>
-          <FiEdit2 style={{ color: 'rgba(16, 16, 16, 0.5)' }} />
+          <FiEdit2
+            style={{
+              cursor: 'pointer',
+              color: `${theme?.themeSet?.cardPriorityIcon}`,
+            }}
+          />
         </OpenModalBtn>
+
         <Dialog open={openEditModal} onClose={openModal} style={{}}>
           <ModalEditColumn
             handleSubmit={handleSubmit}
@@ -47,10 +59,14 @@ export default function ColumnTitle(params) {
             setOpenEditModal={setOpenEditModal}
           />
         </Dialog>
+
         {isLoading && <LoaderComponent />}
         <FiTrash
           onClick={() => dispatch(deleteColumn(requestData))}
-          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+          style={{
+            cursor: 'pointer',
+            color: `${theme?.themeSet?.cardPriorityIcon}`,
+          }}
         />
       </div>
     </ColumnTitleStyle>

@@ -51,8 +51,8 @@ const LoginTemplate = ({
           )}
         </IconPassowordWrapper>
         <ErrorComponent name="password" />
-        {loginError && <ErrorIncorrectLogin loginError={loginError} />}
       </ContainerErrorIcon>
+      {loginError && <ErrorIncorrectLogin loginError={loginError} />}
     </div>
     <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
   </TextForm>

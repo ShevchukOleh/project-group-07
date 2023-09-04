@@ -15,7 +15,7 @@ const LoginForm = () => {
   const isLogined = useSelector(selectIsLoggedIn);
   // const getError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
-  const [loginError, setLoginError] = useState('');
+  const [loginError, setLoginError] = useState(null);
   const handleShowPassword = () => {
     setShowPassword(prevShow => !prevShow);
   };
@@ -26,14 +26,11 @@ const LoginForm = () => {
     console.log('submitted:', values);
     await dispatch(loginUser(values));
     if (!isLogined) {
-      console.log('Wrong Log In');
-      setLoginError('Incorrect email or password');
-      return;
+      return setLoginError('Incorrect email or password');
     } else {
       navigate('/home');
     }
   };
-
   return (
     <Formik
       initialValues={{ email: '', password: '' }}

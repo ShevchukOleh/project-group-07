@@ -41,7 +41,7 @@ const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
-        console.log(action.payload);
+        state.token = action.payload.token;
         state.user = action.payload.user;
         state.error = null;
       })

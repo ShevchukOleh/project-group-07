@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+
 const CalendarContainer = styled.div`
   position: absolute;
   top: 30px;
@@ -24,6 +25,7 @@ const ButtonIcon = styled.div`
   cursor: pointer;
   color: #bedbb0;
   transition: color 0.3s linear;
+
   &:hover {
     color: #161616;
   }
@@ -71,6 +73,7 @@ const CalendarDay = styled.th`
   letter-spacing: -0.28px;
   text-align: center;
 `;
+
 const CalendarCell = styled.td`
   text-align: center;
   cursor: pointer;

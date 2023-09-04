@@ -21,7 +21,9 @@ const lightTheme = {
   sidebarText: '#161616',
   sidebarCreateConBg: '#FFFFFF',
   sidebarCreateConBorder: 'rgba(22, 22, 22, 0.1)',
-  sidebarCreateBtnBg: '#BEDBB0',
+  sidebarCreateBtnBg: '#FFFFFF',
+  sidebarCreateBtnBgHover: '#BEDBB0',
+  sidebarCreateBtnBorder: '#BEDBB0',
   iconPlus: '#121212',
   sidebarBlock: '#F6F6F7',
   sidebarTextWitoutHover: 'rgba(22, 22, 22, 0.5)',
@@ -55,9 +57,17 @@ const lightTheme = {
   inputBorderFocus: '#BEDBB0',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+  inputPlaceholder: 'rgba(22, 22, 22, 0.5)',
+  inputOtherBorder: '#CCC',
+  inputOtherHover: '#BEDBB0',
 
   createBtnIcon: '#FFFFFF',
   createBtnIconBg: '#161616',
+
+  boxIconBg: '#121212',
+  boxIconBgHover: '#121212',
+  iconFill: '#FFFFFF',
+  iconFillHover: '#FFFFFF',
 };
 
 const darkTheme = {
@@ -79,7 +89,9 @@ const darkTheme = {
   sidebarText: '#FFFFFF',
   sidebarCreateConBg: '#121212',
   sidebarCreateConBorder: 'rgba(255, 255, 255, 0.1)',
-  sidebarCreateBtnBg: '#BEDBB0',
+  sidebarCreateBtnBg: '#FFFFFF',
+  sidebarCreateBtnBgHover: '#BEDBB0',
+  sidebarCreateBtnBorder: '#BEDBB0',
   iconPlus: '#121212',
   sidebarBlock: '#1F1F1F',
   sidebarTextWitoutHover: 'rgba(255, 255, 255, 0.5)',
@@ -113,9 +125,17 @@ const darkTheme = {
   inputBorderFocus: '#BEDBB0',
   inputColor: '#FFFFFF',
   inputBgColor: '#1F1F1F',
+  inputPlaceholder: 'rgba(255, 255, 255, 0.5)',
+  inputOtherBorder: '#BEDBB0',
+  inputOtherHover: '#FFFFFF',
 
   createBtnIcon: '#FFFFFF',
   createBtnIconBg: '#161616',
+
+  boxIconBg: '#FFFFFF',
+  boxIconBgHover: '#121212',
+  iconFill: '#121212',
+  iconFillHover: '#FFFFFF',
 };
 
 const coloredTheme = {
@@ -137,7 +157,9 @@ const coloredTheme = {
   sidebarText: '#FFFFFF',
   sidebarCreateConBg: '#5255BC',
   sidebarCreateConBorder: 'rgba(255, 255, 255, 0.1)',
-  sidebarCreateBtnBg: '#B8BCFD',
+  sidebarCreateBtnBg: '#5255BC',
+  sidebarCreateBtnBgHover: 'rgba(236, 237, 253, 0.4)',
+  sidebarCreateBtnBorder: 'rgba(236, 237, 253, 0.4)',
   iconPlus: '#FFFFFF',
   sidebarBlock: 'rgba(236, 237, 253, 0.4)',
   sidebarTextWitoutHover: 'rgba(255, 255, 255, 0.5)',
@@ -171,9 +193,17 @@ const coloredTheme = {
   inputBorderFocus: '#5255BC',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+  inputPlaceholder: 'rgba(22, 22, 22, 0.5)',
+  inputOtherBorder: '#CCC',
+  inputOtherHover: '#5255BC',
 
   createBtnIcon: '#161616',
   createBtnIconBg: '#FFFFFF',
+
+  boxIconBg: '#5255BC',
+  boxIconBgHover: '#FFFFFF',
+  iconFill: '#FFFFFF',
+  iconFillHover: '#121212',
 };
 
 const getTheme = theme => {

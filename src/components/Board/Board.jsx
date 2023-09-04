@@ -6,7 +6,7 @@ import {
   // selectLoading,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
@@ -15,7 +15,7 @@ import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
 import CardFormDialog from 'components/CardModal/CardModal';
 import { FiltersModal } from 'components/FiltersModal';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getTheme } from 'constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
 import { Dialog } from '@mui/material';
@@ -31,10 +31,11 @@ export default function Board() {
   const columns = useSelector(selectColumns);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
+  const location = useLocation();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [addColumn, setAddColumn] = useState('');
-
+  const [board, setBoard] = useState([]);
   const dispatch = useDispatch();
   // const isError = useSelector(selectError);
   const openModalCard = () => {
@@ -55,8 +56,13 @@ export default function Board() {
       setOpenAddModal(!openAddModal);
     }
   };
-  const board = boards.find(board => board.title === boardName);
-
+  useEffect(() => {
+    const updatedBoard = boards.find(board => board.title === boardName);
+    if (updatedBoard) {
+      setBoard(updatedBoard);
+    }
+  }, [boards, location.pathname, boardName]);
+  console.log(board);
   const backgroundId = board?.background?._id;
   const boardId = board?._id;
 
@@ -69,7 +75,6 @@ export default function Board() {
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
     : { backgroundColor: theme?.themeSet?.boardBg };
-
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (

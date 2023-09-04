@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 // import FormDialog from 'components/ModalBoard/ModalBoard';
 
 import { useDispatch, useSelector } from 'react-redux';
-import Board from 'components/Board/Board';
+// import Board from 'components/Board/Board';
 import {
   getAllBoards,
   getAllColums,

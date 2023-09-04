@@ -3,7 +3,7 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
-  selectLoading,
+  // selectLoading,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';

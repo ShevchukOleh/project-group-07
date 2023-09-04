@@ -275,9 +275,9 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               Create
             </Button>
           </DialogActionsStyled>
-          <IconCrossWrapper onClick={createOpenModalShow}>
+          {/* <IconCrossWrapper onClick={createOpenModalShow}>
             <AiOutlineClose size={18} color="#161616" />
-          </IconCrossWrapper>
+          </IconCrossWrapper> */}
 
         </ContainerModal>
       </Dialog>

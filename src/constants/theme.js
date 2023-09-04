@@ -1,7 +1,5 @@
 import { createTheme } from '@mui/material';
 
-const currentTheme = 'light';
-
 const lightTheme = {
   headerBg: '#FCFCFC',
   headerMenuBtn: '#161616',
@@ -206,23 +204,20 @@ const coloredTheme = {
   iconFillHover: '#121212',
 };
 
-const getTheme = theme => {
-  switch (theme) {
-    case 'light':
+const getThemeSet = themeSet => {
+  switch (themeSet) {
+    case 'Light':
       return lightTheme;
-    case 'dark':
+    case 'Dark':
       return darkTheme;
-    case 'violet':
+    case 'Violet':
       return coloredTheme;
     default:
       return lightTheme;
   }
 };
 
-const themeSet = getTheme(currentTheme);
-
-export const theme = createTheme({
-  themeSet,
-});
-
-console.log(theme);
+export const getTheme = themeName => {
+  const themeSet = getThemeSet(themeName);
+  return createTheme({ themeSet });
+};

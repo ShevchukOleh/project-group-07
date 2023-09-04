@@ -20,7 +20,8 @@ import {
   MenuWrap,
 } from './FiltersModal.styled';
 
-import { theme } from '../../constants';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { sortByPriority } from 'store/createSlices/board/board';
@@ -30,6 +31,10 @@ import {
 } from 'store/createSlices/board/boardSelectors';
 
 export const FiltersModal = () => {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const selectPriority = useSelector(selectedInPriority);
   const selectCards = useSelector(selectMyCards);
   const [filterValue, setFilterValue] = useState('');

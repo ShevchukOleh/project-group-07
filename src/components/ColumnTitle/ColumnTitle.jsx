@@ -10,9 +10,14 @@ import ModalEditColumn from 'components/Modals/ModalEditCulmn/ModalEditColumn';
 import Dialog from '@mui/material/Dialog';
 import { selectLoading } from 'store/createSlices/board/boardSelectors';
 import LoaderComponent from 'components/Loader/Loader';
-import { theme } from '../../constants';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function ColumnTitle(params) {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
   // const isError = useSelector(selectError);

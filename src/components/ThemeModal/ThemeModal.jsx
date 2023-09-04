@@ -9,13 +9,19 @@ import {
 } from '@mui/material';
 import { ThemeBtn, ThemeIcon, Wrapper } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
-import { theme } from '../../constants';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import { useSelector } from 'react-redux';
 
-const LIGHT = 'light';
-const DARK = 'dark';
-const COLORED = 'violet';
+const LIGHT = 'Light';
+const DARK = 'Dark';
+const COLORED = 'Violet';
 
 export const ThemeModal = () => {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);

@@ -6,7 +6,8 @@ import {
   selectMyCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
-import { theme } from '../../constants';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function BoardCard() {
   const selectPriority = useSelector(selectedInPriority);
@@ -27,6 +28,10 @@ export default function BoardCard() {
 }
 
 function BoardCardItem({ card }) {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
   const lowPriorityColor = '#8FA1D0';
   const mediumPriorityColor = '#E09CB5';

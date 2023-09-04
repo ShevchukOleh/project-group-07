@@ -1,4 +1,4 @@
-const { Navigate } = require('react-router-dom');
+const { Navigate, Outlet } = require('react-router-dom');
 
 const PrivateRoute = ({
   isLoggedIn,
@@ -6,7 +6,7 @@ const PrivateRoute = ({
   children,
 }) => {
   if (isLoggedIn) {
-    return children;
+    return children || <Outlet />;
   }
   return <Navigate to={redirectPath} replace={true} />;
 };

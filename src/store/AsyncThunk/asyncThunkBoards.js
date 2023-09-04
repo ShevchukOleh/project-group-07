@@ -135,6 +135,7 @@ const getBoardById = createAsyncThunk(
 const getAllColums = createAsyncThunk(
   'board/getColums',
   async (boardId, thunkAPI) => {
+    console.log(boardId);
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.get(

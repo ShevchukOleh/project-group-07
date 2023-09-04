@@ -24,7 +24,8 @@ import {
 const Layout = () => {
   const [showSidebar, setShowSidebar] = useState(true);
   const { boardName } = useParams();
-
+  const dispatch = useDispatch();
+  const boards = useSelector(selectBoards);
   const handleResize = () => {
     if (window.innerWidth <= 1439) {
       setShowSidebar(false);
@@ -45,33 +46,28 @@ const Layout = () => {
   const hideModal = () => {
     setIsShowModal(false);
   };
-  const dispatch = useDispatch();
-
-  const boards = useSelector(selectBoards);
-
-  const board =
-    boards.find(board => `:${board.title}` === boardName) || boards[0];
-  const boardId = board?._id;
 
   useEffect(() => {
     dispatch(getAllBoards());
     dispatch(getBackgroundBoard());
+  }, [dispatch]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   useEffect(() => {
-    dispatch(getAllColums(boardId));
-  }, [boardId, dispatch]);
+    const board = boards.find(board => board.title === boardName);
+    const boardId = board?._id;
+    if (boardId) {
+      dispatch(getAllColums(boardId));
+    }
+  }, [dispatch, boards, boardName]);
   return (
     <Container>
       {showSidebar && <Sidebar setIsShowModal={setIsShowModal} />}
       <div>
         <AppBar />
-        <Board setIsShowModal={setIsShowModal} />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </div>
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
       {isShowModal && (
         <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>
       )}

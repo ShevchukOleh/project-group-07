@@ -21,9 +21,8 @@ import { theme } from '../../constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
 import { Dialog } from '@mui/material';
 import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
-import LoaderComponent from 'components/Loader/Loader';
 
-export default function Board({ setIsShowModal }) {
+export default function Board() {
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
   const backgrounds = useSelector(selectBackgrounds);
@@ -33,18 +32,17 @@ export default function Board({ setIsShowModal }) {
   const [addColumn, setAddColumn] = useState('');
 
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
   // const isError = useSelector(selectError);
   const openModalCard = () => {
     setIsModalCardOpen(true);
   };
-
   const closeModalCard = () => {
     setIsModalCardOpen(false);
   };
   const openModal = () => {
     setOpenAddModal(!openAddModal);
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (addColumn) {
@@ -53,8 +51,7 @@ export default function Board({ setIsShowModal }) {
       setOpenAddModal(!openAddModal);
     }
   };
-  const board =
-    boards.find(board => `:${board.title}` === boardName) || boards[0];
+  const board = boards.find(board => board.title === boardName);
 
   const backgroundId = board?.background?._id;
   const boardId = board?._id;
@@ -80,7 +77,6 @@ export default function Board({ setIsShowModal }) {
       <div className="filtersPosition">
         <FiltersModal />
       </div>
-
       {boards.length !== 0 && (
         <div className="containerColumns">
           {columns.map(column => {
@@ -91,7 +87,6 @@ export default function Board({ setIsShowModal }) {
                   columnId={column._id}
                   text={`${column.title}`}
                 />
-
                 <div className="containerColumnCard">
                   <BoardCard />
                 </div>
@@ -130,7 +125,6 @@ export default function Board({ setIsShowModal }) {
                 setOpenAddModal={setOpenAddModal}
               />
             </Dialog>
-            {isLoading && <LoaderComponent />}
             {/* ===================modal */}
           </div>
         </div>

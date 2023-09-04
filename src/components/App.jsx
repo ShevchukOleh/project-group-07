@@ -10,6 +10,7 @@ import { selectIsLoggedIn } from 'store/createSlices/userAuth/userSelectors';
 import PrivateRoute from './Routes/PrivateRoute/PrivateRoute';
 import PublicRoute from './Routes/PublicRoute/PublicRoute';
 import AuthForms from './AuthForms/AuthForms';
+import Board from './Board/Board';
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
@@ -22,22 +23,13 @@ export const App = () => {
           <Route path="registration" element={<RegistrationForm />} />
         </Route>
       </Route>
-      <Route
-        path="home"
-        element={
-          <PrivateRoute isLoggedIn={isLoggedIn}>
-            <Layout />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="home/:boardName"
-        element={
-          <PrivateRoute isLoggedIn={isLoggedIn}>
-            <Layout />
-          </PrivateRoute>
-        }
-      />
+
+      <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+        <Route path="home" element={<Layout />}>
+          <Route path=":boardName" element={<Board />} />
+        </Route>
+      </Route>
+
       <Route path="*" element={<Navigate to="/welcome" replace={true} />} />
     </Routes>
   );

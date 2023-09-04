@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
 import { Radio, FormControlLabel } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
 
 export const ButtonStyled = styled(Button)`
   font-family: 'Poppins';
@@ -111,6 +111,7 @@ export const RadioStyledImg = styled(Radio)`
 
 export const ImageBgContainer = styled(RadioGroup)`
   padding-right: 28px;
+  padding-left: 16px;
   display: flex;
   gap: 4px;
   margin-bottom: 40px;
@@ -126,7 +127,7 @@ export const DialogActionsStyled = styled(DialogActions)`
   padding: 0px;
 `;
 
-export const Icon = styled(AddIcon)`
+export const Icon = styled.img`
   width: 18px;
   height: 18px;
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);

@@ -9,6 +9,7 @@ import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 // import Layout from 'components/Layout/Layout';
+import ModalEditFormDialog from 'components/Modals/ModalEditBoard/ModalEditBoard';
 
 export const BordInSidebar = ({ filteredItems }) => {
   const user = useSelector(getCurrentUser);
@@ -20,6 +21,14 @@ export const BordInSidebar = ({ filteredItems }) => {
   // const collect = useSelector(state => state);
   // console.log(collect);
   // console.log(boardsInSidebar);
+
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+  const handleOpenEditModal = () => {
+  setIsOpenEditModal(!isOpenEditModal)
+  }
+  
+
+
 
   const handleDeleteBoard = id => {
     dispatch(deleteBoard(id)).then(() => {
@@ -58,9 +67,22 @@ export const BordInSidebar = ({ filteredItems }) => {
               <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
             </ImgBox>
             <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
+
             <EditIcon className="icon edit">
-              <FiEdit2 size={16} />
+              
+             <FiEdit2 size={16}
+              onClick={handleOpenEditModal}/>
             </EditIcon>
+            
+
+            <ModalEditFormDialog
+             board={board._id}
+             closeEditModal={handleOpenEditModal}
+             isOpenEditModal={isOpenEditModal}
+           />    
+            
+            
+            
             <div className="icon delete">
               <AiOutlineDelete
                 size={16}

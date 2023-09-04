@@ -1,9 +1,9 @@
 import * as React from 'react';
+import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Plus from '../../../images/icons/plus.svg';
 import {
   IconContainer,
   RadioStyled,
@@ -15,29 +15,20 @@ import {
   DialogActionsStyled,
   Icon,
   FormControlLabelStyled,
-  ErrorTextWrap,
-  StyledButton,
-  StyledBox,
-} from './ModalBoard.styled';
+} from './ModalEditBoard.styled';
+import Plus from '../../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
-import { getTheme } from 'constants';
-import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { getIcon, getImage } from './servises';
+import { getIcon, getImage } from '../ModalBoard/servises';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-import { IconClose } from '../UI/ModalCulumn.styled';
-import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
 
-export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
-  const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
-  const theme = getTheme(currentTheme);
-
+export default function ModalEditFormDialog({ closeEditModal, isOpenEditModal }) {
   const dispatch = useDispatch();
 
   const [valueInput, setValueInput] = useState('');
@@ -47,10 +38,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
-  const [errorField, setErrorField] = useState(null);
-
-  // const theme = useSelector(sele)
-  // const isLoading = useSelector(selectLoading)
 
   const token = useSelector(selectToken);
 
@@ -84,6 +71,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
     icon: valueIcon,
     background: valueImgBg,
   };
+
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
@@ -91,54 +79,41 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   // const violetImageBg = image[17];
 
   const handleCloseBtn = () => {
-    if (valueInput) {
-
-      // dispatch(createBoard(createBd));
-      setErrorField('');
-      setValueInput('');
-      createOpenModalShow();
-      //       createOpenModalShow(prev => !prev);
+    if (valueInput && valueImgBg) {
+      dispatch(createBoard(createBd));
     } else {
-      setErrorField('Please, fill in the required fields');
+      console.error('Please, fill in the required fields');
     }
   };
-  // const handleChange = event => {
-  //   setValueInput(event.target.value);
-  // };
+
+  const handleChange = event => {
+    setValueInput(event.target.value);
+  };
 
   const handleChangeIcon = event => {
     setValueIcon(event.target.value);
-        console.log(event.target.value)
-
   };
 
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
-        console.log(event.target.value)
-
   };
 
   return (
     <div>
-      <Dialog open={isCreateOpenModal} onClose={createOpenModalShow}>
+      <Dialog open={isOpenEditModal} onClose={closeEditModal}>
         <ContainerModal>
           {isLoading && <Loader />}
-          {error && (
-            <ErrorTextWrap>Something went wrong. Try again later</ErrorTextWrap>
-          )}
-
+          {error && <div>Something went wrong. Try again later</div>}
           <DialogTitle
             sx={{
               fontSize: 18,
               fontWeight: 500,
               padding: 0,
               marginBottom: '24px',
-              color: `${theme?.themeSet?.modalHelpTitle}`,
             }}
           >
-            New board
+            Edit board
           </DialogTitle>
-
           <DialogContent sx={{ padding: 0 }}>
             <TextFieldStyled
               autoFocus
@@ -147,14 +122,9 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               type="text"
               placeholder="Title"
               required
-              onChange={(event) => setValueInput(event.target.value)}
+              onChange={handleChange}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
-            {errorField && (
-              <div style={{ color: 'red', position: 'absolute', top: 130 }}>
-                Please, fill in the required fields
-              </div>
-            )}
             {/* <TextField
           error
           id="filled-error-helper-text"
@@ -172,12 +142,10 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   fontWeight: 500,
                   padding: 0,
                   marginBottom: '14px',
-                  color: `${theme?.themeSet?.modalHelpTitle}`,
                 }}
               >
                 Icons
               </DialogTitle>
-
               <IconContainer
                 row
                 aria-labelledby="icons-group"
@@ -211,7 +179,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                 fontWeight: 500,
                 padding: 0,
                 marginBottom: '14px',
-                color: `${theme?.themeSet?.modalHelpTitle}`,
               }}
             >
               Background
@@ -266,26 +233,21 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                 ))}
             </ImageBgContainer>
           </DialogContent>
-
           <DialogActionsStyled>
-            <StyledButton
+            <Button
               onClick={handleCloseBtn}
               sx={{
                 fontFamily: 'Poppins',
-                backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
-                color: `${theme?.themeSet?.modalHelpSendText}`,
+                backgroundColor: '#BEDBB0',
+                color: '#161616',
                 fontWeight: 500,
                 height: 49,
                 width: '100%',
                 padding: 0,
                 textTransform: 'capitalize',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: `${theme?.themeSet?.modalHelpSendBorder}`,
-                borderRadius: '8px',
               }}
             >
-              <StyledBox
+              <Box
                 sx={{
                   backgroundColor: '#161616',
                   height: 28,
@@ -297,16 +259,25 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   marginRight: 1,
                 }}
               >
-                <Icon src={Plus}/>
-              </StyledBox>
+                <Icon src={Plus} />
+              </Box>
               Create
-            </StyledButton>
+            </Button>
           </DialogActionsStyled>
-          <CloseBtn>
-            <IconClose onClick={createOpenModalShow} />
-          </CloseBtn>
         </ContainerModal>
       </Dialog>
     </div>
   );
 }
+
+
+//  <EditIcon className="icon edit">
+//               <FiEdit2 size={16}
+//               onClick={handleOpenEditModal}/>
+//             </EditIcon>
+            
+
+//             <ModalEditFormDialog
+//               closeEditModal={closeEditModal}
+//               isOpenEditModal={isOpenEditModal}
+//             />    

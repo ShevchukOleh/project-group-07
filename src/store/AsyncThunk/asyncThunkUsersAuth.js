@@ -58,4 +58,28 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-export { loginUser, registerUser, logoutUser, fetchCurrentUser };
+const fetchThemeUpdate = createAsyncThunk(
+  'user/fetchThemeUpdate',
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.patch(`${BASE_URL}theme`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed to update theme');
+    }
+  }
+);
+
+export {
+  loginUser,
+  registerUser,
+  logoutUser,
+  fetchCurrentUser,
+  fetchThemeUpdate,
+};

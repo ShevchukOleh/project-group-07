@@ -23,8 +23,13 @@ export const BordInSidebar = ({ filteredItems }) => {
   // console.log(boardsInSidebar);
 
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+  
   const handleOpenEditModal = () => {
-  setIsOpenEditModal(!isOpenEditModal)
+  setIsOpenEditModal(true)
+  }
+
+  const handleCloseEditModal = () => {
+     setIsOpenEditModal(false)
   }
   
 
@@ -73,15 +78,7 @@ export const BordInSidebar = ({ filteredItems }) => {
              <FiEdit2 size={16}
               onClick={handleOpenEditModal}/>
             </EditIcon>
-            
-
-            <ModalEditFormDialog
-             board={board._id}
-             closeEditModal={handleOpenEditModal}
-             isOpenEditModal={isOpenEditModal}
-           />    
-            
-            
+                      
             
             <div className="icon delete">
               <AiOutlineDelete
@@ -89,6 +86,13 @@ export const BordInSidebar = ({ filteredItems }) => {
                 onClick={() => handleDeleteBoard(board._id)}
               />
             </div>
+                        
+            <ModalEditFormDialog
+             board={board._id}
+             closeEditModal={handleCloseEditModal}
+             isOpenEditModal={isOpenEditModal}
+            />   
+            
           </OneBoard>
         </Link>
       ))}

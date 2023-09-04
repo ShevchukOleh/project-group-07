@@ -92,8 +92,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
 
   const handleCloseBtn = () => {
     if (valueInput) {
-
-      // dispatch(createBoard(createBd));
+      dispatch(createBoard(createBd));
       setErrorField('');
       setValueInput('');
       createOpenModalShow();
@@ -102,9 +101,11 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       setErrorField('Please, fill in the required fields');
     }
   };
-  // const handleChange = event => {
-  //   setValueInput(event.target.value);
-  // };
+  const handleChange = event => {
+    setValueInput(event.target.value);
+   console.log(event.target.value)
+
+  };
 
   const handleChangeIcon = event => {
     setValueIcon(event.target.value);
@@ -147,7 +148,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               type="text"
               placeholder="Title"
               required
-              onChange={(event) => setValueInput(event.target.value)}
+              onChange={handleChange}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
             {errorField && (

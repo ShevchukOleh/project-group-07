@@ -28,6 +28,8 @@ import { getIcon, getImage } from './servises';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+import { IconCrossWrapper } from '../UI/ModalCulumn.styled';
+import { AiOutlineClose } from 'react-icons/ai';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const dispatch = useDispatch();
@@ -88,7 +90,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       setErrorField('');
       setValueInput('');
       createOpenModalShow();
-//       createOpenModalShow(prev => !prev);
+      //       createOpenModalShow(prev => !prev);
     } else {
       setErrorField('Please, fill in the required fields');
     }
@@ -291,8 +293,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
           </DialogActionsStyled>
           {/* <IconCrossWrapper onClick={createOpenModalShow}>
             <AiOutlineClose size={18} color="#161616" />
+     
           </IconCrossWrapper> */}
-
         </ContainerModal>
       </Dialog>
     </div>

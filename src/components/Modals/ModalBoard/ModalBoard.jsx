@@ -19,7 +19,8 @@ import {
   StyledBox,
 } from './ModalBoard.styled';
 import FormControl from '@mui/material/FormControl';
-import { theme } from '../../../constants';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -30,6 +31,10 @@ import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const dispatch = useDispatch();
 
   const [valueInput, setValueInput] = useState('');

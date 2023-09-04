@@ -1,40 +1,38 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
-// import { useDispatch } from 'react-redux';
-// import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
 
-// export default function BoardCard({ boardId, columnId, card }) {
-//   const dispatch = useDispatch();
-
-
-import { useSelector } from 'react-redux';
 import {
   selectMyCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
 import { theme } from '../../constants';
 
-export default function BoardCard() {
+export default function BoardCard({ boardId, columnId, card }) {
   const selectPriority = useSelector(selectedInPriority);
   const selectCards = useSelector(selectMyCards);
-  const [cards, setCards] = useState([]);
+  // const [cards, setCards] = useState([]);
 
-  useEffect(() => {
-    setCards(selectCards);
-  }, [selectPriority, selectCards]);
+  // useEffect(() => {
+  //   setCards(selectCards);
+  // }, [selectPriority, selectCards]);
 
   return (
     <>
-      {cards.map((item, index) => (
-        <BoardCardItem key={index} card={item} />
-      ))}
+      {/* {cards.map((item, index) => ( */}
+      <BoardCardItem boardId={boardId} columnId={columnId} card={card} />
+      {/* ))} */}
     </>
   );
 }
 
-function BoardCardItem({ card }) {
+function BoardCardItem({ boardId, columnId, card }) {
+  const dispatch = useDispatch();
+
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
   const lowPriorityColor = '#8FA1D0';
   const mediumPriorityColor = '#E09CB5';
@@ -93,14 +91,12 @@ function BoardCardItem({ card }) {
         />
 
         <FiTrash
-
           onClick={() =>
             dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
           }
           style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
 
-//           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
-
+          //           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
         />
       </div>
     </BoardCardStyle>

@@ -59,26 +59,18 @@ const Layout = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  ////////////////////////////////////////////////////////////////
 
   const getAllCardsSequentially = boardId => async dispatch => {
     try {
       const columnResponse = await dispatch(getAllColums(boardId));
 
-      // Отримуємо масив карток з результату запиту до першої колонки
       const allColumn = columnResponse.payload;
 
-      // Для кожної карти з масиву викликаємо запит до другої колонки
       for (const column of allColumn) {
         await dispatch(getAllCards({ boardId, columnId: column._id }));
       }
-
-      // Додайте інші запити тут, якщо потрібно
-    } catch (error) {
-      // Обробка помилок
-    }
+    } catch (error) {}
   };
-  ///////////////////////////////////////////////////////////////////
   useEffect(() => {
     dispatch(getAllCardsSequentially(boardId));
   }, [boardId, dispatch]);

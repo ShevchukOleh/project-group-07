@@ -3,12 +3,9 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
-
   selectAllCards,
-
   selectLoading,
   // selectError,
-
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';
 
@@ -36,11 +33,14 @@ export default function Board({ setIsShowModal }) {
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [addColumn, setAddColumn] = useState('');
+  const [selectedColumnId, setSelectedColumnId] = useState(null);
 
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
   // const isError = useSelector(selectError);
-  const openModalCard = () => {
+  const openModalCard = columnId => {
+    setSelectedColumnId(columnId);
+    // console.log('SelectedColumnId: ', selectedColumnId);
     setIsModalCardOpen(true);
   };
 
@@ -111,11 +111,15 @@ export default function Board({ setIsShowModal }) {
                   })}
                 </div>
 
-                <ButtonCreate text="Add another card" onClick={openModalCard} />
+                <ButtonCreate
+                  columnId={column._id}
+                  text="Add another card"
+                  onClick={() => openModalCard(column._id)}
+                />
 
                 <CardFormDialog
                   boardId={boardId}
-                  columnId={column._id}
+                  columnId={selectedColumnId}
                   isShowModal={isModalCardOpen}
                   hideModal={closeModalCard}
                 />

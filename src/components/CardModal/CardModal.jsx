@@ -37,7 +37,7 @@ export default function CardFormDialog({
   columnId,
 }) {
   const [valueTitle, setValueTitle] = useState('');
-  const [labelColor, setLabelColor] = useState('WITHOUT');
+  const [labelColor, setLabelColor] = useState('LOW');
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDeadline] = useState('2023-09-01');
   const dispatch = useDispatch();
@@ -56,7 +56,8 @@ export default function CardFormDialog({
     setValueDescription('');
   };
 
-  const handleCloseBtn = () => {
+  const handleCloseBtn = async event => {
+    console.log('event: ', event);
     hideModal();
     setLabelColor('LOW');
     setValueTitle('');
@@ -227,7 +228,7 @@ export default function CardFormDialog({
           <DialogActionsStyled>
             {valueTitle ? (
               <Button
-                onClick={handleCloseBtn}
+                onClick={event => handleCloseBtn(event)}
                 sx={{
                   fontFamily: 'Poppins',
                   backgroundColor: '#BEDBB0',

@@ -66,6 +66,11 @@ const lightTheme = {
   boxIconBgHover: '#121212',
   iconFill: '#FFFFFF',
   iconFillHover: '#FFFFFF',
+
+  addColumnBtnBg: '#FFFFFF',
+  addColumnIconBox: '#161616',
+  addColumnIcon: '#FFFFFF',
+  addColumnText: '#161616',
 };
 
 const darkTheme = {
@@ -134,6 +139,11 @@ const darkTheme = {
   boxIconBgHover: '#121212',
   iconFill: '#121212',
   iconFillHover: '#FFFFFF',
+
+  addColumnBtnBg: '#121212',
+  addColumnIconBox: '#FFFFFF',
+  addColumnIcon: '#121212',
+  addColumnText: '#FFFFFF',
 };
 
 const coloredTheme = {
@@ -202,6 +212,11 @@ const coloredTheme = {
   boxIconBgHover: '#FFFFFF',
   iconFill: '#FFFFFF',
   iconFillHover: '#121212',
+
+  addColumnBtnBg: '#FFFFFF',
+  addColumnIconBox: '#5255BC',
+  addColumnIcon: '#FFFFFF',
+  addColumnText: '#161616',
 };
 
 const getThemeSet = themeSet => {

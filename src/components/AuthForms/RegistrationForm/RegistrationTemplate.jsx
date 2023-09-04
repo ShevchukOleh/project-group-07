@@ -7,11 +7,9 @@ import {
   IconPassowordWrapper,
   ContainerErrorIcon,
 } from '../FormUi/FormUi.styled';
+import { ErrorComponent } from '../FormUi/ErrorComponent/ErrorComponent';
 import { RiEyeCloseLine, RiEyeLine } from 'react-icons/ri';
-import {
-  ErrorComponent,
-  ErrorIncorrectLogin,
-} from '../FormUi/ErrorComponent/ErrorComponent';
+
 const RegistrationTemplate = ({
   formikProps,
   showPassword,

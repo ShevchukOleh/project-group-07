@@ -39,7 +39,7 @@ export default function ColumnTitle(params) {
         <OpenModalBtn onClick={openModal}>
           <FiEdit2 style={{ color: 'rgba(16, 16, 16, 0.5)' }} />
         </OpenModalBtn>
-        <Dialog open={openEditModal} onClose={openModal}>
+        <Dialog open={openEditModal} onClose={openModal} style={{}}>
           <ModalEditColumn
             handleSubmit={handleSubmit}
             setEditColumn={setEditColumn}

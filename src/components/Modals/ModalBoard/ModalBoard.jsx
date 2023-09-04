@@ -15,7 +15,6 @@ import {
   DialogActionsStyled,
   Icon,
   FormControlLabelStyled,
-  IconCrossWrapper,
 } from './ModalBoard.styled';
 import Plus from '../../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
@@ -28,7 +27,6 @@ import { getIcon, getImage } from './servises';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-import { AiOutlineClose } from 'react-icons/ai';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const dispatch = useDispatch();
@@ -89,6 +87,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       setErrorField('');
       setValueInput('');
       createOpenModalShow();
+//       createOpenModalShow(prev => !prev);
     } else {
       setErrorField('Please, fill in the required fields');
     }
@@ -279,6 +278,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
           <IconCrossWrapper onClick={createOpenModalShow}>
             <AiOutlineClose size={18} color="#161616" />
           </IconCrossWrapper>
+
         </ContainerModal>
       </Dialog>
     </div>

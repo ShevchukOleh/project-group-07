@@ -12,7 +12,6 @@ import {
   CloseBtn,
 } from './NeedHelpModal.styled';
 import { theme } from '../../../constants';
-import { AiOutlineClose } from 'react-icons/ai';
 
 const ModalForm = ({
   isNeedHelpModal,

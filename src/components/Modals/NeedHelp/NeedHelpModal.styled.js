@@ -76,6 +76,7 @@ const ModalButton = styled.button`
   }};
   width: 100%;
   font-size: 14px;
+  font-weight: 500;
   height: 50px;
   border: none;
   border-radius: 8px;

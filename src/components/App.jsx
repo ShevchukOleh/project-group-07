@@ -7,7 +7,7 @@ import LoginForm from './AuthForms/LoginForm/LoginForm';
 import Layout from './Layout';
 import '../styles/fonts.css';
 import 'modern-normalize/modern-normalize.css';
-import { selectIsLoggedIn } from 'store/createSlices/userAuth/userSelectors';
+import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import PrivateRoute from './Routes/PrivateRoute/PrivateRoute';
 import PublicRoute from './Routes/PublicRoute/PublicRoute';
 import AuthForms from './AuthForms/AuthForms';
@@ -16,17 +16,17 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { getTheme } from 'constants';
 
 export const App = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
+
+  const isLoggedInWithToken = useSelector(selectToken);
 
   return (
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="/" element={<Navigate to="/welcome" />} />
-        <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
+        <Route element={<PublicRoute isLoggedIn={isLoggedInWithToken} />}>
           <Route path="/welcome" element={<WelcomePage />} end />
           <Route path="/auth" element={<AuthForms />}>
             <Route path="login" element={<LoginForm />} />
@@ -34,7 +34,7 @@ export const App = () => {
           </Route>
         </Route>
 
-        <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+        <Route element={<PrivateRoute isLoggedIn={isLoggedInWithToken} />}>
           <Route path="home" element={<Layout />}>
             <Route path=":boardName" element={<Board />} />
           </Route>

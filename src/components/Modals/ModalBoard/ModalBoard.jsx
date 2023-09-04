@@ -29,6 +29,8 @@ import { getIcon, getImage } from './servises';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
+import { IconClose } from '../UI/ModalCulumn.styled';
+import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const user = useSelector(getCurrentUser);
@@ -93,7 +95,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       setErrorField('');
       setValueInput('');
       createOpenModalShow();
-//       createOpenModalShow(prev => !prev);
+      //       createOpenModalShow(prev => !prev);
     } else {
       setErrorField('Please, fill in the required fields');
     }
@@ -294,10 +296,9 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               Create
             </StyledButton>
           </DialogActionsStyled>
-          {/* <IconCrossWrapper onClick={createOpenModalShow}>
-            <AiOutlineClose size={18} color="#161616" />
-          </IconCrossWrapper> */}
-
+          <CloseBtn>
+            <IconClose onClick={createOpenModalShow} />
+          </CloseBtn>
         </ContainerModal>
       </Dialog>
     </div>

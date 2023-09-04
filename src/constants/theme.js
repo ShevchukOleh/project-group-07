@@ -50,7 +50,6 @@ const lightTheme = {
   modalHelpSendBorder: '#BEDBB0',
   modalHelpSendText: '#161616',
   modalHelpSendHover: '#9DC888',
-  modalHelpSendHoverText: '#161616',
   inputBorder: '#CCC',
   inputBorderFocus: '#BEDBB0',
   inputColor: '#161616',
@@ -63,9 +62,7 @@ const lightTheme = {
   createBtnIconBg: '#161616',
 
   boxIconBg: '#121212',
-  boxIconBgHover: '#121212',
   iconFill: '#FFFFFF',
-  iconFillHover: '#FFFFFF',
 
   addColumnBtnBg: '#FFFFFF',
   addColumnIconBox: '#161616',
@@ -123,7 +120,6 @@ const darkTheme = {
   modalHelpSendBorder: '#BEDBB0',
   modalHelpSendText: '#161616',
   modalHelpSendHover: '#9DC888',
-  modalHelpSendHoverText: '#161616',
   inputBorder: 'rgba(190, 219, 176, 0.5)',
   inputBorderFocus: '#BEDBB0',
   inputColor: '#FFFFFF',
@@ -135,10 +131,8 @@ const darkTheme = {
   createBtnIcon: '#FFFFFF',
   createBtnIconBg: '#161616',
 
-  boxIconBg: '#FFFFFF',
-  boxIconBgHover: '#121212',
-  iconFill: '#121212',
-  iconFillHover: '#FFFFFF',
+  boxIconBg: '#121212',
+  iconFill: '#FFFFFF',
 
   addColumnBtnBg: '#121212',
   addColumnIconBox: '#FFFFFF',
@@ -196,7 +190,6 @@ const coloredTheme = {
   modalHelpSendBorder: '#5255BC',
   modalHelpSendText: '#FFFFFF',
   modalHelpSendHover: '#7B7EDE',
-  modalHelpSendHoverText: '#FCFCFC',
   inputBorder: '#979CEA',
   inputBorderFocus: '#5255BC',
   inputColor: '#161616',
@@ -208,10 +201,8 @@ const coloredTheme = {
   createBtnIcon: '#161616',
   createBtnIconBg: '#FFFFFF',
 
-  boxIconBg: '#5255BC',
-  boxIconBgHover: '#FFFFFF',
-  iconFill: '#FFFFFF',
-  iconFillHover: '#121212',
+  boxIconBg: '#FFFFFF',
+  iconFill: '#121212',
 
   addColumnBtnBg: '#FFFFFF',
   addColumnIconBox: '#5255BC',

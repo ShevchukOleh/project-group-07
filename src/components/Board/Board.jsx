@@ -62,7 +62,6 @@ export default function Board() {
       setBoard(updatedBoard);
     }
   }, [boards, location.pathname, boardName]);
-  console.log(board);
   const backgroundId = board?.background?._id;
   const boardId = board?._id;
 

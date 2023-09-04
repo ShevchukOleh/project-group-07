@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { OneBoard } from '../Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
@@ -14,22 +14,23 @@ export const BordInSidebar = ({ filteredItems }) => {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
-
+  const navigation = useNavigate();
   const dispatch = useDispatch();
+  const [selectedItem, setSelectedItem] = useState(null);
+
   // const boardsInSidebar = useSelector(state => state.board.boards);
   // const collect = useSelector(state => state);
   // console.log(collect);
   // console.log(boardsInSidebar);
-
   const handleDeleteBoard = id => {
+    const previousPath = '/home';
     dispatch(deleteBoard(id)).then(() => {
       dispatch(getAllBoards());
+      navigation(`${previousPath}`);
     });
   };
 
-  const [selectedItem, setSelectedItem] = useState(null);
-
-  const handleItemClick = index => {
+  const handleItemClick = (index, title) => {
     setSelectedItem(index);
   };
 
@@ -39,7 +40,7 @@ export const BordInSidebar = ({ filteredItems }) => {
     <div>
       {filteredItems.map((board, index) => (
         <Link
-          onClick={() => handleItemClick(index)}
+          onClick={() => handleItemClick(index, board.title)}
           style={{ textDecoration: 'none' }}
           key={index}
           to={`/home/${board.title}`}

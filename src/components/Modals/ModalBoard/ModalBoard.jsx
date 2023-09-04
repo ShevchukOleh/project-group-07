@@ -31,6 +31,7 @@ import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const user = useSelector(getCurrentUser);
@@ -38,7 +39,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const theme = getTheme(currentTheme);
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [valueInput, setValueInput] = useState('');
   const [valueIcon, setValueIcon] = useState('');
   const [valueImgBg, setValueImgBg] = useState('');
@@ -95,6 +96,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       setErrorField('');
       setValueInput('');
       createOpenModalShow();
+      navigate(`/home/${valueInput}`);
       //       createOpenModalShow(prev => !prev);
     } else {
       setErrorField('Please, fill in the required fields');

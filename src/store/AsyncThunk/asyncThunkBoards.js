@@ -290,7 +290,7 @@ const deleteCard = createAsyncThunk(
         }
       );
       const { data } = response;
-      return data;
+      return { data, columnId };
     } catch (error) {
       throw new Error('Failed delete Card');
     }

@@ -184,7 +184,7 @@ export default function CardFormDialog({
                   }
                 />
                 <FormControlLabelStyled
-                  value="Without priority"
+                  value="WITHOUT"
                   control={
                     <RadioStyled
                       sx={{

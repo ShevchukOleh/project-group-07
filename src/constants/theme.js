@@ -5,6 +5,8 @@ const lightTheme = {
   headerMenuBtn: '#161616',
   headerProfileBtnText: '#161616',
 
+  editProfileAvIconWrapBg: '#BEDBB0',
+
   boardTitle: '#161616',
   boardBg: '#F6F6F7',
   boardEmptyText: 'rgba(22, 22, 22, 0.7)',
@@ -76,6 +78,8 @@ const darkTheme = {
   headerMenuBtn: '#FFFFFF',
   headerProfileBtnText: '#FFFFFF',
 
+  editProfileAvIconWrapBg: '#BEDBB0',
+
   boardTitle: '#FFFFFF',
   boardBg: '#121212',
   boardEmptyText: 'rgba(255, 255, 255, 0.5)',
@@ -146,6 +150,8 @@ const coloredTheme = {
   headerBg: '#FFFFFF',
   headerMenuBtn: '#161616',
   headerProfileBtnText: '#161616',
+  
+  editProfileAvIconWrapBg: '#CCC',
 
   boardTitle: '#161616',
   boardBg: '#ECEDFD',

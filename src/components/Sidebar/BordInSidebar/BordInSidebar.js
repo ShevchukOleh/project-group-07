@@ -23,7 +23,7 @@ export const BordInSidebar = ({ filteredItems }) => {
   // console.log(boardsInSidebar);
 
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
-  
+  const [editBoard, setIsEditBoard] = useState('')
   const handleOpenEditModal = () => {
   setIsOpenEditModal(true)
   }
@@ -32,6 +32,9 @@ export const BordInSidebar = ({ filteredItems }) => {
      setIsOpenEditModal(false)
   }
   
+  const handleSubmit = () => {
+    console.log(editBoard)
+  }
 
 
 
@@ -88,9 +91,12 @@ export const BordInSidebar = ({ filteredItems }) => {
             </div>
                         
             <ModalEditFormDialog
-             board={board._id}
-             closeEditModal={handleCloseEditModal}
-             isOpenEditModal={isOpenEditModal}
+            handleSubmit={handleSubmit}
+            board={board._id}
+            closeEditModal={handleCloseEditModal}
+            isOpenEditModal={isOpenEditModal}
+            setEditBoard={setIsEditBoard}
+            editBoard={editBoard}
             />   
             
           </OneBoard>

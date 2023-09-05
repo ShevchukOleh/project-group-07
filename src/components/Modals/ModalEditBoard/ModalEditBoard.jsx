@@ -27,8 +27,8 @@ import { useEffect } from 'react';
 
 import { getIcon, getImage } from '../ModalBoard/servises';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { editBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
+import { useSelector } from 'react-redux';
+// import { editBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
@@ -38,7 +38,7 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [valueInput, setValueInput] = useState('');
   const [valueIcon, setValueIcon] = useState('');
@@ -90,14 +90,19 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
   // const darkImageBg = image[16];
   // const violetImageBg = image[17];
 
+  console.log(icon);
+  console.log(image);
+
   const handleCloseBtn = () => {
     if (valueInput) {
       console.log(editBoard)
-      dispatch(editBoardById(editBoard));
+      // dispatch(editBoardById(valueInput, board ));
       console.log(valueInput, valueIcon, valueImgBg)
       setErrorField('');
       setValueInput('');
-      closeEditModal(!isOpenEditModal);
+      setValueIcon('');
+      setValueImgBg('');
+      closeEditModal(false);
       //       createOpenModalShow(prev => !prev);
     } else {
       setErrorField('Please, fill in the required fields');
@@ -110,8 +115,8 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
   };
 
   const handleChangeIcon = event => {
-    setValueIcon(event.target.value);
-        console.log(event.target.value)
+    // setValueIcon(event.target.value);
+    console.log(event.target.value)
 
   };
 
@@ -223,7 +228,7 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
             <ImageBgContainer
               row
               aria-labelledby="image-group"
-              defaultValue="Vector1"
+              defaultValue="noBackground"
               name="image-group"
               value={valueImgBg}
               onChange={handleChangeImg}
@@ -302,7 +307,7 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
               >
                 <Icon src={Plus}/>
               </StyledBox>
-              Create
+              Edit Board
             </StyledButton>
           </DialogActionsStyled>
           <CloseBtn>

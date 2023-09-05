@@ -36,7 +36,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
   const dispatch = useDispatch();

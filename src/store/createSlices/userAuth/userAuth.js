@@ -73,7 +73,8 @@ const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchThemeUpdate.fulfilled, (state, action) => {
-        state.currentUser = action.payload;
+        state.loading = false;
+        state.currentUser.theme = action.payload.theme;
         state.error = null;
       })
       .addCase(fetchThemeUpdate.rejected, (state, action) => {

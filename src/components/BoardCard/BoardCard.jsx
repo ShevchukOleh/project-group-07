@@ -36,9 +36,8 @@ export default function BoardCard({ boardId, columnId, card }) {
 
 function BoardCardItem({ boardId, columnId, card }) {
   const user = useSelector(getCurrentUser);
-  const dispatch = useDispatch();
+  const currentTheme = user?.theme || 'Light';
 
-  const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
 
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;

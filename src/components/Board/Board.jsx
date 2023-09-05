@@ -76,11 +76,27 @@ export default function Board() {
     background => background._id === backgroundId
   );
 
-  const backgroundSrc = background?.background_lg_src || '';
+  // const backgroundSrc = background?.background_lg_src || '';
 
-  const backgroundStyle = backgroundSrc
-    ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
-    : { backgroundColor: theme?.themeSet?.boardBg };
+  // const backgroundStyle = backgroundSrc
+  //   ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
+  //   : { backgroundColor: theme?.themeSet?.boardBg };
+  
+  let backgroundSrc = '';
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth <= 375) {
+    backgroundSrc = background?.background_sm_src || '';
+  } else if (screenWidth >= 768 && screenWidth <= 1439) {
+    backgroundSrc = background?.background_lg_src || '';
+  } else {
+    backgroundSrc = background?.background_xxl_src || '';
+  }
+
+const backgroundStyle = backgroundSrc
+  ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
+  : { backgroundColor: theme?.themeSet?.boardBg };
+  
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (

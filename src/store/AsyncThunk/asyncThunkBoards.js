@@ -91,7 +91,6 @@ const deleteBoard = createAsyncThunk(
     }
   }
 );
-// 401 error?
 const editBoardById = createAsyncThunk(
   'board/editBoardById',
   async ({ boardId, title }, thunkAPI) => {

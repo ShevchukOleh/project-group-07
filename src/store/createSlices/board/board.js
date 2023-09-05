@@ -12,6 +12,7 @@ import {
   createOneCard,
   deleteCard,
   editColumnById,
+  editBoardById,
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
@@ -76,6 +77,25 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      //editBoardById====================================================
+      .addCase(editBoardById.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(editBoardById.fulfilled, (state, action) => {
+        console.log('actionpayload: ', action.payload);
+        state.loading = false;
+        state.boards = state.boards.map(el => {
+          if (el.id === action.payload.id) {
+            console.log('el: ', el);
+          }
+          return el;
+        });
+        state.error = null;
+      })
+      .addCase(editBoardById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
 
       //Column
 
@@ -127,8 +147,17 @@ const boardSlice = createSlice({
         state.loading = true;
       })
       .addCase(editColumnById.fulfilled, (state, action) => {
-        console.log('action: ', action);
+        console.log('action.payload ', action.payload);
         state.loading = false;
+        state.columns = state.columns.map(el => {
+          if (el._id === action.payload._id) {
+            return {
+              ...el,
+              title: action.payload.title,
+            };
+          }
+          return el; // Повертаємо не змінений об'єкт для інших дошок
+        });
         state.error = null;
       })
       .addCase(editColumnById.rejected, (state, action) => {
@@ -185,9 +214,16 @@ const boardSlice = createSlice({
       .addCase(deleteCard.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.cards = state.cards.filter(el => {
-          return el._id !== action.payload._id;
-        });
+        console.log('action.payload', action.payload);
+        console.log('state.columnCards', state.columnCards);
+        const newState = {
+          ...state,
+          columnCards: {
+            ...state.columnCards,
+          },
+        };
+        delete newState.columnCards[action.payload._id];
+        state.columnCards = newState;
       })
       .addCase(deleteCard.rejected, (state, action) => {
         state.loading = false;

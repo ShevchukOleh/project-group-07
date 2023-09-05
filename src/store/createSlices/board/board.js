@@ -95,6 +95,7 @@ const boardSlice = createSlice({
       })
       //createColum==========================================================>
       .addCase(createColumn.fulfilled, (state, action) => {
+        console.log('action: ', action);
         state.loading = false;
         state.columns.push(action.payload);
         state.error = null;

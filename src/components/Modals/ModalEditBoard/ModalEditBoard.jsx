@@ -18,29 +18,28 @@ import {
   ErrorTextWrap,
   StyledButton,
   StyledBox,
-} from './ModalBoard.styled';
+} from './ModalEditBoard.styled';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { getIcon, getImage } from './servises';
+import { getIcon, getImage } from '../ModalBoard/servises';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
+import { useSelector } from 'react-redux';
+// import { editBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
-import { useNavigate } from 'react-router-dom';
 
-export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
+export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditModal }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+
   const [valueInput, setValueInput] = useState('');
   const [valueIcon, setValueIcon] = useState('');
   const [valueImgBg, setValueImgBg] = useState('');
@@ -80,7 +79,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       });
   }, [token]);
 
-  const createBd = {
+  const editBoard = {
     title: valueInput,
     icon: valueIcon,
     background: valueImgBg,
@@ -91,13 +90,19 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   // const darkImageBg = image[16];
   // const violetImageBg = image[17];
 
+  // console.log(icon);
+  // console.log(image);
+
   const handleCloseBtn = () => {
     if (valueInput) {
-      dispatch(createBoard(createBd));
+      console.log(editBoard)
+      // dispatch(editBoardById(valueInput, board ));
+      console.log(valueInput, valueIcon, valueImgBg)
       setErrorField('');
-      setValueInput('');
-      createOpenModalShow();
-      navigate(`/home/${valueInput}`);
+      // setValueInput('');
+      setValueIcon('');
+      setValueImgBg('');
+      closeEditModal(false);
       //       createOpenModalShow(prev => !prev);
     } else {
       setErrorField('Please, fill in the required fields');
@@ -110,20 +115,20 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   };
 
   const handleChangeIcon = event => {
-    setValueIcon(event.target.value);
-        console.log(event.target.value)
+    // setValueIcon(event.target.value);
+    console.log(event.target.value)
 
   };
 
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
-        console.log(event.target.value)
+    console.log(event.target.value)
 
   };
 
   return (
     <div>
-      <Dialog open={isCreateOpenModal} onClose={createOpenModalShow}>
+      <Dialog open={isOpenEditModal} onClose={closeEditModal}>
         <ContainerModal>
           {isLoading && <Loader />}
           {error && (
@@ -139,14 +144,14 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               color: `${theme?.themeSet?.modalHelpTitle}`,
             }}
           >
-            New board
+            Edit board
           </DialogTitle>
 
           <DialogContent sx={{ padding: 0 }}>
             <TextFieldStyled
               autoFocus
               id="title"
-              label="Title"
+              label="Project office"
               type="text"
               placeholder="Title"
               required
@@ -223,7 +228,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
             <ImageBgContainer
               row
               aria-labelledby="image-group"
-              defaultValue="Vector1"
+              defaultValue="noBackground"
               name="image-group"
               value={valueImgBg}
               onChange={handleChangeImg}
@@ -302,11 +307,11 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               >
                 <Icon src={Plus}/>
               </StyledBox>
-              Create
+              Edit Board
             </StyledButton>
           </DialogActionsStyled>
           <CloseBtn>
-            <IconClose onClick={createOpenModalShow} />
+            <IconClose onClick={closeEditModal} />
           </CloseBtn>
         </ContainerModal>
       </Dialog>

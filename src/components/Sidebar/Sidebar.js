@@ -47,7 +47,7 @@ export const Sidebar = () => {
 
   useEffect(() => {
     setBoardsList(boardsInSidebar);
-  }, [boardsInSidebar]);
+  }, [boardsInSidebar, filteredItems]);
   // =============================search
   const createOpenModalShow = () => {
     setCreateOpenModal(!isCreateOpenModal);
@@ -103,7 +103,6 @@ export const Sidebar = () => {
             />
             <CreateButton
               onClick={() => setCreateOpenModal(!isCreateOpenModal)}
-
               sx={{
                 minWidth: '40px',
                 height: '36px',

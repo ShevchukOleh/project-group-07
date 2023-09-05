@@ -25,22 +25,17 @@ import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
+// import { useDispatch } from 'react-redux';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-export default function CardFormDialog({
-  hideModal,
-  isShowModal,
-  boardId,
-  columnId,
-}) {
+export default function CardFormDialog({ hideModal, isShowModal }) {
+  //   const dispatch = useDispatch();
+
   const [valueTitle, setValueTitle] = useState('');
   const [labelColor, setLabelColor] = useState('LOW');
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDeadline] = useState('2023-09-01');
-  const dispatch = useDispatch();
 
   const createCard = {
     title: valueTitle,
@@ -51,7 +46,7 @@ export default function CardFormDialog({
 
   const handleClose = () => {
     hideModal();
-    setLabelColor('LOW');
+    setLabelColor('Low');
     setValueTitle('');
     setValueDescription('');
   };
@@ -143,7 +138,7 @@ export default function CardFormDialog({
                 onChange={handleChangeLabelColor}
               >
                 <FormControlLabelStyled
-                  value="LOW"
+                  value="Low"
                   // key={_id}
                   control={
                     <RadioStyled
@@ -157,7 +152,7 @@ export default function CardFormDialog({
                   }
                 />
                 <FormControlLabelStyled
-                  value="MEDIUM"
+                  value="Medium"
                   control={
                     <RadioStyled
                       sx={{
@@ -170,7 +165,7 @@ export default function CardFormDialog({
                   }
                 />
                 <FormControlLabelStyled
-                  value="HIGH"
+                  value="High"
                   control={
                     <RadioStyled
                       sx={{
@@ -183,7 +178,7 @@ export default function CardFormDialog({
                   }
                 />
                 <FormControlLabelStyled
-                  value="WITHOUT"
+                  value="Without priority"
                   control={
                     <RadioStyled
                       sx={{

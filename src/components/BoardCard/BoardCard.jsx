@@ -1,16 +1,20 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
+// import { useDispatch } from 'react-redux';
+// import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
 
+// export default function BoardCard({ boardId, columnId, card }) {
+//   const dispatch = useDispatch();
+
+import { useSelector } from 'react-redux';
 import {
   selectMyCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
-import { theme } from '../../constants';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function BoardCard({ boardId, columnId, card }) {
   const selectPriority = useSelector(selectedInPriority);
@@ -32,6 +36,10 @@ export default function BoardCard({ boardId, columnId, card }) {
 
 function BoardCardItem({ boardId, columnId, card }) {
   const dispatch = useDispatch();
+
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
 
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
   const lowPriorityColor = '#8FA1D0';

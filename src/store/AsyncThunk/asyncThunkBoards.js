@@ -94,14 +94,18 @@ const deleteBoard = createAsyncThunk(
 // 401 error?
 const editBoardById = createAsyncThunk(
   'board/editBoardById',
-  async (boardId, thunkAPI) => {
+  async ({ boardId, title }, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.token;
-      const response = await axios.patch(`${BASE_URL}api/board/${boardId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.patch(
+        `${BASE_URL}api/board/${boardId}`,
+        { title },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const { data } = response;
       console.log('data: ', data);
       return data;
@@ -135,6 +139,7 @@ const getBoardById = createAsyncThunk(
 const getAllColums = createAsyncThunk(
   'board/getColums',
   async (boardId, thunkAPI) => {
+    console.log(boardId);
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.get(
@@ -172,6 +177,7 @@ const createColumn = createAsyncThunk(
         }
       );
       const { data } = response;
+      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed to post new column');
@@ -184,10 +190,10 @@ const editColumnById = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
-        // `${BASE_URL}api/board/${boardId}/column/${columnId}`,
+        `${BASE_URL}api/board/${boardId}/column/${columnId}`,
 
-        `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
-        { title },
+        //         `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
+        //         { title },
 
         {
           headers: {
@@ -312,7 +318,4 @@ export {
   createColumn,
   editColumnById,
   deleteColumn,
-  getAllCards,
-  createOneCard,
-  deleteCard,
 };

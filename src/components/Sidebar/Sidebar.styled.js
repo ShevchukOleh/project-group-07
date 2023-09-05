@@ -106,6 +106,7 @@ const OneBoard = styled.div`
   padding: 22px 20px 22px 24px;
   display: flex;
   align-items: center;
+  transition: background-color, color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: ${props =>
     props.isSelected
       ? props?.theme?.themeSet?.sidebarBlock
@@ -256,6 +257,13 @@ const CreateButton = styled(Button)`
   background-color: ${props => {
     return props?.theme?.themeSet?.sidebarCreateBtnBg;
   }};
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: ${props => {
+      return props?.theme?.themeSet?.sidebarCreateBtnBgHover;
+    }};
+  }
 `;
 
 const PlantImg = styled.img`

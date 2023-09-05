@@ -9,14 +9,27 @@ import {
 } from '@mui/material';
 import { ThemeBtn, ThemeIcon, Wrapper } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
-import { theme } from '../../constants';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import { useSelector } from 'react-redux';
 
-const LIGHT = 'light';
-const DARK = 'dark';
-const COLORED = 'violet';
+const LIGHT = 'Light';
+const DARK = 'Dark';
+const COLORED = 'Violet';
 
 export const ThemeModal = () => {
-  const [themeValue, setThemeValue] = useState('');
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
+  console.log(user);
+  console.log(theme);
+  console.log(currentTheme);
+
+  const [themeValue] = useState('');
+  // Забрав setThemeValue тому що сторінка на git hub не збиралась
+  // const [themeValue, setThemeValue] = useState('');
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -38,7 +51,7 @@ export const ThemeModal = () => {
   };
 
   const handleChange = event => {
-    setThemeValue(event.currentTarget.value);
+    console.log(themeValue)
     console.log(event.currentTarget.value);
 
     if (event.currentTarget.value === LIGHT) {

@@ -7,7 +7,7 @@ import {
   IconPassowordWrapper,
   ContainerErrorIcon,
 } from '../FormUi/FormUi.styled';
-import ErrorComponent from '../FormUi/ErrorComponent/ErrorComponent';
+import { ErrorComponent } from '../FormUi/ErrorComponent/ErrorComponent';
 import { RiEyeCloseLine, RiEyeLine } from 'react-icons/ri';
 
 const RegistrationTemplate = ({

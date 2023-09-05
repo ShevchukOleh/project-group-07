@@ -8,12 +8,16 @@ import {
 } from 'store/AsyncThunk/asyncThunkBoards';
 import ModalEditColumn from 'components/Modals/ModalEditCulmn/ModalEditColumn';
 import Dialog from '@mui/material/Dialog';
-import {
-  // selectError,
-  selectLoading,
-} from 'store/createSlices/board/boardSelectors';
+import { selectLoading } from 'store/createSlices/board/boardSelectors';
 import LoaderComponent from 'components/Loader/Loader';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+
 export default function ColumnTitle(params) {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
   // const isError = useSelector(selectError);
@@ -24,9 +28,11 @@ export default function ColumnTitle(params) {
     boardId: params.boardId,
     columnId: params.columnId,
   };
+
   const openModal = () => {
     setOpenEditModal(!openEditModal);
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (editColumn) {
@@ -35,14 +41,22 @@ export default function ColumnTitle(params) {
       setOpenEditModal(!openEditModal);
     }
   };
+
   return (
     <ColumnTitleStyle>
       <p className="titleColumn">{params.text}</p>
+
       <div style={{ display: 'flex', gap: 5 }}>
         <OpenModalBtn onClick={openModal}>
-          <FiEdit2 style={{ color: 'rgba(16, 16, 16, 0.5)' }} />
+          <FiEdit2
+            style={{
+              cursor: 'pointer',
+              color: `${theme?.themeSet?.cardPriorityIcon}`,
+            }}
+          />
         </OpenModalBtn>
-        <Dialog open={openEditModal} onClose={openModal}>
+
+        <Dialog open={openEditModal} onClose={openModal} style={{}}>
           <ModalEditColumn
             handleSubmit={handleSubmit}
             setEditColumn={setEditColumn}
@@ -50,10 +64,14 @@ export default function ColumnTitle(params) {
             setOpenEditModal={setOpenEditModal}
           />
         </Dialog>
+
         {isLoading && <LoaderComponent />}
         <FiTrash
           onClick={() => dispatch(deleteColumn(requestData))}
-          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+          style={{
+            cursor: 'pointer',
+            color: `${theme?.themeSet?.cardPriorityIcon}`,
+          }}
         />
       </div>
     </ColumnTitleStyle>

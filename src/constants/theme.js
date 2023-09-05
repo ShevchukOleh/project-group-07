@@ -1,7 +1,5 @@
 import { createTheme } from '@mui/material';
 
-const currentTheme = 'light';
-
 const lightTheme = {
   headerBg: '#FCFCFC',
   headerMenuBtn: '#161616',
@@ -22,6 +20,8 @@ const lightTheme = {
   sidebarCreateConBg: '#FFFFFF',
   sidebarCreateConBorder: 'rgba(22, 22, 22, 0.1)',
   sidebarCreateBtnBg: '#BEDBB0',
+  sidebarCreateBtnBgHover: '#9DC888',
+  sidebarCreateBtnBorder: '#BEDBB0',
   iconPlus: '#121212',
   sidebarBlock: '#F6F6F7',
   sidebarTextWitoutHover: 'rgba(22, 22, 22, 0.5)',
@@ -46,18 +46,28 @@ const lightTheme = {
   modalHelpBg: '#FCFCFC',
   modalHelpBorder: '#FCFCFC',
   modalHelpTitle: '#161616',
-  modalHelpSendBg: '#FCFCFC',
+  modalHelpSendBg: '#BEDBB0',
   modalHelpSendBorder: '#BEDBB0',
   modalHelpSendText: '#161616',
-  modalHelpSendHover: '#BEDBB0',
-  modalHelpSendHoverText: '#161616',
+  modalHelpSendHover: '#9DC888',
   inputBorder: '#CCC',
   inputBorderFocus: '#BEDBB0',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+  inputPlaceholder: 'rgba(22, 22, 22, 0.5)',
+  inputOtherBorder: '#CCC',
+  inputOtherHover: '#BEDBB0',
 
   createBtnIcon: '#FFFFFF',
   createBtnIconBg: '#161616',
+
+  boxIconBg: '#121212',
+  iconFill: '#FFFFFF',
+
+  addColumnBtnBg: '#FFFFFF',
+  addColumnIconBox: '#161616',
+  addColumnIcon: '#FFFFFF',
+  addColumnText: '#161616',
 };
 
 const darkTheme = {
@@ -80,6 +90,8 @@ const darkTheme = {
   sidebarCreateConBg: '#121212',
   sidebarCreateConBorder: 'rgba(255, 255, 255, 0.1)',
   sidebarCreateBtnBg: '#BEDBB0',
+  sidebarCreateBtnBgHover: '#9DC888',
+  sidebarCreateBtnBorder: '#BEDBB0',
   iconPlus: '#121212',
   sidebarBlock: '#1F1F1F',
   sidebarTextWitoutHover: 'rgba(255, 255, 255, 0.5)',
@@ -104,18 +116,28 @@ const darkTheme = {
   modalHelpBg: '#151515',
   modalHelpBorder: 'rgba(190, 219, 176, 0.5)',
   modalHelpTitle: '#FFFFFF',
-  modalHelpSendBg: '#1F1F1F',
+  modalHelpSendBg: '#BEDBB0',
   modalHelpSendBorder: '#BEDBB0',
-  modalHelpSendText: '#FFFFFF',
-  modalHelpSendHover: '#BEDBB0',
-  modalHelpSendHoverText: '#161616',
-  inputBorder: 'rgba(255, 255, 255, 0.5)',
+  modalHelpSendText: '#161616',
+  modalHelpSendHover: '#9DC888',
+  inputBorder: 'rgba(190, 219, 176, 0.5)',
   inputBorderFocus: '#BEDBB0',
   inputColor: '#FFFFFF',
   inputBgColor: '#1F1F1F',
+  inputPlaceholder: 'rgba(255, 255, 255, 0.5)',
+  inputOtherBorder: '#BEDBB0',
+  inputOtherHover: '#FFFFFF',
 
   createBtnIcon: '#FFFFFF',
   createBtnIconBg: '#161616',
+
+  boxIconBg: '#121212',
+  iconFill: '#FFFFFF',
+
+  addColumnBtnBg: '#121212',
+  addColumnIconBox: '#FFFFFF',
+  addColumnIcon: '#121212',
+  addColumnText: '#FFFFFF',
 };
 
 const coloredTheme = {
@@ -138,6 +160,8 @@ const coloredTheme = {
   sidebarCreateConBg: '#5255BC',
   sidebarCreateConBorder: 'rgba(255, 255, 255, 0.1)',
   sidebarCreateBtnBg: '#B8BCFD',
+  sidebarCreateBtnBgHover: '#979CEA',
+  sidebarCreateBtnBorder: 'rgba(236, 237, 253, 0.4)',
   iconPlus: '#FFFFFF',
   sidebarBlock: 'rgba(236, 237, 253, 0.4)',
   sidebarTextWitoutHover: 'rgba(255, 255, 255, 0.5)',
@@ -162,37 +186,44 @@ const coloredTheme = {
   modalHelpBg: '#FCFCFC',
   modalHelpBorder: '#FCFCFC',
   modalHelpTitle: '#161616',
-  modalHelpSendBg: '#FCFCFC',
+  modalHelpSendBg: '#5255BC',
   modalHelpSendBorder: '#5255BC',
-  modalHelpSendText: '#161616',
-  modalHelpSendHover: '#5255BC',
-  modalHelpSendHoverText: '#FCFCFC',
-  inputBorder: '#CCC',
+  modalHelpSendText: '#FFFFFF',
+  modalHelpSendHover: '#7B7EDE',
+  inputBorder: '#979CEA',
   inputBorderFocus: '#5255BC',
   inputColor: '#161616',
   inputBgColor: '#FCFCFC',
+  inputPlaceholder: 'rgba(22, 22, 22, 0.5)',
+  inputOtherBorder: '#CCC',
+  inputOtherHover: '#5255BC',
 
   createBtnIcon: '#161616',
   createBtnIconBg: '#FFFFFF',
+
+  boxIconBg: '#FFFFFF',
+  iconFill: '#121212',
+
+  addColumnBtnBg: '#FFFFFF',
+  addColumnIconBox: '#5255BC',
+  addColumnIcon: '#FFFFFF',
+  addColumnText: '#161616',
 };
 
-const getTheme = theme => {
-  switch (theme) {
-    case 'light':
+const getThemeSet = themeSet => {
+  switch (themeSet) {
+    case 'Light':
       return lightTheme;
-    case 'dark':
+    case 'Dark':
       return darkTheme;
-    case 'violet':
+    case 'Violet':
       return coloredTheme;
     default:
       return lightTheme;
   }
 };
 
-const themeSet = getTheme(currentTheme);
-
-export const theme = createTheme({
-  themeSet,
-});
-
-console.log(theme);
+export const getTheme = themeName => {
+  const themeSet = getThemeSet(themeName);
+  return createTheme({ themeSet });
+};

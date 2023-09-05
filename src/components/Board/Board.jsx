@@ -3,11 +3,11 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
+  selectAllCards,
   selectLoading,
-  selectAllColumnCards,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
@@ -16,41 +16,44 @@ import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
 import CardFormDialog from 'components/CardModal/CardModal';
 import { FiltersModal } from 'components/FiltersModal';
 
-import { useState } from 'react';
-
-import { theme } from '../../constants';
+import { useEffect, useState } from 'react';
+import { getTheme } from 'constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
 import { Dialog } from '@mui/material';
 import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
-import LoaderComponent from 'components/Loader/Loader';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
-export default function Board({ setIsShowModal }) {
+export default function Board() {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
   // const cards = useSelector(selectAllCards);
   const columnCards = useSelector(selectAllColumnCards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
+  const location = useLocation();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [addColumn, setAddColumn] = useState('');
   const [selectedColumnId, setSelectedColumnId] = useState(null);
-
+  const [board, setBoard] = useState([]);
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
   // const isError = useSelector(selectError);
   const openModalCard = columnId => {
     setSelectedColumnId(columnId);
     // console.log('SelectedColumnId: ', selectedColumnId);
     setIsModalCardOpen(true);
   };
-
   const closeModalCard = () => {
     setIsModalCardOpen(false);
   };
   const openModal = () => {
     setOpenAddModal(!openAddModal);
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (addColumn) {
@@ -59,9 +62,12 @@ export default function Board({ setIsShowModal }) {
       setOpenAddModal(!openAddModal);
     }
   };
-  const board =
-    boards.find(board => `:${board.title}` === boardName) || boards[0];
-
+  useEffect(() => {
+    const updatedBoard = boards.find(board => board.title === boardName);
+    if (updatedBoard) {
+      setBoard(updatedBoard);
+    }
+  }, [boards, location.pathname, boardName]);
   const backgroundId = board?.background?._id;
   const boardId = board?._id;
 
@@ -85,7 +91,6 @@ export default function Board({ setIsShowModal }) {
       <div className="filtersPosition">
         <FiltersModal />
       </div>
-
       {boards.length !== 0 && (
         <div className="containerColumns">
           {columns.map(column => {
@@ -96,7 +101,6 @@ export default function Board({ setIsShowModal }) {
                   columnId={column._id}
                   text={`${column.title}`}
                 />
-
                 <div className="containerColumnCard">
                   {columnCards[column._id] &&
                     Array.isArray(columnCards[column._id]) &&
@@ -125,7 +129,20 @@ export default function Board({ setIsShowModal }) {
               </div>
             );
           })}
-
+          {/* <div className="containerOneColumn">
+            <ColumnTitle text={'In progress'} />
+            <div className="containerColumnCard">
+              <BoardCard />
+            </div>
+            <ButtonCreate text="Add another card" onClick={openModalCard} />
+          </div>
+          <div className="containerOneColumn">
+            <ColumnTitle text={'Done'} />
+            <div className="containerColumnCard">
+              <BoardCard />
+            </div>
+            <ButtonCreate text="Add another card" onClick={openModalCard} />
+          </div> */}
           <div>
             <ButtonCreate text="Add another column" onClick={openModal} />
             {/* =========================modal */}
@@ -137,7 +154,6 @@ export default function Board({ setIsShowModal }) {
                 setOpenAddModal={setOpenAddModal}
               />
             </Dialog>
-            {isLoading && <LoaderComponent />}
             {/* ===================modal */}
           </div>
         </div>

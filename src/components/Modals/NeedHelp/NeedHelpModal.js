@@ -11,14 +11,19 @@ import {
   IconClose,
   CloseBtn,
 } from './NeedHelpModal.styled';
-import { theme } from '../../../constants';
-import { AiOutlineClose } from 'react-icons/ai';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import { useSelector } from 'react-redux';
 
 const ModalForm = ({
   isNeedHelpModal,
   needHelpModalShow,
   setisNeedHelpModal,
 }) => {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme;
+  const theme = getTheme(currentTheme);
+
   const [focusInput, setFocusInput] = useState(false);
   const [focusComment, setFocusComment] = useState(false);
 

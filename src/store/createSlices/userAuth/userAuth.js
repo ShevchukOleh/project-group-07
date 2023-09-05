@@ -4,6 +4,8 @@ import {
   registerUser,
   logoutUser,
   fetchCurrentUser,
+  fetchThemeUpdate,
+  addUserAvatar,
 } from 'store/AsyncThunk/asyncThunkUsersAuth';
 
 const userSlice = createSlice({
@@ -41,7 +43,7 @@ const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.isLoggedIn = true;
-        console.log(action.payload);
+        state.token = action.payload.token;
         state.user = action.payload.user;
         state.error = null;
       })
@@ -66,8 +68,31 @@ const userSlice = createSlice({
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.currentUser = action.payload;
         state.error = null;
-      });
-  },
+      })
+      .addCase(fetchThemeUpdate.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchThemeUpdate.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchThemeUpdate.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(addUserAvatar.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addUserAvatar.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentUser.avatar = action.payload.avatarUrl;
+        state.error = null;
+      })
+      .addCase(addUserAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+  }
 });
 
 export default userSlice.reducer;

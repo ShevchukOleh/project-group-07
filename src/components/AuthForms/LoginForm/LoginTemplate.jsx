@@ -8,8 +8,16 @@ import {
   // FormButtonLink,
 } from '../FormUi/FormUi.styled';
 import { RiEyeLine, RiEyeCloseLine } from 'react-icons/ri';
-import ErrorComponent from '../FormUi/ErrorComponent/ErrorComponent';
-const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
+import {
+  ErrorComponent,
+  ErrorIncorrectLogin,
+} from '../FormUi/ErrorComponent/ErrorComponent';
+const LoginTemplate = ({
+  formikProps,
+  loginError,
+  showPassword,
+  handleShowPassword,
+}) => (
   <TextForm onSubmit={formikProps.handleSubmit}>
     <div>
       <TextFieldCustum
@@ -29,7 +37,7 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
         name="password"
         value={formikProps.values.password}
         onChange={formikProps.handleChange}
-        placeholder="Create a password"
+        placeholder="Confirm a password"
         autoComplete="on"
         minLength={8}
         maxLength={64}
@@ -44,6 +52,7 @@ const LoginTemplate = ({ formikProps, showPassword, handleShowPassword }) => (
         </IconPassowordWrapper>
         <ErrorComponent name="password" />
       </ContainerErrorIcon>
+      {loginError && <ErrorIncorrectLogin loginError={loginError} />}
     </div>
     <TextFormSubmitButton type="submit">Log In Now</TextFormSubmitButton>
   </TextForm>

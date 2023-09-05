@@ -50,8 +50,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const [image, setImage] = useState([]);
   const [errorField, setErrorField] = useState(null);
 
-  // const theme = useSelector(sele)
-  // const isLoading = useSelector(selectLoading)
+
 
   const token = useSelector(selectToken);
 
@@ -90,8 +89,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
-  // const darkImageBg = image[16];
-  // const violetImageBg = image[17];
+  const darkImageBg = image[16];
+  const violetImageBg = image[17];
 
   const handleCloseBtn = () => {
     if (valueInput) {
@@ -199,9 +198,9 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                       control={
                         <RadioStyled
                           key={_id}
-                          icon={<Icon href={icon_src} alt={_id} />}
+                          icon={<Icon src={icon_src} alt={_id} />}
                           checkedIcon={
-                            <Icon href={icon_src} alt={_id} checked />
+                            <Icon src={icon_src} alt={_id} checked />
                           }
                         />
                       }
@@ -230,7 +229,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               value={valueImgBg}
               onChange={handleChangeImg}
             >
-              {lightImageBg && (
+              { currentTheme ==='Light' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -252,7 +251,57 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                     />
                   }
                 />
-              )}
+  )
+              }
+              { currentTheme ==='Dark' && (
+                <FormControlLabelStyled
+                  value={'noBackground'}
+                  control={
+                    <RadioStyledImg
+                      key={darkImageBg._id}
+                      icon={
+                        <Image
+                          src={darkImageBg.background_icon_src}
+                          alt="noBackground"
+                        />
+                      }
+                      checkedIcon={
+                        <Image
+                          src={darkImageBg.background_icon_src}
+                          alt="noBackground"
+                          checked
+                        />
+                      }
+                    />
+                  }
+                />
+  )
+              }
+              { currentTheme ==='Violet' && (
+                <FormControlLabelStyled
+                  value={'noBackground'}
+                  control={
+                    <RadioStyledImg
+                      key={violetImageBg._id}
+                      icon={
+                        <Image
+                          src={violetImageBg.background_icon_src}
+                          alt="noBackground"
+                        />
+                      }
+                      checkedIcon={
+                        <Image
+                          src={violetImageBg.background_icon_src}
+                          alt="noBackground"
+                          checked
+                        />
+                      }
+                    />
+                  }
+                />
+  )
+              }
+
 
               {image &&
                 imageNew.map(({ _id, background_icon_src }) => (

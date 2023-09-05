@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-// import Loader from 'components/Loader/Loader'
 import DialogContent from '@mui/material/DialogContent';
 import FormLabel from '@mui/material/FormLabel'
 import DialogTitle from '@mui/material/DialogTitle';
@@ -9,11 +8,8 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import 'moment/locale/de';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-// import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+
 import {
     IconContainer,
   RadioStyled,
@@ -32,8 +28,6 @@ import { useState } from 'react';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-
-
 export default function CardFormDialog({hideModal, isShowModal}) {
   
   const [valueTitle, setValueTitle] = useState('');
@@ -43,7 +37,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
    
     const date = Date.now()
     
-    console.log(dateDeadline)
+    console.log(dateDeadline, valueTitle, labelColor,valueDescription)
 
     const createCard = {
     title: valueTitle,
@@ -206,10 +200,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
               }}
             >
               Deadline
-                            </DialogTitle>
-                            
-
-
+</DialogTitle>
       <DemoContainer sx={{marginBottom: '40px', color: '#BEDBB0', }}
         components={[
           'DatePicker',
@@ -226,16 +217,14 @@ export default function CardFormDialog({hideModal, isShowModal}) {
     textField: { size: 'small', variant: 'standard'}
   }}
         required
-        onChange={(newValue) => setDateDeadline(newValue)}
+        onChange={(newValue) => setDateDeadline(newValue.$de)}
         minDate={dayjs(Date.now())}                              
         orientation='portrait'
         views={['month', 'day']}
         defaultValue={dayjs(Date.now())}
                                     />
         </div>
-    </DemoContainer>
-                            
-
+      </DemoContainer>
                     </DialogContent>
                     <DialogActionsStyled>
                         {valueTitle

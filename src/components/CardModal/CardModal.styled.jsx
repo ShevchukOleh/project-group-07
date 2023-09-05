@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import RadioGroup from '@mui/material/RadioGroup'
 import DialogActions from '@mui/material/DialogActions';
 import { Radio, FormControlLabel } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 export const ButtonStyled = styled(Button)`
@@ -18,6 +19,11 @@ export const ButtonStyled = styled(Button)`
       backgroundColor: '#9DC888',
   }
   `
+export const DatePickerStyled = styled(DatePicker)`
+width: '127px';
+
+`
+
 export const ContainerModal = styled.div`
 padding: 24px;
 width: 335px;
@@ -30,7 +36,7 @@ width: 350px;
   }
 
 `
-
+// export const LightModeIcon = 
 export const FormControlLabelStyled = styled(FormControlLabel)`
 margin: 0px;
 `
@@ -83,7 +89,7 @@ padding-left: 18px;
   ::placeholder {
     color: #BEDBB0;
   };
-  &&:hover {
+  &:hover {
   border: 1px solid grey
   };
 `
@@ -102,11 +108,11 @@ padding-left: 18px;
   // &&:focus {
   // border: 1px solid grey
   // };
-  &&:hover {
+  &:hover {
   border: 1px solid grey
   };
 `
 
-export const DateField = styled.input`
+// export const DateField = styled.input`
 
-`
+// `

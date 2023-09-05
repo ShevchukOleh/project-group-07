@@ -76,10 +76,35 @@ const fetchThemeUpdate = createAsyncThunk(
   }
 );
 
+const addUserAvatar = createAsyncThunk(
+  'user/avatar',
+  async (imageFile, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+
+      const formData = new FormData();
+      formData.append('avatar', imageFile);
+
+      const response = await axios.patch(`${BASE_URL}avatar`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed to upload user avatar');
+    }
+  }
+);
+
 export {
   loginUser,
   registerUser,
   logoutUser,
   fetchCurrentUser,
   fetchThemeUpdate,
+  addUserAvatar,
 };

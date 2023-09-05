@@ -87,6 +87,8 @@ export default function ModalEditFormDialog({
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
+    const darkImageBg = image[16];
+  const violetImageBg = image[17];
 
   return (
     <div>
@@ -197,7 +199,7 @@ export default function ModalEditFormDialog({
               value={editBoardImg}
               onChange={(e) => setIsEditBoardImg(e.target.value)}
             >
-              {lightImageBg && (
+              { currentTheme ==='Light' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -219,7 +221,56 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-              )}
+  )
+              }
+              { currentTheme ==='Dark' && (
+                <FormControlLabelStyled
+                  value={'noBackground'}
+                  control={
+                    <RadioStyledImg
+                      key={darkImageBg._id}
+                      icon={
+                        <Image
+                          src={darkImageBg.background_icon_src}
+                          alt="noBackground"
+                        />
+                      }
+                      checkedIcon={
+                        <Image
+                          src={darkImageBg.background_icon_src}
+                          alt="noBackground"
+                          checked
+                        />
+                      }
+                    />
+                  }
+                />
+  )
+              }
+              { currentTheme ==='Violet' && (
+                <FormControlLabelStyled
+                  value={'noBackground'}
+                  control={
+                    <RadioStyledImg
+                      key={violetImageBg._id}
+                      icon={
+                        <Image
+                          src={violetImageBg.background_icon_src}
+                          alt="noBackground"
+                        />
+                      }
+                      checkedIcon={
+                        <Image
+                          src={violetImageBg.background_icon_src}
+                          alt="noBackground"
+                          checked
+                        />
+                      }
+                    />
+                  }
+                />
+  )
+              }
 
               {image &&
                 imageNew.map(({ _id, background_icon_src }) => (

@@ -21,7 +21,7 @@ const ModalForm = ({
   setisNeedHelpModal,
 }) => {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
   const [focusInput, setFocusInput] = useState(false);

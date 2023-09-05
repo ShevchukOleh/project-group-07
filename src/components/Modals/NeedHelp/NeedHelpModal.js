@@ -14,6 +14,8 @@ import {
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useSelector } from 'react-redux';
+import { submitHelp } from 'store/AsyncThunk/asyncThunkBoards';
+import { useDispatch } from 'react-redux';
 
 const ModalForm = ({
   isNeedHelpModal,
@@ -34,17 +36,17 @@ const ModalForm = ({
 
   const initialValues = {
     email: '',
-    comment: '',
+    message: '',
   };
 
   const handleSubmit = values => {
-    if (values.email && values.comment) {
+    if (values.email && values.message) {
       console.log(values);
       setisNeedHelpModal(false);
-    } else {
-      alert('Sorry');
+      dispatch(submitHelp({ values }));
     }
   };
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -69,7 +71,7 @@ const ModalForm = ({
                 />
                 <StyledTextArea
                   component="textarea"
-                  name="comment"
+                  name="message"
                   placeholder="Comment"
                   required
                   onFocus={() => setFocusComment(true)}

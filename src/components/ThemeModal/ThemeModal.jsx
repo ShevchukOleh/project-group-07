@@ -26,7 +26,10 @@ export const ThemeModal = () => {
   console.log(theme);
   console.log(currentTheme);
 
-  const [themeValue, setThemeValue] = useState('');
+  const [themeValue] = useState('');
+  // Забрав setThemeValue тому що сторінка на git hub не збиралась
+  // const [themeValue, setThemeValue] = useState('');
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 

@@ -65,7 +65,7 @@ export default function ColumnTitle(params) {
           />
         </Dialog>
 
-        {isLoading && <LoaderComponent />}
+        {/* {isLoading && <LoaderComponent />} */}
         <FiTrash
           onClick={() => dispatch(deleteColumn(requestData))}
           style={{

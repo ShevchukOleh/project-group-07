@@ -94,7 +94,7 @@ export default function ModalEditFormDialog({
     <div>
       <Dialog open={isOpenEditModal} onClose={closeEditModal}>
         <ContainerModal>
-          {isLoading && <Loader />}
+          {/* {isLoading && <Loader />} */}
           {error && (
             <ErrorTextWrap>Something went wrong. Try again later</ErrorTextWrap>
           )}

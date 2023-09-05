@@ -171,7 +171,7 @@ const boardSlice = createSlice({
       .addCase(createOneCard.fulfilled, (state, action) => {
         state.loading = false;
         const { columnId, data } = action.payload;
-        state.columnCards[columnId][0].push(data);
+        state.columnCards[columnId].push(data);
         state.error = null;
       })
       .addCase(createOneCard.rejected, (state, action) => {

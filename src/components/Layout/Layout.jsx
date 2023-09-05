@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Board from 'components/Board/Board';
 import {
   getAllBoards,
+  getAllCards,
   getAllColums,
   getBackgroundBoard,
 } from '../../store/AsyncThunk/asyncThunkBoards';
@@ -52,13 +53,12 @@ const Layout = () => {
       }
     } catch (error) {}
   };
-  }, [dispatch]);
 
   useEffect(() => {
     const board = boards.find(board => board.title === boardName);
     const boardId = board?._id;
     if (boardId) {
-      dispatch(getAllColums(boardId));
+      dispatch(getAllCardsSequentially(boardId));
     }
   }, [dispatch, boards, boardName]);
   return (

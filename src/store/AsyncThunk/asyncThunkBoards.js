@@ -190,10 +190,10 @@ const editColumnById = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
-        `${BASE_URL}api/board/${boardId}/column/${columnId}`,
+        // `${BASE_URL}api/board/${boardId}/column/${columnId}`,
 
-        //         `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
-        //         { title },
+        `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
+        { title },
 
         {
           headers: {
@@ -257,9 +257,6 @@ const getAllCards = createAsyncThunk(
 const createOneCard = createAsyncThunk(
   'board/postCard',
   async ({ boardId, columnId, createCard }, thunkAPI) => {
-    console.log('columnId: ', columnId);
-    console.log('boardId: ', boardId);
-    console.log('createCard: ', createCard);
     try {
       const token = thunkAPI.getState().user.token;
 
@@ -315,7 +312,10 @@ export {
   getBoardById,
   editBoardById,
   getAllColums,
+  getAllCards,
+  createOneCard,
   createColumn,
+  deleteCard,
   editColumnById,
   deleteColumn,
 };

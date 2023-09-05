@@ -25,12 +25,18 @@ import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-export default function CardFormDialog({ hideModal, isShowModal }) {
-  //   const dispatch = useDispatch();
+export default function CardFormDialog({
+  hideModal,
+  isShowModal,
+  boardId,
+  columnId,
+}) {
+  const dispatch = useDispatch();
 
   const [valueTitle, setValueTitle] = useState('');
   const [labelColor, setLabelColor] = useState('LOW');
@@ -46,7 +52,7 @@ export default function CardFormDialog({ hideModal, isShowModal }) {
 
   const handleClose = () => {
     hideModal();
-    setLabelColor('Low');
+    setLabelColor('LOW');
     setValueTitle('');
     setValueDescription('');
   };
@@ -138,7 +144,7 @@ export default function CardFormDialog({ hideModal, isShowModal }) {
                 onChange={handleChangeLabelColor}
               >
                 <FormControlLabelStyled
-                  value="Low"
+                  value="LOW"
                   // key={_id}
                   control={
                     <RadioStyled
@@ -152,7 +158,7 @@ export default function CardFormDialog({ hideModal, isShowModal }) {
                   }
                 />
                 <FormControlLabelStyled
-                  value="Medium"
+                  value="MEDIUM"
                   control={
                     <RadioStyled
                       sx={{
@@ -165,7 +171,7 @@ export default function CardFormDialog({ hideModal, isShowModal }) {
                   }
                 />
                 <FormControlLabelStyled
-                  value="High"
+                  value="HIGH"
                   control={
                     <RadioStyled
                       sx={{

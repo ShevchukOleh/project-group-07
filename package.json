@@ -9,6 +9,7 @@
     "@mui/icons-material": "^5.14.6",
     "@mui/material": "^5.14.6",
     "@mui/styled-engine-sc": "^5.14.6",
+    "@mui/x-data-grid": "^6.12.1",
     "@mui/x-date-pickers": "^6.12.1",
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^1.9.5",

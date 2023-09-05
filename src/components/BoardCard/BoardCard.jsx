@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
-// import { useDispatch } from 'react-redux';
-// import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
+import { useDispatch } from 'react-redux';
+import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
 
 // export default function BoardCard({ boardId, columnId, card }) {
 //   const dispatch = useDispatch();
@@ -35,9 +35,9 @@ export default function BoardCard({ boardId, columnId, card }) {
 }
 
 function BoardCardItem({ boardId, columnId, card }) {
+  const user = useSelector(getCurrentUser);
   const dispatch = useDispatch();
 
-  const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
 
@@ -62,10 +62,8 @@ function BoardCardItem({ boardId, columnId, card }) {
   return (
     <BoardCardStyle>
       <h3 className="title">{card.title}</h3>
-
       <p className="description clip">{card.description}</p>
       <hr />
-
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
         <div>
           <span className="priorityTitle">Priority</span>
@@ -88,7 +86,6 @@ function BoardCardItem({ boardId, columnId, card }) {
           </div>
         </div>
       </div>
-
       <div className="containerCardIcon">
         <FiArrowRightCircle
           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}

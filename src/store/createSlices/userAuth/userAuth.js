@@ -5,6 +5,7 @@ import {
   logoutUser,
   fetchCurrentUser,
   fetchThemeUpdate,
+  addUserAvatar,
 } from 'store/AsyncThunk/asyncThunkUsersAuth';
 
 const userSlice = createSlice({
@@ -78,8 +79,20 @@ const userSlice = createSlice({
       .addCase(fetchThemeUpdate.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      });
-  },
+      })
+      .addCase(addUserAvatar.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addUserAvatar.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentUser.avatar = action.payload.avatarUrl;
+        state.error = null;
+      })
+      .addCase(addUserAvatar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+  }
 });
 
 export default userSlice.reducer;

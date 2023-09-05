@@ -254,11 +254,6 @@ const CreateButton = styled(Button)`
   min-width: 40px;
   height: 36px;
   margin-left: 8px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${props => {
-    return props?.theme?.themeSet?.sidebarCreateBtnBorder;
-  }};
   background-color: ${props => {
     return props?.theme?.themeSet?.sidebarCreateBtnBg;
   }};

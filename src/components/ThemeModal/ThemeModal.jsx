@@ -22,6 +22,10 @@ export const ThemeModal = () => {
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
 
+  console.log(user);
+  console.log(theme);
+  console.log(currentTheme);
+
   const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -44,7 +48,7 @@ export const ThemeModal = () => {
   };
 
   const handleChange = event => {
-    setThemeValue(event.currentTarget.value);
+    console.log(themeValue)
     console.log(event.currentTarget.value);
 
     if (event.currentTarget.value === LIGHT) {

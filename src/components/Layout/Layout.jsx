@@ -6,6 +6,7 @@ import { Container } from './Layout.styled';
 import BackDrop from 'components/BackDrop/BackDrop';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 // import FormDialog from 'components/ModalBoard/ModalBoard';
 
@@ -22,27 +23,13 @@ import {
 } from 'store/createSlices/board/boardSelectors';
 
 const Layout = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [isShowModal, setIsShowModal] = useState(false);
   const { boardName } = useParams();
   const dispatch = useDispatch();
   const boards = useSelector(selectBoards);
-  const handleResize = () => {
-    if (window.innerWidth <= 1439) {
-      setShowSidebar(false);
-    } else {
-      setShowSidebar(true);
-    }
-  };
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
+  const isTablet = useMediaQuery({ minWidth: 325, maxWidth: 1439 });
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const [isShowModal, setIsShowModal] = useState(false);
   const hideModal = () => {
     setIsShowModal(false);
   };
@@ -61,7 +48,7 @@ const Layout = () => {
   }, [dispatch, boards, boardName]);
   return (
     <Container>
-      {showSidebar && <Sidebar setIsShowModal={setIsShowModal} />}
+      {!isTablet && <Sidebar setIsShowModal={setIsShowModal} />}
       <div>
         <AppBar />
         <Suspense fallback={null}>

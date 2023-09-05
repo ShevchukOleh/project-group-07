@@ -202,10 +202,12 @@ const boardSlice = createSlice({
       .addCase(createOneCard.fulfilled, (state, action) => {
         state.loading = false;
         const { columnId, data } = action.payload;
-        if (state.columnCards[columnId]) {
+        if (state.columnCards[columnId] && state.filteredAllCards[columnId]) {
           state.columnCards[columnId].push(data);
+          state.filteredAllCards[columnId].push(data);
         } else {
           state.columnCards[columnId] = [data];
+          state.filteredAllCards[columnId] = [data];
         }
       })
       .addCase(createOneCard.rejected, (state, action) => {
@@ -225,8 +227,8 @@ const boardSlice = createSlice({
 
         if (indexToDelete !== -1) {
           state.columnCards[columnId].splice(indexToDelete, 1);
+          state.filteredAllCards[columnId].splice(indexToDelete, 1);
         }
-
         state.error = action.payload;
       })
       .addCase(deleteCard.rejected, (state, action) => {

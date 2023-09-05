@@ -26,6 +26,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { sortByPriority } from 'store/createSlices/board/board';
 import {
+  filteredAllCards,
   selectAllColumnCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
@@ -36,6 +37,8 @@ export const FiltersModal = () => {
   const theme = getTheme(currentTheme);
   const dispatch = useDispatch();
   const columnCards = useSelector(selectAllColumnCards);
+  const filteredAllCard = useSelector(filteredAllCards);
+
   const selectPriority = useSelector(selectedInPriority);
   const [filterValue, setFilterValue] = useState('');
   const [filtersEl, setFiltersEl] = useState(null);
@@ -59,15 +62,15 @@ export const FiltersModal = () => {
   const handleClick = event => {
     setFiltersEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setFiltersEl(null);
   };
   useEffect(() => {
     setObjCards(columnCards);
+    setFilteredCards(columnCards);
     setFilterValue(selectPriority);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columnCards]);
+  }, [columnCards, filteredAllCard]);
   useEffect(() => {
     setFilteredCards(objCards);
   }, [objCards]);
@@ -77,7 +80,6 @@ export const FiltersModal = () => {
     const choosePriority = event.currentTarget.value;
 
     let filteredObjCards = {};
-
     if (choosePriority === 'Show all') {
       setFilteredCards(objCards);
     } else {
@@ -243,7 +245,7 @@ export const FiltersModal = () => {
                 }}
               >
                 <FormControlLabel
-                  value="without priority"
+                  value="without"
                   control={
                     <Radio
                       sx={{

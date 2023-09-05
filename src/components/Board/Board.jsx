@@ -75,7 +75,6 @@ export default function Board() {
   }, [boards, location.pathname, boardName]);
   const backgroundId = board?.background?._id;
   const boardId = board?._id;
-
   const background = backgrounds.find(
     background => background._id === backgroundId
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
@@ -38,9 +38,7 @@ function BoardCardItem({ boardId, columnId, card }) {
   const user = useSelector(getCurrentUser);
   const dispatch = useDispatch();
   const currentTheme = user?.theme || 'Light';
-
   const theme = getTheme(currentTheme);
-
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
   const lowPriorityColor = '#8FA1D0';
   const mediumPriorityColor = '#E09CB5';

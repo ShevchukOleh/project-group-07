@@ -9,7 +9,6 @@ import {
 import ModalEditColumn from 'components/Modals/ModalEditCulmn/ModalEditColumn';
 import Dialog from '@mui/material/Dialog';
 import { selectLoading } from 'store/createSlices/board/boardSelectors';
-import LoaderComponent from 'components/Loader/Loader';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 

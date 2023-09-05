@@ -25,7 +25,7 @@ export const BordInSidebar = ({ filteredItems }) => {
   const dispatch = useDispatch();
   const [selectedItem, setSelectedItem] = useState(null);
   
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { boardName } = useParams();
   // const location = useLocation();
   const [boardEl, setBoardEl] = useState([]);

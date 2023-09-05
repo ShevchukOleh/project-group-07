@@ -25,15 +25,15 @@ import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import {selectBoards} from '../../../store/createSlices/board/boardSelectors'
+// import {selectBoards} from '../../../store/createSlices/board/boardSelectors'
 import { getIcon, getImage } from '../ModalBoard/servises';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { editBoardById, getBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
-import { useLocation, useParams } from 'react-router-dom';
+// import { useLocation, useParams } from 'react-router-dom';
 
 
 export default function ModalEditFormDialog({

@@ -57,7 +57,9 @@ export default function ModalEditFormDialog({
   const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
-  const [errorField, setErrorField] = useState(null);
+  const [errorField] = useState(null);
+  // const [errorField, setErrorField] = useState(null);
+
 
   useEffect(() => {
     setIsLoading(true);

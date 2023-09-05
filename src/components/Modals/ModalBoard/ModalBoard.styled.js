@@ -117,7 +117,7 @@ export const DialogActionsStyled = styled(DialogActions)`
   padding: 0px;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.svg`
   width: 18px;
   height: 18px;
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);

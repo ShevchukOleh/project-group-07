@@ -18,41 +18,46 @@ import {
   ErrorTextWrap,
   StyledButton,
   StyledBox,
-} from './ModalEditBoard.styled';
+} from './ModalEditBoard.styled.js';
+import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+// import {selectBoards} from '../../../store/createSlices/board/boardSelectors'
 import { getIcon, getImage } from '../ModalBoard/servises';
-
+// import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import { editBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
+// import { editBoardById, getBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
+// import { useLocation, useParams } from 'react-router-dom';
 
-export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditModal }) {
+
+export default function ModalEditFormDialog({
+  board,
+  closeEditModal,
+  isOpenEditModal,
+  handleSubmit,
+  editBoard,
+  setEditBoard,
+  editBoardIcon,
+  setIsEditBoardIcon,
+  editBoardImg,
+  setIsEditBoardImg,
+}) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
-
-  // const dispatch = useDispatch();
-
-  const [valueInput, setValueInput] = useState('');
-  const [valueIcon, setValueIcon] = useState('');
-  const [valueImgBg, setValueImgBg] = useState('');
+  const token = useSelector(selectToken);
+ 
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
   const [errorField, setErrorField] = useState(null);
-
-  // const theme = useSelector(sele)
-  // const isLoading = useSelector(selectLoading)
-
-  const token = useSelector(selectToken);
 
   useEffect(() => {
     setIsLoading(true);
@@ -79,52 +84,9 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
       });
   }, [token]);
 
-  const editBoard = {
-    title: valueInput,
-    icon: valueIcon,
-    background: valueImgBg,
-  };
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
-  // const darkImageBg = image[16];
-  // const violetImageBg = image[17];
-
-  // console.log(icon);
-  // console.log(image);
-
-  const handleCloseBtn = () => {
-    if (valueInput) {
-      console.log(editBoard)
-      // dispatch(editBoardById(valueInput, board ));
-      console.log(valueInput, valueIcon, valueImgBg)
-      setErrorField('');
-      // setValueInput('');
-      setValueIcon('');
-      setValueImgBg('');
-      closeEditModal(false);
-      //       createOpenModalShow(prev => !prev);
-    } else {
-      setErrorField('Please, fill in the required fields');
-    }
-  };
-  const handleChange = event => {
-    setValueInput(event.target.value);
-   console.log(event.target.value)
-
-  };
-
-  const handleChangeIcon = event => {
-    // setValueIcon(event.target.value);
-    console.log(event.target.value)
-
-  };
-
-  const handleChangeImg = event => {
-    setValueImgBg(event.target.value);
-    console.log(event.target.value)
-
-  };
 
   return (
     <div>
@@ -153,9 +115,10 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
               id="title"
               label="Project office"
               type="text"
-              placeholder="Title"
+              placeholder="Project office"
+              value={editBoard}
               required
-              onChange={handleChange}
+              onChange={(e) => setEditBoard(e.target.value)}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
             {errorField && (
@@ -188,23 +151,24 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
 
               <IconContainer
                 row
-                aria-labelledby="icons-group"
-                // defaultValue="Project"
-                name="icons-group"
-                value={valueIcon}
-                onChange={handleChangeIcon}
+                aria-labelledby="icons-edit-group"
+                defaultValue="64eb3c2a8408f19231b21fc5"
+                name="icons-edit-group"
+                value={editBoardIcon}
+                // defaultChecked={iconBoard}
+                onChange={(e) => setIsEditBoardIcon(e.target.value)}
               >
                 {icon &&
                   icon.map(({ _id, icon_src }) => (
-                    <FormControlLabelStyled
+                    <FormControlLabel sx={{margin: 0,}}
                       value={_id}
                       key={_id}
                       control={
                         <RadioStyled
-                          key={_id}
-                          icon={<Icon src={icon_src} alt={_id} />}
+                          // key={_id}
+                          icon={<Icon href={icon_src} alt={_id} />}
                           checkedIcon={
-                            <Icon src={icon_src} alt={_id} checked />
+                            <Icon href={icon_src} alt={_id} checked />
                           }
                         />
                       }
@@ -227,11 +191,11 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
 
             <ImageBgContainer
               row
-              aria-labelledby="image-group"
+              aria-labelledby="image-edit-group"
               defaultValue="noBackground"
-              name="image-group"
-              value={valueImgBg}
-              onChange={handleChangeImg}
+              name="image-edit-group"
+              value={editBoardImg}
+              onChange={(e) => setIsEditBoardImg(e.target.value)}
             >
               {lightImageBg && (
                 <FormControlLabelStyled
@@ -277,7 +241,7 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
 
           <DialogActionsStyled>
             <StyledButton
-              onClick={handleCloseBtn}
+              onClick={handleSubmit}
               sx={{
                 fontFamily: 'Poppins',
                 backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
@@ -311,7 +275,7 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
             </StyledButton>
           </DialogActionsStyled>
           <CloseBtn>
-            <IconClose onClick={closeEditModal} />
+            <IconClose onClick={handleSubmit} />
           </CloseBtn>
         </ContainerModal>
       </Dialog>

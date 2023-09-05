@@ -80,6 +80,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       });
   }, [token]);
 
+  // console.log(icon);
+
   const createBd = {
     title: valueInput,
     icon: valueIcon,
@@ -194,9 +196,9 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                       control={
                         <RadioStyled
                           key={_id}
-                          icon={<Icon src={icon_src} alt={_id} />}
+                          icon={<Icon href={icon_src} alt={_id} />}
                           checkedIcon={
-                            <Icon src={icon_src} alt={_id} checked />
+                            <Icon href={icon_src} alt={_id} checked />
                           }
                         />
                       }
@@ -220,7 +222,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
             <ImageBgContainer
               row
               aria-labelledby="image-group"
-              defaultValue="Vector1"
+              defaultValue="noBackground"
               name="image-group"
               value={valueImgBg}
               onChange={handleChangeImg}

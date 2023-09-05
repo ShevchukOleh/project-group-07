@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { OneBoard } from '../Sidebar.styled';
 import { AiOutlineDelete } from 'react-icons/ai';
@@ -7,18 +8,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
 import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
 import { getTheme } from 'constants';
+import { editBoardById } from 'store/AsyncThunk/asyncThunkBoards';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 // import Layout from 'components/Layout/Layout';
+import { selectBoards } from '../../../store/createSlices/board/boardSelectors'
 import ModalEditFormDialog from 'components/Modals/ModalEditBoard/ModalEditBoard';
+import { useParams } from 'react-router-dom';
+
 
 export const BordInSidebar = ({ filteredItems }) => {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
+ 
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const [selectedItem, setSelectedItem] = useState(null);
-
+  
+  // const navigate = useNavigate();
+  const { boardName } = useParams();
+  // const location = useLocation();
+  const [boardEl, setBoardEl] = useState([]);
+  // const token = useSelector(selectToken);
+  const boardsArray = useSelector(selectBoards)
+  
+  useEffect(() => {
+    const updatedBoard = boardsArray.find(board => board.title === boardName);
+      if (updatedBoard) {
+      setBoardEl(updatedBoard);
+    }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [boardsArray]);
+  
   // const boardsInSidebar = useSelector(state => state.board.boards);
   // const collect = useSelector(state => state);
   // console.log(collect);
@@ -26,6 +47,11 @@ export const BordInSidebar = ({ filteredItems }) => {
 
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [editBoard, setIsEditBoard] = useState('')
+  const [editBoardIcon, setIsEditBoardIcon] = useState('')
+  const [editBoardImg, setIsEditBoardImg] = useState('')
+
+  const boardId = boardEl._id;
+
   const handleOpenEditModal = () => {
   setIsOpenEditModal(true)
   }
@@ -34,8 +60,13 @@ export const BordInSidebar = ({ filteredItems }) => {
      setIsOpenEditModal(false)
   }
   
-  const handleSubmit = () => {
-    console.log(editBoard)
+  const handleSubmit = (e) => {
+    e.preventDefault();       
+      if (editBoard) {
+        dispatch(editBoardById({ boardId, title: editBoard })
+    )}
+    setIsOpenEditModal(!isOpenEditModal);
+    
   }
 
   const handleDeleteBoard = id => {
@@ -89,7 +120,7 @@ export const BordInSidebar = ({ filteredItems }) => {
                 onClick={() => handleDeleteBoard(board._id)}
               />
             </div>
-                        
+
             <ModalEditFormDialog
             handleSubmit={handleSubmit}
             board={board._id}
@@ -97,8 +128,11 @@ export const BordInSidebar = ({ filteredItems }) => {
             isOpenEditModal={isOpenEditModal}
             setEditBoard={setIsEditBoard}
             editBoard={editBoard}
+            editBoardIcon={editBoardIcon}
+            setIsEditBoardIcon={setIsEditBoardIcon}
+            editBoardImg={editBoardImg}
+            setIsEditBoardImg={setIsEditBoardImg}
             />   
-            
           </OneBoard>
         </Link>
       ))}

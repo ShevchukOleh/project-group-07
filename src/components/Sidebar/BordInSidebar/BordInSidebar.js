@@ -64,12 +64,7 @@ export const BordInSidebar = ({ filteredItems }) => {
     e.preventDefault();       
       if (editBoard) {
         dispatch(editBoardById({ boardId, title: editBoard })
-          // .then(() => {
-          //   dispatch(getAllBoards());
-          // }
-          )
-      // navigate(`/home/${editBoard}`);   
-    }
+    )}
     setIsOpenEditModal(!isOpenEditModal);
     
   }

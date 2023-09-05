@@ -51,42 +51,13 @@ export default function ModalEditFormDialog({
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
-  // const navigate = useNavigate();
-  // const { boardName } = useParams();
-  // const location = useLocation();
-  // const [boardEl, setBoardEl] = useState([]);
   const token = useSelector(selectToken);
-  // const boardsArray = useSelector(selectBoards)
-  // console.log(boardsArray);
-  // console.log(board);
-
-  //   useEffect(() => {
-  //   const updatedBoard = boardsArray.find(board => board.title === boardName);
-  //     if (updatedBoard) {
-  //       setBoardEl(updatedBoard);
-  //       navigate(`/home/${boardEl.title}`);
-  //   }
-  // }, [location.pathname, boardName, boardsArray, boardEl, navigate, editBoard]);
-  
-  // const title = boardEl.title;
-
-
-
-  // const [valueInput, setValueInput] = useState(title);
-  // const [valueIcon, setValueIcon] = useState('64eb3c2a8408f19231b21fc5');
-  // const [valueImgBg, setValueImgBg] = useState('');
+ 
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
   const [errorField, setErrorField] = useState(null);
-
-
-  // console.log(icon)
-  // console.log(board)
-  // const theme = useSelector(sele)
-  // const isLoading = useSelector(selectLoading)
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -113,15 +84,9 @@ export default function ModalEditFormDialog({
       });
   }, [token]);
 
-  // navigate(`/home/${boardEl.title}`); 
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
-  // const darkImageBg = image[16];
-  // const violetImageBg = image[17];
-
-  // console.log(icon);
-  // console.log(image);
 
   return (
     <div>

@@ -166,9 +166,9 @@ export default function ModalEditFormDialog({
                       control={
                         <RadioStyled
                           // key={_id}
-                          icon={<Icon src={icon_src} alt={_id} />}
+                          icon={<Icon href={icon_src} alt={_id} />}
                           checkedIcon={
-                            <Icon src={icon_src} alt={_id} checked />
+                            <Icon href={icon_src} alt={_id} checked />
                           }
                         />
                       }

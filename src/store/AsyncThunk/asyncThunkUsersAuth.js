@@ -60,16 +60,18 @@ const fetchCurrentUser = createAsyncThunk(
 
 const fetchThemeUpdate = createAsyncThunk(
   'user/fetchThemeUpdate',
-  async (_, thunkAPI) => {
+  async (newTheme, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.token;
-      const response = await axios.patch(`${BASE_URL}theme`, {
+      const response = await axios.patch(`${BASE_URL}theme`, newTheme, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       const { data } = response;
-      return data;
+      const res = { theme: data }
+      console.log(res)
+      return res;
     } catch (error) {
       throw new Error('Failed to update theme');
     }

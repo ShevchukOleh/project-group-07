@@ -32,7 +32,7 @@ import {
 
 export const FiltersModal = () => {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
   const selectPriority = useSelector(selectedInPriority);

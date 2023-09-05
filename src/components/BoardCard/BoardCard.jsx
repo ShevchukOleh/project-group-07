@@ -29,7 +29,7 @@ export default function BoardCard() {
 
 function BoardCardItem({ card }) {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;

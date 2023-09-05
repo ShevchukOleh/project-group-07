@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
@@ -9,16 +9,16 @@ import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
 //   const dispatch = useDispatch();
 
 import { useSelector } from 'react-redux';
-import {
-  selectMyCards,
-  selectedInPriority,
-} from 'store/createSlices/board/boardSelectors';
+// import {
+//   selectMyCards,
+//   selectedInPriority,
+// } from 'store/createSlices/board/boardSelectors';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function BoardCard({ boardId, columnId, card }) {
-  const selectPriority = useSelector(selectedInPriority);
-  const selectCards = useSelector(selectMyCards);
+  // const selectPriority = useSelector(selectedInPriority);
+  // const selectCards = useSelector(selectMyCards);
   // const [cards, setCards] = useState([]);
 
   // useEffect(() => {
@@ -36,6 +36,7 @@ export default function BoardCard({ boardId, columnId, card }) {
 
 function BoardCardItem({ boardId, columnId, card }) {
   const user = useSelector(getCurrentUser);
+  const dispatch = useDispatch();
   const currentTheme = user?.theme || 'Light';
 
   const theme = getTheme(currentTheme);

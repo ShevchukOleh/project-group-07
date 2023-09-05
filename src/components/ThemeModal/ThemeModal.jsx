@@ -115,7 +115,7 @@ export const ThemeModal = () => {
             <FormLabel id="radio-buttons-group-label"></FormLabel>
             <RadioGroup
               aria-labelledby="radio-buttons-group-label"
-              defaultValue={LIGHT}
+              // defaultValue={LIGHT}
               name="radio-buttons-group"
               onChange={handleChange}
               sx={{

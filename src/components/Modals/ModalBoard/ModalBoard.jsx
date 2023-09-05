@@ -3,7 +3,6 @@ import Dialog from '@mui/material/Dialog';
 import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Plus from '../../../images/icons/plus.svg';
 import {
   IconContainer,
   RadioStyled,
@@ -18,6 +17,7 @@ import {
   ErrorTextWrap,
   StyledButton,
   StyledBox,
+  PlusIcon,
 } from './ModalBoard.styled';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
@@ -105,20 +105,17 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   };
   const handleChange = event => {
     setValueInput(event.target.value);
-   console.log(event.target.value)
-
+    console.log(event.target.value);
   };
 
   const handleChangeIcon = event => {
     setValueIcon(event.target.value);
-        console.log(event.target.value)
-
+    console.log(event.target.value);
   };
 
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
-        console.log(event.target.value)
-
+    console.log(event.target.value);
   };
 
   return (
@@ -282,15 +279,11 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                 width: '100%',
                 padding: 0,
                 textTransform: 'capitalize',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: `${theme?.themeSet?.modalHelpSendBorder}`,
                 borderRadius: '8px',
               }}
             >
               <StyledBox
                 sx={{
-                  backgroundColor: '#161616',
                   height: 28,
                   width: 28,
                   display: 'flex',
@@ -300,11 +293,12 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   marginRight: 1,
                 }}
               >
-                <Icon src={Plus}/>
+                <PlusIcon />
               </StyledBox>
               Create
             </StyledButton>
           </DialogActionsStyled>
+
           <CloseBtn>
             <IconClose onClick={createOpenModalShow} />
           </CloseBtn>

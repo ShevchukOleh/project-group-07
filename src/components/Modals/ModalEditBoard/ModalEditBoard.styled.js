@@ -3,7 +3,10 @@ import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
-import { Radio, FormControlLabel } from '@mui/material';
+// import { Radio, FormControlLabel } from '@mui/material';
+import {Radio} from '@mui/material';
+import {FormControlLabel} from '@mui/material';
+
 // import AddIcon from '@mui/icons-material/Add';
 
 export const ButtonStyled = styled(Button)`
@@ -102,7 +105,7 @@ export const IconContainer = styled(RadioGroup)`
 export const RadioStyled = styled(Radio)`
   width: 18px;
   height: 18px;
-  margin: 0px;
+  padding: 0px;
 `;
 
 export const RadioStyledImg = styled(Radio)`

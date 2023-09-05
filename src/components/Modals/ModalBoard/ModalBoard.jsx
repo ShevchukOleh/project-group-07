@@ -223,7 +223,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
             <ImageBgContainer
               row
               aria-labelledby="image-group"
-              defaultValue="Vector1"
+              defaultValue="noBackground"
               name="image-group"
               value={valueImgBg}
               onChange={handleChangeImg}

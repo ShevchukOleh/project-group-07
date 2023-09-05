@@ -91,10 +91,12 @@ export const FormControlLabelStyled = styled(FormControlLabel)`
 export const IconContainer = styled(RadioGroup)`
   display: flex;
   gap: 8px;
+
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
-  }};
+}};
+  
 `;
 
 export const RadioStyled = styled(Radio)`

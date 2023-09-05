@@ -94,10 +94,10 @@ const deleteBoard = createAsyncThunk(
 // 401 error?
 const editBoardById = createAsyncThunk(
   'board/editBoardById',
-  async (boardId, thunkAPI) => {
+  async ({boardId, title}, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.token;
-      const response = await axios.patch(`${BASE_URL}api/board/${boardId}`, {
+      const response = await axios.patch(`${BASE_URL}api/board/${boardId}`, {title}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

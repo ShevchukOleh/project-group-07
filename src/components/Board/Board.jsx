@@ -3,7 +3,9 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
-  // selectLoading,
+  selectAllCards,
+  selectLoading,
+  selectAllColumnCards,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useLocation, useParams } from 'react-router-dom';
@@ -29,16 +31,21 @@ export default function Board() {
 
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
+  // const cards = useSelector(selectAllCards);
+  const columnCards = useSelector(selectAllColumnCards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
   const location = useLocation();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [addColumn, setAddColumn] = useState('');
+  const [selectedColumnId, setSelectedColumnId] = useState(null);
   const [board, setBoard] = useState([]);
   const dispatch = useDispatch();
   // const isError = useSelector(selectError);
-  const openModalCard = () => {
+  const openModalCard = columnId => {
+    setSelectedColumnId(columnId);
+    // console.log('SelectedColumnId: ', selectedColumnId);
     setIsModalCardOpen(true);
   };
   const closeModalCard = () => {
@@ -96,12 +103,27 @@ export default function Board() {
                   text={`${column.title}`}
                 />
                 <div className="containerColumnCard">
-                  <BoardCard />
+                  {columnCards[column._id] &&
+                    Array.isArray(columnCards[column._id]) &&
+                    columnCards[column._id].map(card => (
+                      <BoardCard
+                        key={card._id}
+                        boardId={boardId}
+                        columnId={column._id}
+                        card={card}
+                      />
+                    ))}
                 </div>
 
-                <ButtonCreate text="Add another card" onClick={openModalCard} />
+                <ButtonCreate
+                  columnId={column._id}
+                  text="Add another card"
+                  onClick={() => openModalCard(column._id)}
+                />
 
                 <CardFormDialog
+                  boardId={boardId}
+                  columnId={selectedColumnId}
                   isShowModal={isModalCardOpen}
                   hideModal={closeModalCard}
                 />

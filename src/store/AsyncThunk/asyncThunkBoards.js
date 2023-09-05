@@ -94,14 +94,18 @@ const deleteBoard = createAsyncThunk(
 // 401 error?
 const editBoardById = createAsyncThunk(
   'board/editBoardById',
-  async ({boardId, title}, thunkAPI) => {
+  async ({ boardId, title }, thunkAPI) => {
     try {
       const token = thunkAPI.getState().user.token;
-      const response = await axios.patch(`${BASE_URL}api/board/${boardId}`, {title}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.patch(
+        `${BASE_URL}api/board/${boardId}`,
+        { title },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const { data } = response;
       console.log('data: ', data);
       return data;
@@ -186,8 +190,11 @@ const editColumnById = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
+        // `${BASE_URL}api/board/${boardId}/column/${columnId}`,
+
         `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
         { title },
+
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -218,7 +225,75 @@ const deleteColumn = createAsyncThunk(
       const { data } = response;
       return data;
     } catch (error) {
-      throw new Error('Failed delete Board');
+      throw new Error('Failed delete Column');
+    }
+  }
+);
+
+/***********************************************Cards******************************************************/
+
+const getAllCards = createAsyncThunk(
+  'board/getCards',
+  async ({ boardId, columnId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.get(
+        `${BASE_URL}api/board/${boardId}/column/${columnId}/card`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      // data.columnId = columnId;
+      return { data, columnId };
+    } catch (error) {
+      throw new Error('Failed get cards');
+    }
+  }
+);
+
+const createOneCard = createAsyncThunk(
+  'board/postCard',
+  async ({ boardId, columnId, createCard }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+
+      const response = await axios.post(
+        `${BASE_URL}api/board/${boardId}/column/${columnId}/card`,
+        createCard,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      console.log('data: ', data);
+      return { data, columnId };
+    } catch (error) {
+      throw new Error('Failed to post new card');
+    }
+  }
+);
+const deleteCard = createAsyncThunk(
+  'board/deleteCard',
+  async ({ boardId, columnId, cardId }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.delete(
+        `${BASE_URL}api/board/${boardId}/column/${columnId}/card/${cardId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed delete Card');
     }
   }
 );
@@ -237,7 +312,10 @@ export {
   getBoardById,
   editBoardById,
   getAllColums,
+  getAllCards,
+  createOneCard,
   createColumn,
+  deleteCard,
   editColumnById,
   deleteColumn,
 };

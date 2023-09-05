@@ -8,12 +8,16 @@ import {
   deleteBoard,
   deleteColumn,
   getBackgroundBoard,
+  getAllCards,
+  createOneCard,
+  deleteCard,
   editColumnById,
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
   boards: [],
   columns: [],
+  columnCards: {},
   cardsCollection: objectCards,
   backgrounds: [],
   loading: false,
@@ -143,6 +147,51 @@ const boardSlice = createSlice({
       .addCase(getBackgroundBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      //Card
+
+      //getAllCard===========================================================>
+      .addCase(getAllCards.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getAllCards.fulfilled, (state, action) => {
+        state.loading = false;
+
+        const { columnId, data } = action.payload;
+        state.columnCards[columnId] = state.columnCards[columnId] || [];
+        state.columnCards[columnId] = data;
+        state.error = null;
+      })
+      .addCase(getAllCards.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //createOneCard===========================================================>
+
+      .addCase(createOneCard.fulfilled, (state, action) => {
+        state.loading = false;
+        const { columnId, data } = action.payload;
+        state.columnCards[columnId].push(data);
+        state.error = null;
+      })
+      .addCase(createOneCard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //deleteCard===========================================================>
+      .addCase(deleteCard.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.cards = state.cards.filter(el => {
+          return el._id !== action.payload._id;
+        });
+      })
+      .addCase(deleteCard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

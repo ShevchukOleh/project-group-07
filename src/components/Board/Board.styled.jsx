@@ -80,10 +80,9 @@ export const BoardStyle = styled.section`
 
     @media screen and (min-width: 1440px) {
       width: 354px;
-      /* max-height: calc(100vh - 292px);  */
-      max-height: 100%;
-            min-height: 300px;
-
+      max-height: calc(100vh - 292px);
+      // max-height: 100%;
+      //       min-height: 300px;
     }
   }
 
@@ -106,8 +105,8 @@ export const BoardStyle = styled.section`
 
   & .title {
     color: ${props => {
-    return props?.theme?.themeSet?.boardTitle;
-  }};
+      return props?.theme?.themeSet?.boardTitle;
+    }};
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -165,8 +164,8 @@ export const BoardStyle = styled.section`
     width: calc(100% - 40px);
 
     color: ${props => {
-    return props?.theme?.themeSet?.boardEmptyText;
-  }};
+      return props?.theme?.themeSet?.boardEmptyText;
+    }};
     text-align: center;
     font-size: 12px;
     line-height: 16px;

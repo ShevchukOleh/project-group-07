@@ -48,7 +48,7 @@ const ModalContent = styled.div`
   border-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBorder;
   }};
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
   }};

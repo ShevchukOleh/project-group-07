@@ -213,17 +213,16 @@ const boardSlice = createSlice({
       })
       .addCase(deleteCard.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = null;
-        console.log('action.payload', action.payload);
-        console.log('state.columnCards', state.columnCards);
-        const newState = {
-          ...state,
-          columnCards: {
-            ...state.columnCards,
-          },
-        };
-        delete newState.columnCards[action.payload._id];
-        state.columnCards = newState;
+        const { columnId, data } = action.payload;
+        const indexToDelete = state.columnCards[columnId].findIndex(
+          item => item._id === data._id
+        );
+
+        if (indexToDelete !== -1) {
+          state.columnCards[columnId].splice(indexToDelete, 1);
+        }
+
+        state.error = action.payload;
       })
       .addCase(deleteCard.rejected, (state, action) => {
         state.loading = false;

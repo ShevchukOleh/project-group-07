@@ -256,9 +256,10 @@ const getAllCards = createAsyncThunk(
 const createOneCard = createAsyncThunk(
   'board/postCard',
   async ({ boardId, columnId, createCard }, thunkAPI) => {
+    console.log({ boardId, columnId, createCard });
+
     try {
       const token = thunkAPI.getState().user.token;
-
       const response = await axios.post(
         `${BASE_URL}api/board/${boardId}/column/${columnId}/card`,
         createCard,

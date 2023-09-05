@@ -49,21 +49,19 @@ export default function CardFormDialog({
     priority: labelColor,
     deadline: dateDeadline,
   };
-
   const handleClose = () => {
     hideModal();
     setLabelColor('LOW');
     setValueTitle('');
     setValueDescription('');
   };
-
+  console.log({ boardId, columnId, createCard });
   const handleCloseBtn = async event => {
-    console.log('event: ', event);
+    dispatch(createOneCard({ boardId, columnId, createCard }));
     hideModal();
     setLabelColor('LOW');
     setValueTitle('');
     setValueDescription('');
-    dispatch(createOneCard({ boardId, columnId, createCard }));
   };
 
   const handleChangeTitle = event => {

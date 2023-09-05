@@ -6,14 +6,13 @@ import {
   // selectAllCards,
   // selectLoading,
   selectAllColumnCards,
+  filteredAllCards,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useLocation, useParams } from 'react-router-dom';
 
 import ButtonCreate from 'components/ButtonCreate/ButtonCreate';
 import { BoardStyle } from './Board.styled';
-import BoardCard from 'components/BoardCard/BoardCard';
-import ColumnTitle from 'components/ColumnTitle/ColumnTitle';
 import CardFormDialog from 'components/CardModal/CardModal';
 import { FiltersModal } from 'components/FiltersModal';
 
@@ -23,6 +22,7 @@ import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
 import { Dialog } from '@mui/material';
 import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import ColumnItem from './ColumnItem';
 
 export default function Board() {
   const user = useSelector(getCurrentUser);
@@ -32,7 +32,7 @@ export default function Board() {
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
   // const cards = useSelector(selectAllCards);
-  const columnCards = useSelector(selectAllColumnCards);
+  const columnCards = useSelector(filteredAllCards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
   const location = useLocation();
@@ -42,6 +42,8 @@ export default function Board() {
   const [selectedColumnId, setSelectedColumnId] = useState(null);
   const [board, setBoard] = useState([]);
   const dispatch = useDispatch();
+  const [columnList, setColumnList] = useState([]);
+
   // const isError = useSelector(selectError);
   const openModalCard = columnId => {
     setSelectedColumnId(columnId);
@@ -54,7 +56,9 @@ export default function Board() {
   const openModal = () => {
     setOpenAddModal(!openAddModal);
   };
-
+  useEffect(() => {
+    setColumnList(columns);
+  }, [columns]);
   const handleSubmit = e => {
     e.preventDefault();
     if (addColumn) {
@@ -77,7 +81,6 @@ export default function Board() {
   );
 
   const backgroundSrc = background?.background_lg_src || '';
-
   const backgroundStyle = backgroundSrc
     ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
     : { backgroundColor: theme?.themeSet?.boardBg };
@@ -92,29 +95,16 @@ export default function Board() {
       <div className="filtersPosition">
         <FiltersModal />
       </div>
-      {boards.length !== 0 && (
+      {boards.length > 0 && (
         <div className="containerColumns">
-          {columns.map(column => {
+          {columnList.map(column => {
             return (
               <div key={column._id} className="containerOneColumn">
-                <ColumnTitle
+                <ColumnItem
+                  column={column}
+                  columnCards={columnCards}
                   boardId={boardId}
-                  columnId={column._id}
-                  text={`${column.title}`}
                 />
-                <div className="containerColumnCard">
-                  {columnCards[column._id] &&
-                    Array.isArray(columnCards[column._id]) &&
-                    columnCards[column._id].map(card => (
-                      <BoardCard
-                        key={card._id}
-                        boardId={boardId}
-                        columnId={column._id}
-                        card={card}
-                      />
-                    ))}
-                </div>
-
                 <ButtonCreate
                   columnId={column._id}
                   text="Add another card"

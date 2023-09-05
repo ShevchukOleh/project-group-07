@@ -19,6 +19,7 @@ const initialState = {
   boards: [],
   columns: [],
   columnCards: {},
+  filteredAllCards: {},
   cardsCollection: objectCards,
   backgrounds: [],
   loading: false,
@@ -34,7 +35,7 @@ const boardSlice = createSlice({
       state.selectedPriority = action.payload;
     },
     sortByPriority: (state, action) => {
-      state.cardsCollection = action.payload;
+      state.filteredAllCards = action.payload;
     },
   },
 
@@ -189,6 +190,7 @@ const boardSlice = createSlice({
         const { columnId, data } = action.payload;
         state.columnCards[columnId] = state.columnCards[columnId] || [];
         state.columnCards[columnId] = data;
+        state.filteredAllCards[columnId] = data;
         state.error = null;
       })
       .addCase(getAllCards.rejected, (state, action) => {
@@ -200,8 +202,11 @@ const boardSlice = createSlice({
       .addCase(createOneCard.fulfilled, (state, action) => {
         state.loading = false;
         const { columnId, data } = action.payload;
-        state.columnCards[columnId].push(data);
-        state.error = null;
+        if (state.columnCards[columnId]) {
+          state.columnCards[columnId].push(data);
+        } else {
+          state.columnCards[columnId] = [data];
+        }
       })
       .addCase(createOneCard.rejected, (state, action) => {
         state.loading = false;

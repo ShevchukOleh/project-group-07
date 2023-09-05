@@ -26,7 +26,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { sortByPriority } from 'store/createSlices/board/board';
 import {
-  selectMyCards,
+  selectAllColumnCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
 
@@ -34,19 +34,20 @@ export const FiltersModal = () => {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
-
+  const dispatch = useDispatch();
+  const columnCards = useSelector(selectAllColumnCards);
   const selectPriority = useSelector(selectedInPriority);
-  const selectCards = useSelector(selectMyCards);
   const [filterValue, setFilterValue] = useState('');
   const [filtersEl, setFiltersEl] = useState(null);
   const open = Boolean(filtersEl);
-  const [arr, setArr] = useState([]);
+  const [objCards, setObjCards] = useState({});
+  const [filteredCards, setFilteredCards] = useState({});
 
   const [withoutStatus, setWithoutStatus] = useState(null);
   const [lowStatus, setLowStatus] = useState(null);
   const [mediumStatus, setMediumStatus] = useState(null);
   const [highStatus, setHighStatus] = useState(null);
-  const dispatch = useDispatch();
+
   const priorityColor = priorityStatus =>
     priorityStatus
       ? theme?.themeSet?.modalFiltersSubtitleFocus
@@ -63,24 +64,39 @@ export const FiltersModal = () => {
     setFiltersEl(null);
   };
   useEffect(() => {
-    setArr(selectCards);
+    setObjCards(columnCards);
     setFilterValue(selectPriority);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [columnCards]);
+  useEffect(() => {
+    setFilteredCards(objCards);
+  }, [objCards]);
+  console.log(filteredCards);
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
     const choosePriority = event.currentTarget.value;
-    // ==========================================>sort
-    dispatch(sortByPriority(choosePriority));
+
+    let filteredObjCards = {};
+
     if (choosePriority === 'Show all') {
-      dispatch(sortByPriority(arr));
+      setFilteredCards(objCards);
     } else {
-      const filtered = arr.filter(item =>
-        item.priority.toLowerCase().includes(choosePriority.toLowerCase())
-      );
-      dispatch(sortByPriority(filtered));
+      for (let key in objCards) {
+        if (objCards.hasOwnProperty(key) && Array.isArray(objCards[key])) {
+          const filtered = objCards[key].filter(item =>
+            item.priority.toLowerCase().includes(choosePriority.toLowerCase())
+          );
+
+          if (filtered.length > 0) {
+            filteredObjCards[key] = filtered;
+          }
+        }
+      }
     }
+
+    dispatch(sortByPriority(filteredObjCards));
+    setFilteredCards(filteredObjCards);
+
     // ===========================================>sort
     if (event.currentTarget.value === 'without priority') {
       setWithoutStatus(true);
@@ -110,7 +126,7 @@ export const FiltersModal = () => {
 
   const handleShowAllBtnClick = event => {
     if (event.target.id === 'Show all') {
-      dispatch(sortByPriority(arr));
+      dispatch(sortByPriority(objCards));
       setWithoutStatus(null);
       setLowStatus(null);
       setMediumStatus(null);

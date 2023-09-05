@@ -139,6 +139,7 @@ export const Icon = styled.img`
 export const Image = styled.img`
   width: 28px;
   height: 28px;
+  border-radius: 7px;
 `;
 
 export const TextFieldStyled = styled.input`

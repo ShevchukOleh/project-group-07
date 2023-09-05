@@ -80,6 +80,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       });
   }, [token]);
 
+  // console.log(icon);
+
   const createBd = {
     title: valueInput,
     icon: valueIcon,

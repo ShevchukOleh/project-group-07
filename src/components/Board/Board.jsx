@@ -3,8 +3,8 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
-  selectAllCards,
   selectLoading,
+  selectAllColumnCards,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useParams } from 'react-router-dom';
@@ -27,7 +27,8 @@ import LoaderComponent from 'components/Loader/Loader';
 export default function Board({ setIsShowModal }) {
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
-  const cards = useSelector(selectAllCards);
+  // const cards = useSelector(selectAllCards);
+  const columnCards = useSelector(selectAllColumnCards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
@@ -97,18 +98,16 @@ export default function Board({ setIsShowModal }) {
                 />
 
                 <div className="containerColumnCard">
-                  {cards.map(card => {
-                    return (
-                      card.column === column._id && (
-                        <BoardCard
-                          key={card._id}
-                          boardId={boardId}
-                          columnId={column._id}
-                          card={card}
-                        />
-                      )
-                    );
-                  })}
+                  {columnCards[column._id] &&
+                    Array.isArray(columnCards[column._id]) &&
+                    columnCards[column._id].map(card => (
+                      <BoardCard
+                        key={card._id}
+                        boardId={boardId}
+                        columnId={column._id}
+                        card={card}
+                      />
+                    ))}
                 </div>
 
                 <ButtonCreate

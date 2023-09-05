@@ -230,7 +230,6 @@ const getAllCards = createAsyncThunk(
   'board/getCards',
   async ({ boardId, columnId }, thunkAPI) => {
     try {
-      console.log('columnId: ', columnId);
       const token = thunkAPI.getState().user.token;
       const response = await axios.get(
         `${BASE_URL}api/board/${boardId}/column/${columnId}/card`,
@@ -241,7 +240,8 @@ const getAllCards = createAsyncThunk(
         }
       );
       const { data } = response;
-      return data;
+      // data.columnId = columnId;
+      return { data, columnId };
     } catch (error) {
       throw new Error('Failed get cards');
     }
@@ -268,7 +268,7 @@ const createOneCard = createAsyncThunk(
       );
       const { data } = response;
       console.log('data: ', data);
-      return data;
+      return { data, columnId };
     } catch (error) {
       throw new Error('Failed to post new card');
     }

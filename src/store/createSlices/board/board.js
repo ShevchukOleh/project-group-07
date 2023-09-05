@@ -8,19 +8,16 @@ import {
   deleteBoard,
   deleteColumn,
   getBackgroundBoard,
-
   getAllCards,
   createOneCard,
   deleteCard,
-
   editColumnById,
-
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
   boards: [],
   columns: [],
-  cards: [],
+  columnCards: {},
   cardsCollection: objectCards,
   backgrounds: [],
   loading: false,
@@ -158,7 +155,10 @@ const boardSlice = createSlice({
       })
       .addCase(getAllCards.fulfilled, (state, action) => {
         state.loading = false;
-        state.cards = action.payload;
+
+        const { columnId, data } = action.payload;
+        state.columnCards[columnId] = state.columnCards[columnId] || [];
+        state.columnCards[columnId] = data;
         state.error = null;
       })
       .addCase(getAllCards.rejected, (state, action) => {
@@ -169,7 +169,8 @@ const boardSlice = createSlice({
 
       .addCase(createOneCard.fulfilled, (state, action) => {
         state.loading = false;
-        state.cards.push(action.payload);
+        const { columnId, data } = action.payload;
+        state.columnCards[columnId][0].push(data);
         state.error = null;
       })
       .addCase(createOneCard.rejected, (state, action) => {

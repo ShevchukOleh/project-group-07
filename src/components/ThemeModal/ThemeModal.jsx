@@ -24,10 +24,6 @@ export const ThemeModal = () => {
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
-  console.log(user);
-  console.log(theme);
-  console.log(currentTheme);
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -49,7 +45,6 @@ export const ThemeModal = () => {
   };
 
   const handleChange = event => {
-    console.log(event.currentTarget.value);
 
     if (event.currentTarget.value === LIGHT) {
       setFirstThemeStatus(true);
@@ -115,7 +110,6 @@ export const ThemeModal = () => {
             <FormLabel id="radio-buttons-group-label"></FormLabel>
             <RadioGroup
               aria-labelledby="radio-buttons-group-label"
-              // defaultValue={LIGHT}
               name="radio-buttons-group"
               onChange={handleChange}
               sx={{

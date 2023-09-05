@@ -12,10 +12,7 @@ export const IconPlusAvatar = styled.div`
     width: 24px;
     height: 24px;
     background-color: ${props => {
-        return props?.theme?.themeSet?.modalHelpSendBg;
-    }};
-    color: ${props => {
-        return props?.theme?.themeSet?.modalHelpSendText;
+        return props?.theme?.themeSet?.editProfileAvIconWrapBg;
     }};
     border-radius: 8px;
     display: flex;

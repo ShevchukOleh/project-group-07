@@ -64,7 +64,7 @@ export default function Board() {
     }
   };
   useEffect(() => {
-    const updatedBoard = boards.find(board => board.title === boardName);
+    const updatedBoard = boards?.find(board => board.title === boardName);
     if (updatedBoard) {
       setBoard(updatedBoard);
     }

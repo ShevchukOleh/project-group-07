@@ -36,7 +36,9 @@ export const UserInfoBtn = styled(Button)`
   gap: 8px;
   padding-top: 0;
   padding-bottom: 0;
-  color: #161616;
+  color: ${props => {
+    return props?.theme?.themeSet?.headerProfileBtnText;
+  }};
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;

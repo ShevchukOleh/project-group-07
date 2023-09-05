@@ -90,8 +90,8 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
   // const darkImageBg = image[16];
   // const violetImageBg = image[17];
 
-  console.log(icon);
-  console.log(image);
+  // console.log(icon);
+  // console.log(image);
 
   const handleCloseBtn = () => {
     if (valueInput) {
@@ -99,7 +99,7 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
       // dispatch(editBoardById(valueInput, board ));
       console.log(valueInput, valueIcon, valueImgBg)
       setErrorField('');
-      setValueInput('');
+      // setValueInput('');
       setValueIcon('');
       setValueImgBg('');
       closeEditModal(false);
@@ -151,7 +151,7 @@ export default function ModalEditFormDialog({ board, closeEditModal, isOpenEditM
             <TextFieldStyled
               autoFocus
               id="title"
-              label="Title"
+              label="Project office"
               type="text"
               placeholder="Title"
               required

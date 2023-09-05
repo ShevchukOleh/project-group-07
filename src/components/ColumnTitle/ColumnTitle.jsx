@@ -15,7 +15,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function ColumnTitle(params) {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
   const dispatch = useDispatch();

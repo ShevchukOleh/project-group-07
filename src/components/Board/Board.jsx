@@ -19,11 +19,12 @@ import { FiltersModal } from 'components/FiltersModal';
 import { useEffect, useState } from 'react';
 import { getTheme } from 'constants';
 import { createColumn } from 'store/AsyncThunk/asyncThunkBoards';
-import { Dialog } from '@mui/material';
+import { Box, Dialog } from '@mui/material';
 import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import ColumnItem from './ColumnItem';
 import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
+import { PlusIcon, StyledButton } from 'components/CardModal/CardModal.styled';
 
 export default function Board() {
   const user = useSelector(getCurrentUser);
@@ -122,11 +123,41 @@ export default function Board() {
                   columnCards={columnCards}
                   boardId={boardId}
                 />
-                <ButtonCreate
+
+
+                <StyledButton
                   columnId={column._id}
                   text="Add another card"
                   onClick={() => openModalCard(column._id)}
-                />
+                  sx={{
+                    cursor: 'not-allowed',
+                    fontFamily: 'Poppins',
+                    backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
+                    color: `${theme?.themeSet?.modalHelpSendText}`,
+                    fontWeight: 500,
+                    height: 49,
+                    width: '100%',
+                    padding: 0,
+                    textTransform: 'capitalize',
+                    borderRadius: '8px',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      backgroundColor: `${theme?.themeSet?.boxIconBg}`,
+                      height: 28,
+                      width: 28,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: '8px',
+                      marginRight: 1,
+                    }}
+                  >
+                    <PlusIcon />
+                  </Box>
+                  Add
+                </StyledButton>
 
                 <CardFormDialog
                   titleText={'Add card'}

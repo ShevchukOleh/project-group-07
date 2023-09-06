@@ -3,7 +3,6 @@ import Dialog from '@mui/material/Dialog';
 // import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Plus from '../../../images/icons/plus.svg';
 import {
   RadioStyledImg,
   ImageBgContainer,
@@ -11,10 +10,10 @@ import {
   ContainerModal,
   TextFieldStyled,
   DialogActionsStyled,
-  Icon,
   FormControlLabelStyled,
   StyledButton,
   StyledBox,
+  PlusIcon,
 } from './ModalEditBoard.styled.js';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
@@ -262,7 +261,6 @@ export default function ModalEditFormDialog({
             >
               <StyledBox
                 sx={{
-                  backgroundColor: '#161616',
                   height: 28,
                   width: 28,
                   display: 'flex',
@@ -272,7 +270,7 @@ export default function ModalEditFormDialog({
                   marginRight: 1,
                 }}
               >
-                <Icon src={Plus} />
+                <PlusIcon />
               </StyledBox>
               Edit Board
             </StyledButton>

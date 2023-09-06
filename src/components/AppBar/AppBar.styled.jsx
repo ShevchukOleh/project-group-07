@@ -52,5 +52,5 @@ export const UserAvatar = styled.div`
   height: 32px;
   border-radius: 5px;
   overflow: hidden;
-  background-color: tomato;
+  background-color: transparent;
 `;

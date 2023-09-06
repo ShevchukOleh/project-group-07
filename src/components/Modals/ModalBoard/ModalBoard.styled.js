@@ -90,6 +90,7 @@ export const RadioStyled = styled(Radio)`
   margin: 0px;
   fill: black;
 `;
+
 export const IconWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -99,6 +100,7 @@ export const IconWrapper = styled.div`
     fill: blue;
   }
 `;
+
 export const RadioStyledImg = styled(Radio)`
   width: 28px;
   height: 28px;
@@ -135,7 +137,7 @@ export const Icon = styled.svg`
 export const Image = styled.img`
   width: 28px;
   height: 28px;
-  border-radius: 7px;
+  border-radius: 8px;
 `;
 
 export const TextFieldStyled = styled.input`

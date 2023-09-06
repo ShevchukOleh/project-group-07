@@ -126,7 +126,7 @@ export default function Board() {
 
 
                 <StyledButton
-                  columnId={column._id}
+                  columnid={column._id}
                   text="Add another card"
                   onClick={() => openModalCard(column._id)}
                   sx={{
@@ -136,7 +136,7 @@ export default function Board() {
                     color: `${theme?.themeSet?.modalHelpSendText}`,
                     fontWeight: 500,
                     height: 49,
-                    width: '100%',
+                    width: '334px',
                     padding: 0,
                     textTransform: 'capitalize',
                     borderRadius: '8px',

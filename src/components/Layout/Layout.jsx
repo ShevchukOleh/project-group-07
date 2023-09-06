@@ -22,6 +22,7 @@ import {
   selectBoards,
   // selectColumns,
 } from 'store/createSlices/board/boardSelectors';
+import EmptyBoardsBaner from 'components/Board/EmptyBoardsBaner/EmptyBoard';
 
 const Layout = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -53,7 +54,6 @@ const Layout = () => {
       }
     } catch (error) {}
   };
-
   useEffect(() => {
     const board = boards.find(board => board.title === boardName);
     const boardId = board?._id;
@@ -67,7 +67,7 @@ const Layout = () => {
       <div>
         <AppBar />
         <Suspense fallback={null}>
-          <Outlet />
+          {boards.length > 0 ? <Outlet /> : <EmptyBoardsBaner />}
         </Suspense>
       </div>
       {isShowModal && (

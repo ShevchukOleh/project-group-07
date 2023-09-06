@@ -34,11 +34,14 @@ import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
 import { useNavigate } from 'react-router-dom';
 
-export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
+export default function FormDialog({
+  createOpenModalShow,
+  setShow,
+  isCreateOpenModal,
+}) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [valueInput, setValueInput] = useState('');
@@ -119,7 +122,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
     setValueImgBg(event.target.value);
     console.log(event.target.value);
   };
-
   return (
     <div>
       <Dialog open={isCreateOpenModal} onClose={createOpenModalShow}>

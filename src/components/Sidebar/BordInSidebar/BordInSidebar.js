@@ -6,7 +6,7 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
-import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
+import { EditIcon, ImgBox } from './BordInSidebar.styled';
 import { getTheme } from 'constants';
 import { editBoardById } from 'store/AsyncThunk/asyncThunkBoards';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';

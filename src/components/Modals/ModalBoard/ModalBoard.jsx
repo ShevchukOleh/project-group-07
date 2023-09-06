@@ -48,8 +48,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const [image, setImage] = useState([]);
   const [errorField, setErrorField] = useState(null);
 
-  // const theme = useSelector(sele)
-  // const isLoading = useSelector(selectLoading)
+
 
   const token = useSelector(selectToken);
 
@@ -67,7 +66,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
 
   useEffect(() => {
     setIsLoading(true);
-    setImage([]);
+    // setImage([]);
     getImage(token)
       .then(data => {
         setImage(data);
@@ -88,9 +87,11 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
-  // const darkImageBg = image[16];
-  // const violetImageBg = image[17];
+  const darkImageBg = image[16];
+  const violetImageBg = image[17];
 
+  console.log(image)
+  
   const handleCloseBtn = () => {
     if (valueInput) {
       dispatch(createBoard(createBd));
@@ -175,6 +176,33 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               >
                 Icons
               </DialogTitle>
+
+//               <IconContainer
+//                 row
+//                 aria-labelledby="icons-group"
+//                 // defaultValue="Project"
+//                 name="icons-group"
+//                 value={valueIcon}
+//                 onChange={handleChangeIcon}
+//               >
+//                 {icon &&
+//                   icon.map(({ _id, icon_src }) => (
+//                     <FormControlLabelStyled
+//                       value={_id}
+//                       key={_id}
+//                       control={
+//                         <RadioStyled
+//                           key={_id}
+//                           icon={<Icon src={icon_src} alt={_id} />}
+//                           checkedIcon={
+//                             <Icon src={icon_src} alt={_id} checked />
+//                           }
+//                         />
+//                       }
+//                     />
+//                   ))}
+//               </IconContainer>
+
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
                   <span
@@ -187,6 +215,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   </span>
                 ))}
               </IconWrapper>
+
             </FormControl>
 
             <DialogTitle
@@ -209,7 +238,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               value={valueImgBg}
               onChange={handleChangeImg}
             >
-              {lightImageBg && (
+              { currentTheme ==='Light' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -231,7 +260,57 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                     />
                   }
                 />
-              )}
+  )
+              }
+              { currentTheme ==='Dark' && (
+                <FormControlLabelStyled
+                  value={'noBackground'}
+                  control={
+                    <RadioStyledImg
+                      key={darkImageBg._id}
+                      icon={
+                        <Image
+                          src={darkImageBg.background_icon_src}
+                          alt="noBackground"
+                        />
+                      }
+                      checkedIcon={
+                        <Image
+                          src={darkImageBg.background_icon_src}
+                          alt="noBackground"
+                          checked
+                        />
+                      }
+                    />
+                  }
+                />
+  )
+              }
+              { currentTheme ==='Violet' && (
+                <FormControlLabelStyled
+                  value={'noBackground'}
+                  control={
+                    <RadioStyledImg
+                      key={violetImageBg._id}
+                      icon={
+                        <Image
+                          src={violetImageBg.background_icon_src}
+                          alt="noBackground"
+                        />
+                      }
+                      checkedIcon={
+                        <Image
+                          src={violetImageBg.background_icon_src}
+                          alt="noBackground"
+                          checked
+                        />
+                      }
+                    />
+                  }
+                />
+  )
+              }
+
 
               {image &&
                 imageNew.map(({ _id, background_icon_src }) => (

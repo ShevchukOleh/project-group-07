@@ -6,7 +6,7 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
-import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
+import { EditIcon, ImgBox } from './BordInSidebar.styled';
 import { getTheme } from 'constants';
 import { editBoardById } from 'store/AsyncThunk/asyncThunkBoards';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
@@ -14,6 +14,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { selectBoards } from '../../../store/createSlices/board/boardSelectors';
 import ModalEditFormDialog from 'components/Modals/ModalEditBoard/ModalEditBoard';
 import { useParams } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 export const BordInSidebar = ({ filteredItems }) => {
   const user = useSelector(getCurrentUser);
@@ -42,11 +43,11 @@ export const BordInSidebar = ({ filteredItems }) => {
   // const collect = useSelector(state => state);
   // console.log(collect);
   // console.log(boardsInSidebar);
-
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [editBoard, setIsEditBoard] = useState('');
   const [editBoardIcon, setIsEditBoardIcon] = useState('');
   const [editBoardImg, setIsEditBoardImg] = useState('');
+  const [error, setError] = useState(false);
 
   const boardId = boardEl._id;
   const editBoardObject = {
@@ -65,15 +66,18 @@ export const BordInSidebar = ({ filteredItems }) => {
     if (editBoard && editBoardIcon && editBoardImg) {
       dispatch(editBoardById({ boardId, editBoardObject }));
       dispatch(getAllBoards());
+      navigation(`/home/${editBoard}`);
       setIsOpenEditModal(!isOpenEditModal);
       setIsEditBoard('');
       setIsEditBoardImg('');
       setIsEditBoardIcon('');
+    } else {
+      setError(!error);
     }
   };
-  const handleChangeIcon = event => {
-    const clickedId = event.currentTarget.getAttribute('data-icon-id');
-    setIsEditBoardIcon(clickedId);
+  const handleChangeIcon = _id => {
+    // const clickedId = event.currentTarget.getAttribute('data-icon-id');
+    setIsEditBoardIcon(_id);
   };
   const handleDeleteBoard = id => {
     const previousPath = '/home';
@@ -105,8 +109,12 @@ export const BordInSidebar = ({ filteredItems }) => {
               color={boardIndicationColor}
               isSelected={selectedItem === index}
             >
-              <ImgBox>
-                <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
+              <ImgBox
+                $currentTheme={currentTheme}
+                $isSelected={selectedItem === index}
+              >
+                {/*<ImgIcon src={board.icon.icon_src} alt="icon" width={18} />*/}
+                <ReactSVG src={board.icon.icon_src} alt="icon" width={18} />
               </ImgBox>
 
               <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
@@ -124,12 +132,14 @@ export const BordInSidebar = ({ filteredItems }) => {
             </OneBoard>
           </Link>
           <ModalEditFormDialog
+            error={error}
             handleSubmit={handleSubmit}
             board={board._id}
             closeEditModal={handleCloseEditModal}
             isOpenEditModal={isOpenEditModal}
             setEditBoard={setIsEditBoard}
             editBoard={editBoard}
+            editBoardIcon={editBoardIcon}
             setIsEditBoardIcon={setIsEditBoardIcon}
             editBoardImg={editBoardImg}
             takeIMG={takeIMG}

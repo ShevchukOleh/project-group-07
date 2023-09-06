@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 // } from 'store/createSlices/board/boardSelectors';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-import CardFormDialog from 'components/CardModal/CardModal';
+import CardFormDialog from 'components/CardModal/EditCardModal';
 import PopUpModal from 'components/PopUpModal/PopUpModal';
 
 export default function BoardCard({ boardId, columnId, card }) {
@@ -156,6 +156,7 @@ function BoardCardItem({ boardId, columnId, card }) {
         />
 
         <FiTrash
+          // style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
           onClick={() =>
             dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
           }

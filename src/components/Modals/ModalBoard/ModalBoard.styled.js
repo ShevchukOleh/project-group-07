@@ -69,6 +69,9 @@ export const ErrorTextWrap = styled.div`
 
 export const FormControlLabelStyled = styled(FormControlLabel)`
   margin: 0px;
+  border-radius: 5px;
+  transition: border 0.2s linear;
+  border: 1px solid ${props => (props.selected ? 'green' : 'initial')};
 `;
 
 export const IconContainer = styled(RadioGroup)`
@@ -94,9 +97,34 @@ export const IconWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  cursor: pointer;
-  &:hover {
-    fill: blue;
+  //cursor: pointer;
+`;
+
+export const IconReactSvgWrapper = styled.span`
+  svg {
+    path {
+      transition: all 0.3s ease-out;
+
+      stroke: ${props => {
+        if (props.$currentTheme === 'Dark') return '#FFFFFF';
+
+        return '#161616';
+      }};
+
+      stroke-opacity: ${props => (props.$isSelected ? 1 : 0.5)};
+    }
+  }
+
+  svg:hover {
+    path {
+      stroke: ${props => {
+        if (props.$currentTheme === 'Dark') return '#fff';
+
+        return '#000';
+      }};
+      stroke-opacity: 1;
+    }
+    cursor: pointer;
   }
 `;
 export const RadioStyledImg = styled(Radio)`
@@ -176,4 +204,12 @@ export const PlusIcon = styled(RiAddLine)`
   fill: ${props => {
     return props?.theme?.themeSet?.iconFill;
   }};
+`;
+export const ActiveIcon = styled.span`
+  width: 20px;
+  height: 20px;
+  transition: border 0.2s linear;
+  background-color: ${props => (props.isSelected ? 'gray' : 'initial')};
+  border-radius: 5px;
+  border: 1px solid ${props => (props.isSelected ? 'green' : 'initial')};
 `;

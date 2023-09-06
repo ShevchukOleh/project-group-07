@@ -5,8 +5,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Plus from '../../../images/icons/plus.svg';
 import {
-  // IconContainer,
-  // RadioStyled,
   RadioStyledImg,
   ImageBgContainer,
   Image,
@@ -15,74 +13,58 @@ import {
   DialogActionsStyled,
   Icon,
   FormControlLabelStyled,
-  ErrorTextWrap,
   StyledButton,
   StyledBox,
 } from './ModalEditBoard.styled.js';
-// import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import {selectBoards} from '../../../store/createSlices/board/boardSelectors'
 import { getIcon, getImage } from '../ModalBoard/servises';
-// import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import { editBoardById, getBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
 import { IconWrapper } from '../ModalBoard/ModalBoard.styled';
 import { ReactSVG } from 'react-svg';
-// import { useLocation, useParams } from 'react-router-dom';
 
 export default function ModalEditFormDialog({
-  // board,
   closeEditModal,
   isOpenEditModal,
   handleSubmit,
   editBoard,
   setEditBoard,
   handleChangeIcon,
-  // editBoardIcon,
-  // setIsEditBoardIcon,
   editBoardImg,
   takeIMG,
   setIsOpenEditModal,
+  error,
 }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
   const token = useSelector(selectToken);
-  const [error, setError] = useState('');
-  // const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
-  const [errorField] = useState(null);
-  // const [errorField, setErrorField] = useState(null);
 
   useEffect(() => {
-    // setIsLoading(true);
     getIcon(token)
       .then(data => {
         setIcon(data);
       })
-      .catch(error => setError(error))
+      .catch()
       .finally(() => {
-        // setIsLoading(false);
       });
   }, [token]);
   useEffect(() => {
-    // setIsLoading(true);
     setImage([]);
     getImage(token)
       .then(data => {
         setImage(data);
       })
-      .catch(error => setError(error.message))
+      .catch()
       .finally(() => {
-        // setIsLoading(false);
       });
   }, [token]);
 
@@ -96,10 +78,6 @@ export default function ModalEditFormDialog({
     <div>
       <Dialog open={isOpenEditModal} onClose={closeEditModal}>
         <ContainerModal>
-          {error && (
-            <ErrorTextWrap>Something went wrong. Try again later</ErrorTextWrap>
-          )}
-
           <DialogTitle
             sx={{
               fontSize: 18,
@@ -123,7 +101,7 @@ export default function ModalEditFormDialog({
               onChange={e => setEditBoard(e.target.value)}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
-            {errorField && (
+            {error && (
               <div style={{ color: 'red', position: 'absolute', top: 130 }}>
                 Please, fill in the required fields
               </div>
@@ -175,7 +153,7 @@ export default function ModalEditFormDialog({
               name="image-edit-group"
               value={editBoardImg}
             >
-              { currentTheme ==='Light' && (
+              {currentTheme === 'Light' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -197,9 +175,8 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Dark' && (
+              )}
+              {currentTheme === 'Dark' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -221,9 +198,8 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Violet' && (
+              )}
+              {currentTheme === 'Violet' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -245,8 +221,7 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
+              )}
 
               {image &&
                 imageNew.map(({ _id, background_icon_src }) => (

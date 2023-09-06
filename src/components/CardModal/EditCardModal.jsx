@@ -99,7 +99,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                             marginBottom: '24px',
                         }}
                     >
-                        Add card
+                        Edit card
                     </DialogTitle>
                     <DialogContent sx={{ padding: 0 }}>
                         <TextFieldStyled

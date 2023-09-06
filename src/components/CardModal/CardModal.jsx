@@ -22,7 +22,6 @@ import {
 import FormControl from '@mui/material/FormControl';
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
@@ -82,8 +81,7 @@ export default function CardFormDialog({
   };
 
   const handleDateDedline = newValue => {
-    const newDate = newValue;
-    setDeadline(newDate);
+    setDeadline(newValue);
   };
 
   const handleChangeDescription = event => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { App } from 'components/App';
@@ -12,7 +12,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <PersistGate persistor={persistor}>
       <BrowserRouter basename="/project-group-07">
         <React.StrictMode>
-          <App />
+          <Suspense>
+            <App />
+          </Suspense>
         </React.StrictMode>
       </BrowserRouter>
     </PersistGate>

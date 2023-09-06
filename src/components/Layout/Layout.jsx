@@ -30,7 +30,7 @@ const Layout = () => {
   const dispatch = useDispatch();
   const boards = useSelector(selectBoards);
 
-  const isTablet = useMediaQuery({ minWidth: 325, maxWidth: 1439 });
+  const isTablet = useMediaQuery({ minWidth: 320, maxWidth: 1439 });
 
   const hideModal = () => {
     setIsShowModal(false);
@@ -62,18 +62,18 @@ const Layout = () => {
     }
   }, [dispatch, boards, boardName]);
   return (
-    <Container>
-      {!isTablet && <Sidebar setIsShowModal={setIsShowModal} />}
-      <div>
-        <AppBar />
-        <Suspense fallback={null}>
+    <Suspense fallback={null}>
+      <Container>
+        {!isTablet && <Sidebar setIsShowModal={setIsShowModal} />}
+        <div>
+          <AppBar />
           {boards.length > 0 ? <Outlet /> : <EmptyBoardsBaner />}
-        </Suspense>
-      </div>
-      {isShowModal && (
-        <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>
-      )}
-    </Container>
+        </div>
+        {isShowModal && (
+          <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>
+        )}
+      </Container>
+    </Suspense>
   );
 };
 

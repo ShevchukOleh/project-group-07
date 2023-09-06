@@ -38,15 +38,12 @@ import { ReactSVG } from 'react-svg';
 // import { useLocation, useParams } from 'react-router-dom';
 
 export default function ModalEditFormDialog({
-  // board,
   closeEditModal,
   isOpenEditModal,
   handleSubmit,
   editBoard,
   setEditBoard,
   handleChangeIcon,
-  // editBoardIcon,
-  // setIsEditBoardIcon,
   editBoardImg,
   takeIMG,
   setIsOpenEditModal,
@@ -175,7 +172,7 @@ export default function ModalEditFormDialog({
               name="image-edit-group"
               value={editBoardImg}
             >
-              { currentTheme ==='Light' && (
+              {currentTheme === 'Light' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -197,9 +194,8 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Dark' && (
+              )}
+              {currentTheme === 'Dark' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -221,9 +217,8 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Violet' && (
+              )}
+              {currentTheme === 'Violet' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -245,8 +240,7 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
+              )}
 
               {image &&
                 imageNew.map(({ _id, background_icon_src }) => (

@@ -297,6 +297,30 @@ const deleteCard = createAsyncThunk(
     }
   }
 );
+const editCardById = createAsyncThunk(
+  'board/editCardById',
+  async ({ createCard, boardId, columnId, cardId }, thunkAPI) => {
+    const { title, description, priority, deadline } = createCard;
+    try {
+      const token = thunkAPI.getState().user.token;
+      const response = await axios.patch(
+        `${BASE_URL}api/board/${boardId}/column/${columnId}/card/${cardId}`,
+        { title, description, priority, deadline },
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+
+      return data;
+    } catch (error) {
+      throw new Error('Failed edit card by id');
+    }
+  }
+);
 
 const submitHelp = createAsyncThunk(
   'modal/postNeedHelp',
@@ -339,5 +363,6 @@ export {
   deleteCard,
   editColumnById,
   deleteColumn,
+  editCardById,
   submitHelp,
 };

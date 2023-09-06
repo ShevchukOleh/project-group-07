@@ -225,7 +225,6 @@ export default function CardFormDialog({
               <Stack
                 sx={{ marginBottom: '40px', color: '#BEDBB0', width: '250px' }}
               >
-                <div >
                   <DatePicker
                     localeText={{ clearButtonLabel: 'Empty' }}
                     slotProps={{
@@ -239,19 +238,8 @@ export default function CardFormDialog({
                     views={['month', 'day']}
                     defaultValue={dayjs(Date.now())}
                   />
-                </div>
               </Stack>
-
-              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker', 'DatePicker']}>
-        <DatePicker label="Uncontrolled picker" defaultValue={dayjs('2022-04-17')} />
-        <DatePicker
-          label="Controlled picker"
-          value={dateDeadline}
-          onChange={handleDateDeadline}
-        />
-      </DemoContainer>
-    </LocalizationProvider> */}
+              
             </DialogContent>
             <DialogActionsStyled>
               {valueTitle ? (

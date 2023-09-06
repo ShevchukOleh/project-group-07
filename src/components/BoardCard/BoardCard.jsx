@@ -142,10 +142,11 @@ function BoardCardItem({ boardId, columnId, card }) {
         />
 
         <FiTrash
+          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
           onClick={() =>
             dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
           }
-          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+          // style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
 
           //           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
         />

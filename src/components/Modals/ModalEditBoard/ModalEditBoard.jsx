@@ -13,7 +13,6 @@ import {
   FormControlLabelStyled,
   StyledButton,
   StyledBox,
-  ActiveIcon,
   PlusIcon,
   IconReactSvgWrapper,
 

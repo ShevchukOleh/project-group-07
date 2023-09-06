@@ -13,6 +13,7 @@ import {
   deleteCard,
   editColumnById,
   editBoardById,
+  editCardById,
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
@@ -232,6 +233,27 @@ const boardSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(deleteCard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      //editCard===========================================================>
+      .addCase(editCardById.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(editCardById.fulfilled, (state, action) => {
+        state.loading = false;
+        const { columnId, data } = action.payload;
+        const indexToChange = state.columnCards[columnId].findIndex(
+          item => item._id === data._id
+        );
+
+        if (indexToChange !== -1) {
+          state.columnCards[columnId][indexToChange] = data;
+          state.filteredAllCards[columnId][indexToChange] = data;
+        }
+        state.error = action.payload;
+      })
+      .addCase(editCardById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

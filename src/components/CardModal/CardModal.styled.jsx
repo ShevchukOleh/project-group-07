@@ -177,6 +177,15 @@ export const PlusIcon = styled(RiAddLine)`
   }};
 `;
 
+export const CalendarWrap = styled.div`
+  margin-bottom: 40px;
+  & div {
+    color: ${props => {
+    return props?.theme?.themeSet?.calendar;
+  }};
+  }
+`;
+
 // export const DateField = styled.input`
 
 // `

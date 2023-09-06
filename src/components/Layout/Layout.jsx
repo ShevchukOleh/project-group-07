@@ -62,18 +62,18 @@ const Layout = () => {
     }
   }, [dispatch, boards, boardName]);
   return (
-    <Container>
-      {!isTablet && <Sidebar setIsShowModal={setIsShowModal} />}
-      <div>
-        <AppBar />
-        <Suspense fallback={null}>
+    <Suspense fallback={null}>
+      <Container>
+        {!isTablet && <Sidebar setIsShowModal={setIsShowModal} />}
+        <div>
+          <AppBar />
           {boards.length > 0 ? <Outlet /> : <EmptyBoardsBaner />}
-        </Suspense>
-      </div>
-      {isShowModal && (
-        <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>
-      )}
-    </Container>
+        </div>
+        {isShowModal && (
+          <BackDrop isShowModal={isShowModal} hideModal={hideModal}></BackDrop>
+        )}
+      </Container>
+    </Suspense>
   );
 };
 

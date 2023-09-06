@@ -91,10 +91,10 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const handleCloseBtn = () => {
     if (valueInput) {
       dispatch(createBoard(createBd));
+      navigate(`/home/${valueInput}`);
       setErrorField('');
       setValueInput('');
       createOpenModalShow();
-      navigate(`/home/${valueInput}`);
     } else {
       setErrorField('Please, fill in the required fields');
     }
@@ -102,18 +102,15 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
 
   const handleChange = event => {
     setValueInput(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleChangeIcon = event => {
     const clickedId = event.currentTarget.getAttribute('data-icon-id');
     setValueIcon(clickedId);
-    console.log(clickedId);
   };
 
   const handleChangeImg = event => {
     setValueImgBg(event.target.value);
-    console.log(event.target.value);
   };
 
   return (

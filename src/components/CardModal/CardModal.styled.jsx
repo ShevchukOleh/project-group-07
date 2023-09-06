@@ -108,11 +108,11 @@ export const DescriptionFieldStyled = styled.textarea`
     }};
   border-radius: 8px;
   height: 154px;
+  resize: none;
   width: 100%;
   margin-bottom: 24px;
   padding-left: 18px;
   outline: none;
-
   ::placeholder {
     color: ${props => {
       return props?.theme?.themeSet?.inputPlaceholder;

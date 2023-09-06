@@ -23,7 +23,7 @@ import {
   Icon,
   FormControlLabelStyled,
   DescriptionFieldStyled,
-  DateField,
+//   DateField,
 } from './CardModal.styled';
 import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
@@ -46,8 +46,10 @@ export default function CardFormDialog({
   const [valueTitle, setValueTitle] = useState('');
   const [labelColor, setLabelColor] = useState('LOW');
   const [valueDescription, setValueDescription] = useState('');
-  const [dateDeadline, setDeadline] = useState('2023-09-01');
+  const [dateDeadline, setDeadline] = useState('');
 
+    console.log(dateDeadline);
+    
   const createCard = {
     title: valueTitle,
     description: valueDescription,
@@ -74,7 +76,13 @@ export default function CardFormDialog({
   const handleChangeTitle = event => {
     setValueTitle(event.target.value);
     console.log(event.target.value);
-  };
+    };
+    
+    const handleDateDedline = (newValue) => {
+        const newDate = newValue.d
+        setDeadline(newDate);
+    }
+
 
   const handleChangeDescription = event => {
     setValueDescription(event.target.value);
@@ -91,7 +99,9 @@ export default function CardFormDialog({
     console.log(event.target.value);
   };
 
-  return (
+    return (
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+
     <div>
       <Dialog open={isShowModal} onClose={handleClose}>
         <ContainerModal>
@@ -213,14 +223,34 @@ export default function CardFormDialog({
               }}
             >
               Deadline
-            </DialogTitle>
-            <DateField
-              type="date"
-              id="date"
-              value={dateDeadline}
-              onChange={handleDateDeadline}
-              min="2023-09-01"
-            ></DateField>
+                      </DialogTitle>
+                      
+<DemoContainer sx={{marginBottom: '40px', color: '#BEDBB0', }}
+        components={[
+          'DatePicker',
+          'MobileDatePicker',
+          'DesktopDatePicker',
+          'StaticDatePicker',
+        ]}
+      >
+    <div sx={{width: '127px'}}>
+    <DatePicker 
+    localeText={{clearButtonLabel: 'Empty'}}
+    slotProps={{
+    toolbar: { hidden: true },
+    textField: { size: 'small', variant: 'standard'}
+  }}
+        required
+        onChange={handleDateDedline}
+        minDate={dayjs(Date.now())}                              
+        orientation='portrait'
+        views={['month', 'day']}
+        defaultValue={dayjs(Date.now())}
+                                    />
+        </div>
+    </DemoContainer>
+                            
+
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker', 'DatePicker']}>
         <DatePicker label="Uncontrolled picker" defaultValue={dayjs('2022-04-17')} />
@@ -299,5 +329,6 @@ export default function CardFormDialog({
         </ContainerModal>
       </Dialog>
     </div>
-  );
+</LocalizationProvider>
+            );
 }

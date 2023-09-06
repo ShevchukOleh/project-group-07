@@ -227,7 +227,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   }
                 />
               )}
-              {currentTheme === 'Dark' && (
+              {currentTheme === 'Violet' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -250,7 +250,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   }
                 />
               )}
-              {currentTheme === 'Violet' && (
+              {currentTheme === 'Dark' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={

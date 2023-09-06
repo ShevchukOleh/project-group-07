@@ -11,64 +11,70 @@ import { getTheme } from 'constants';
 import { editBoardById } from 'store/AsyncThunk/asyncThunkBoards';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 // import Layout from 'components/Layout/Layout';
-import { selectBoards } from '../../../store/createSlices/board/boardSelectors'
+import { selectBoards } from '../../../store/createSlices/board/boardSelectors';
 import ModalEditFormDialog from 'components/Modals/ModalEditBoard/ModalEditBoard';
 import { useParams } from 'react-router-dom';
-
 
 export const BordInSidebar = ({ filteredItems }) => {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
- 
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const [selectedItem, setSelectedItem] = useState(null);
-  
+
   // const navigate = useNavigate();
   const { boardName } = useParams();
   // const location = useLocation();
   const [boardEl, setBoardEl] = useState([]);
   // const token = useSelector(selectToken);
-  const boardsArray = useSelector(selectBoards)
-  
+  const boardsArray = useSelector(selectBoards);
+
   useEffect(() => {
     const updatedBoard = boardsArray.find(board => board.title === boardName);
-      if (updatedBoard) {
+    if (updatedBoard) {
       setBoardEl(updatedBoard);
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [boardsArray]);
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boardsArray]);
+
   // const boardsInSidebar = useSelector(state => state.board.boards);
   // const collect = useSelector(state => state);
   // console.log(collect);
   // console.log(boardsInSidebar);
 
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
-  const [editBoard, setIsEditBoard] = useState('')
-  const [editBoardIcon, setIsEditBoardIcon] = useState('')
-  const [editBoardImg, setIsEditBoardImg] = useState('')
+  const [editBoard, setIsEditBoard] = useState('');
+  const [editBoardIcon, setIsEditBoardIcon] = useState('');
+  const [editBoardImg, setIsEditBoardImg] = useState('');
 
   const boardId = boardEl._id;
-
+  const editBoardObject = {
+    title: editBoard,
+    icon: editBoardIcon,
+    background: editBoardImg,
+  };
   const handleOpenEditModal = () => {
-  setIsOpenEditModal(true)
-  }
-
+    setIsOpenEditModal(true);
+  };
   const handleCloseEditModal = () => {
-     setIsOpenEditModal(false)
-  }
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();       
-      if (editBoard) {
-        dispatch(editBoardById({ boardId, title: editBoard })
-    )}
-    setIsOpenEditModal(!isOpenEditModal);
-    
-  }
-
+    setIsOpenEditModal(false);
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (editBoard && editBoardIcon && editBoardImg) {
+      dispatch(editBoardById({ boardId, editBoardObject }));
+      dispatch(getAllBoards());
+      setIsOpenEditModal(!isOpenEditModal);
+      setIsEditBoard('');
+      setIsEditBoardImg('');
+      setIsEditBoardIcon('');
+    }
+  };
+  const handleChangeIcon = event => {
+    const clickedId = event.currentTarget.getAttribute('data-icon-id');
+    setIsEditBoardIcon(clickedId);
+  };
   const handleDeleteBoard = id => {
     const previousPath = '/home';
     dispatch(deleteBoard(id)).then(() => {
@@ -80,61 +86,57 @@ export const BordInSidebar = ({ filteredItems }) => {
   const handleItemClick = (index, title) => {
     setSelectedItem(index);
   };
-
+  const takeIMG = _id => {
+    setIsEditBoardImg(_id);
+    console.log(_id);
+  };
   const boardIndicationColor = theme.themeSet.sidebarBoardIndication;
-
   return (
     <div>
       {filteredItems.map((board, index) => (
-        <Link
-          onClick={() => handleItemClick(index, board.title)}
-          style={{ textDecoration: 'none' }}
-          key={index}
-          to={`/home/${board.title}`}
-        >
-          <OneBoard
-            color={boardIndicationColor}
-            isSelected={selectedItem === index}
+        <div key={board._id}>
+          <Link
+            onClick={() => handleItemClick(index, board.title)}
+            style={{ textDecoration: 'none' }}
+            key={board._id}
+            to={`/home/${board.title}`}
           >
-            {/* <div key={index} onClick={() => handleItemClick(index)}>
-           <OneBoard
-             color={boardIndicationColor}
-             isSelected={selectedItem === index}
-        > */}
+            <OneBoard
+              color={boardIndicationColor}
+              isSelected={selectedItem === index}
+            >
+              <ImgBox>
+                <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
+              </ImgBox>
 
-            <ImgBox>
-              <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
-            </ImgBox>
+              <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
 
-            <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
+              <EditIcon className="icon edit" onClick={handleOpenEditModal}>
+                <FiEdit2 size={16} />
+              </EditIcon>
 
-            <EditIcon className="icon edit">
-              
-             <FiEdit2 size={16}
-              onClick={handleOpenEditModal}/>
-            </EditIcon>
-
-            <div className="icon delete">
-              <AiOutlineDelete
-                size={16}
-                onClick={() => handleDeleteBoard(board._id)}
-              />
-            </div>
-
-            <ModalEditFormDialog
+              <div className="icon delete">
+                <AiOutlineDelete
+                  size={16}
+                  onClick={() => handleDeleteBoard(board._id)}
+                />
+              </div>
+            </OneBoard>
+          </Link>
+          <ModalEditFormDialog
             handleSubmit={handleSubmit}
             board={board._id}
             closeEditModal={handleCloseEditModal}
             isOpenEditModal={isOpenEditModal}
             setEditBoard={setIsEditBoard}
             editBoard={editBoard}
-            editBoardIcon={editBoardIcon}
             setIsEditBoardIcon={setIsEditBoardIcon}
             editBoardImg={editBoardImg}
-            setIsEditBoardImg={setIsEditBoardImg}
-            />   
-          </OneBoard>
-        </Link>
+            takeIMG={takeIMG}
+            setIsOpenEditModal={setIsOpenEditModal}
+            handleChangeIcon={handleChangeIcon}
+          />
+        </div>
       ))}
     </div>
   );

@@ -1,6 +1,7 @@
 export const selectBoards = state => state.board.boards;
 export const selectColumns = state => state.board.columns;
 export const selectAllColumnCards = state => state.board.columnCards;
+export const filteredAllCards = state => state.board.filteredAllCards;
 
 export const selectBackgrounds = state => state.board.backgrounds;
 

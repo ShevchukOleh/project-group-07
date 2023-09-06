@@ -93,12 +93,13 @@ const deleteBoard = createAsyncThunk(
 );
 const editBoardById = createAsyncThunk(
   'board/editBoardById',
-  async ({ boardId, title }, thunkAPI) => {
+  async ({ boardId, editBoardObject }, thunkAPI) => {
+    console.log(editBoardObject);
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
         `${BASE_URL}api/board/${boardId}`,
-        { title },
+        editBoardObject,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -138,7 +139,6 @@ const getBoardById = createAsyncThunk(
 const getAllColums = createAsyncThunk(
   'board/getColums',
   async (boardId, thunkAPI) => {
-    console.log(boardId);
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.get(
@@ -256,9 +256,10 @@ const getAllCards = createAsyncThunk(
 const createOneCard = createAsyncThunk(
   'board/postCard',
   async ({ boardId, columnId, createCard }, thunkAPI) => {
+    console.log({ boardId, columnId, createCard });
+
     try {
       const token = thunkAPI.getState().user.token;
-
       const response = await axios.post(
         `${BASE_URL}api/board/${boardId}/column/${columnId}/card`,
         createCard,

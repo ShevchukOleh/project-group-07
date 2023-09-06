@@ -39,7 +39,7 @@ export const Sidebar = () => {
   const [isCreateOpenModal, setCreateOpenModal] = useState(false);
   const [isNeedHelpModal, setisNeedHelpModal] = useState(false);
   const [boardsList, setBoardsList] = useState(boardsInSidebar); //collection boards
-  const [filteredItems, setFilteredItems] = useState(boardsList); //search
+  const [filteredItems, setFilteredItems] = useState(boardsInSidebar); //search
   // ===============================search
   useEffect(() => {
     dispatch(getAllBoards());
@@ -58,7 +58,6 @@ export const Sidebar = () => {
   //   };
   //   const closeModalBoard = () => {
   //     setIsModalBoardOpen(false);
-
   const needHelpModalShow = e => {
     if (
       e.target.id === 'backdropNeedHelp' ||
@@ -73,7 +72,6 @@ export const Sidebar = () => {
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };
-  // const isBoard = true;
 
   return (
     <ContainerAside>

@@ -24,12 +24,17 @@ import {
 const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
   const [imageFile, setImageFile] = useState(null);
   const [userAvatar, setUserAvatar] = useState(user?.avatarURL || noPhotoUser);
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('********');
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null); 
+  const [password, setPassword] = useState('********');
 
   const dispatch = useDispatch();
   const MAX_FILE_SIZE = 4 * 1024 * 1024;
+
+  useEffect(() => {
+    setName(user?.name || '');
+    setEmail(user?.email || '');
+  }, [user]);
 
   const handleFileUpload = event => {
     const file = event.target.files[0];
@@ -50,9 +55,8 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
     }
   }, [imageFile, user?.avatarURL]);
 
-  const userData = { name: "Oleg", email: "oleh1111@mail.com", password: "********" }
-  console.log(userData)
-
+  const userData = { name, email, password }
+  
   const onSubmit = async values => {
     createOpenModalShow();
     if (imageFile) {
@@ -67,8 +71,8 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
   };
 
   const initialValues = {
-    name: user?.name || '',
-    email: user?.email || '',
+    name: '',
+    email: '',
     password: '********',
   };
   
@@ -102,28 +106,28 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
               </AddAvatar>
 
               <Field
-                value="Oleg"
+                value={name}
                 type="text"
                 name="name"
                 placeholder={user ? user.name : 'name'}
                 as={ColumnModalFormInput}
-                // onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
               <Field
-                value="oleh1111@mail.com"
+                value={email}
                 type="email"
                 name="email"
                 placeholder={user ? user.email : 'email'}
                 as={ColumnModalFormInput}
-                // onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Field
-                value="********"
+                value={password}
                 type="password"
                 name="password"
                 placeholder="password"
                 as={ColumnModalFormInput}
-                // onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <ModalButton type="submit">Send</ModalButton>
             </Form>

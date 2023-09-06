@@ -86,9 +86,6 @@ export default function ModalEditFormDialog({
       });
   }, [token]);
 
-  console.log(image);
-
-
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];

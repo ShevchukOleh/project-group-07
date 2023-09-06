@@ -3,7 +3,6 @@ import Dialog from '@mui/material/Dialog';
 // import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Plus from '../../../images/icons/plus.svg';
 import {
   // IconContainer,
   // RadioStyled,
@@ -13,11 +12,11 @@ import {
   ContainerModal,
   TextFieldStyled,
   DialogActionsStyled,
-  Icon,
   FormControlLabelStyled,
   ErrorTextWrap,
   StyledButton,
   StyledBox,
+  PlusIcon,
 } from './ModalEditBoard.styled.js';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
@@ -175,7 +174,7 @@ export default function ModalEditFormDialog({
               name="image-edit-group"
               value={editBoardImg}
             >
-              { currentTheme ==='Light' && (
+              {currentTheme === 'Light' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -197,9 +196,8 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Dark' && (
+              )}
+              {currentTheme === 'Dark' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -221,9 +219,8 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Violet' && (
+              )}
+              {currentTheme === 'Violet' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -245,8 +242,7 @@ export default function ModalEditFormDialog({
                     />
                   }
                 />
-  )
-              }
+              )}
 
               {image &&
                 imageNew.map(({ _id, background_icon_src }) => (
@@ -287,7 +283,6 @@ export default function ModalEditFormDialog({
             >
               <StyledBox
                 sx={{
-                  backgroundColor: '#161616',
                   height: 28,
                   width: 28,
                   display: 'flex',
@@ -297,7 +292,7 @@ export default function ModalEditFormDialog({
                   marginRight: 1,
                 }}
               >
-                <Icon src={Plus} />
+                <PlusIcon />
               </StyledBox>
               Edit Board
             </StyledButton>

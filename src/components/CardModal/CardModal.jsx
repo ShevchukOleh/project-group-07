@@ -32,6 +32,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import { CloseBtn } from 'components/Modals/NeedHelp/NeedHelpModal.styled';
+import { IconClose } from 'components/Modals/UI/ModalCulumn.styled';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
@@ -340,6 +342,10 @@ export default function CardFormDialog({
                 </StyledButton>
               )}
             </DialogActionsStyled>
+
+            <CloseBtn>
+              <IconClose onClick={console.log('Close me')} />
+            </CloseBtn>
           </ContainerModal>
         </Dialog>
       </div>

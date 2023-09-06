@@ -5,7 +5,7 @@ export const BoardCardStyle = styled.div`
   margin-bottom: 8px;
 
   width: 334px;
-  height: 154px;
+  min-height: 154px;
   padding: 14px 20px 14px 24px;
   border-radius: 8px;
   background: rgb(143, 161, 208);
@@ -13,8 +13,8 @@ export const BoardCardStyle = styled.div`
     90deg,
     ${props => props.priorityColor} 4px,
     ${props => {
-        return props?.theme?.themeSet?.cardBg;
-      }}
+      return props?.theme?.themeSet?.cardBg;
+    }}
       4px
   );
 
@@ -64,6 +64,13 @@ export const BoardCardStyle = styled.div`
     -webkit-box-orient: vertical;
     box-orient: vertical;
   }
+  & .expanded {
+    width: 290px;
+    word-wrap:normal
+    white-space: normal;
+    overflow: visible;
+    text-overflow: inherit;
+  word-wrap: break-word;}
 
   & .priorityTitle {
     margin-bottom: 4px;

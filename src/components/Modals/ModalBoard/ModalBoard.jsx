@@ -16,6 +16,7 @@ import {
   StyledBox,
   PlusIcon,
   IconWrapper,
+  ActiveIcon,
 } from './ModalBoard.styled';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
@@ -150,15 +151,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                 Please, fill in the required fields
               </div>
             )}
-            {/* <TextField
-          error
-          id="filled-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
-          variant="filled"
-          fullWidth
-        /> */}
+
             <FormControl sx={{ padding: 0, marginBottom: '24px' }}>
               <DialogTitle
                 sx={{
@@ -174,14 +167,15 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
 
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
-                  <span
+                  <ActiveIcon
                     key={_id}
                     id={_id}
                     onClick={handleChangeIcon}
                     data-icon-id={_id}
+                    isSelected={_id === valueIcon}
                   >
                     <ReactSVG src={icon_src} />
-                  </span>
+                  </ActiveIcon>
                 ))}
               </IconWrapper>
             </FormControl>
@@ -281,6 +275,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   <FormControlLabelStyled
                     value={_id}
                     key={_id}
+                    selected={_id === valueImgBg}
                     control={
                       <RadioStyledImg
                         icon={<Image src={background_icon_src} alt={_id} />}

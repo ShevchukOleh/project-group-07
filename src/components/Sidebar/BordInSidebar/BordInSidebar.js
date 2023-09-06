@@ -75,9 +75,9 @@ export const BordInSidebar = ({ filteredItems }) => {
       setError(!error);
     }
   };
-  const handleChangeIcon = event => {
-    const clickedId = event.currentTarget.getAttribute('data-icon-id');
-    setIsEditBoardIcon(clickedId);
+  const handleChangeIcon = _id => {
+    // const clickedId = event.currentTarget.getAttribute('data-icon-id');
+    setIsEditBoardIcon(_id);
   };
   const handleDeleteBoard = id => {
     const previousPath = '/home';

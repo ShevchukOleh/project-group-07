@@ -28,15 +28,16 @@ import {
   //   DateField,
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
+// import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Modals/NeedHelp/NeedHelpModal.styled';
 import { IconClose } from 'components/Modals/UI/ModalCulumn.styled';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
@@ -287,40 +288,7 @@ export default function CardFormDialog({
                   </div>
                 </DemoContainer>
               </CalendarWrap>
-
-
-//               <Stack
-//                 sx={{ marginBottom: '40px', color: '#BEDBB0', width: '250px' }}
-//               >
-//                 <div >
-//                   <DatePicker
-//                     localeText={{ clearButtonLabel: 'Empty' }}
-//                     slotProps={{
-//                       toolbar: { hidden: true },
-//                       textField: { size: 'small', variant: 'standard' },
-//                     }}
-//                     required
-//                     onChange={handleDateDedline}
-//                     minDate={dayjs(Date.now())}
-//                     orientation="portrait"
-//                     views={['month', 'day']}
-//                     defaultValue={dayjs(Date.now())}
-//                   />
-//                 </div>
-//               </Stack>
-
-              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker', 'DatePicker']}>
-        <DatePicker label="Uncontrolled picker" defaultValue={dayjs('2022-04-17')} />
-        <DatePicker
-          label="Controlled picker"
-          value={dateDeadline}
-          onChange={handleDateDeadline}
-        />
-      </DemoContainer>
-    </LocalizationProvider> */}
             </DialogContent>
-
 
             <DialogActionsStyled>
               {valueTitle ? (
@@ -358,18 +326,6 @@ export default function CardFormDialog({
                 </StyledButton>
               ) : (
                 <StyledButton
-
-//                       borderRadius: 1,
-//                       marginRight: 1,
-//                     }}
-//                   >
-//                     <Icon src={Plus} />
-//                   </Box>
-//                   {btnText}
-//                 </Button>
-//               ) : (
-//                 <Button
-
                   disabled
                   sx={{
                     cursor: 'not-allowed',

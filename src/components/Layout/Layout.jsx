@@ -30,7 +30,7 @@ const Layout = () => {
   const dispatch = useDispatch();
   const boards = useSelector(selectBoards);
 
-  const isTablet = useMediaQuery({ minWidth: 325, maxWidth: 1439 });
+  const isTablet = useMediaQuery({ minWidth: 320, maxWidth: 1439 });
 
   const hideModal = () => {
     setIsShowModal(false);

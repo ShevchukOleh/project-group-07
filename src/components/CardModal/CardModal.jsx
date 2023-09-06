@@ -23,6 +23,7 @@ import {
   DescriptionFieldStyled,
   PlusIcon,
   StyledButton,
+  CalendarWrap,
   //   DateField,
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
@@ -246,32 +247,33 @@ export default function CardFormDialog({
               >
                 Deadline
               </DialogTitle>
-
-              <DemoContainer
-                sx={{ marginBottom: '40px', color: '#BEDBB0' }}
-                components={[
-                  'DatePicker',
-                  'MobileDatePicker',
-                  'DesktopDatePicker',
-                  'StaticDatePicker',
-                ]}
-              >
-                <div sx={{ width: '127px' }}>
-                  <DatePicker
-                    localeText={{ clearButtonLabel: 'Empty' }}
-                    slotProps={{
-                      toolbar: { hidden: true },
-                      textField: { size: 'small', variant: 'standard' },
-                    }}
-                    required
-                    onChange={handleDateDedline}
-                    minDate={dayjs(Date.now())}
-                    orientation="portrait"
-                    views={['month', 'day']}
-                    defaultValue={dayjs(Date.now())}
-                  />
-                </div>
-              </DemoContainer>
+              <CalendarWrap>
+                <DemoContainer
+                  sx={{  color: '#BEDBB0' }}
+                  components={[
+                    'DatePicker',
+                    'MobileDatePicker',
+                    'DesktopDatePicker',
+                    'StaticDatePicker',
+                  ]}
+                >
+                  <div sx={{ width: '127px' }}>
+                    <DatePicker
+                      localeText={{ clearButtonLabel: 'Empty' }}
+                      slotProps={{
+                        toolbar: { hidden: true },
+                        textField: { size: 'small', variant: 'standard' },
+                      }}
+                      required
+                      onChange={handleDateDedline}
+                      minDate={dayjs(Date.now())}
+                      orientation="portrait"
+                      views={['month', 'day']}
+                      defaultValue={dayjs(Date.now())}
+                    />
+                  </div>
+                </DemoContainer>
+              </CalendarWrap>
 
               {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker', 'DatePicker']}>

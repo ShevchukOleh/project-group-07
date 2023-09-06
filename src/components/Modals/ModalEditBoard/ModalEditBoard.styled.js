@@ -5,7 +5,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
 // import { Radio, FormControlLabel } from '@mui/material';
 import {Radio} from '@mui/material';
-import {FormControlLabel} from '@mui/material';
+import { FormControlLabel } from '@mui/material';
+import { RiAddLine } from 'react-icons/ri';
 
 // import AddIcon from '@mui/icons-material/Add';
 
@@ -31,29 +32,11 @@ export const StyledBox = styled(Box)`
 `;
 
 export const StyledButton = styled(Button)`
-  color: ${props => {
-    return props?.theme?.themeSet?.modalHelpSendText;
-  }};
-  transition: background-color, color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     background-color: ${props => {
       return props?.theme?.themeSet?.modalHelpSendHover;
-    }};
-    color: ${props => {
-      return props?.theme?.themeSet?.modalHelpSendHoverText;
-    }};
-  }
-
-  &:hover > div {
-    background-color: ${props => {
-      return props?.theme?.themeSet?.boxIconBgHover;
-    }};
-  }
-
-  &:hover > div > svg {
-    fill: ${props => {
-      return props?.theme?.themeSet?.iconFillHover;
     }};
   }
 `;
@@ -144,6 +127,7 @@ export const Icon = styled.svg`
 export const Image = styled.img`
   width: 28px;
   height: 28px;
+  border-radius: 8px;
 `;
 
 export const TextFieldStyled = styled.input`
@@ -180,4 +164,12 @@ export const TextFieldStyled = styled.input`
         return props?.theme?.themeSet?.inputOtherHover;
       }};
   }
+`;
+
+export const PlusIcon = styled(RiAddLine)`
+  width: 18px;
+  height: 18px;
+  fill: ${props => {
+    return props?.theme?.themeSet?.iconFill;
+  }};
 `;

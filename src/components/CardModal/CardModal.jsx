@@ -216,9 +216,9 @@ export default function CardFormDialog({
                     control={
                       <RadioStyled
                         sx={{
-                          color: '#161616',
+                          color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
                           '&.Mui-checked': {
-                            color: '#161616',
+                            color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
                           },
                         }}
                       />

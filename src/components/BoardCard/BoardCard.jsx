@@ -133,11 +133,11 @@ function BoardCardItem({ boardId, columnId, card }) {
       </div>
       <div className="containerCardIcon">
         <FiArrowRightCircle
-          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+          style={{ cursor: 'pointer', color: theme?.themeSet?.cardPriorityIcon }}
         />
 
         <FiEdit2
-          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+          style={{ cursor: 'pointer', color: theme?.themeSet?.cardPriorityIcon }}
           onClick={() => openModalCard(columnId)}
         />
 
@@ -145,9 +145,7 @@ function BoardCardItem({ boardId, columnId, card }) {
           onClick={() =>
             dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
           }
-          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
-
-          //           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+          style={{ cursor: 'pointer', color: theme?.themeSet?.cardPriorityIcon }}
         />
         <CardFormDialog
           titleText={'Edit card'}

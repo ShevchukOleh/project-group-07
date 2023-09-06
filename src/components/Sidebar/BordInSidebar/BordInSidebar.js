@@ -6,7 +6,7 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBoard, getAllBoards } from 'store/AsyncThunk/asyncThunkBoards';
-import { EditIcon, ImgIcon, ImgBox } from './BordInSidebar.styled';
+import { EditIcon, ImgBox } from './BordInSidebar.styled';
 import { getTheme } from 'constants';
 import { editBoardById } from 'store/AsyncThunk/asyncThunkBoards';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
@@ -14,6 +14,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { selectBoards } from '../../../store/createSlices/board/boardSelectors';
 import ModalEditFormDialog from 'components/Modals/ModalEditBoard/ModalEditBoard';
 import { useParams } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 export const BordInSidebar = ({ filteredItems }) => {
   const user = useSelector(getCurrentUser);
@@ -108,8 +109,12 @@ export const BordInSidebar = ({ filteredItems }) => {
               color={boardIndicationColor}
               isSelected={selectedItem === index}
             >
-              <ImgBox>
-                <ImgIcon src={board.icon.icon_src} alt="icon" width={18} />
+              <ImgBox
+                $currentTheme={currentTheme}
+                $isSelected={selectedItem === index}
+              >
+                {/*<ImgIcon src={board.icon.icon_src} alt="icon" width={18} />*/}
+                <ReactSVG src={board.icon.icon_src} alt="icon" width={18} />
               </ImgBox>
 
               <div style={{ flex: 1, fontSize: '14px' }}>{board.title}</div>
@@ -134,6 +139,7 @@ export const BordInSidebar = ({ filteredItems }) => {
             isOpenEditModal={isOpenEditModal}
             setEditBoard={setIsEditBoard}
             editBoard={editBoard}
+            editBoardIcon={editBoardIcon}
             setIsEditBoardIcon={setIsEditBoardIcon}
             editBoardImg={editBoardImg}
             takeIMG={takeIMG}

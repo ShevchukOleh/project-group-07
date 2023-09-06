@@ -16,7 +16,8 @@ import {
   StyledBox,
   PlusIcon,
   IconWrapper,
-  ActiveIcon,
+  IconReactSvgWrapper,
+
 } from './ModalBoard.styled';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
@@ -167,7 +168,10 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
 
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
-                  <ActiveIcon
+
+                  <IconReactSvgWrapper
+                    $currentTheme={currentTheme}
+                    $isSelected={valueIcon === _id}
                     key={_id}
                     id={_id}
                     onClick={handleChangeIcon}
@@ -175,7 +179,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                     isSelected={_id === valueIcon}
                   >
                     <ReactSVG src={icon_src} />
-                  </ActiveIcon>
+                  </IconReactSvgWrapper>
                 ))}
               </IconWrapper>
             </FormControl>

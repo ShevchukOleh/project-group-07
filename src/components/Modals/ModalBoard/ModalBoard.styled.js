@@ -29,9 +29,6 @@ export const StyledBox = styled(Box)`
 `;
 
 export const StyledButton = styled(Button)`
-  color: ${props => {
-    return props?.theme?.themeSet?.modalHelpSendText;
-  }};
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
@@ -164,10 +161,6 @@ export const TextFieldStyled = styled.input`
       return props?.theme?.themeSet?.inputPlaceholder;
     }};
   }
-
-  // &&:focus {
-  // border: 1px solid #161616;
-  // };
 
   &:hover {
     border: 1px solid

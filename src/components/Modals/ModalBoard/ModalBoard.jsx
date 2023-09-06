@@ -48,8 +48,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const [image, setImage] = useState([]);
   const [errorField, setErrorField] = useState(null);
 
-
-
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -89,7 +87,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const lightImageBg = image[15];
   const darkImageBg = image[16];
   const violetImageBg = image[17];
-  
+
   const handleCloseBtn = () => {
     if (valueInput) {
       dispatch(createBoard(createBd));
@@ -101,6 +99,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       setErrorField('Please, fill in the required fields');
     }
   };
+
   const handleChange = event => {
     setValueInput(event.target.value);
     console.log(event.target.value);
@@ -116,6 +115,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
     setValueImgBg(event.target.value);
     console.log(event.target.value);
   };
+
   return (
     <div>
       <Dialog open={isCreateOpenModal} onClose={createOpenModalShow}>
@@ -174,6 +174,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               >
                 Icons
               </DialogTitle>
+
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
                   <span
@@ -208,7 +209,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               value={valueImgBg}
               onChange={handleChangeImg}
             >
-              { currentTheme ==='Light' && (
+              {currentTheme === 'Light' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -230,9 +231,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Dark' && (
+              )}
+              {currentTheme === 'Dark' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -254,9 +254,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                     />
                   }
                 />
-  )
-              }
-              { currentTheme ==='Violet' && (
+              )}
+              {currentTheme === 'Violet' && (
                 <FormControlLabelStyled
                   value={'noBackground'}
                   control={
@@ -278,9 +277,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                     />
                   }
                 />
-  )
-              }
-
+              )}
 
               {image &&
                 imageNew.map(({ _id, background_icon_src }) => (
@@ -322,7 +319,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  borderRadius: 1,
+                  borderRadius: '8px',
                   marginRight: 1,
                 }}
               >

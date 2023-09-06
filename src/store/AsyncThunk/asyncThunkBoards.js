@@ -315,7 +315,7 @@ const editCardById = createAsyncThunk(
       );
       const { data } = response;
 
-      return data;
+      return { data, columnId };
     } catch (error) {
       throw new Error('Failed edit card by id');
     }

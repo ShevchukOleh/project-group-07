@@ -31,6 +31,8 @@ const lightTheme = {
   sidebarBlockLink: '#BEDBB0',
   sidebarBoardIndication: '#BEDBB0',
 
+  modalAddCardSubtitle: 'rgba(22, 22, 22, 0.5)',
+
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',
   modalThemeTitleFocus: '#BEDBB0',
@@ -71,6 +73,8 @@ const lightTheme = {
   addColumnIconBox: '#161616',
   addColumnIcon: '#FFFFFF',
   addColumnText: '#161616',
+
+  calendar: '#BEDBB0',
 };
 
 const darkTheme = {
@@ -103,6 +107,8 @@ const darkTheme = {
   sidebarTextWitoutHover: 'rgba(255, 255, 255, 0.5)',
   sidebarBlockLink: '#BEDBB0',
   sidebarBoardIndication: '#BEDBB0',
+
+  modalAddCardSubtitle: 'rgba(255, 255, 255, 0.5)',
 
   modalThemeLabel: 'rgba(255, 255, 255, 0.8)',
   modalThemeTitle: 'rgba(255, 255, 255, 0.5)',
@@ -144,6 +150,8 @@ const darkTheme = {
   addColumnIconBox: '#FFFFFF',
   addColumnIcon: '#121212',
   addColumnText: '#FFFFFF',
+
+  calendar: '#BEDBB0',
 };
 
 const coloredTheme = {
@@ -176,6 +184,8 @@ const coloredTheme = {
   sidebarTextWitoutHover: 'rgba(255, 255, 255, 0.5)',
   sidebarBlockLink: '#5255BC',
   sidebarBoardIndication: '#FFFFFF',
+
+  modalAddCardSubtitle: 'rgba(22, 22, 22, 0.5)',
 
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',
@@ -217,6 +227,8 @@ const coloredTheme = {
   addColumnIconBox: '#5255BC',
   addColumnIcon: '#FFFFFF',
   addColumnText: '#161616',
+
+  calendar: '#5255BC',
 };
 
 const getThemeSet = themeSet => {

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 // import Loader from 'components/Loader/Loader'
 import DialogContent from '@mui/material/DialogContent';
@@ -7,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import DialogTitle from '@mui/material/DialogTitle';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import 'moment/locale/de';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -20,16 +19,26 @@ import {
   ContainerModal,
   TextFieldStyled,
   DialogActionsStyled,
-  Icon,
   FormControlLabelStyled,
   DescriptionFieldStyled,
+  PlusIcon,
+  StyledButton,
+  CalendarWrap,
+
   //   DateField,
 } from './CardModal.styled';
-import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
+// import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
+import { getTheme } from 'constants';
+import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import { CloseBtn } from 'components/Modals/NeedHelp/NeedHelpModal.styled';
+import { IconClose } from 'components/Modals/UI/ModalCulumn.styled';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
@@ -43,6 +52,10 @@ export default function CardFormDialog({
   columnId,
   cardId,
 }) {
+  const user = useSelector(getCurrentUser);
+  const currentTheme = user?.theme || 'Light';
+  const theme = getTheme(currentTheme);
+
   const dispatch = useDispatch();
 
   const [valueTitle, setValueTitle] = useState('');
@@ -58,12 +71,16 @@ export default function CardFormDialog({
     priority: labelColor,
     deadline: dateDeadline,
   };
+
   const handleClose = () => {
     hideModal();
     setLabelColor('LOW');
     setValueTitle('');
     setValueDescription('');
   };
+
+  console.log({ boardId, columnId, createCard });
+
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
 
@@ -79,7 +96,11 @@ export default function CardFormDialog({
   };
 
   const handleDateDedline = newValue => {
-    setDeadline(newValue);
+    const newDate = newValue.d;
+    setDeadline(newDate);
+
+//     setDeadline(newValue);
+
   };
 
   const handleChangeDescription = event => {
@@ -108,10 +129,12 @@ export default function CardFormDialog({
                 fontWeight: 500,
                 padding: 0,
                 marginBottom: '24px',
+                color: `${theme?.themeSet?.modalHelpTitle}`,
               }}
             >
-              {titleText}
+              Add card
             </DialogTitle>
+
             <DialogContent sx={{ padding: 0 }}>
               <TextFieldStyled
                 autoFocus
@@ -121,7 +144,7 @@ export default function CardFormDialog({
                 type="text"
                 placeholder="Title"
                 onChange={handleChangeTitle}
-                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               />
 
               <DescriptionFieldStyled
@@ -133,20 +156,23 @@ export default function CardFormDialog({
                 value={valueDescription}
                 placeholder="Description"
                 onChange={handleChangeDescription}
-                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               />
+
               <FormControl sx={{ padding: 0, marginBottom: '24px' }}>
                 <FormLabel
                   id="radio-buttons-group-color"
                   sx={{
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: 500,
                     padding: 0,
                     marginBottom: '14px',
+                    color: `${theme?.themeSet?.modalAddCardSubtitle}`,
                   }}
                 >
                   Label Color
                 </FormLabel>
+
                 <IconContainer
                   row
                   aria-labelledby="cradio-buttons-group-color"
@@ -162,47 +188,59 @@ export default function CardFormDialog({
                       <RadioStyled
                         sx={{
                           color: '#8FA1D0',
+                          backgroundColor: '#8FA1D0',
                           '&.Mui-checked': {
                             color: '#8FA1D0',
+                            backgroundColor: 'transparent',
                           },
                         }}
                       />
                     }
                   />
+
                   <FormControlLabelStyled
                     value="MEDIUM"
                     control={
                       <RadioStyled
                         sx={{
                           color: '#E09CB5',
+                          backgroundColor: '#E09CB5',
                           '&.Mui-checked': {
                             color: '#E09CB5',
+                            backgroundColor: 'transparent',
+
                           },
                         }}
                       />
                     }
                   />
+
                   <FormControlLabelStyled
                     value="HIGH"
                     control={
                       <RadioStyled
                         sx={{
                           color: '#BEDBB0',
+                          backgroundColor: '#BEDBB0',
                           '&.Mui-checked': {
                             color: '#BEDBB0',
+                            backgroundColor: 'transparent',
                           },
                         }}
                       />
                     }
                   />
+
                   <FormControlLabelStyled
                     value="WITHOUT"
                     control={
                       <RadioStyled
                         sx={{
-                          color: '#161616',
+                          color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
+                          backgroundColor: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
                           '&.Mui-checked': {
-                            color: '#161616',
+                            color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
+                            backgroundColor: 'transparent',
                           },
                         }}
                       />
@@ -210,101 +248,122 @@ export default function CardFormDialog({
                   />
                 </IconContainer>
               </FormControl>
+              
               <DialogTitle
                 sx={{
                   fontSize: 12,
                   fontWeight: 500,
                   padding: 0,
                   marginBottom: '4px',
-                  color: '#161616',
+                  color: `${theme?.themeSet?.modalAddCardSubtitle}`,
                 }}
               >
                 Deadline
               </DialogTitle>
 
-              <Stack
-                sx={{ marginBottom: '40px', color: '#BEDBB0', width: '250px' }}
-              >
-                  <DatePicker
-                    localeText={{ clearButtonLabel: 'Empty' }}
-                    slotProps={{
-                      toolbar: { hidden: true },
-                      textField: { size: 'small', variant: 'standard' },
-                    }}
-                    required
-                    onChange={handleDateDedline}
-                    minDate={dayjs(Date.now())}
-                    orientation="portrait"
-                    views={['month', 'day']}
-                    defaultValue={dayjs(Date.now())}
-                  />
-              </Stack>
-              
+              <CalendarWrap>
+                <DemoContainer
+                  sx={{  color: '#BEDBB0' }}
+                  components={[
+                    'DatePicker',
+                    'MobileDatePicker',
+                    'DesktopDatePicker',
+                    'StaticDatePicker',
+                  ]}
+                >
+                  <div sx={{ width: '127px' }}>
+                    <DatePicker
+                      localeText={{ clearButtonLabel: 'Empty' }}
+                      slotProps={{
+                        toolbar: { hidden: true },
+                        textField: { size: 'small', variant: 'standard' },
+                      }}
+                      required
+                      onChange={handleDateDedline}
+                      minDate={dayjs(Date.now())}
+                      orientation="portrait"
+                      views={['month', 'day']}
+                      defaultValue={dayjs(Date.now())}
+                    />
+                  </div>
+                </DemoContainer>
+              </CalendarWrap>
             </DialogContent>
+
             <DialogActionsStyled>
               {valueTitle ? (
-                <Button
+                <StyledButton
                   onClick={event => handleCloseBtn(event)}
                   sx={{
                     fontFamily: 'Poppins',
-                    backgroundColor: '#BEDBB0',
-                    color: '#161616',
+                    backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
+                    color: `${theme?.themeSet?.modalHelpSendText}`,
+
                     fontWeight: 500,
                     height: 49,
                     width: '100%',
                     padding: 0,
                     textTransform: 'capitalize',
+                    borderRadius: '8px',
+
                   }}
                 >
                   <Box
                     sx={{
-                      backgroundColor: '#161616',
+                      backgroundColor: `${theme?.themeSet?.boxIconBg}`,
                       height: 28,
                       width: 28,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      borderRadius: 1,
+                      borderRadius: '8px',
                       marginRight: 1,
                     }}
                   >
-                    <Icon src={Plus} />
+                    <PlusIcon />
                   </Box>
-                  {btnText}
-                </Button>
+                  Add
+                </StyledButton>
               ) : (
-                <Button
+                <StyledButton
                   disabled
                   sx={{
                     cursor: 'not-allowed',
                     fontFamily: 'Poppins',
-                    backgroundColor: '#BEDBB0',
-                    color: '#161616',
+                    backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
+                    color: `${theme?.themeSet?.modalHelpSendText}`,
                     fontWeight: 500,
                     height: 49,
                     width: '100%',
                     padding: 0,
                     textTransform: 'capitalize',
+                    borderRadius: '8px',
+
                   }}
                 >
                   <Box
                     sx={{
-                      backgroundColor: '#161616',
+                      backgroundColor: `${theme?.themeSet?.boxIconBg}`,
                       height: 28,
                       width: 28,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      borderRadius: 1,
+                      borderRadius: '8px',
                       marginRight: 1,
                     }}
                   >
-                    <Icon src={Plus} />
+                    <PlusIcon />
                   </Box>
-                  {btnText}
-                </Button>
+                  Add
+                </StyledButton>
               )}
             </DialogActionsStyled>
+
+            <CloseBtn>
+              <IconClose onClick={console.log('Close me')} />
+            </CloseBtn>
+
           </ContainerModal>
         </Dialog>
       </div>

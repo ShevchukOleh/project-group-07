@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import DialogTitle from '@mui/material/DialogTitle';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import 'moment/locale/de';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -24,25 +24,32 @@ import {
   PlusIcon,
   StyledButton,
   CalendarWrap,
+
   //   DateField,
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Modals/NeedHelp/NeedHelpModal.styled';
 import { IconClose } from 'components/Modals/UI/ModalCulumn.styled';
+
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 export default function CardFormDialog({
+  titleText,
+  btnText,
+  requestFunction,
   hideModal,
   isShowModal,
   boardId,
   columnId,
+  cardId,
 }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
@@ -74,7 +81,8 @@ export default function CardFormDialog({
   console.log({ boardId, columnId, createCard });
 
   const handleCloseBtn = async event => {
-    dispatch(createOneCard({ boardId, columnId, createCard }));
+    dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
+
     hideModal();
     setLabelColor('LOW');
     setValueTitle('');
@@ -89,6 +97,9 @@ export default function CardFormDialog({
   const handleDateDedline = newValue => {
     const newDate = newValue.d;
     setDeadline(newDate);
+
+//     setDeadline(newValue);
+
   };
 
   const handleChangeDescription = event => {
@@ -196,6 +207,7 @@ export default function CardFormDialog({
                           '&.Mui-checked': {
                             color: '#E09CB5',
                             backgroundColor: 'transparent',
+
                           },
                         }}
                       />
@@ -235,7 +247,7 @@ export default function CardFormDialog({
                   />
                 </IconContainer>
               </FormControl>
-
+              
               <DialogTitle
                 sx={{
                   fontSize: 12,
@@ -247,6 +259,7 @@ export default function CardFormDialog({
               >
                 Deadline
               </DialogTitle>
+
               <CalendarWrap>
                 <DemoContainer
                   sx={{  color: '#BEDBB0' }}
@@ -275,6 +288,27 @@ export default function CardFormDialog({
                 </DemoContainer>
               </CalendarWrap>
 
+
+//               <Stack
+//                 sx={{ marginBottom: '40px', color: '#BEDBB0', width: '250px' }}
+//               >
+//                 <div >
+//                   <DatePicker
+//                     localeText={{ clearButtonLabel: 'Empty' }}
+//                     slotProps={{
+//                       toolbar: { hidden: true },
+//                       textField: { size: 'small', variant: 'standard' },
+//                     }}
+//                     required
+//                     onChange={handleDateDedline}
+//                     minDate={dayjs(Date.now())}
+//                     orientation="portrait"
+//                     views={['month', 'day']}
+//                     defaultValue={dayjs(Date.now())}
+//                   />
+//                 </div>
+//               </Stack>
+
               {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker', 'DatePicker']}>
         <DatePicker label="Uncontrolled picker" defaultValue={dayjs('2022-04-17')} />
@@ -287,6 +321,7 @@ export default function CardFormDialog({
     </LocalizationProvider> */}
             </DialogContent>
 
+
             <DialogActionsStyled>
               {valueTitle ? (
                 <StyledButton
@@ -295,12 +330,14 @@ export default function CardFormDialog({
                     fontFamily: 'Poppins',
                     backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
                     color: `${theme?.themeSet?.modalHelpSendText}`,
+
                     fontWeight: 500,
                     height: 49,
                     width: '100%',
                     padding: 0,
                     textTransform: 'capitalize',
                     borderRadius: '8px',
+
                   }}
                 >
                   <Box
@@ -321,6 +358,18 @@ export default function CardFormDialog({
                 </StyledButton>
               ) : (
                 <StyledButton
+
+//                       borderRadius: 1,
+//                       marginRight: 1,
+//                     }}
+//                   >
+//                     <Icon src={Plus} />
+//                   </Box>
+//                   {btnText}
+//                 </Button>
+//               ) : (
+//                 <Button
+
                   disabled
                   sx={{
                     cursor: 'not-allowed',
@@ -333,6 +382,7 @@ export default function CardFormDialog({
                     padding: 0,
                     textTransform: 'capitalize',
                     borderRadius: '8px',
+
                   }}
                 >
                   <Box
@@ -357,6 +407,7 @@ export default function CardFormDialog({
             <CloseBtn>
               <IconClose onClick={console.log('Close me')} />
             </CloseBtn>
+
           </ContainerModal>
         </Dialog>
       </div>

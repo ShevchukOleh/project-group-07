@@ -3,7 +3,7 @@ import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
 import { useDispatch } from 'react-redux';
-import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
+import { deleteCard, editCardById } from 'store/AsyncThunk/asyncThunkBoards';
 
 // export default function BoardCard({ boardId, columnId, card }) {
 //   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 // } from 'store/createSlices/board/boardSelectors';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
+import CardFormDialog from 'components/CardModal/CardModal';
 
 export default function BoardCard({ boardId, columnId, card }) {
   // const selectPriority = useSelector(selectedInPriority);
@@ -78,6 +79,16 @@ function BoardCardItem({ boardId, columnId, card }) {
   const toggleDescription = () => {
     setDescriptionExpanded(!isDescriptionExpanded);
   };
+  const [selectedColumnId, setSelectedColumnId] = useState(null);
+  const [isModalCardOpen, setIsModalCardOpen] = useState(false);
+  const openModalCard = columnId => {
+    setSelectedColumnId(columnId);
+    // console.log('SelectedColumnId: ', selectedColumnId);
+    setIsModalCardOpen(true);
+  };
+  const closeModalCard = () => {
+    setIsModalCardOpen(false);
+  };
 
   return (
     <BoardCardStyle priorityColor={priorityColor(card.priority.toLowerCase())}>
@@ -127,6 +138,7 @@ function BoardCardItem({ boardId, columnId, card }) {
 
         <FiEdit2
           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+          onClick={() => openModalCard(columnId)}
         />
 
         <FiTrash
@@ -136,6 +148,16 @@ function BoardCardItem({ boardId, columnId, card }) {
           style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
 
           //           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+        />
+        <CardFormDialog
+          titleText={'Edit card'}
+          btnText={'Edit'}
+          requestFunction={editCardById}
+          boardId={boardId}
+          columnId={selectedColumnId}
+          cardId={card._id}
+          isShowModal={isModalCardOpen}
+          hideModal={closeModalCard}
         />
       </div>
     </BoardCardStyle>

@@ -96,42 +96,66 @@ export const Image = styled.img`
 `;
 
 export const DescriptionFieldStyled = styled.textarea`
-  caret-color: #bedbb0;
-  border: 1px solid #bedbb0;
+  color: ${props => {
+    return props?.theme?.themeSet?.inputColor;
+  }};
+  background-color: ${props => {
+    return props?.theme?.themeSet?.inputBgColor;
+  }};
+  border: 1px solid
+    ${props => {
+      return props?.theme?.themeSet?.inputOtherBorder;
+    }};
   border-radius: 8px;
   height: 154px;
   width: 100%;
   margin-bottom: 24px;
   padding-left: 18px;
+  outline: none;
 
   ::placeholder {
-    color: #bedbb0;
+    color: ${props => {
+      return props?.theme?.themeSet?.inputPlaceholder;
+    }};
   }
 
   &:hover {
-    border: 1px solid grey;
+    border: 1px solid
+      ${props => {
+        return props?.theme?.themeSet?.inputOtherHover;
+      }};
   }
 `;
 
 export const TextFieldStyled = styled.input`
-  caret-color: #bedbb0;
-  border: 1px solid #bedbb0;
+  color: ${props => {
+    return props?.theme?.themeSet?.inputColor;
+  }};
+  background-color: ${props => {
+    return props?.theme?.themeSet?.inputBgColor;
+  }};
+  border: 1px solid
+    ${props => {
+      return props?.theme?.themeSet?.inputOtherBorder;
+    }};
   border-radius: 8px;
+  outline: none;
   height: 49px;
   width: 100%;
   margin-bottom: 24px;
   padding-left: 18px;
 
   ::placeholder {
-    color: #bedbb0;
+    color: ${props => {
+      return props?.theme?.themeSet?.inputPlaceholder;
+    }};
   }
 
-  // &&:focus {
-  // border: 1px solid grey
-  // };
-
   &:hover {
-    border: 1px solid grey;
+    border: 1px solid
+      ${props => {
+        return props?.theme?.themeSet?.inputOtherHover;
+      }};
   }
 `;
 
@@ -152,7 +176,6 @@ export const PlusIcon = styled(RiAddLine)`
     return props?.theme?.themeSet?.iconFill;
   }};
 `;
-
 
 // export const DateField = styled.input`
 

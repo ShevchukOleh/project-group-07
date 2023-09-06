@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 // import Loader from 'components/Loader/Loader'
 import DialogContent from '@mui/material/DialogContent';
@@ -20,12 +19,12 @@ import {
   ContainerModal,
   TextFieldStyled,
   DialogActionsStyled,
-  Icon,
   FormControlLabelStyled,
   DescriptionFieldStyled,
+  PlusIcon,
+  StyledButton,
   //   DateField,
 } from './CardModal.styled';
-import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
@@ -277,66 +276,68 @@ export default function CardFormDialog({
 
             <DialogActionsStyled>
               {valueTitle ? (
-                <Button
+                <StyledButton
                   onClick={event => handleCloseBtn(event)}
                   sx={{
                     fontFamily: 'Poppins',
-                    backgroundColor: '#BEDBB0',
-                    color: '#161616',
+                    backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
+                    color: `${theme?.themeSet?.modalHelpSendText}`,
                     fontWeight: 500,
                     height: 49,
                     width: '100%',
                     padding: 0,
                     textTransform: 'capitalize',
+                    borderRadius: '8px',
                   }}
                 >
                   <Box
                     sx={{
-                      backgroundColor: '#161616',
+                      backgroundColor: `${theme?.themeSet?.boxIconBg}`,
                       height: 28,
                       width: 28,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      borderRadius: 1,
+                      borderRadius: '8px',
                       marginRight: 1,
                     }}
                   >
-                    <Icon src={Plus} />
+                    <PlusIcon />
                   </Box>
                   Add
-                </Button>
+                </StyledButton>
               ) : (
-                <Button
+                <StyledButton
                   disabled
                   sx={{
                     cursor: 'not-allowed',
                     fontFamily: 'Poppins',
-                    backgroundColor: '#BEDBB0',
-                    color: '#161616',
+                    backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
+                    color: `${theme?.themeSet?.modalHelpSendText}`,
                     fontWeight: 500,
                     height: 49,
                     width: '100%',
                     padding: 0,
                     textTransform: 'capitalize',
+                    borderRadius: '8px',
                   }}
                 >
                   <Box
                     sx={{
-                      backgroundColor: '#161616',
+                      backgroundColor: `${theme?.themeSet?.boxIconBg}`,
                       height: 28,
                       width: 28,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      borderRadius: 1,
+                      borderRadius: '8px',
                       marginRight: 1,
                     }}
                   >
-                    <Icon src={Plus} />
+                    <PlusIcon />
                   </Box>
                   Add
-                </Button>
+                </StyledButton>
               )}
             </DialogActionsStyled>
           </ContainerModal>

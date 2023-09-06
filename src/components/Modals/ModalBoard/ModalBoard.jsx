@@ -89,8 +89,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const lightImageBg = image[15];
   const darkImageBg = image[16];
   const violetImageBg = image[17];
-
-  console.log(image)
   
   const handleCloseBtn = () => {
     if (valueInput) {

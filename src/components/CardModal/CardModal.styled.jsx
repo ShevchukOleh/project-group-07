@@ -4,6 +4,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
 import { Radio, FormControlLabel } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { RiAddLine } from 'react-icons/ri';
 
 export const ButtonStyled = styled(Button)`
   fontfamily: 'Poppins';
@@ -133,6 +134,25 @@ export const TextFieldStyled = styled.input`
     border: 1px solid grey;
   }
 `;
+
+export const StyledButton = styled(Button)`
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: ${props => {
+      return props?.theme?.themeSet?.modalHelpSendHover;
+    }};
+  }
+`;
+
+export const PlusIcon = styled(RiAddLine)`
+  width: 18px;
+  height: 18px;
+  fill: ${props => {
+    return props?.theme?.themeSet?.iconFill;
+  }};
+`;
+
 
 // export const DateField = styled.input`
 

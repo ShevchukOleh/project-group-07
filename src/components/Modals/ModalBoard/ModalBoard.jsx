@@ -4,20 +4,18 @@ import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import {
-  IconContainer,
-  RadioStyled,
   RadioStyledImg,
   ImageBgContainer,
   Image,
   ContainerModal,
   TextFieldStyled,
   DialogActionsStyled,
-  Icon,
   FormControlLabelStyled,
   ErrorTextWrap,
   StyledButton,
   StyledBox,
   PlusIcon,
+  IconWrapper,
 } from './ModalBoard.styled';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
@@ -33,12 +31,9 @@ import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
 import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-export default function FormDialog({
-  createOpenModalShow,
-  setShow,
-  isCreateOpenModal,
-}) {
+export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
@@ -103,7 +98,6 @@ export default function FormDialog({
       setValueInput('');
       createOpenModalShow();
       navigate(`/home/${valueInput}`);
-      //       createOpenModalShow(prev => !prev);
     } else {
       setErrorField('Please, fill in the required fields');
     }
@@ -114,8 +108,9 @@ export default function FormDialog({
   };
 
   const handleChangeIcon = event => {
-    setValueIcon(event.target.value);
-    console.log(event.target.value);
+    const clickedId = event.currentTarget.getAttribute('data-icon-id');
+    setValueIcon(clickedId);
+    console.log(clickedId);
   };
 
   const handleChangeImg = event => {
@@ -168,7 +163,6 @@ export default function FormDialog({
           variant="filled"
           fullWidth
         /> */}
-
             <FormControl sx={{ padding: 0, marginBottom: '24px' }}>
               <DialogTitle
                 sx={{
@@ -181,32 +175,18 @@ export default function FormDialog({
               >
                 Icons
               </DialogTitle>
-
-              <IconContainer
-                row
-                aria-labelledby="icons-group"
-                // defaultValue="Project"
-                name="icons-group"
-                value={valueIcon}
-                onChange={handleChangeIcon}
-              >
-                {icon &&
-                  icon.map(({ _id, icon_src }) => (
-                    <FormControlLabelStyled
-                      value={_id}
-                      key={_id}
-                      control={
-                        <RadioStyled
-                          key={_id}
-                          icon={<Icon href={icon_src} alt={_id} />}
-                          checkedIcon={
-                            <Icon href={icon_src} alt={_id} checked />
-                          }
-                        />
-                      }
-                    />
-                  ))}
-              </IconContainer>
+              <IconWrapper>
+                {icon.map(({ _id, icon_src }) => (
+                  <span
+                    key={_id}
+                    id={_id}
+                    onClick={handleChangeIcon}
+                    data-icon-id={_id}
+                  >
+                    <ReactSVG src={icon_src} />
+                  </span>
+                ))}
+              </IconWrapper>
             </FormControl>
 
             <DialogTitle

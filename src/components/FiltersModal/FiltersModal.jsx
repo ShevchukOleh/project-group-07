@@ -67,14 +67,12 @@ export const FiltersModal = () => {
   };
   useEffect(() => {
     setObjCards(columnCards);
-    setFilteredCards(columnCards);
     setFilterValue(selectPriority);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columnCards, filteredAllCard]);
   useEffect(() => {
     setFilteredCards(objCards);
   }, [objCards]);
-  console.log(filteredCards);
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
     const choosePriority = event.currentTarget.value;

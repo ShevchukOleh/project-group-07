@@ -83,7 +83,7 @@ export const IconContainer = styled(RadioGroup)`
   }};
 
   & label > span svg {
-    fill: red;
+    fill: black;
   }
 `;
 
@@ -91,8 +91,17 @@ export const RadioStyled = styled(Radio)`
   width: 18px;
   height: 18px;
   margin: 0px;
+  fill: black;
 `;
-
+export const IconWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  cursor: pointer;
+  &:hover {
+    fill: blue;
+  }
+`;
 export const RadioStyledImg = styled(Radio)`
   width: 28px;
   height: 28px;

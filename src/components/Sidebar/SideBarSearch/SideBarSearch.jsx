@@ -8,7 +8,6 @@ const SideBarSearch = ({ boardsList, setFilteredItems }) => {
     const query = event.target.value.toLowerCase();
     setSearchText(query);
   };
-
   useEffect(() => {
     const filtered = boardsList.filter(item =>
       item.title.toLowerCase().includes(searchText)

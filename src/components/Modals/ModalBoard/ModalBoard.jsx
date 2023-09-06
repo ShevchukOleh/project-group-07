@@ -176,7 +176,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               >
                 Icons
               </DialogTitle>
-              
+
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
                   <span
@@ -321,7 +321,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  borderRadius: 1,
+                  borderRadius: '8px',
                   marginRight: 1,
                 }}
               >

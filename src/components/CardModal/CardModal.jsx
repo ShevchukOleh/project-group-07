@@ -150,10 +150,11 @@ export default function CardFormDialog({
                 <FormLabel
                   id="radio-buttons-group-color"
                   sx={{
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: 500,
                     padding: 0,
                     marginBottom: '14px',
+                    color: `${theme?.themeSet?.modalAddCardSubtitle}`,
                   }}
                 >
                   Label Color
@@ -232,7 +233,7 @@ export default function CardFormDialog({
                   fontWeight: 500,
                   padding: 0,
                   marginBottom: '4px',
-                  color: '#161616',
+                  color: `${theme?.themeSet?.modalAddCardSubtitle}`,
                 }}
               >
                 Deadline

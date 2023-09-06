@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
@@ -38,9 +38,7 @@ function BoardCardItem({ boardId, columnId, card }) {
   const user = useSelector(getCurrentUser);
   const dispatch = useDispatch();
   const currentTheme = user?.theme || 'Light';
-
   const theme = getTheme(currentTheme);
-
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
   const lowPriorityColor = '#8FA1D0';
   const mediumPriorityColor = '#E09CB5';
@@ -59,8 +57,25 @@ function BoardCardItem({ boardId, columnId, card }) {
     }
   };
 
+  const inputDate = new Date(card.deadline);
+
+  const day = inputDate.getDate();
+  const month = inputDate.getMonth() + 1;
+  const year = inputDate.getFullYear();
+
+  const formattedDate = `${day.toString().padStart(2, '0')}/${month
+    .toString()
+    .padStart(2, '0')}/${year}`;
+
+  const inputString = card.priority;
+
+  const firstChar = inputString.charAt(0).toUpperCase();
+  const restOfString = inputString.slice(1).toLowerCase();
+
+  const resultString = firstChar + restOfString;
+
   return (
-    <BoardCardStyle>
+    <BoardCardStyle priorityColor={priorityColor(card.priority.toLowerCase())}>
       <h3 className="title">{card.title}</h3>
       <p className="description clip">{card.description}</p>
       <hr />
@@ -68,13 +83,22 @@ function BoardCardItem({ boardId, columnId, card }) {
         <div>
           <span className="priorityTitle">Priority</span>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              marginTop: '4px',
+            }}
+          >
             <span
               className="priorityColor"
-              style={{ backgroundColor: priorityColor(card.priority) }}
+              style={{
+                backgroundColor: priorityColor(card.priority.toLowerCase()),
+              }}
             ></span>
 
-            <span className="priorityText">{card.priority}</span>
+            <span className="priorityText">{resultString}</span>
           </div>
         </div>
 
@@ -82,7 +106,7 @@ function BoardCardItem({ boardId, columnId, card }) {
           <span className="priorityTitle">Deadline</span>
 
           <div>
-            <span className="priorityText">{card.deadline}</span>
+            <span className="priorityText">{formattedDate}</span>
           </div>
         </div>
       </div>

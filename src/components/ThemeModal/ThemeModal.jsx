@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Menu,
   Radio,
@@ -11,22 +12,18 @@ import { ThemeBtn, ThemeIcon, Wrapper } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-import { useSelector } from 'react-redux';
+import { fetchThemeUpdate } from 'store/AsyncThunk/asyncThunkUsersAuth';
 
 const LIGHT = 'Light';
 const DARK = 'Dark';
 const COLORED = 'Violet';
 
 export const ThemeModal = () => {
+  const dispatch = useDispatch();
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
-  console.log(user);
-  console.log(theme);
-  console.log(currentTheme);
-
-  const [themeValue, setThemeValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -48,8 +45,6 @@ export const ThemeModal = () => {
   };
 
   const handleChange = event => {
-    console.log(themeValue)
-    console.log(event.currentTarget.value);
 
     if (event.currentTarget.value === LIGHT) {
       setFirstThemeStatus(true);
@@ -66,6 +61,9 @@ export const ThemeModal = () => {
       setFirstThemeStatus(null);
       setSecondThemeStatus(null);
     }
+
+    const newTheme = { theme: event.currentTarget.value };
+    dispatch(fetchThemeUpdate(newTheme));
   };
 
   return (
@@ -113,7 +111,6 @@ export const ThemeModal = () => {
             <RadioGroup
               aria-labelledby="radio-buttons-group-label"
               name="radio-buttons-group"
-              value={themeValue}
               onChange={handleChange}
               sx={{
                 display: 'flex',

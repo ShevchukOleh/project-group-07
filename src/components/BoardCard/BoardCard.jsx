@@ -1,35 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
+
+import { useDispatch } from 'react-redux';
+import { deleteCard } from 'store/AsyncThunk/asyncThunkBoards';
+
+// export default function BoardCard({ boardId, columnId, card }) {
+//   const dispatch = useDispatch();
+
 import { useSelector } from 'react-redux';
-import {
-  selectMyCards,
-  selectedInPriority,
-} from 'store/createSlices/board/boardSelectors';
+// import {
+//   selectMyCards,
+//   selectedInPriority,
+// } from 'store/createSlices/board/boardSelectors';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
-export default function BoardCard() {
-  const selectPriority = useSelector(selectedInPriority);
-  const selectCards = useSelector(selectMyCards);
-  const [cards, setCards] = useState([]);
+export default function BoardCard({ boardId, columnId, card }) {
+  // const selectPriority = useSelector(selectedInPriority);
+  // const selectCards = useSelector(selectMyCards);
+  // const [cards, setCards] = useState([]);
 
-  useEffect(() => {
-    setCards(selectCards);
-  }, [selectPriority, selectCards]);
+  // useEffect(() => {
+  //   setCards(selectCards);
+  // }, [selectPriority, selectCards]);
 
   return (
     <>
-      {cards.map((item, index) => (
-        <BoardCardItem key={index} card={item} />
-      ))}
+      {/* {cards.map((item, index) => ( */}
+      <BoardCardItem boardId={boardId} columnId={columnId} card={card} />
+      {/* ))} */}
     </>
   );
 }
 
-function BoardCardItem({ card }) {
+function BoardCardItem({ boardId, columnId, card }) {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const dispatch = useDispatch();
+  const currentTheme = user?.theme || 'Light';
+
   const theme = getTheme(currentTheme);
 
   const withoutPriorityColor = theme?.themeSet?.modalFiltersMarkWithoutPr;
@@ -53,10 +62,8 @@ function BoardCardItem({ card }) {
   return (
     <BoardCardStyle>
       <h3 className="title">{card.title}</h3>
-
       <p className="description clip">{card.description}</p>
       <hr />
-
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
         <div>
           <span className="priorityTitle">Priority</span>
@@ -79,7 +86,6 @@ function BoardCardItem({ card }) {
           </div>
         </div>
       </div>
-
       <div className="containerCardIcon">
         <FiArrowRightCircle
           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
@@ -90,7 +96,12 @@ function BoardCardItem({ card }) {
         />
 
         <FiTrash
-          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+          onClick={() =>
+            dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
+          }
+          style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
+
+          //           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
         />
       </div>
     </BoardCardStyle>

@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom';
 
 export const BordInSidebar = ({ filteredItems }) => {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
  
   const navigation = useNavigate();

@@ -41,20 +41,20 @@ const IconClose = styled(CloseOutlinedIcon)`
 
 const ModalContent = styled.div`
   position: relative;
-  width: 400px;
+  width: 335px;
   padding: 24px;
   border-width: 1px;
   border-style: solid;
   border-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBorder;
   }};
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
   }};
 
-  @media (max-width: 375px) {
-    width: 335px;
+  @media (min-width: 768px) {
+    width: 400px;
   }
 `;
 

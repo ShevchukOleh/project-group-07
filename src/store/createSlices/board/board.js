@@ -8,12 +8,17 @@ import {
   deleteBoard,
   deleteColumn,
   getBackgroundBoard,
+  getAllCards,
+  createOneCard,
+  deleteCard,
   editColumnById,
+  editBoardById,
 } from 'store/AsyncThunk/asyncThunkBoards';
 
 const initialState = {
   boards: [],
   columns: [],
+  columnCards: {},
   cardsCollection: objectCards,
   backgrounds: [],
   loading: false,
@@ -72,6 +77,25 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      //editBoardById====================================================
+      .addCase(editBoardById.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(editBoardById.fulfilled, (state, action) => {
+        console.log('actionpayload: ', action.payload);
+        state.loading = false;
+        state.boards = state.boards.map(el => {
+          if (el.id === action.payload.id) {
+            console.log('el: ', el);
+          }
+          return el;
+        });
+        state.error = null;
+      })
+      .addCase(editBoardById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
 
       //Column
 
@@ -123,8 +147,17 @@ const boardSlice = createSlice({
         state.loading = true;
       })
       .addCase(editColumnById.fulfilled, (state, action) => {
-        console.log('action: ', action);
+        console.log('action.payload ', action.payload);
         state.loading = false;
+        state.columns = state.columns.map(el => {
+          if (el._id === action.payload._id) {
+            return {
+              ...el,
+              title: action.payload.title,
+            };
+          }
+          return el; // Повертаємо не змінений об'єкт для інших дошок
+        });
         state.error = null;
       })
       .addCase(editColumnById.rejected, (state, action) => {
@@ -143,6 +176,57 @@ const boardSlice = createSlice({
       .addCase(getBackgroundBoard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      //Card
+
+      //getAllCard===========================================================>
+      .addCase(getAllCards.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getAllCards.fulfilled, (state, action) => {
+        state.loading = false;
+
+        const { columnId, data } = action.payload;
+        state.columnCards[columnId] = state.columnCards[columnId] || [];
+        state.columnCards[columnId] = data;
+        state.error = null;
+      })
+      .addCase(getAllCards.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //createOneCard===========================================================>
+
+      .addCase(createOneCard.fulfilled, (state, action) => {
+        state.loading = false;
+        const { columnId, data } = action.payload;
+        state.columnCards[columnId].push(data);
+        state.error = null;
+      })
+      .addCase(createOneCard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //deleteCard===========================================================>
+      .addCase(deleteCard.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        state.loading = false;
+        const { columnId, data } = action.payload;
+        const indexToDelete = state.columnCards[columnId].findIndex(
+          item => item._id === data._id
+        );
+
+        if (indexToDelete !== -1) {
+          state.columnCards[columnId].splice(indexToDelete, 1);
+        }
+
+        state.error = action.payload;
+      })
+      .addCase(deleteCard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

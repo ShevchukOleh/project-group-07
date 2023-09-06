@@ -8,18 +8,18 @@ import {
 } from 'store/AsyncThunk/asyncThunkBoards';
 import ModalEditColumn from 'components/Modals/ModalEditCulmn/ModalEditColumn';
 import Dialog from '@mui/material/Dialog';
-import { selectLoading } from 'store/createSlices/board/boardSelectors';
-import LoaderComponent from 'components/Loader/Loader';
+// import { selectLoading } from 'store/createSlices/board/boardSelectors';
+// import LoaderComponent from 'components/Loader/Loader';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function ColumnTitle(params) {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  // const isLoading = useSelector(selectLoading);
   // const isError = useSelector(selectError);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [editColumn, setEditColumn] = useState('');
@@ -65,7 +65,7 @@ export default function ColumnTitle(params) {
           />
         </Dialog>
 
-        {isLoading && <LoaderComponent />}
+        {/* {isLoading && <LoaderComponent />} */}
         <FiTrash
           onClick={() => dispatch(deleteColumn(requestData))}
           style={{

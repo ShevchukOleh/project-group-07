@@ -46,7 +46,6 @@ const ColumnModalFormInput = styled.input`
       return props?.theme?.themeSet?.inputOtherBorder;
     }};
   outline: none;
-  opacity: 0.4;
   width: 100%;
   color: ${props => {
     return props?.theme?.themeSet?.inputColor;

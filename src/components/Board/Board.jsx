@@ -3,7 +3,9 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
+  // selectAllCards,
   // selectLoading,
+  selectAllColumnCards,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useLocation, useParams } from 'react-router-dom';
@@ -24,21 +26,26 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 export default function Board() {
   const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme;
+  const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
 
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
+  // const cards = useSelector(selectAllCards);
+  const columnCards = useSelector(selectAllColumnCards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
   const location = useLocation();
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [addColumn, setAddColumn] = useState('');
+  const [selectedColumnId, setSelectedColumnId] = useState(null);
   const [board, setBoard] = useState([]);
   const dispatch = useDispatch();
   // const isError = useSelector(selectError);
-  const openModalCard = () => {
+  const openModalCard = columnId => {
+    setSelectedColumnId(columnId);
+    // console.log('SelectedColumnId: ', selectedColumnId);
     setIsModalCardOpen(true);
   };
   const closeModalCard = () => {
@@ -57,7 +64,7 @@ export default function Board() {
     }
   };
   useEffect(() => {
-    const updatedBoard = boards.find(board => board.title === boardName);
+    const updatedBoard = boards?.find(board => board.title === boardName);
     if (updatedBoard) {
       setBoard(updatedBoard);
     }
@@ -69,11 +76,27 @@ export default function Board() {
     background => background._id === backgroundId
   );
 
-  const backgroundSrc = background?.background_lg_src || '';
+  // const backgroundSrc = background?.background_lg_src || '';
 
-  const backgroundStyle = backgroundSrc
-    ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
-    : { backgroundColor: theme?.themeSet?.boardBg };
+  // const backgroundStyle = backgroundSrc
+  //   ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
+  //   : { backgroundColor: theme?.themeSet?.boardBg };
+  
+  let backgroundSrc = '';
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth <= 375) {
+    backgroundSrc = background?.background_sm_src || '';
+  } else if (screenWidth >= 768 && screenWidth <= 1439) {
+    backgroundSrc = background?.background_lg_src || '';
+  } else {
+    backgroundSrc = background?.background_xxl_src || '';
+  }
+
+const backgroundStyle = backgroundSrc
+  ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
+  : { backgroundColor: theme?.themeSet?.boardBg };
+  
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (
@@ -96,12 +119,27 @@ export default function Board() {
                   text={`${column.title}`}
                 />
                 <div className="containerColumnCard">
-                  <BoardCard />
+                  {columnCards[column._id] &&
+                    Array.isArray(columnCards[column._id]) &&
+                    columnCards[column._id].map(card => (
+                      <BoardCard
+                        key={card._id}
+                        boardId={boardId}
+                        columnId={column._id}
+                        card={card}
+                      />
+                    ))}
                 </div>
 
-                <ButtonCreate text="Add another card" onClick={openModalCard} />
+                <ButtonCreate
+                  columnId={column._id}
+                  text="Add another card"
+                  onClick={() => openModalCard(column._id)}
+                />
 
                 <CardFormDialog
+                  boardId={boardId}
+                  columnId={selectedColumnId}
                   isShowModal={isModalCardOpen}
                   hideModal={closeModalCard}
                 />

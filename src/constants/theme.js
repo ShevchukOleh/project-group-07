@@ -3,6 +3,9 @@ import { createTheme } from '@mui/material';
 const lightTheme = {
   headerBg: '#FCFCFC',
   headerMenuBtn: '#161616',
+  headerProfileBtnText: '#161616',
+
+  editProfileAvIconWrapBg: '#BEDBB0',
 
   boardTitle: '#161616',
   boardBg: '#F6F6F7',
@@ -73,6 +76,9 @@ const lightTheme = {
 const darkTheme = {
   headerBg: '#161616',
   headerMenuBtn: '#FFFFFF',
+  headerProfileBtnText: '#FFFFFF',
+
+  editProfileAvIconWrapBg: '#BEDBB0',
 
   boardTitle: '#FFFFFF',
   boardBg: '#121212',
@@ -143,6 +149,9 @@ const darkTheme = {
 const coloredTheme = {
   headerBg: '#FFFFFF',
   headerMenuBtn: '#161616',
+  headerProfileBtnText: '#161616',
+  
+  editProfileAvIconWrapBg: '#CCC',
 
   boardTitle: '#161616',
   boardBg: '#ECEDFD',

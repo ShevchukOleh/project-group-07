@@ -24,6 +24,7 @@ import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
@@ -35,7 +36,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDateDeadline] = useState('')
    
-    // const date = Date.now()
+  const dispatch = useDispatch();
     
     // console.log(dateDeadline, valueTitle, labelColor,valueDescription)
 
@@ -56,7 +57,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
 
   const handleCloseBtn = () => {
       hideModal();
-    //   dispatch(createTodo(createCard))
+      dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
       setLabelColor('Low')
       setValueTitle('')
       setValueDescription('')
@@ -254,7 +255,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                 >
                                     <Icon src={Plus} />
                                 </Box>
-                                Add
+                                Edit
                             </Button>
                             : <Button disabled
                                     sx={{
@@ -283,7 +284,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                     >
                                         <Icon src={Plus} />
                                     </Box>
-                                    Add
+                                    Edit
                                 </Button>
                         }
                     </DialogActionsStyled>

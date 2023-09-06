@@ -35,14 +35,14 @@ export default function CardFormDialog({hideModal, isShowModal}) {
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDateDeadline] = useState('')
    
-    const date = Date.now()
+    // const date = Date.now()
     
     console.log(dateDeadline, valueTitle, labelColor,valueDescription)
 
     const createCard = {
     title: valueTitle,
     description: valueDescription,
-        priority: labelColor,
+    priority: labelColor,
     deadline: dateDeadline,
   };
  
@@ -98,7 +98,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                             marginBottom: '24px',
                         }}
                     >
-                        Add card
+                        Edit card
                     </DialogTitle>
                     <DialogContent sx={{ padding: 0 }}>
                         <TextFieldStyled
@@ -255,7 +255,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                 >
                                     <Icon src={Plus} />
                                 </Box>
-                                Add
+                                Edit
                             </Button>
                             : <Button disabled
                                     sx={{
@@ -284,7 +284,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                     >
                                         <Icon src={Plus} />
                                     </Box>
-                                    Add
+                                    Edit
                                 </Button>
                         }
                     </DialogActionsStyled>

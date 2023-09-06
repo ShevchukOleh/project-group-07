@@ -142,17 +142,11 @@ function BoardCardItem({ boardId, columnId, card }) {
         />
 
         <FiTrash
-          style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
+          // style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
           onClick={() =>
             dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
           }
-<<<<<<< HEAD
-          // style={{ cursor: 'pointer', color: 'rgba(16, 16, 16, 0.5)' }}
-
-          //           style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
-=======
           style={{ cursor: 'pointer', color: theme?.themeSet?.cardPriorityIcon }}
->>>>>>> origin
         />
         <CardFormDialog
           titleText={'Edit card'}

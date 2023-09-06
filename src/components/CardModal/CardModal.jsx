@@ -1,18 +1,12 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-// import Loader from 'components/Loader/Loader'
 import DialogContent from '@mui/material/DialogContent';
 import FormLabel from '@mui/material/FormLabel';
 import DialogTitle from '@mui/material/DialogTitle';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import 'moment/locale/de';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-// import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-// import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import {
   IconContainer,
   RadioStyled,
@@ -24,23 +18,16 @@ import {
   PlusIcon,
   StyledButton,
   CalendarWrap,
-
-  //   DateField,
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-// import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Modals/NeedHelp/NeedHelpModal.styled';
 import { IconClose } from 'components/Modals/UI/ModalCulumn.styled';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-
-// import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
-// import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 export default function CardFormDialog({
   titleText,
@@ -63,7 +50,7 @@ export default function CardFormDialog({
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDeadline] = useState('');
 
-  console.log(dateDeadline);
+  // console.log(dateDeadline);
 
   const createCard = {
     title: valueTitle,
@@ -79,11 +66,10 @@ export default function CardFormDialog({
     setValueDescription('');
   };
 
-  console.log({ boardId, columnId, createCard });
+  // console.log({ boardId, columnId, createCard });
 
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
-
     hideModal();
     setLabelColor('LOW');
     setValueTitle('');
@@ -96,11 +82,8 @@ export default function CardFormDialog({
   };
 
   const handleDateDedline = newValue => {
-    const newDate = newValue.d;
+    const newDate = newValue;
     setDeadline(newDate);
-
-//     setDeadline(newValue);
-
   };
 
   const handleChangeDescription = event => {
@@ -113,10 +96,6 @@ export default function CardFormDialog({
     console.log(event.target.value);
   };
 
-  // const handleDateDeadline = event => {
-  //   setDeadline(event.target.value);
-  //   console.log(event.target.value);
-  // };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
@@ -144,7 +123,6 @@ export default function CardFormDialog({
                 type="text"
                 placeholder="Title"
                 onChange={handleChangeTitle}
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               />
 
               <DescriptionFieldStyled
@@ -156,7 +134,6 @@ export default function CardFormDialog({
                 value={valueDescription}
                 placeholder="Description"
                 onChange={handleChangeDescription}
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               />
 
               <FormControl sx={{ padding: 0, marginBottom: '24px' }}>
@@ -262,13 +239,10 @@ export default function CardFormDialog({
               </DialogTitle>
 
               <CalendarWrap>
-                <DemoContainer
+                <Stack
                   sx={{  color: '#BEDBB0' }}
                   components={[
-                    'DatePicker',
-                    'MobileDatePicker',
-                    'DesktopDatePicker',
-                    'StaticDatePicker',
+                    'DatePicker'
                   ]}
                 >
                   <div sx={{ width: '127px' }}>
@@ -286,7 +260,7 @@ export default function CardFormDialog({
                       defaultValue={dayjs(Date.now())}
                     />
                   </div>
-                </DemoContainer>
+                </Stack>
               </CalendarWrap>
             </DialogContent>
 
@@ -338,7 +312,6 @@ export default function CardFormDialog({
                     padding: 0,
                     textTransform: 'capitalize',
                     borderRadius: '8px',
-
                   }}
                 >
                   <Box
@@ -361,7 +334,7 @@ export default function CardFormDialog({
             </DialogActionsStyled>
 
             <CloseBtn>
-              <IconClose onClick={console.log('Close me')} />
+              <IconClose onClick={handleClose} />
             </CloseBtn>
 
           </ContainerModal>

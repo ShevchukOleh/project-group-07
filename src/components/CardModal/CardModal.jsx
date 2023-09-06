@@ -67,7 +67,12 @@ export default function CardFormDialog({hideModal, isShowModal}) {
       setValueTitle('')
       setValueDescription('')
       console.log(createCard)
-  }
+    }
+    
+    const handleDateDedline = (newValue) => {
+        const newDate = newValue.d
+        setDateDeadline(newDate);
+    }
    
   const handleChangeTitle = event => {
     setValueTitle(event.target.value);
@@ -226,7 +231,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
     textField: { size: 'small', variant: 'standard'}
   }}
         required
-        onChange={(newValue) => setDateDeadline(newValue)}
+        onChange={handleDateDedline}
         minDate={dayjs(Date.now())}                              
         orientation='portrait'
         views={['month', 'day']}
@@ -305,3 +310,78 @@ export default function CardFormDialog({hideModal, isShowModal}) {
 </LocalizationProvider>
     );
 };
+
+
+//  { currentTheme ==='Light' && (
+//                 <FormControlLabelStyled
+//                   value={'noBackground'}
+//                   control={
+//                     <RadioStyledImg
+//                       key={lightImageBg._id}
+//                       icon={
+//                         <Image
+//                           src={lightImageBg.background_icon_src}
+//                           alt="noBackground"
+//                         />
+//                       }
+//                       checkedIcon={
+//                         <Image
+//                           src={lightImageBg.background_icon_src}
+//                           alt="noBackground"
+//                           checked
+//                         />
+//                       }
+//                     />
+//                   }
+//                 />
+//   )
+//               }
+//               { currentTheme ==='Dark' && (
+//                 <FormControlLabelStyled
+//                   value={'noBackground'}
+//                   control={
+//                     <RadioStyledImg
+//                       key={darkImageBg._id}
+//                       icon={
+//                         <Image
+//                           src={darkImageBg.background_icon_src}
+//                           alt="noBackground"
+//                         />
+//                       }
+//                       checkedIcon={
+//                         <Image
+//                           src={darkImageBg.background_icon_src}
+//                           alt="noBackground"
+//                           checked
+//                         />
+//                       }
+//                     />
+//                   }
+//                 />
+//   )
+//               }
+//               { currentTheme ==='Violet' && (
+//                 <FormControlLabelStyled
+//                   value={'noBackground'}
+//                   control={
+//                     <RadioStyledImg
+//                       key={violetImageBg._id}
+//                       icon={
+//                         <Image
+//                           src={violetImageBg.background_icon_src}
+//                           alt="noBackground"
+//                         />
+//                       }
+//                       checkedIcon={
+//                         <Image
+//                           src={violetImageBg.background_icon_src}
+//                           alt="noBackground"
+//                           checked
+//                         />
+//                       }
+//                     />
+//                   }
+//                 />
+//   )
+//               }
+

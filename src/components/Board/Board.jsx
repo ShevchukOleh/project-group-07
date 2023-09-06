@@ -130,7 +130,7 @@ export default function Board() {
                   text="Add another card"
                   onClick={() => openModalCard(column._id)}
                   sx={{
-                    cursor: 'not-allowed',
+                    cursor: 'pointer',
                     fontFamily: 'Poppins',
                     backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
                     color: `${theme?.themeSet?.modalHelpSendText}`,

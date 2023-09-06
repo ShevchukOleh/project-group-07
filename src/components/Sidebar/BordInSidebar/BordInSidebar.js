@@ -74,9 +74,9 @@ export const BordInSidebar = ({ filteredItems }) => {
       setError(!error);
     }
   };
-  const handleChangeIcon = event => {
-    const clickedId = event.currentTarget.getAttribute('data-icon-id');
-    setIsEditBoardIcon(clickedId);
+  const handleChangeIcon = id => {
+    setIsEditBoardIcon(id);
+    console.log(id);
   };
   const handleDeleteBoard = id => {
     const previousPath = '/home';
@@ -91,7 +91,6 @@ export const BordInSidebar = ({ filteredItems }) => {
   };
   const takeIMG = _id => {
     setIsEditBoardImg(_id);
-    console.log(_id);
   };
   const boardIndicationColor = theme.themeSet.sidebarBoardIndication;
   return (

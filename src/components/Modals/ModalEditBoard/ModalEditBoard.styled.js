@@ -4,8 +4,8 @@ import { Box } from '@mui/material';
 import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
 // import { Radio, FormControlLabel } from '@mui/material';
-import {Radio} from '@mui/material';
-import {FormControlLabel} from '@mui/material';
+import { Radio } from '@mui/material';
+import { FormControlLabel } from '@mui/material';
 
 // import AddIcon from '@mui/icons-material/Add';
 
@@ -89,6 +89,9 @@ export const ErrorTextWrap = styled.div`
 
 export const FormControlLabelStyled = styled(FormControlLabel)`
   margin: 0px;
+  border-radius: 5px;
+  border: 1px solid ${props => (props.selected ? 'green' : 'initial')};
+  transition: border 0.2s linear;
 `;
 
 export const IconContainer = styled(RadioGroup)`
@@ -98,8 +101,7 @@ export const IconContainer = styled(RadioGroup)`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
-}};
-  
+  }};
 `;
 
 export const RadioStyled = styled(Radio)`
@@ -173,11 +175,18 @@ export const TextFieldStyled = styled.input`
   // &&:focus {
   // border: 1px solid #161616;
   // };
-  
+
   &:hover {
     border: 1px solid
       ${props => {
         return props?.theme?.themeSet?.inputOtherHover;
       }};
   }
+`;
+export const ActiveIcon = styled.span`
+  width: 20px;
+  height: 20px;
+  background-color: ${props => (props.isSelected ? 'gray' : 'initial')};
+  border-radius: 5px;
+  border: 1px solid ${props => (props.isSelected ? 'green' : 'initial')};
 `;

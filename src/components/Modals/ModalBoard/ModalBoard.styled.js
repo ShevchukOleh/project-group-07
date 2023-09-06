@@ -69,6 +69,9 @@ export const ErrorTextWrap = styled.div`
 
 export const FormControlLabelStyled = styled(FormControlLabel)`
   margin: 0px;
+  border-radius: 5px;
+  transition: border 0.2s linear;
+  border: 1px solid ${props => (props.selected ? 'green' : 'initial')};
 `;
 
 export const IconContainer = styled(RadioGroup)`
@@ -176,4 +179,12 @@ export const PlusIcon = styled(RiAddLine)`
   fill: ${props => {
     return props?.theme?.themeSet?.iconFill;
   }};
+`;
+export const ActiveIcon = styled.span`
+  width: 20px;
+  height: 20px;
+  transition: border 0.2s linear;
+  background-color: ${props => (props.isSelected ? 'gray' : 'initial')};
+  border-radius: 5px;
+  border: 1px solid ${props => (props.isSelected ? 'green' : 'initial')};
 `;

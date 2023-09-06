@@ -1,23 +1,18 @@
 import styled from '@emotion/styled';
-import { TextField } from '@mui/material';
 
-export const Search = styled(TextField)`
-  font-size: 12px;
-  outline: none;
-  color: black;
-  font-family: 'poppins';
-  opacity: 50%;
+export const StyledInput = styled.input`
   width: 100%;
-
-  .MuiInputLabel-root.Mui-focused {
-    color: #161616;
-  }
-
-  .MuiInput-underline:after {
-    border-bottom-color: #bedbb0;
-  }
-
-  .MuiInputBase-input {
-    color: #161616;
-  }
+  height: 40px;
+  font-size: 14px;
+  border-width: 1px;
+  border-style: solid;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.inputBgColor;
+  }};
+  color: ${props => {
+    return props?.theme?.themeSet?.inputColor;
+  }};
 `;

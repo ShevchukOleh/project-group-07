@@ -297,6 +297,27 @@ const deleteCard = createAsyncThunk(
     }
   }
 );
+
+const submitHelp = createAsyncThunk(
+  'modal/postNeedHelp',
+  async (params, thunkAPI) => {
+    const { values } = params;
+    try {
+      const token = thunkAPI.getState().user.token;
+
+      const response = await axios.post(`${BASE_URL}api/need-help`, values, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed to post need help');
+    }
+  }
+);
+
 // const SwaggerUI = async () => {
 // const { data } = await axios.get(
 // `https://taskpro-backend-zulp.onrender.com/api-docs/Swagger_UI`
@@ -318,4 +339,5 @@ export {
   deleteCard,
   editColumnById,
   deleteColumn,
+  submitHelp,
 };

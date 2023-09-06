@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel'
 import DialogTitle from '@mui/material/DialogTitle';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
@@ -24,7 +24,7 @@ import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
@@ -36,7 +36,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDateDeadline] = useState('')
    
-  const dispatch = useDispatch();
+//   const dispatch = useDispatch();
     
     // console.log(dateDeadline, valueTitle, labelColor,valueDescription)
 
@@ -57,11 +57,11 @@ export default function CardFormDialog({hideModal, isShowModal}) {
 
   const handleCloseBtn = () => {
       hideModal();
-      dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
+    //   dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
       setLabelColor('Low')
       setValueTitle('')
       setValueDescription('')
-    //   console.log(createCard)
+      console.log(createCard)
   }
    
   const handleChangeTitle = event => {

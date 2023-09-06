@@ -92,6 +92,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const darkImageBg = image[16];
   const violetImageBg = image[17];
 
+  console.log(image)
+  
   const handleCloseBtn = () => {
     if (valueInput) {
       dispatch(createBoard(createBd));

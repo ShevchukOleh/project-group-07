@@ -47,7 +47,6 @@ export const Sidebar = () => {
 
   useEffect(() => {
     setBoardsList(boardsInSidebar);
-    setFilteredItems(boardsInSidebar);
   }, [boardsInSidebar, filteredItems]);
   // =============================search
   const createOpenModalShow = () => {

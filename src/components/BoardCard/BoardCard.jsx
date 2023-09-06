@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
 
@@ -59,9 +59,9 @@ function BoardCardItem({ boardId, columnId, card }) {
 
   const inputDate = new Date(card.deadline);
 
-  const day = inputDate.getDate();
-  const month = inputDate.getMonth() + 1;
-  const year = inputDate.getFullYear();
+  const day = inputDate.getUTCDate();
+  const month = inputDate.getUTCMonth() + 1;
+  const year = inputDate.getUTCFullYear();
 
   const formattedDate = `${day.toString().padStart(2, '0')}/${month
     .toString()
@@ -73,11 +73,21 @@ function BoardCardItem({ boardId, columnId, card }) {
   const restOfString = inputString.slice(1).toLowerCase();
 
   const resultString = firstChar + restOfString;
+  const [isDescriptionExpanded, setDescriptionExpanded] = useState(false);
+
+  const toggleDescription = () => {
+    setDescriptionExpanded(!isDescriptionExpanded);
+  };
 
   return (
     <BoardCardStyle priorityColor={priorityColor(card.priority.toLowerCase())}>
       <h3 className="title">{card.title}</h3>
-      <p className="description clip">{card.description}</p>
+      <p
+        className={`description ${isDescriptionExpanded ? 'expanded' : 'clip'}`}
+        onClick={toggleDescription}
+      >
+        {card.description}
+      </p>
       <hr />
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
         <div>

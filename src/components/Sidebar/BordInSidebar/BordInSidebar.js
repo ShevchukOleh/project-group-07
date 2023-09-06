@@ -42,11 +42,11 @@ export const BordInSidebar = ({ filteredItems }) => {
   // const collect = useSelector(state => state);
   // console.log(collect);
   // console.log(boardsInSidebar);
-
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [editBoard, setIsEditBoard] = useState('');
   const [editBoardIcon, setIsEditBoardIcon] = useState('');
   const [editBoardImg, setIsEditBoardImg] = useState('');
+  const [error, setError] = useState(false);
 
   const boardId = boardEl._id;
   const editBoardObject = {
@@ -65,10 +65,13 @@ export const BordInSidebar = ({ filteredItems }) => {
     if (editBoard && editBoardIcon && editBoardImg) {
       dispatch(editBoardById({ boardId, editBoardObject }));
       dispatch(getAllBoards());
+      navigation(`/home/${editBoard}`);
       setIsOpenEditModal(!isOpenEditModal);
       setIsEditBoard('');
       setIsEditBoardImg('');
       setIsEditBoardIcon('');
+    } else {
+      setError(!error);
     }
   };
   const handleChangeIcon = event => {
@@ -124,6 +127,7 @@ export const BordInSidebar = ({ filteredItems }) => {
             </OneBoard>
           </Link>
           <ModalEditFormDialog
+            error={error}
             handleSubmit={handleSubmit}
             board={board._id}
             closeEditModal={handleCloseEditModal}

@@ -5,8 +5,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Plus from '../../../images/icons/plus.svg';
 import {
-  // IconContainer,
-  // RadioStyled,
   RadioStyledImg,
   ImageBgContainer,
   Image,
@@ -15,27 +13,21 @@ import {
   DialogActionsStyled,
   Icon,
   FormControlLabelStyled,
-  ErrorTextWrap,
   StyledButton,
   StyledBox,
 } from './ModalEditBoard.styled.js';
-// import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import {selectBoards} from '../../../store/createSlices/board/boardSelectors'
 import { getIcon, getImage } from '../ModalBoard/servises';
-// import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import { editBoardById, getBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
 import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
 import { IconWrapper } from '../ModalBoard/ModalBoard.styled';
 import { ReactSVG } from 'react-svg';
-// import { useLocation, useParams } from 'react-router-dom';
 
 export default function ModalEditFormDialog({
   closeEditModal,
@@ -53,24 +45,19 @@ export default function ModalEditFormDialog({
   const currentTheme = user?.theme;
   const theme = getTheme(currentTheme);
   const token = useSelector(selectToken);
-  // const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
-  // const [errorField, setErrorField] = useState(null);
 
   useEffect(() => {
-    // setIsLoading(true);
     getIcon(token)
       .then(data => {
         setIcon(data);
       })
       .catch()
       .finally(() => {
-        // setIsLoading(false);
       });
   }, [token]);
   useEffect(() => {
-    // setIsLoading(true);
     setImage([]);
     getImage(token)
       .then(data => {
@@ -78,7 +65,6 @@ export default function ModalEditFormDialog({
       })
       .catch()
       .finally(() => {
-        // setIsLoading(false);
       });
   }, [token]);
 

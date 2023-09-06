@@ -68,7 +68,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
 
   useEffect(() => {
     setIsLoading(true);
-    setImage([]);
+    // setImage([]);
     getImage(token)
       .then(data => {
         setImage(data);

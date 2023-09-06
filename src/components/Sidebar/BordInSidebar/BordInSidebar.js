@@ -46,6 +46,7 @@ export const BordInSidebar = ({ filteredItems }) => {
   const [editBoard, setIsEditBoard] = useState('');
   const [editBoardIcon, setIsEditBoardIcon] = useState('');
   const [editBoardImg, setIsEditBoardImg] = useState('');
+  const [error, setError] = useState(false);
 
   const boardId = boardEl._id;
   const editBoardObject = {
@@ -69,6 +70,8 @@ export const BordInSidebar = ({ filteredItems }) => {
       setIsEditBoard('');
       setIsEditBoardImg('');
       setIsEditBoardIcon('');
+    } else {
+      setError(!error);
     }
   };
   const handleChangeIcon = event => {
@@ -124,6 +127,7 @@ export const BordInSidebar = ({ filteredItems }) => {
             </OneBoard>
           </Link>
           <ModalEditFormDialog
+            error={error}
             handleSubmit={handleSubmit}
             board={board._id}
             closeEditModal={handleCloseEditModal}

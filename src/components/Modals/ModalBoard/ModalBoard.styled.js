@@ -162,10 +162,6 @@ export const TextFieldStyled = styled.input`
     }};
   }
 
-  // &&:focus {
-  // border: 1px solid #161616;
-  // };
-
   &:hover {
     border: 1px solid
       ${props => {

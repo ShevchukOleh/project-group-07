@@ -31,6 +31,8 @@ const lightTheme = {
   sidebarBlockLink: '#BEDBB0',
   sidebarBoardIndication: '#BEDBB0',
 
+  modalAddCardSubtitle: 'rgba(22, 22, 22, 0.5)',
+
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',
   modalThemeTitleFocus: '#BEDBB0',
@@ -104,6 +106,8 @@ const darkTheme = {
   sidebarBlockLink: '#BEDBB0',
   sidebarBoardIndication: '#BEDBB0',
 
+  modalAddCardSubtitle: 'rgba(255, 255, 255, 0.5)',
+
   modalThemeLabel: 'rgba(255, 255, 255, 0.8)',
   modalThemeTitle: 'rgba(255, 255, 255, 0.5)',
   modalThemeTitleFocus: '#BEDBB0',
@@ -176,6 +180,8 @@ const coloredTheme = {
   sidebarTextWitoutHover: 'rgba(255, 255, 255, 0.5)',
   sidebarBlockLink: '#5255BC',
   sidebarBoardIndication: '#FFFFFF',
+
+  modalAddCardSubtitle: 'rgba(22, 22, 22, 0.5)',
 
   modalThemeLabel: 'rgba(22, 22, 22, 0.8)',
   modalThemeTitle: '#161616',

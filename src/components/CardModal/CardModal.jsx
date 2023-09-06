@@ -175,8 +175,10 @@ export default function CardFormDialog({
                       <RadioStyled
                         sx={{
                           color: '#8FA1D0',
+                          backgroundColor: '#8FA1D0',
                           '&.Mui-checked': {
                             color: '#8FA1D0',
+                            backgroundColor: 'transparent',
                           },
                         }}
                       />
@@ -189,8 +191,10 @@ export default function CardFormDialog({
                       <RadioStyled
                         sx={{
                           color: '#E09CB5',
+                          backgroundColor: '#E09CB5',
                           '&.Mui-checked': {
                             color: '#E09CB5',
+                            backgroundColor: 'transparent',
                           },
                         }}
                       />
@@ -203,8 +207,10 @@ export default function CardFormDialog({
                       <RadioStyled
                         sx={{
                           color: '#BEDBB0',
+                          backgroundColor: '#BEDBB0',
                           '&.Mui-checked': {
                             color: '#BEDBB0',
+                            backgroundColor: 'transparent',
                           },
                         }}
                       />
@@ -217,8 +223,10 @@ export default function CardFormDialog({
                       <RadioStyled
                         sx={{
                           color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
+                          backgroundColor: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
                           '&.Mui-checked': {
                             color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
+                            backgroundColor: 'transparent',
                           },
                         }}
                       />

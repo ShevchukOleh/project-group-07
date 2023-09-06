@@ -73,6 +73,8 @@ const lightTheme = {
   addColumnIconBox: '#161616',
   addColumnIcon: '#FFFFFF',
   addColumnText: '#161616',
+
+  calendar: '#BEDBB0',
 };
 
 const darkTheme = {
@@ -148,6 +150,8 @@ const darkTheme = {
   addColumnIconBox: '#FFFFFF',
   addColumnIcon: '#121212',
   addColumnText: '#FFFFFF',
+
+  calendar: '#BEDBB0',
 };
 
 const coloredTheme = {
@@ -223,6 +227,8 @@ const coloredTheme = {
   addColumnIconBox: '#5255BC',
   addColumnIcon: '#FFFFFF',
   addColumnText: '#161616',
+
+  calendar: '#5255BC',
 };
 
 const getThemeSet = themeSet => {

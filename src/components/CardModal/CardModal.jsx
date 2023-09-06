@@ -63,8 +63,6 @@ export default function CardFormDialog({
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDeadline] = useState('');
 
-  console.log(dateDeadline);
-
   const createCard = {
     title: valueTitle,
     description: valueDescription,
@@ -78,8 +76,6 @@ export default function CardFormDialog({
     setValueTitle('');
     setValueDescription('');
   };
-
-  console.log({ boardId, columnId, createCard });
 
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
@@ -99,18 +95,17 @@ export default function CardFormDialog({
     const newDate = newValue.d;
     setDeadline(newDate);
 
-//     setDeadline(newValue);
-
+    //     setDeadline(newValue);
   };
 
   const handleChangeDescription = event => {
     setValueDescription(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   // const handleDateDeadline = event => {
@@ -208,7 +203,6 @@ export default function CardFormDialog({
                           '&.Mui-checked': {
                             color: '#E09CB5',
                             backgroundColor: 'transparent',
-
                           },
                         }}
                       />
@@ -248,7 +242,7 @@ export default function CardFormDialog({
                   />
                 </IconContainer>
               </FormControl>
-              
+
               <DialogTitle
                 sx={{
                   fontSize: 12,
@@ -263,7 +257,7 @@ export default function CardFormDialog({
 
               <CalendarWrap>
                 <DemoContainer
-                  sx={{  color: '#BEDBB0' }}
+                  sx={{ color: '#BEDBB0' }}
                   components={[
                     'DatePicker',
                     'MobileDatePicker',
@@ -305,7 +299,6 @@ export default function CardFormDialog({
                     padding: 0,
                     textTransform: 'capitalize',
                     borderRadius: '8px',
-
                   }}
                 >
                   <Box
@@ -338,7 +331,6 @@ export default function CardFormDialog({
                     padding: 0,
                     textTransform: 'capitalize',
                     borderRadius: '8px',
-
                   }}
                 >
                   <Box
@@ -361,9 +353,8 @@ export default function CardFormDialog({
             </DialogActionsStyled>
 
             <CloseBtn>
-              <IconClose onClick={console.log('Close me')} />
+              <IconClose onClick={() => {}} />
             </CloseBtn>
-
           </ContainerModal>
         </Dialog>
       </div>

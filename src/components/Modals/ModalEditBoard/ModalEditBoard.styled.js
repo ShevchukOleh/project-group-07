@@ -8,6 +8,7 @@ import { Radio } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { RiAddLine } from 'react-icons/ri';
 
+
 // import AddIcon from '@mui/icons-material/Add';
 
 export const ButtonStyled = styled(Button)`
@@ -98,6 +99,9 @@ export const ErrorTextWrap = styled.div`
 
 export const FormControlLabelStyled = styled(FormControlLabel)`
   margin: 0px;
+  border-radius: 5px;
+  border: 1px solid ${props => (props.selected ? 'green' : 'initial')};
+  transition: border 0.2s linear;
 `;
 
 export const IconContainer = styled(RadioGroup)`
@@ -190,6 +194,15 @@ export const TextFieldStyled = styled.input`
       }};
   }
 `;
+
+export const ActiveIcon = styled.span`
+  width: 20px;
+  height: 20px;
+  background-color: ${props => (props.isSelected ? 'gray' : 'initial')};
+  border-radius: 5px;
+  border: 1px solid ${props => (props.isSelected ? 'green' : 'initial')};
+`;
+
 
 export const PlusIcon = styled(RiAddLine)`
   width: 18px;

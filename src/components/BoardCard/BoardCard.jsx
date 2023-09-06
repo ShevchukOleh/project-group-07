@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 // } from 'store/createSlices/board/boardSelectors';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-import CardFormDialog from 'components/CardModal/CardModal';
+import CardFormDialog from 'components/CardModal/EditCardModal';
 
 export default function BoardCard({ boardId, columnId, card }) {
   // const selectPriority = useSelector(selectedInPriority);

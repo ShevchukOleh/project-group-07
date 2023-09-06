@@ -23,6 +23,7 @@ import { Dialog } from '@mui/material';
 import ModalAddColumn from 'components/Modals/ModalAddColumn/ModalAddColumn';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import ColumnItem from './ColumnItem';
+import { createOneCard } from 'store/AsyncThunk/asyncThunkBoards';
 
 export default function Board() {
   const user = useSelector(getCurrentUser);
@@ -84,7 +85,7 @@ export default function Board() {
   // const backgroundStyle = backgroundSrc
   //   ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
   //   : { backgroundColor: theme?.themeSet?.boardBg };
-  
+
   let backgroundSrc = '';
   const screenWidth = window.innerWidth;
 
@@ -96,10 +97,10 @@ export default function Board() {
     backgroundSrc = background?.background_xxl_src || '';
   }
 
-const backgroundStyle = backgroundSrc
-  ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
-  : { backgroundColor: theme?.themeSet?.boardBg };
-  
+  const backgroundStyle = backgroundSrc
+    ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
+    : { backgroundColor: theme?.themeSet?.boardBg };
+
   return (
     <BoardStyle style={backgroundStyle}>
       {boards.length !== 0 && (
@@ -128,28 +129,19 @@ const backgroundStyle = backgroundSrc
                 />
 
                 <CardFormDialog
+                  titleText={'Add card'}
+                  btnText={'Add'}
+                  requestFunction={createOneCard}
                   boardId={boardId}
                   columnId={selectedColumnId}
+                  cardId={null}
                   isShowModal={isModalCardOpen}
                   hideModal={closeModalCard}
                 />
               </div>
             );
           })}
-          {/* <div className="containerOneColumn">
-            <ColumnTitle text={'In progress'} />
-            <div className="containerColumnCard">
-              <BoardCard />
-            </div>
-            <ButtonCreate text="Add another card" onClick={openModalCard} />
-          </div>
-          <div className="containerOneColumn">
-            <ColumnTitle text={'Done'} />
-            <div className="containerColumnCard">
-              <BoardCard />
-            </div>
-            <ButtonCreate text="Add another card" onClick={openModalCard} />
-          </div> */}
+
           <div>
             <ButtonCreate text="Add another column" onClick={openModal} />
             {/* =========================modal */}

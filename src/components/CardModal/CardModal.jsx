@@ -27,7 +27,7 @@ import {
 } from './CardModal.styled';
 import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
@@ -79,8 +79,7 @@ export default function CardFormDialog({
   };
 
   const handleDateDedline = newValue => {
-    const newDate = newValue.d;
-    setDeadline(newDate);
+    setDeadline(newValue);
   };
 
   const handleChangeDescription = event => {
@@ -122,7 +121,7 @@ export default function CardFormDialog({
                 type="text"
                 placeholder="Title"
                 onChange={handleChangeTitle}
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               />
 
               <DescriptionFieldStyled
@@ -134,7 +133,7 @@ export default function CardFormDialog({
                 value={valueDescription}
                 placeholder="Description"
                 onChange={handleChangeDescription}
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               />
               <FormControl sx={{ padding: 0, marginBottom: '24px' }}>
                 <FormLabel
@@ -223,16 +222,10 @@ export default function CardFormDialog({
                 Deadline
               </DialogTitle>
 
-              <DemoContainer
-                sx={{ marginBottom: '40px', color: '#BEDBB0' }}
-                components={[
-                  'DatePicker',
-                  'MobileDatePicker',
-                  'DesktopDatePicker',
-                  'StaticDatePicker',
-                ]}
+              <Stack
+                sx={{ marginBottom: '40px', color: '#BEDBB0', width: '250px' }}
               >
-                <div sx={{ width: '127px' }}>
+                <div >
                   <DatePicker
                     localeText={{ clearButtonLabel: 'Empty' }}
                     slotProps={{
@@ -247,7 +240,7 @@ export default function CardFormDialog({
                     defaultValue={dayjs(Date.now())}
                   />
                 </div>
-              </DemoContainer>
+              </Stack>
 
               {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker', 'DatePicker']}>

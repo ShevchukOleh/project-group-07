@@ -78,7 +78,7 @@ export default function CardFormDialog({
 
   const handleChangeTitle = event => {
     setValueTitle(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleDateDedline = newValue => {
@@ -88,12 +88,12 @@ export default function CardFormDialog({
 
   const handleChangeDescription = event => {
     setValueDescription(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
 

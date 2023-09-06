@@ -11,7 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import {
-    IconContainer,
+ IconContainer,
   RadioStyled,
   ContainerModal,
   TextFieldStyled,
@@ -22,8 +22,9 @@ import {
 } from './CardModal.styled'
 import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
@@ -35,14 +36,14 @@ export default function CardFormDialog({hideModal, isShowModal}) {
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDateDeadline] = useState('')
    
-    const date = Date.now()
+  const dispatch = useDispatch();
     
-    console.log(dateDeadline, valueTitle, labelColor,valueDescription)
+    // console.log(dateDeadline, valueTitle, labelColor,valueDescription)
 
     const createCard = {
     title: valueTitle,
     description: valueDescription,
-        priority: labelColor,
+    priority: labelColor,
     deadline: dateDeadline,
   };
  
@@ -56,11 +57,11 @@ export default function CardFormDialog({hideModal, isShowModal}) {
 
   const handleCloseBtn = () => {
       hideModal();
-    //   dispatch(createTodo(createCard))
+      dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
       setLabelColor('Low')
       setValueTitle('')
       setValueDescription('')
-      console.log(createCard)
+    //   console.log(createCard)
   }
    
   const handleChangeTitle = event => {
@@ -201,31 +202,30 @@ export default function CardFormDialog({hideModal, isShowModal}) {
             >
               Deadline
 </DialogTitle>
-      <DemoContainer sx={{marginBottom: '40px', color: '#BEDBB0', }}
+      <Stack sx={{marginBottom: '40px', color: '#BEDBB0', }}
         components={[
           'DatePicker',
-          'MobileDatePicker',
-          'DesktopDatePicker',
-          'StaticDatePicker',
         ]}
       >
-    <div sx={{width: '127px'}}>
+
     <DatePicker 
-    localeText={{clearButtonLabel: 'Empty'}}
+    // localeText={{clearButtonLabel: 'Empty'}}
     slotProps={{
     toolbar: { hidden: true },
-    textField: { size: 'small', variant: 'standard'}
+    textField: { size: 'small', variant: 'standard', color: '#BEDBB0'}
   }}
         required
-        onChange={(newValue) => setDateDeadline(newValue.$de)}
+        onChange={(newValue) => setDateDeadline(newValue)}
         minDate={dayjs(Date.now())}                              
         orientation='portrait'
         views={['month', 'day']}
         defaultValue={dayjs(Date.now())}
+        showDaysOutsideCurrentMonth
+        closeOnSelect
                                     />
-        </div>
-      </DemoContainer>
-                    </DialogContent>
+        {/* </div> */}
+      </Stack>
+        </DialogContent>
                     <DialogActionsStyled>
                         {valueTitle
                             ? <Button
@@ -255,7 +255,7 @@ export default function CardFormDialog({hideModal, isShowModal}) {
                                 >
                                     <Icon src={Plus} />
                                 </Box>
-                                Add
+                                Edit
                             </Button>
                             : <Button disabled
                                     sx={{

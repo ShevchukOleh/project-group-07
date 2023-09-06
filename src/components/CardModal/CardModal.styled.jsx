@@ -28,6 +28,15 @@ export const ContainerModal = styled.div`
   padding: 24px;
   width: 335px;
   height: auto;
+  background-color: ${props => {
+    return props?.theme?.themeSet?.modalHelpBg;
+  }};
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${props => {
+    return props?.theme?.themeSet?.modalHelpBorder;
+  }};
 
   @media screen and (max-width: 375px) {
     max-width: 100%;
@@ -119,7 +128,7 @@ export const TextFieldStyled = styled.input`
   // &&:focus {
   // border: 1px solid grey
   // };
-  
+
   &:hover {
     border: 1px solid grey;
   }

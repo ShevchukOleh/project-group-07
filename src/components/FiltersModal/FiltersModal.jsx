@@ -46,6 +46,7 @@ export const FiltersModal = () => {
   const [objCards, setObjCards] = useState({});
   const [filteredCards, setFilteredCards] = useState({});
 
+
   const [withoutStatus, setWithoutStatus] = useState(null);
   const [lowStatus, setLowStatus] = useState(null);
   const [mediumStatus, setMediumStatus] = useState(null);
@@ -72,7 +73,7 @@ export const FiltersModal = () => {
   }, [columnCards, filteredAllCard]);
   useEffect(() => {
     setFilteredCards(objCards);
-  }, [objCards]);
+  }, [filteredCards, objCards]);
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
     const choosePriority = event.currentTarget.value;

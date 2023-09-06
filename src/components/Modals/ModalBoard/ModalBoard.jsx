@@ -176,33 +176,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               >
                 Icons
               </DialogTitle>
-
-//               <IconContainer
-//                 row
-//                 aria-labelledby="icons-group"
-//                 // defaultValue="Project"
-//                 name="icons-group"
-//                 value={valueIcon}
-//                 onChange={handleChangeIcon}
-//               >
-//                 {icon &&
-//                   icon.map(({ _id, icon_src }) => (
-//                     <FormControlLabelStyled
-//                       value={_id}
-//                       key={_id}
-//                       control={
-//                         <RadioStyled
-//                           key={_id}
-//                           icon={<Icon src={icon_src} alt={_id} />}
-//                           checkedIcon={
-//                             <Icon src={icon_src} alt={_id} checked />
-//                           }
-//                         />
-//                       }
-//                     />
-//                   ))}
-//               </IconContainer>
-
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
                   <span
@@ -215,7 +188,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   </span>
                 ))}
               </IconWrapper>
-
             </FormControl>
 
             <DialogTitle
@@ -243,16 +215,16 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   value={'noBackground'}
                   control={
                     <RadioStyledImg
-                      key={lightImageBg._id}
+                      key={lightImageBg?._id}
                       icon={
                         <Image
-                          src={lightImageBg.background_icon_src}
+                          src={lightImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={lightImageBg.background_icon_src}
+                          src={lightImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />
@@ -267,16 +239,16 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   value={'noBackground'}
                   control={
                     <RadioStyledImg
-                      key={darkImageBg._id}
+                      key={darkImageBg?._id}
                       icon={
                         <Image
-                          src={darkImageBg.background_icon_src}
+                          src={darkImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={darkImageBg.background_icon_src}
+                          src={darkImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />
@@ -291,16 +263,16 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                   value={'noBackground'}
                   control={
                     <RadioStyledImg
-                      key={violetImageBg._id}
+                      key={violetImageBg?._id}
                       icon={
                         <Image
-                          src={violetImageBg.background_icon_src}
+                          src={violetImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={violetImageBg.background_icon_src}
+                          src={violetImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />

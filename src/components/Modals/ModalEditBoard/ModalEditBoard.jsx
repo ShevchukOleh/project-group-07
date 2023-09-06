@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-import Loader from 'components/Loader/Loader';
+// import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Plus from '../../../images/icons/plus.svg';
 import {
-  IconContainer,
-  RadioStyled,
+  // IconContainer,
+  // RadioStyled,
   RadioStyledImg,
   ImageBgContainer,
   Image,
@@ -19,7 +19,7 @@ import {
   StyledButton,
   StyledBox,
 } from './ModalEditBoard.styled.js';
-import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
@@ -28,7 +28,7 @@ import { useEffect } from 'react';
 // import {selectBoards} from '../../../store/createSlices/board/boardSelectors'
 import { getIcon, getImage } from '../ModalBoard/servises';
 // import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { editBoardById, getBoardById } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { IconClose } from '../UI/ModalCulumn.styled';
@@ -38,15 +38,15 @@ import { ReactSVG } from 'react-svg';
 // import { useLocation, useParams } from 'react-router-dom';
 
 export default function ModalEditFormDialog({
-  board,
+  // board,
   closeEditModal,
   isOpenEditModal,
   handleSubmit,
   editBoard,
   setEditBoard,
   handleChangeIcon,
-  editBoardIcon,
-  setIsEditBoardIcon,
+  // editBoardIcon,
+  // setIsEditBoardIcon,
   editBoardImg,
   takeIMG,
   setIsOpenEditModal,
@@ -56,25 +56,25 @@ export default function ModalEditFormDialog({
   const theme = getTheme(currentTheme);
   const token = useSelector(selectToken);
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
   const [errorField] = useState(null);
   // const [errorField, setErrorField] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     getIcon(token)
       .then(data => {
         setIcon(data);
       })
       .catch(error => setError(error))
       .finally(() => {
-        setIsLoading(false);
+        // setIsLoading(false);
       });
   }, [token]);
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     setImage([]);
     getImage(token)
       .then(data => {
@@ -82,7 +82,7 @@ export default function ModalEditFormDialog({
       })
       .catch(error => setError(error.message))
       .finally(() => {
-        setIsLoading(false);
+        // setIsLoading(false);
       });
   }, [token]);
 
@@ -183,16 +183,16 @@ export default function ModalEditFormDialog({
                   value={'noBackground'}
                   control={
                     <RadioStyledImg
-                      key={lightImageBg._id}
+                      key={lightImageBg?._id}
                       icon={
                         <Image
-                          src={lightImageBg.background_icon_src}
+                          src={lightImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={lightImageBg.background_icon_src}
+                          src={lightImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />
@@ -207,16 +207,16 @@ export default function ModalEditFormDialog({
                   value={'noBackground'}
                   control={
                     <RadioStyledImg
-                      key={darkImageBg._id}
+                      key={darkImageBg?._id}
                       icon={
                         <Image
-                          src={darkImageBg.background_icon_src}
+                          src={darkImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={darkImageBg.background_icon_src}
+                          src={darkImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />
@@ -231,16 +231,16 @@ export default function ModalEditFormDialog({
                   value={'noBackground'}
                   control={
                     <RadioStyledImg
-                      key={violetImageBg._id}
+                      key={violetImageBg?._id}
                       icon={
                         <Image
-                          src={violetImageBg.background_icon_src}
+                          src={violetImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={violetImageBg.background_icon_src}
+                          src={violetImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />

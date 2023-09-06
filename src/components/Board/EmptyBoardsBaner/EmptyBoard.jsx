@@ -1,8 +1,8 @@
-import FormDialog from 'components/Modals/ModalBoard/ModalBoard';
+// import FormDialog from 'components/Modals/ModalBoard/ModalBoard';
 import './EmptyBoardsBaner.css';
-import { useState } from 'react';
+// import { useState } from 'react';
 const EmptyBoardsBaner = () => {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   return (
     <div className="container">
       <p className="text_container">

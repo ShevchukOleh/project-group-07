@@ -5,7 +5,7 @@ import {
   selectColumns,
   // selectAllCards,
   // selectLoading,
-  selectAllColumnCards,
+  // selectAllColumnCards,
   filteredAllCards,
   // selectError,
 } from 'store/createSlices/board/boardSelectors';

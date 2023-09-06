@@ -102,6 +102,26 @@ const addUserAvatar = createAsyncThunk(
   }
 );
 
+const updateUserData = createAsyncThunk(
+  'user/current',
+  async (userData, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.token;
+
+      const response = await axios.patch(`${BASE_URL}current`, userData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const { data } = response;
+      return data;
+    } catch (error) {
+      throw new Error('Failed to update user data');
+    }
+  }
+);
+
 export {
   loginUser,
   registerUser,
@@ -109,4 +129,5 @@ export {
   fetchCurrentUser,
   fetchThemeUpdate,
   addUserAvatar,
+  updateUserData,
 };

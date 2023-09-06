@@ -11,7 +11,7 @@ export const BoardCardStyle = styled.div`
   background: rgb(143, 161, 208);
   background: linear-gradient(
     90deg,
-    rgba(143, 161, 208, 1) 4px,
+    ${props => props.priorityColor} 4px,
     ${props => {
         return props?.theme?.themeSet?.cardBg;
       }}

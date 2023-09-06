@@ -115,6 +115,7 @@ export default function CardFormDialog({
                 fontWeight: 500,
                 padding: 0,
                 marginBottom: '24px',
+                color: `${theme?.themeSet?.modalHelpTitle}`,
               }}
             >
               Add card
@@ -273,7 +274,7 @@ export default function CardFormDialog({
       </DemoContainer>
     </LocalizationProvider> */}
             </DialogContent>
-            
+
             <DialogActionsStyled>
               {valueTitle ? (
                 <Button

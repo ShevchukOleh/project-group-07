@@ -77,7 +77,6 @@ export default function ModalEditFormDialog({
   const darkImageBg = image[16];
   const violetImageBg = image[17];
   const handleIconClick = _id => {
-    console.log(_id)
     setSelectedIconId(_id);
     handleChangeIcon(_id);
   };

@@ -14,6 +14,7 @@ import {
   StyledButton,
   StyledBox,
   PlusIcon,
+  IconReactSvgWrapper,
 } from './ModalEditBoard.styled.js';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
@@ -29,6 +30,7 @@ import { IconWrapper } from '../ModalBoard/ModalBoard.styled';
 import { ReactSVG } from 'react-svg';
 
 export default function ModalEditFormDialog({
+  editBoardIcon,
   closeEditModal,
   isOpenEditModal,
   handleSubmit,
@@ -53,8 +55,7 @@ export default function ModalEditFormDialog({
         setIcon(data);
       })
       .catch()
-      .finally(() => {
-      });
+      .finally(() => {});
   }, [token]);
   useEffect(() => {
     setImage([]);
@@ -63,8 +64,7 @@ export default function ModalEditFormDialog({
         setImage(data);
       })
       .catch()
-      .finally(() => {
-      });
+      .finally(() => {});
   }, [token]);
 
   const length = image.length - 3;
@@ -121,14 +121,16 @@ export default function ModalEditFormDialog({
 
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
-                  <span
+                  <IconReactSvgWrapper
+                    $currentTheme={currentTheme}
+                    $isSelected={editBoardIcon === _id}
                     key={_id}
                     id={_id}
                     onClick={handleChangeIcon}
                     data-icon-id={_id}
                   >
                     <ReactSVG src={icon_src} />
-                  </span>
+                  </IconReactSvgWrapper>
                 ))}
               </IconWrapper>
             </FormControl>

@@ -95,9 +95,34 @@ export const IconWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  cursor: pointer;
-  &:hover {
-    fill: blue;
+  //cursor: pointer;
+`;
+
+export const IconReactSvgWrapper = styled.span`
+  svg {
+    path {
+      transition: all 0.3s ease-out;
+
+      stroke: ${props => {
+        if (props.$currentTheme === 'Dark') return '#FFFFFF';
+
+        return '#161616';
+      }};
+
+      stroke-opacity: ${props => (props.$isSelected ? 1 : 0.5)};
+    }
+  }
+
+  svg:hover {
+    path {
+      stroke: ${props => {
+        if (props.$currentTheme === 'Dark') return '#fff';
+
+        return '#000';
+      }};
+      stroke-opacity: 1;
+    }
+    cursor: pointer;
   }
 `;
 

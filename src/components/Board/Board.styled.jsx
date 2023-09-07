@@ -104,9 +104,15 @@ export const BoardStyle = styled.section`
   }
 
   & .title {
+    display: inline-block;
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+
     color: ${props => {
       return props?.theme?.themeSet?.boardTitle;
     }};
+
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -115,6 +121,10 @@ export const BoardStyle = styled.section`
     @media screen and (min-width: 768px) {
       font-size: 18px;
       letter-spacing: -0.36px;
+    }
+    @media screen and (min-width: 1440px) {
+      margin-top: 26px;
+      margin-bottom: 26px;
     }
   }
 
@@ -180,7 +190,7 @@ export const BoardStyle = styled.section`
       letter-spacing: -0.28px;
     }
   }
-`
+`;
 export const ButtonCreateCard = styled.button`
   width: 335px;
   border-radius: 8px;

@@ -17,6 +17,7 @@ import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import CardFormDialog from 'components/CardModal/EditCardModal';
 import PopUpModal from 'components/PopUpModal/PopUpModal';
+import BackDrop from 'components/BackDrop/BackDrop';
 
 export default function BoardCard({ boardId, columnId, card }) {
   // const selectPriority = useSelector(selectedInPriority);
@@ -92,9 +93,9 @@ function BoardCardItem({ boardId, columnId, card }) {
   };
 
   //pop up
-  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowTransferModal, setIsShowTransferModal] = useState(false);
   const hideModal = () => {
-    setIsShowModal(false);
+    setIsShowTransferModal(false);
   };
 
   return (
@@ -144,7 +145,7 @@ function BoardCardItem({ boardId, columnId, card }) {
             cursor: 'pointer',
             color: theme?.themeSet?.cardPriorityIcon,
           }}
-          onClick={() => setIsShowModal(true)}
+          onClick={() => setIsShowTransferModal(true)}
         />
 
         <FiEdit2
@@ -176,15 +177,16 @@ function BoardCardItem({ boardId, columnId, card }) {
           hideModal={closeModalCard}
         />
       </div>
-      {isShowModal && (
-        <PopUpModal
-          boardId={boardId}
-          columnId={columnId}
-          cardId={card._id}
-          isShowModal={isShowModal}
-          hideModal={hideModal}
-          card={card}
-        ></PopUpModal>
+      {isShowTransferModal && (
+        <BackDrop hideModal={hideModal}>
+          <PopUpModal
+            boardId={boardId}
+            columnId={columnId}
+            cardId={card._id}
+            hideModal={hideModal}
+            card={card}
+          ></PopUpModal>
+        </BackDrop>
       )}
     </BoardCardStyle>
   );

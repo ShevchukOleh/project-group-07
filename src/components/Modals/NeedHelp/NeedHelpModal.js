@@ -8,14 +8,13 @@ import {
   ModalTitle,
   ModalContent,
   ModalOverlay,
-  IconClose,
-  CloseBtn,
 } from './NeedHelpModal.styled';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { useSelector } from 'react-redux';
 import { submitHelp } from 'store/AsyncThunk/asyncThunkBoards';
 import { useDispatch } from 'react-redux';
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 
 const ModalForm = ({
   isNeedHelpModal,
@@ -54,9 +53,7 @@ const ModalForm = ({
         <ModalOverlay onClick={needHelpModalShow} id="backdropNeedHelp">
           <ModalContent>
             <ModalTitle>Need Help</ModalTitle>
-            <CloseBtn>
-              <IconClose onClick={needHelpModalShow} />
-            </CloseBtn>
+            <CloseBtn onClick={needHelpModalShow} />
 
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
               <Form>

@@ -4,7 +4,6 @@ import { Formik, Form } from 'formik';
 import {
   StyledTextArea,
   StyledInput,
-  ModalButton,
   ModalTitle,
   ModalContent,
   ModalOverlay,
@@ -15,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { submitHelp } from 'store/AsyncThunk/asyncThunkBoards';
 import { useDispatch } from 'react-redux';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
+import { BaseBtn } from 'components/Buttons/BaseBtn';
 
 const ModalForm = ({
   isNeedHelpModal,
@@ -75,7 +75,7 @@ const ModalForm = ({
                   onBlur={() => setFocusComment(false)}
                   style={{ borderColor: inputBorderColor(focusComment) }}
                 />
-                <ModalButton type="submit">Send</ModalButton>
+                <BaseBtn onClick={handleSubmit} label={'Send'} />
               </Form>
             </Formik>
           </ModalContent>

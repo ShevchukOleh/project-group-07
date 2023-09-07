@@ -23,6 +23,10 @@ export const ButtonStyled = styled(Button)`
 
 export const DatePickerStyled = styled(DatePicker)`
   width: '127px';
+  & DatePicker {
+    color: ${props => {
+    return props?.theme?.themeSet?.calendar;
+  }};
 `;
 
 export const ContainerModal = styled.div`
@@ -183,7 +187,10 @@ export const CalendarWrap = styled.div`
     color: ${props => {
     return props?.theme?.themeSet?.calendar;
   }};
-  }
+  & DatePicker {
+  color: ${props => {
+    return props?.theme?.themeSet?.calendar;
+  }}
 `;
 
 // export const DateField = styled.input`

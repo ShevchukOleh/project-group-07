@@ -22,6 +22,7 @@ import {
 import FormControl from '@mui/material/FormControl';
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
+import { SxProps } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
@@ -96,6 +97,12 @@ export default function CardFormDialog({
     // console.log(event.target.value);
   };
 
+    const popperSx: SxProps = {
+        '& .MuiPaper-root': {
+            backgroundColor: 'black'
+        },
+        ' .MuiDateCalendar-root': '#1F1F1F'
+    }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
@@ -240,24 +247,30 @@ export default function CardFormDialog({
 
               <CalendarWrap>
                 <Stack
-                  sx={{  color: '#BEDBB0' }}
+                //   sx={{  color: '#BEDBB0' }}
                   components={[
                     'DatePicker'
                   ]}
-                >
+                              >
                   <div sx={{ width: '127px' }}>
                     <DatePicker
-                      localeText={{ clearButtonLabel: 'Empty' }}
-                      slotProps={{
+                        
+                    //   localeText={{ clearButtonLabel: 'Empty' }}
+                                          slotProps={{
+                     popper: {
+                            sx: popperSx
+                        },
                         toolbar: { hidden: true },
                         textField: { size: 'small', variant: 'standard' },
-                      }}
+                                          }}
+                      inputProps={{sx: {"& .MuiSvgIcon-root": {color: "red"}}}}
                       required
                       onChange={handleDateDedline}
                       minDate={dayjs(Date.now())}
                       orientation="portrait"
                       views={['month', 'day']}
                       defaultValue={dayjs(Date.now())}
+                      
                     />
                   </div>
                 </Stack>

@@ -11,13 +11,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import {
-    IconContainer,
+  IconContainer,
   RadioStyled,
   ContainerModal,
   TextFieldStyled,
   DialogActionsStyled,
   Icon,
-    FormControlLabelStyled,
+  FormControlLabelStyled,
   DescriptionFieldStyled,
 } from './CardModal.styled'
 import Plus from '../../images/icons/plus.svg';
@@ -28,7 +28,7 @@ import { useState } from 'react';
 // import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
 // import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
-export default function CardFormDialog({hideModal, isShowModal}) {
+export default function CardEditFormDialog({hideModal, isShowModal}) {
   
   const [valueTitle, setValueTitle] = useState('');
   const [labelColor, setLabelColor] = useState('Low');

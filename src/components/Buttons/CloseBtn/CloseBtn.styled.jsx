@@ -22,6 +22,6 @@ export const StyledCloseIcon = styled(CloseOutlinedIcon)`
   fill: ${props => {
     return props?.theme?.themeSet?.modalFiltersTitle;
   }};
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill var(--tra),
+    transform var(--tra);
 `;

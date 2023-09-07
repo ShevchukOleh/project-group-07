@@ -65,9 +65,8 @@ export const Sidebar = () => {
     ) {
       setisNeedHelpModal(!isNeedHelpModal);
     }
-
-    console.log(e.target);
   };
+  
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };

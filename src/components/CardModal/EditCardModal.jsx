@@ -61,9 +61,9 @@ export default function CardFormDialog({
 
   const handleClose = () => {
     hideModal();
-    setLabelColor('LOW');
-    setValueTitle('');
-    setValueDescription('');
+    // setLabelColor('LOW');
+    // setValueTitle('');
+    // setValueDescription('');
   };
 
   // console.log({ boardId, columnId, createCard });
@@ -71,9 +71,9 @@ export default function CardFormDialog({
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
-    setLabelColor('LOW');
-    setValueTitle('');
-    setValueDescription('');
+    // setLabelColor('LOW');
+    // setValueTitle('');
+    // setValueDescription('');
   };
 
   const handleChangeTitle = event => {

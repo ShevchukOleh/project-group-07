@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import {
   StyledTextArea,
   StyledInput,
-  ModalTitle,
+  
   ModalContent,
   ModalOverlay,
 } from './NeedHelpModal.styled';
@@ -15,6 +15,7 @@ import { submitHelp } from 'store/AsyncThunk/asyncThunkBoards';
 import { useDispatch } from 'react-redux';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { BaseBtn } from 'components/Buttons/BaseBtn';
+import { ModalTitle } from '../ModalTitle';
 
 const ModalForm = ({
   isNeedHelpModal,
@@ -52,7 +53,8 @@ const ModalForm = ({
       {isNeedHelpModal && (
         <ModalOverlay onClick={needHelpModalShow} id="backdropNeedHelp">
           <ModalContent>
-            <ModalTitle>Need Help</ModalTitle>
+            <ModalTitle title={'Need help'} />
+
             <CloseBtn onClick={needHelpModalShow} />
 
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -66,6 +68,7 @@ const ModalForm = ({
                   onBlur={() => setFocusInput(false)}
                   style={{ borderColor: inputBorderColor(focusInput) }}
                 />
+
                 <StyledTextArea
                   component="textarea"
                   name="message"
@@ -75,7 +78,8 @@ const ModalForm = ({
                   onBlur={() => setFocusComment(false)}
                   style={{ borderColor: inputBorderColor(focusComment) }}
                 />
-                <BaseBtn onClick={handleSubmit} label={'Send'} />
+
+                <BaseBtn type={'submit'} label={'Send'} />
               </Form>
             </Formik>
           </ModalContent>

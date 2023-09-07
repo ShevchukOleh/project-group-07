@@ -94,6 +94,7 @@ const StyledTextArea = styled(Field)`
   outline: none;
   border-radius: 4px;
   margin-top: 16px;
+  margin-bottom: 24px;
   padding: 8px;
   resize: none;
   background-color: ${props => {

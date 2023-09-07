@@ -18,7 +18,7 @@ export const StyledCreateBtn = styled(Button)`
   }
 `;
 
-export const StyledAddIcon = styled(AddIcon)`
+export const StyledAddIconBig = styled(AddIcon)`
   width: 20px;
   height: 20px;
   fill: ${props => {

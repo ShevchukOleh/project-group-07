@@ -138,11 +138,11 @@ const OneBoard = styled.div`
     transition: opacity 0.3s;
 
     &:hover.delete {
-      transform: scale(2);
+      /* transform: scale(2); */
       color: rgb(209 92 92);
     }
     &:hover.edit {
-      transform: scale(2);
+      /* transform: scale(2); */
       color: rgb(104 177 39);
     }
   }

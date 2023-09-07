@@ -14,6 +14,8 @@ import {
   StyledButton,
   StyledBox,
   PlusIcon,
+  IconReactSvgWrapper,
+
 } from './ModalEditBoard.styled.js';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
@@ -29,6 +31,7 @@ import { IconWrapper } from '../ModalBoard/ModalBoard.styled';
 import { ReactSVG } from 'react-svg';
 
 export default function ModalEditFormDialog({
+  editBoardIcon,
   closeEditModal,
   isOpenEditModal,
   handleSubmit,
@@ -46,6 +49,9 @@ export default function ModalEditFormDialog({
   const token = useSelector(selectToken);
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
+  const [selectedIconId, setSelectedIconId] = useState(null);
+  const [selectImgBg, setSelectImgBg] = useState(null);
+
 
   useEffect(() => {
     getIcon(token)
@@ -53,8 +59,7 @@ export default function ModalEditFormDialog({
         setIcon(data);
       })
       .catch()
-      .finally(() => {
-      });
+      .finally(() => {});
   }, [token]);
   useEffect(() => {
     setImage([]);
@@ -63,8 +68,7 @@ export default function ModalEditFormDialog({
         setImage(data);
       })
       .catch()
-      .finally(() => {
-      });
+      .finally(() => {});
   }, [token]);
 
   const length = image.length - 3;
@@ -72,7 +76,14 @@ export default function ModalEditFormDialog({
   const lightImageBg = image[15];
   const darkImageBg = image[16];
   const violetImageBg = image[17];
-
+  const handleIconClick = _id => {
+    setSelectedIconId(_id);
+    handleChangeIcon(_id);
+  };
+  const handleTakeImgBg = _id => {
+    setSelectImgBg(_id);
+    takeIMG(_id);
+  };
   return (
     <div>
       <Dialog open={isOpenEditModal} onClose={closeEditModal}>
@@ -121,14 +132,17 @@ export default function ModalEditFormDialog({
 
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
-                  <span
+                  <IconReactSvgWrapper
+                    $currentTheme={currentTheme}
+                    $isSelected={editBoardIcon === _id}
                     key={_id}
                     id={_id}
-                    onClick={handleChangeIcon}
                     data-icon-id={_id}
+                    onClick={() => handleIconClick(_id)}
+                    isSelected={_id === selectedIconId}
                   >
                     <ReactSVG src={icon_src} />
-                  </span>
+                  </IconReactSvgWrapper>
                 ))}
               </IconWrapper>
             </FormControl>
@@ -227,13 +241,14 @@ export default function ModalEditFormDialog({
                   <FormControlLabelStyled
                     value={_id}
                     key={_id}
+                    selected={_id === selectImgBg}
                     control={
                       <RadioStyledImg
                         icon={<Image src={background_icon_src} alt={_id} />}
                         checkedIcon={
                           <Image src={background_icon_src} alt={_id} checked />
                         }
-                        onClick={() => takeIMG(_id)}
+                        onClick={() => handleTakeImgBg(_id)}
                       />
                     }
                   />

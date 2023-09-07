@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import CardFormDialog from 'components/CardModal/EditCardModal';
+import PopUpModal from 'components/PopUpModal/PopUpModal';
 
 export default function BoardCard({ boardId, columnId, card }) {
   // const selectPriority = useSelector(selectedInPriority);
@@ -90,6 +91,12 @@ function BoardCardItem({ boardId, columnId, card }) {
     setIsModalCardOpen(false);
   };
 
+  //pop up
+  const [isShowModal, setIsShowModal] = useState(false);
+  const hideModal = () => {
+    setIsShowModal(false);
+  };
+
   return (
     <BoardCardStyle priorityColor={priorityColor(card.priority.toLowerCase())}>
       <h3 className="title">{card.title}</h3>
@@ -137,6 +144,7 @@ function BoardCardItem({ boardId, columnId, card }) {
             cursor: 'pointer',
             color: theme?.themeSet?.cardPriorityIcon,
           }}
+          onClick={() => setIsShowModal(true)}
         />
 
         <FiEdit2
@@ -168,6 +176,16 @@ function BoardCardItem({ boardId, columnId, card }) {
           hideModal={closeModalCard}
         />
       </div>
+      {isShowModal && (
+        <PopUpModal
+          boardId={boardId}
+          columnId={columnId}
+          cardId={card._id}
+          isShowModal={isShowModal}
+          hideModal={hideModal}
+          card={card}
+        ></PopUpModal>
+      )}
     </BoardCardStyle>
   );
 }

@@ -4,9 +4,10 @@ import { Box } from '@mui/material';
 import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
 // import { Radio, FormControlLabel } from '@mui/material';
-import {Radio} from '@mui/material';
+import { Radio } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { RiAddLine } from 'react-icons/ri';
+
 
 // import AddIcon from '@mui/icons-material/Add';
 
@@ -30,7 +31,33 @@ export const StyledBox = styled(Box)`
     return props?.theme?.themeSet?.boxIconBg;
   }};
 `;
+export const IconReactSvgWrapper = styled.span`
+  svg {
+    path {
+      transition: all 0.3s ease-out;
 
+      stroke: ${props => {
+        if (props.$currentTheme === 'Dark') return '#FFFFFF';
+
+        return '#161616';
+      }};
+
+      stroke-opacity: ${props => (props.$isSelected ? 1 : 0.5)};
+    }
+  }
+
+  svg:hover {
+    path {
+      stroke: ${props => {
+        if (props.$currentTheme === 'Dark') return '#fff';
+
+        return '#000';
+      }};
+      stroke-opacity: 1;
+    }
+    cursor: pointer;
+  }
+`;
 export const StyledButton = styled(Button)`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -72,6 +99,9 @@ export const ErrorTextWrap = styled.div`
 
 export const FormControlLabelStyled = styled(FormControlLabel)`
   margin: 0px;
+  border-radius: 5px;
+  border: 1px solid ${props => (props.selected ? 'green' : 'initial')};
+  transition: border 0.2s linear;
 `;
 
 export const IconContainer = styled(RadioGroup)`
@@ -81,8 +111,7 @@ export const IconContainer = styled(RadioGroup)`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: ${props => {
     return props?.theme?.themeSet?.modalHelpBg;
-}};
-  
+  }};
 `;
 
 export const RadioStyled = styled(Radio)`
@@ -157,7 +186,7 @@ export const TextFieldStyled = styled.input`
   // &&:focus {
   // border: 1px solid #161616;
   // };
-  
+
   &:hover {
     border: 1px solid
       ${props => {
@@ -165,6 +194,15 @@ export const TextFieldStyled = styled.input`
       }};
   }
 `;
+
+export const ActiveIcon = styled.span`
+  width: 20px;
+  height: 20px;
+  background-color: ${props => (props.isSelected ? 'gray' : 'initial')};
+  border-radius: 5px;
+  border: 1px solid ${props => (props.isSelected ? 'green' : 'initial')};
+`;
+
 
 export const PlusIcon = styled(RiAddLine)`
   width: 18px;

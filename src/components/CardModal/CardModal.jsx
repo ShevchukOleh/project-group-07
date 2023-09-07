@@ -94,8 +94,8 @@ export default function CardFormDialog({
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
     // console.log(event.target.value);
+    // console.log(event.target.value);
   };
-
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
@@ -185,7 +185,6 @@ export default function CardFormDialog({
                           '&.Mui-checked': {
                             color: '#E09CB5',
                             backgroundColor: 'transparent',
-
                           },
                         }}
                       />
@@ -225,7 +224,7 @@ export default function CardFormDialog({
                   />
                 </IconContainer>
               </FormControl>
-              
+
               <DialogTitle
                 sx={{
                   fontSize: 12,
@@ -239,12 +238,7 @@ export default function CardFormDialog({
               </DialogTitle>
 
               <CalendarWrap>
-                <Stack
-                  sx={{  color: '#BEDBB0' }}
-                  components={[
-                    'DatePicker'
-                  ]}
-                >
+                <Stack sx={{ color: '#BEDBB0' }} components={['DatePicker']}>
                   <div sx={{ width: '127px' }}>
                     <DatePicker
                       localeText={{ clearButtonLabel: 'Empty' }}
@@ -279,7 +273,6 @@ export default function CardFormDialog({
                     padding: 0,
                     textTransform: 'capitalize',
                     borderRadius: '8px',
-
                   }}
                 >
                   <Box
@@ -336,7 +329,6 @@ export default function CardFormDialog({
             <CloseBtn>
               <IconClose onClick={handleClose} />
             </CloseBtn>
-
           </ContainerModal>
         </Dialog>
       </div>

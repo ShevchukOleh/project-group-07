@@ -9,6 +9,11 @@ export const StyledCloseBtn = styled(Button)`
   min-width: 18px;
   height: 18px;
   padding: 0;
+
+  &:hover svg {
+    transform: scale(1.1);
+    fill: red;
+  }
 `;
 
 export const StyledCloseIcon = styled(CloseOutlinedIcon)`
@@ -17,9 +22,6 @@ export const StyledCloseIcon = styled(CloseOutlinedIcon)`
   fill: ${props => {
     return props?.theme?.themeSet?.modalFiltersTitle;
   }};
-
-  &:hover {
-    transform: scale(1.1);
-    fill: red;
-  }
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;

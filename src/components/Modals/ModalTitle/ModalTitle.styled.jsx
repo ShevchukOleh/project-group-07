@@ -2,7 +2,9 @@ import styled from '@emotion/styled';
 
 export const StyledModalTitle = styled.h2`
   margin: 0;
-  margin-bottom: 24px;
+  margin-bottom: ${props => {
+    return props?.children !== 'Filters' ? '24px' : '14px';
+  }};
   color: ${props => {
     return props?.theme?.themeSet?.modalHelpTitle;
   }};

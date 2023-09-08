@@ -10,7 +10,6 @@ import {
 import {
   FiltersBtn,
   FilterIcon,
-  MenuLabel,
   Border,
   Wrapper,
   ShowAllBtn,

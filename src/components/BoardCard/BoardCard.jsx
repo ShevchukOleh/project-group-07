@@ -62,8 +62,9 @@ function BoardCardItem({ boardId, columnId, card }) {
 
   let inputDate = new Date(card.deadline);
   const currentDate = new Date();
+  console.log('urrentDate!!!!!!!!!!!!!!!!: ', currentDate);
 
-  if (inputDate < currentDate) {
+  if (inputDate.getTime() === 0) {
     inputDate = currentDate;
   }
 
@@ -105,6 +106,7 @@ function BoardCardItem({ boardId, columnId, card }) {
 
   //bell
   const [isDeadline, setIsDeadline] = useState(false);
+  const [colorBell, setColorBell] = useState('');
   const inputDateChek = inputDate;
   const todayDateChek = useMemo(() => {
     return new Date();
@@ -113,8 +115,12 @@ function BoardCardItem({ boardId, columnId, card }) {
   todayDateChek.setHours(0, 0, 0, 0);
 
   useEffect(() => {
-    if (inputDateChek.getTime() === todayDateChek.getTime()) {
+    if (inputDateChek.getTime() < todayDateChek.getTime()) {
       setIsDeadline(true);
+      setColorBell('red');
+    } else if (inputDateChek.getTime() === todayDateChek.getTime()) {
+      setIsDeadline(true);
+      setColorBell('#BEDBB0');
     } else setIsDeadline(false);
   }, [inputDateChek, todayDateChek]);
 
@@ -163,7 +169,7 @@ function BoardCardItem({ boardId, columnId, card }) {
         {isDeadline && (
           <FiBell
             style={{
-              color: '#BEDBB0',
+              color: colorBell,
             }}
           />
         )}

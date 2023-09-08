@@ -22,11 +22,11 @@ import {
 import FormControl from '@mui/material/FormControl';
 import { Box, Stack } from '@mui/material';
 import { useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
+import { ModalTitle } from 'components/Modals/ModalTitle';
 
 export default function CardFormDialog({
   titleText,
@@ -49,8 +49,6 @@ export default function CardFormDialog({
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDeadline] = useState('');
 
-  // console.log(dateDeadline);
-
   const createCard = {
     title: valueTitle,
     description: valueDescription,
@@ -65,8 +63,6 @@ export default function CardFormDialog({
     setValueDescription('');
   };
 
-  // console.log({ boardId, columnId, createCard });
-
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
@@ -77,7 +73,6 @@ export default function CardFormDialog({
 
   const handleChangeTitle = event => {
     setValueTitle(event.target.value);
-    // console.log(event.target.value);
   };
 
   const handleDateDedline = newValue => {
@@ -87,13 +82,10 @@ export default function CardFormDialog({
 
   const handleChangeDescription = event => {
     setValueDescription(event.target.value);
-    // console.log(event.target.value);
   };
 
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
-    // console.log(event.target.value);
-    // console.log(event.target.value);
   };
 
   return (
@@ -101,17 +93,7 @@ export default function CardFormDialog({
       <div>
         <Dialog open={isShowModal} onClose={handleClose}>
           <ContainerModal>
-            <DialogTitle
-              sx={{
-                fontSize: 18,
-                fontWeight: 500,
-                padding: 0,
-                marginBottom: '24px',
-                color: `${theme?.themeSet?.modalHelpTitle}`,
-              }}
-            >
-              Add card
-            </DialogTitle>
+            <ModalTitle title={'Add card'} />
 
             <DialogContent sx={{ padding: 0 }}>
               <TextFieldStyled

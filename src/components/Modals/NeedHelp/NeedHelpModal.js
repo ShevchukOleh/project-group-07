@@ -4,7 +4,6 @@ import { Formik, Form } from 'formik';
 import {
   StyledTextArea,
   StyledInput,
-  
   ModalContent,
   ModalOverlay,
 } from './NeedHelpModal.styled';

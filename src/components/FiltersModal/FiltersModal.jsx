@@ -18,6 +18,7 @@ import {
   MenuWrap,
 } from './FiltersModal.styled';
 
+import { ModalTitle } from 'components/Modals/ModalTitle';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
@@ -175,7 +176,7 @@ export const FiltersModal = () => {
       >
         <MenuWrap>
           <MenuLabelWrap>
-            <MenuLabel>Filters</MenuLabel>
+            <ModalTitle title={'Filters'} />
 
             <CloseBtn onClick={handleClose} />
           </MenuLabelWrap>

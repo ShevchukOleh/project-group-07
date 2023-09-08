@@ -39,7 +39,7 @@ export const FilterIcon = styled(FilterAltOutlinedIcon)`
 
 export const MenuLabel = styled.span`
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   font-family: Poppins;
   font-size: 18px;
   font-weight: 500;
@@ -53,7 +53,7 @@ export const MenuLabel = styled.span`
 export const Border = styled.div`
   display: block;
   height: 1px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   background-color: ${props => {
     return props?.theme?.themeSet?.modalFiltersInnerBorder;
   }};

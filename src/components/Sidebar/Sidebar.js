@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import plant from '../../images/cup.png';
 import { BordInSidebar } from './BordInSidebar/BordInSidebar';
 import { BiHelpCircle } from 'react-icons/bi';
+import { CreateBtn } from 'components/Buttons/CreateBtn';
 import {
   Block,
   HelpBlock,
@@ -18,8 +19,6 @@ import {
   BlockContainerBoard,
   BlockLink,
   ContainerAside,
-  PlusIcon,
-  CreateButton,
   PlantImg,
   Helpbutton,
 } from './Sidebar.styled';
@@ -66,9 +65,8 @@ export const Sidebar = () => {
     ) {
       setisNeedHelpModal(!isNeedHelpModal);
     }
-
-    console.log(e.target);
   };
+  
   const handleLogOut = () => {
     dispatch(logoutUser(userToken ?? ''));
   };
@@ -99,16 +97,7 @@ export const Sidebar = () => {
               createOpenModalShow={createOpenModalShow}
               isCreateOpenModal={isCreateOpenModal}
             />
-            <CreateButton
-              onClick={() => setCreateOpenModal(!isCreateOpenModal)}
-              sx={{
-                minWidth: '40px',
-                height: '36px',
-                marginLeft: '8px',
-              }}
-            >
-              <PlusIcon>+</PlusIcon>
-            </CreateButton>
+            <CreateBtn onClick={() => setCreateOpenModal(!isCreateOpenModal)} />
           </BlockContainerCreate>
         </Block>
 

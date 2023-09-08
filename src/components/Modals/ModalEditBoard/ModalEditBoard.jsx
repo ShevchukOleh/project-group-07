@@ -25,8 +25,7 @@ import { useEffect } from 'react';
 import { getIcon, getImage } from '../ModalBoard/servises';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-import { IconClose } from '../UI/ModalCulumn.styled';
-import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { IconWrapper } from '../ModalBoard/ModalBoard.styled';
 import { ReactSVG } from 'react-svg';
 
@@ -290,9 +289,8 @@ export default function ModalEditFormDialog({
               Edit Board
             </StyledButton>
           </DialogActionsStyled>
-          <CloseBtn>
-            <IconClose onClick={() => setIsOpenEditModal(prev => !prev)} />
-          </CloseBtn>
+          
+          <CloseBtn onClick={() => setIsOpenEditModal(prev => !prev)} />
         </ContainerModal>
       </Dialog>
     </div>

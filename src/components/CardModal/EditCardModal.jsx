@@ -26,8 +26,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-import { CloseBtn } from 'components/Modals/NeedHelp/NeedHelpModal.styled';
-import { IconClose } from 'components/Modals/UI/ModalCulumn.styled';
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 
 export default function CardFormDialog({
   titleText,
@@ -301,10 +300,7 @@ export default function CardFormDialog({
 
             </DialogActionsStyled>
 
-            <CloseBtn>
-              <IconClose onClick={handleClose} />
-            </CloseBtn>
-
+            <CloseBtn onClick={handleClose} />
           </ContainerModal>
         </Dialog>
       </div>

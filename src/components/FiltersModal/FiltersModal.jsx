@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {
-  Button,
   Menu,
   Radio,
   RadioGroup,
@@ -8,7 +7,6 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@mui/material';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import {
   FiltersBtn,
   FilterIcon,
@@ -20,6 +18,7 @@ import {
   MenuWrap,
 } from './FiltersModal.styled';
 
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
@@ -45,7 +44,6 @@ export const FiltersModal = () => {
   const open = Boolean(filtersEl);
   const [objCards, setObjCards] = useState({});
   const [filteredCards, setFilteredCards] = useState({});
-
 
   const [withoutStatus, setWithoutStatus] = useState(null);
   const [lowStatus, setLowStatus] = useState(null);
@@ -179,25 +177,7 @@ export const FiltersModal = () => {
           <MenuLabelWrap>
             <MenuLabel>Filters</MenuLabel>
 
-            <Button
-              onClick={handleClose}
-              sx={{
-                padding: 0,
-                minWidth: '18px',
-                height: '18px',
-                position: 'absolute',
-                top: '10px',
-                right: '8px',
-              }}
-            >
-              <CloseOutlinedIcon
-                sx={{
-                  minWidth: '18px',
-                  height: '18px',
-                  fill: `${theme?.themeSet?.modalFiltersTitle}`,
-                }}
-              />
-            </Button>
+            <CloseBtn onClick={handleClose} />
           </MenuLabelWrap>
 
           <Border />

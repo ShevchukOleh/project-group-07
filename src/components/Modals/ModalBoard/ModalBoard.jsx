@@ -30,8 +30,7 @@ import { getIcon, getImage } from './servises';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-import { IconClose } from '../UI/ModalCulumn.styled';
-import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
@@ -325,9 +324,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
             </StyledButton>
           </DialogActionsStyled>
 
-          <CloseBtn>
-            <IconClose onClick={createOpenModalShow} />
-          </CloseBtn>
+          <CloseBtn onClick={createOpenModalShow} />
         </ContainerModal>
       </Dialog>
     </div>

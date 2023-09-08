@@ -1,3 +1,4 @@
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 import {
   ColumnModalContainer,
   ColumnModalTitle,
@@ -5,9 +6,7 @@ import {
   ColumnModalFormInput,
   ColumnModalFormBtn,
   IconPlusWrapper,
-  IconCrossWrapper,
   IconPlus,
-  IconClose,
 } from '../UI/ModalCulumn.styled';
 
 const ModalEditColumn = ({
@@ -31,14 +30,11 @@ const ModalEditColumn = ({
           <IconPlusWrapper>
             <IconPlus />
           </IconPlusWrapper>
-
           Add
         </ColumnModalFormBtn>
       </ColumnModalForm>
 
-      <IconCrossWrapper onClick={() => setOpenEditModal(prev => !prev)}>
-        <IconClose />
-      </IconCrossWrapper>
+      <CloseBtn onClick={() => setOpenEditModal(prev => !prev)} />
     </ColumnModalContainer>
   );
 };

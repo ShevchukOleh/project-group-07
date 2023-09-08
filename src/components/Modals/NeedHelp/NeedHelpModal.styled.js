@@ -75,7 +75,6 @@ const StyledInput = styled(Field)`
   border-style: solid;
   outline: none;
   border-radius: 4px;
-  margin-top: 16px;
   padding: 8px;
   background-color: ${props => {
     return props?.theme?.themeSet?.inputBgColor;

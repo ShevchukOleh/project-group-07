@@ -1,12 +1,10 @@
+import { BaseBtn } from 'components/Buttons/BaseBtn';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
+import { ModalTitle } from '../ModalTitle';
 import {
   ColumnModalContainer,
-  ColumnModalTitle,
   ColumnModalForm,
   ColumnModalFormInput,
-  ColumnModalFormBtn,
-  IconPlusWrapper,
-  IconPlus,
 } from '../UI/ModalCulumn.styled';
 
 const ModalAddColumn = ({
@@ -17,7 +15,7 @@ const ModalAddColumn = ({
 }) => {
   return (
     <ColumnModalContainer>
-      <ColumnModalTitle>Add column</ColumnModalTitle>
+      <ModalTitle title={'Add column'} />
 
       <ColumnModalForm>
         <ColumnModalFormInput
@@ -26,12 +24,7 @@ const ModalAddColumn = ({
           onChange={e => setAddColumn(e.target.value)}
         />
 
-        <ColumnModalFormBtn onClick={handleSubmit}>
-          <IconPlusWrapper>
-            <IconPlus />
-          </IconPlusWrapper>
-          Add
-        </ColumnModalFormBtn>
+        <BaseBtn type={'submit'} label={'Add'} onClick={handleSubmit} />
       </ColumnModalForm>
 
       <CloseBtn onClick={() => setOpenAddModal(prev => !prev)} />

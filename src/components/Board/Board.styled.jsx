@@ -101,14 +101,13 @@ export const BoardStyle = styled.section`
   }
 
   & .containerTitle {
-  }
-
-  & .title {
-    display: inline-block;
+    width: min-content;
     padding: 0 10px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 4px;
+  }
 
+  & .title {
     color: ${props => {
       return props?.theme?.themeSet?.boardTitle;
     }};

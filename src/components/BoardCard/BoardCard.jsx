@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
-import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
+import { FiTrash, FiEdit2, FiArrowRightCircle, FiBell } from 'react-icons/fi';
 
 import { useDispatch } from 'react-redux';
 import { deleteCard, editCardById } from 'store/AsyncThunk/asyncThunkBoards';
@@ -98,6 +98,21 @@ function BoardCardItem({ boardId, columnId, card }) {
     setIsShowTransferModal(false);
   };
 
+  //bell
+  const [isDeadline, setIsDeadline] = useState(false);
+  const inputDateChek = inputDate;
+  const todayDateChek = useMemo(() => {
+    return new Date();
+  }, []);
+  inputDateChek.setHours(0, 0, 0, 0);
+  todayDateChek.setHours(0, 0, 0, 0);
+
+  useEffect(() => {
+    if (inputDateChek.getTime() === todayDateChek.getTime()) {
+      setIsDeadline(true);
+    } else setIsDeadline(false);
+  }, [inputDateChek, todayDateChek]);
+
   return (
     <BoardCardStyle priorityColor={priorityColor(card.priority.toLowerCase())}>
       <h3 className="title">{card.title}</h3>
@@ -140,6 +155,13 @@ function BoardCardItem({ boardId, columnId, card }) {
         </div>
       </div>
       <div className="containerCardIcon">
+        {isDeadline && (
+          <FiBell
+            style={{
+              color: '#BEDBB0',
+            }}
+          />
+        )}
         <FiArrowRightCircle
           style={{
             cursor: 'pointer',

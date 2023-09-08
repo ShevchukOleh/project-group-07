@@ -9,25 +9,21 @@ import {
   Image,
   ContainerModal,
   TextFieldStyled,
-  DialogActionsStyled,
   FormControlLabelStyled,
-  StyledButton,
-  StyledBox,
-  PlusIcon,
   IconReactSvgWrapper,
-
 } from './ModalEditBoard.styled.js';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getIcon, getImage } from '../ModalBoard/servises';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { IconWrapper } from '../ModalBoard/ModalBoard.styled';
 import { ReactSVG } from 'react-svg';
+import { ModalTitle } from '../ModalTitle';
+import { BaseBtn } from 'components/Buttons/BaseBtn';
 
 export default function ModalEditFormDialog({
   editBoardIcon,
@@ -51,7 +47,6 @@ export default function ModalEditFormDialog({
   const [selectedIconId, setSelectedIconId] = useState(null);
   const [selectImgBg, setSelectImgBg] = useState(null);
 
-
   useEffect(() => {
     getIcon(token)
       .then(data => {
@@ -60,6 +55,7 @@ export default function ModalEditFormDialog({
       .catch()
       .finally(() => {});
   }, [token]);
+
   useEffect(() => {
     setImage([]);
     getImage(token)
@@ -75,29 +71,22 @@ export default function ModalEditFormDialog({
   const lightImageBg = image[15];
   const darkImageBg = image[16];
   const violetImageBg = image[17];
+
   const handleIconClick = _id => {
     setSelectedIconId(_id);
     handleChangeIcon(_id);
   };
+
   const handleTakeImgBg = _id => {
     setSelectImgBg(_id);
     takeIMG(_id);
   };
+
   return (
     <div>
       <Dialog open={isOpenEditModal} onClose={closeEditModal}>
         <ContainerModal>
-          <DialogTitle
-            sx={{
-              fontSize: 18,
-              fontWeight: 500,
-              padding: 0,
-              marginBottom: '24px',
-              color: `${theme?.themeSet?.modalHelpTitle}`,
-            }}
-          >
-            Edit board
-          </DialogTitle>
+          <ModalTitle title={'Edit board'} />
 
           <DialogContent sx={{ padding: 0 }}>
             <TextFieldStyled
@@ -255,40 +244,7 @@ export default function ModalEditFormDialog({
             </ImageBgContainer>
           </DialogContent>
 
-          <DialogActionsStyled>
-            <StyledButton
-              onClick={handleSubmit}
-              sx={{
-                fontFamily: 'Poppins',
-                backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
-                color: `${theme?.themeSet?.modalHelpSendText}`,
-                fontWeight: 500,
-                height: 49,
-                width: '100%',
-                padding: 0,
-                textTransform: 'capitalize',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: `${theme?.themeSet?.modalHelpSendBorder}`,
-                borderRadius: '8px',
-              }}
-            >
-              <StyledBox
-                sx={{
-                  height: 28,
-                  width: 28,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 1,
-                  marginRight: 1,
-                }}
-              >
-                <PlusIcon />
-              </StyledBox>
-              Edit Board
-            </StyledButton>
-          </DialogActionsStyled>
+          <BaseBtn type={'submit'} label={'Edit'} onClick={handleSubmit} />
           
           <CloseBtn onClick={() => setIsOpenEditModal(prev => !prev)} />
         </ContainerModal>

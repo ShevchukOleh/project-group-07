@@ -3,6 +3,12 @@ import { Button } from '@mui/material';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 
 export const FiltersBtn = styled(Button)`
+  position: absolute;
+  top: 13px;
+  right: 0px;
+  padding: 0 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
   gap: 8px;
   color: ${props => {
     return props?.theme?.themeSet?.modalFiltersLabel;
@@ -13,6 +19,16 @@ export const FiltersBtn = styled(Button)`
   line-height: 1.5;
   text-transform: none;
   letter-spacing: 0.02em;
+  @media screen and (min-width: 768px) {
+    top: 25px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    top: 30px;
+  }
+  :hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
 `;
 
 export const FilterIcon = styled(FilterAltOutlinedIcon)`

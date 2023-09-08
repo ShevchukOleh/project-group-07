@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const PopUpModalStyle = styled.div`
   width: 135px;
-  min-height: 86px;
+  min-height: 57px;
   padding: 18px;
   border-radius: 8px;
   max-height: calc(100vh - 40px);

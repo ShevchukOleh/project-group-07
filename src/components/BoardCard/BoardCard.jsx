@@ -60,7 +60,12 @@ function BoardCardItem({ boardId, columnId, card }) {
     }
   };
 
-  const inputDate = new Date(card.deadline);
+  let inputDate = new Date(card.deadline);
+  const currentDate = new Date();
+
+  if (inputDate < currentDate) {
+    inputDate = currentDate;
+  }
 
   const day = inputDate.getUTCDate();
   const month = inputDate.getUTCMonth() + 1;

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 export default function BoardField({
   onClick,
   item,
+  localIndex,
   index,
   boardId,
   columnIdThis,
@@ -14,19 +15,19 @@ export default function BoardField({
   deleteCard,
   createOneCard,
 }) {
-  const isFirstElement = index === 0;
+  const isLocalColumn = index === localIndex;
   const dispatch = useDispatch();
   const columnId = item._id;
 
   return (
     <BoardFieldStyle>
       <p
-        className={`columnNamePopUp ${isFirstElement ? 'firstElement' : ''}`}
+        className={`columnNamePopUp ${isLocalColumn ? 'localElement' : ''}`}
       >{`${item.title}`}</p>
       <FiArrowRightCircle
-        className={`iconPopUp ${isFirstElement ? 'firstElement' : ''}`}
+        className={`iconPopUp ${isLocalColumn ? 'localElement' : ''}`}
         onClick={
-          isFirstElement
+          isLocalColumn
             ? null
             : () => {
                 dispatch(createOneCard({ boardId, columnId, createCard }));

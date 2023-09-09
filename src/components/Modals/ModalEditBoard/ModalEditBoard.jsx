@@ -69,8 +69,8 @@ export default function ModalEditFormDialog({
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
-  const darkImageBg = image[16];
-  const violetImageBg = image[17];
+  const darkImageBg = image[17];
+  const violetImageBg = image[16];
 
   const handleIconClick = _id => {
     setSelectedIconId(_id);
@@ -97,7 +97,7 @@ export default function ModalEditFormDialog({
               value={editBoard}
               required
               onChange={e => setEditBoard(e.target.value)}
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
             {error && (
               <div style={{ color: 'red', position: 'absolute', top: 130 }}>
@@ -156,10 +156,12 @@ export default function ModalEditFormDialog({
             >
               {currentTheme === 'Light' && (
                 <FormControlLabelStyled
-                  value={'noBackground'}
+                  value={lightImageBg?._id}
+                  key={lightImageBg?._id}
+                  selected={lightImageBg?._id === selectImgBg}
                   control={
                     <RadioStyledImg
-                      key={lightImageBg?._id}
+
                       icon={
                         <Image
                           src={lightImageBg?.background_icon_src}
@@ -173,39 +175,19 @@ export default function ModalEditFormDialog({
                           checked
                         />
                       }
-                    />
-                  }
-                />
-              )}
-              {currentTheme === 'Dark' && (
-                <FormControlLabelStyled
-                  value={'noBackground'}
-                  control={
-                    <RadioStyledImg
-                      key={darkImageBg?._id}
-                      icon={
-                        <Image
-                          src={darkImageBg?.background_icon_src}
-                          alt="noBackground"
-                        />
-                      }
-                      checkedIcon={
-                        <Image
-                          src={darkImageBg?.background_icon_src}
-                          alt="noBackground"
-                          checked
-                        />
-                      }
+                      onClick={() => handleTakeImgBg(lightImageBg?._id)}
                     />
                   }
                 />
               )}
               {currentTheme === 'Violet' && (
                 <FormControlLabelStyled
-                  value={'noBackground'}
+                  value={violetImageBg?._id}
+                  key={violetImageBg?._id}
+                  selected={violetImageBg?._id === selectImgBg}
                   control={
                     <RadioStyledImg
-                      key={violetImageBg?._id}
+
                       icon={
                         <Image
                           src={violetImageBg?.background_icon_src}
@@ -219,6 +201,32 @@ export default function ModalEditFormDialog({
                           checked
                         />
                       }
+                      onClick={() => handleTakeImgBg(violetImageBg?._id)}
+                    />
+                  }
+                />
+              )}
+              {currentTheme === 'Dark' && (
+                <FormControlLabelStyled
+                  value={darkImageBg?._id}
+                  selected={darkImageBg?._id === selectImgBg}
+                  key={darkImageBg?._id}
+                  control={
+                    <RadioStyledImg
+                      icon={
+                        <Image
+                          src={darkImageBg?.background_icon_src}
+                          alt="noBackground"
+                        />
+                      }
+                      checkedIcon={
+                        <Image
+                          src={darkImageBg?.background_icon_src}
+                          alt="noBackground"
+                          checked
+                        />
+                      }
+                      onClick={() => handleTakeImgBg(darkImageBg?._id)}
                     />
                   }
                 />

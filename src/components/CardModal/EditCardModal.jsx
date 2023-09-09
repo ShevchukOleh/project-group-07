@@ -64,6 +64,8 @@ export default function CardFormDialog({
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
+    console.log(createCard)
+
     // setLabelColor('LOW');
     // setValueTitle('');
     // setValueDescription('');

@@ -8,9 +8,14 @@ export const BoardFieldStyle = styled.div`
   color: #161616;
   font-size: 14px;
   letter-spacing: -0.28px;
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :last-child {
     margin-bottom: 0px;
+  }
+  :hover {
+    color: #bedbb0;
   }
 
   & .iconPopUp {
@@ -18,13 +23,13 @@ export const BoardFieldStyle = styled.div`
     top: 50%;
     right: 0;
     transform: translate(0%, -50%);
-    cursor: pointer;
   }
 
   .localElement {
     color: #bedbb0;
     font-size: 14px;
     letter-spacing: -0.28px;
+    cursor: auto;
   }
 
   .localElement.iconPopUp {

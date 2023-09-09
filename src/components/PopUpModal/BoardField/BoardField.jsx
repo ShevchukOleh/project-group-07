@@ -20,23 +20,22 @@ export default function BoardField({
   const columnId = item._id;
 
   return (
-    <BoardFieldStyle>
+    <BoardFieldStyle
+      onClick={
+        isLocalColumn
+          ? null
+          : () => {
+              dispatch(createOneCard({ boardId, columnId, createCard }));
+              dispatch(deleteCard({ boardId, columnId: columnIdThis, cardId }));
+              return onClick;
+            }
+      }
+    >
       <p
         className={`columnNamePopUp ${isLocalColumn ? 'localElement' : ''}`}
       >{`${item.title}`}</p>
       <FiArrowRightCircle
         className={`iconPopUp ${isLocalColumn ? 'localElement' : ''}`}
-        onClick={
-          isLocalColumn
-            ? null
-            : () => {
-                dispatch(createOneCard({ boardId, columnId, createCard }));
-                dispatch(
-                  deleteCard({ boardId, columnId: columnIdThis, cardId })
-                );
-                return onClick;
-              }
-        }
       />
     </BoardFieldStyle>
   );

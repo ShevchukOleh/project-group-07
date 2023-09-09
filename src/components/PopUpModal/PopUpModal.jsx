@@ -13,14 +13,14 @@ const PopUpModal = ({ hideModal, columnId, boardId, cardId, card }) => {
   };
   const columns = useSelector(selectColumns);
   const index = columns.findIndex(item => item._id === columnId);
-  const currentArr = columns.slice(index);
   return (
     <PopUpModalStyle>
-      {currentArr.map((item, i) => (
+      {columns.map((item, i) => (
         <BoardField
           key={item._id}
           onClick={clickbtn}
           item={item}
+          localIndex={index}
           index={i}
           deleteCard={deleteCard}
           createOneCard={createOneCard}

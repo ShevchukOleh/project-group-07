@@ -101,7 +101,7 @@ export const BoardStyle = styled.section`
   }
 
   & .containerTitle {
-    width: min-content;
+    width: max-content;
     padding: 0 10px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 4px;

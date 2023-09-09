@@ -21,13 +21,13 @@ export const BoardFieldStyle = styled.div`
     cursor: pointer;
   }
 
-  .firstElement {
+  .localElement {
     color: #bedbb0;
     font-size: 14px;
     letter-spacing: -0.28px;
   }
 
-  .firstElement.iconPopUp {
+  .localElement.iconPopUp {
     pointer-events: none;
     cursor: auto;
   }

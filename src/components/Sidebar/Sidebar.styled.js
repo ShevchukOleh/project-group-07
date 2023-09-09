@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Button from '@mui/material/Button';
 import BoltIcon from '@mui/icons-material/Bolt';
 
 const ContainerAside = styled.aside`
@@ -242,30 +241,6 @@ const HelpBlock = styled.div`
   margin-top: 18px;
 `;
 
-const PlusIcon = styled.p`
-  color: ${props => {
-    return props?.theme?.themeSet?.iconPlus;
-  }};
-  font-size: 26px;
-  margin: 0;
-`;
-
-const CreateButton = styled(Button)`
-  min-width: 40px;
-  height: 36px;
-  margin-left: 8px;
-  background-color: ${props => {
-    return props?.theme?.themeSet?.sidebarCreateBtnBg;
-  }};
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    background-color: ${props => {
-      return props?.theme?.themeSet?.sidebarCreateBtnBgHover;
-    }};
-  }
-`;
-
 const PlantImg = styled.img`
   width: 54px;
   height: 78px;
@@ -312,8 +287,7 @@ export {
   BlockLink,
   OneBoard,
   ContainerAside,
-  PlusIcon,
-  CreateButton,
+  
   PlantImg,
   Helpbutton,
 };

@@ -12,22 +12,19 @@ import {
   RadioStyled,
   ContainerModal,
   TextFieldStyled,
-  DialogActionsStyled,
   FormControlLabelStyled,
   DescriptionFieldStyled,
-  PlusIcon,
-  StyledButton,
   CalendarWrap,
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import { useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-import { CloseBtn } from 'components/Modals/NeedHelp/NeedHelpModal.styled';
-import { IconClose } from 'components/Modals/UI/ModalCulumn.styled';
+import { CloseBtn } from 'components/Buttons/CloseBtn';
+import { ModalTitle } from 'components/Modals/ModalTitle';
+import { BaseBtn } from 'components/Buttons/BaseBtn';
 
 export default function CardFormDialog({
   titleText,
@@ -50,8 +47,6 @@ export default function CardFormDialog({
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDeadline] = useState('');
 
-  // console.log(dateDeadline);
-
   const createCard = {
     title: valueTitle,
     description: valueDescription,
@@ -66,8 +61,6 @@ export default function CardFormDialog({
     // setValueDescription('');
   };
 
-  console.log({ boardId, columnId, createCard });
-
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
@@ -80,7 +73,6 @@ export default function CardFormDialog({
 
   const handleChangeTitle = event => {
     setValueTitle(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleDateDedline = newValue => {
@@ -90,31 +82,18 @@ export default function CardFormDialog({
 
   const handleChangeDescription = event => {
     setValueDescription(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
-    console.log(event.target.value);
   };
-
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
       <div>
         <Dialog open={isShowModal} onClose={handleClose}>
           <ContainerModal>
-            <DialogTitle
-              sx={{
-                fontSize: 18,
-                fontWeight: 500,
-                padding: 0,
-                marginBottom: '24px',
-                color: `${theme?.themeSet?.modalHelpTitle}`,
-              }}
-            >
-              Edit card
-            </DialogTitle>
+            <ModalTitle title={'Edit card'} />
 
             <DialogContent sx={{ padding: 0 }}>
               <TextFieldStyled
@@ -187,7 +166,6 @@ export default function CardFormDialog({
                           '&.Mui-checked': {
                             color: '#E09CB5',
                             backgroundColor: 'transparent',
-
                           },
                         }}
                       />
@@ -227,7 +205,7 @@ export default function CardFormDialog({
                   />
                 </IconContainer>
               </FormControl>
-              
+
               <DialogTitle
                 sx={{
                   fontSize: 12,
@@ -241,12 +219,7 @@ export default function CardFormDialog({
               </DialogTitle>
 
               <CalendarWrap>
-                <Stack
-                  sx={{  color: '#BEDBB0' }}
-                  components={[
-                    'DatePicker'
-                  ]}
-                >
+                <Stack sx={{ color: '#BEDBB0' }} components={['DatePicker']}>
                   <div sx={{ width: '127px' }}>
                     <DatePicker
                       localeText={{ clearButtonLabel: 'Empty' }}
@@ -266,47 +239,9 @@ export default function CardFormDialog({
               </CalendarWrap>
             </DialogContent>
 
-            <DialogActionsStyled>
-              {/* {valueTitle ? ( */}
-                <StyledButton
-                  onClick={event => handleCloseBtn(event)}
-                  sx={{
-                    fontFamily: 'Poppins',
-                    backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
-                    color: `${theme?.themeSet?.modalHelpSendText}`,
+            <BaseBtn type={'submit'} label={'Edit'} onClick={handleCloseBtn} />
 
-                    fontWeight: 500,
-                    height: 49,
-                    width: '100%',
-                    padding: 0,
-                    textTransform: 'capitalize',
-                    borderRadius: '8px',
-
-                  }}
-                >
-                  <Box
-                    sx={{
-                      backgroundColor: `${theme?.themeSet?.boxIconBg}`,
-                      height: 28,
-                      width: 28,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: '8px',
-                      marginRight: 1,
-                    }}
-                  >
-                    <PlusIcon />
-                  </Box>
-                  Edit
-                </StyledButton>
-
-            </DialogActionsStyled>
-
-            <CloseBtn>
-              <IconClose onClick={handleClose} />
-            </CloseBtn>
-
+            <CloseBtn onClick={handleClose} />
           </ContainerModal>
         </Dialog>
       </div>

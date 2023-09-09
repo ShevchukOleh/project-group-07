@@ -1,31 +1,25 @@
 import { Dialog, IconButton } from '@mui/material';
-import {
-  ColumnModalFormInput,
-  IconCrossWrapper,
-  IconClose,
-} from '../UI/ModalCulumn.styled';
+import { ColumnModalFormInput } from '../UI/ModalCulumn.styled';
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { Formik, Form, Field } from 'formik';
-import { ModalContent, ModalTitle } from '../NeedHelp/NeedHelpModal.styled';
+import { ModalContent } from '../NeedHelp/NeedHelpModal.styled';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import noPhotoUser from '../../../../src/images/noImage-user2x.jpg';
-import {
-  AddAvatar,
-  IconPlus,
-  IconPlusAvatar,
-  ModalButton,
-} from './ModalEditProfile.styled';
+import { AddAvatar, IconPlus, IconPlusAvatar } from './ModalEditProfile.styled';
 import {
   addUserAvatar,
   fetchCurrentUser,
   updateUserData,
 } from 'store/AsyncThunk/asyncThunkUsersAuth';
+import { BaseBtn } from 'components/Buttons/BaseBtn';
+import { ModalTitle } from '../ModalTitle';
 
 const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
   const [imageFile, setImageFile] = useState(null);
   const [userAvatar, setUserAvatar] = useState(user?.avatarURL || noPhotoUser);
   const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null); 
+  const [email, setEmail] = useState(null);
   const [password, setPassword] = useState('********');
 
   const dispatch = useDispatch();
@@ -55,8 +49,8 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
     }
   }, [imageFile, user?.avatarURL]);
 
-  const userData = { name, email, password }
-  
+  const userData = { name, email, password };
+
   const onSubmit = async values => {
     createOpenModalShow();
     if (imageFile) {
@@ -75,12 +69,12 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
     email: '',
     password: '********',
   };
-  
+
   return (
     <div>
       <Dialog open={isCreateOpenModal} onClose={createOpenModalShow}>
         <ModalContent>
-          <ModalTitle>Edit profile</ModalTitle>
+          <ModalTitle title={'Edit profile'} />
 
           <Formik initialValues={initialValues} onSubmit={onSubmit}>
             <Form>
@@ -91,6 +85,7 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
                   style={{ display: 'none' }}
                   onChange={handleFileUpload}
                 />
+
                 <label htmlFor="file-input">
                   <IconButton color="primary" component="span">
                     <img
@@ -98,6 +93,7 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
                       alt="user-avatar"
                       style={{ width: 68, height: 68, borderRadius: '8px' }}
                     />
+
                     <IconPlusAvatar>
                       <IconPlus />
                     </IconPlusAvatar>
@@ -111,7 +107,7 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
                 name="name"
                 placeholder={user ? user.name : 'name'}
                 as={ColumnModalFormInput}
-                onChange={(e) => setName(e.target.value)}
+                onChange={e => setName(e.target.value)}
               />
               <Field
                 value={email}
@@ -119,7 +115,7 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
                 name="email"
                 placeholder={user ? user.email : 'email'}
                 as={ColumnModalFormInput}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
               />
               <Field
                 value={password}
@@ -127,15 +123,14 @@ const ModalEditProfile = ({ createOpenModalShow, isCreateOpenModal, user }) => {
                 name="password"
                 placeholder="password"
                 as={ColumnModalFormInput}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
               />
-              <ModalButton type="submit">Send</ModalButton>
+
+              <BaseBtn type={'submit'} label={'Send'} />
             </Form>
           </Formik>
 
-          <IconCrossWrapper onClick={handleCloseModal}>
-            <IconClose />
-          </IconCrossWrapper>
+          <CloseBtn onClick={handleCloseModal} />
         </ModalContent>
       </Dialog>
     </div>

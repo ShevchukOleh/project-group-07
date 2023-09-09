@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const ColumnModalContainer = styled.div`
   height: 221px;
@@ -108,34 +108,12 @@ const IconPlusWrapper = styled.div`
   align-items: center;
 `;
 
-const IconCrossWrapper = styled.div`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  position: absolute;
-  top: 14px;
-  right: 14px;
-`;
-
 const IconPlus = styled(AiOutlinePlus)`
   width: 18px;
   height: 18px;
   fill: ${props => {
     return props?.theme?.themeSet?.iconFill;
   }};
-`;
-
-const IconClose = styled(AiOutlineClose)`
-  width: 18px;
-  height: 18px;
-  fill: ${props => {
-    return props?.theme?.themeSet?.modalHelpTitle;
-  }};
-
-  &:hover {
-    transform: scale(1.1);
-    fill: red;
-  }
 `;
 
 export {
@@ -145,7 +123,5 @@ export {
   ColumnModalFormInput,
   ColumnModalFormBtn,
   IconPlusWrapper,
-  IconCrossWrapper,
   IconPlus,
-  IconClose,
 };

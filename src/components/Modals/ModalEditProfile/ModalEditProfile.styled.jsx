@@ -3,7 +3,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 
 export const AddAvatar = styled.div`
-    margin-top: 24px;
     margin-bottom: 25px; 
     display: flex; 
     justify-content: center;

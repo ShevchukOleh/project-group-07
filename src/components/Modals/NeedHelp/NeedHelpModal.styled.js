@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 import { Field } from 'formik';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { Button } from '@mui/material';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -15,28 +13,6 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-`;
-
-const CloseBtn = styled(Button)`
-  padding: 0;
-  min-width: 18px;
-  height: 18px;
-  position: absolute;
-  top: 10px;
-  right: 8px;
-`;
-
-const IconClose = styled(CloseOutlinedIcon)`
-  width: 18px;
-  height: 18px;
-  fill: ${props => {
-    return props?.theme?.themeSet?.modalHelpTitle;
-  }};
-
-  &:hover {
-    transform: scale(1.1);
-    fill: red;
-  }
 `;
 
 const ModalContent = styled.div`
@@ -99,7 +75,6 @@ const StyledInput = styled(Field)`
   border-style: solid;
   outline: none;
   border-radius: 4px;
-  margin-top: 16px;
   padding: 8px;
   background-color: ${props => {
     return props?.theme?.themeSet?.inputBgColor;
@@ -118,6 +93,7 @@ const StyledTextArea = styled(Field)`
   outline: none;
   border-radius: 4px;
   margin-top: 16px;
+  margin-bottom: 24px;
   padding: 8px;
   resize: none;
   background-color: ${props => {
@@ -135,6 +111,4 @@ export {
   ModalTitle,
   ModalContent,
   ModalOverlay,
-  IconClose,
-  CloseBtn,
 };

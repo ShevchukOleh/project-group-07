@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
-import { FiTrash, FiEdit2, FiArrowRightCircle } from 'react-icons/fi';
+import { FiTrash, FiEdit2, FiArrowRightCircle, FiBell } from 'react-icons/fi';
 
 import { useDispatch } from 'react-redux';
 import { deleteCard, editCardById } from 'store/AsyncThunk/asyncThunkBoards';
@@ -17,6 +17,7 @@ import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import CardFormDialog from 'components/CardModal/EditCardModal';
 import PopUpModal from 'components/PopUpModal/PopUpModal';
+import BackDrop from 'components/BackDrop/BackDrop';
 
 export default function BoardCard({ boardId, columnId, card }) {
   // const selectPriority = useSelector(selectedInPriority);
@@ -92,10 +93,25 @@ function BoardCardItem({ boardId, columnId, card }) {
   };
 
   //pop up
-  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowTransferModal, setIsShowTransferModal] = useState(false);
   const hideModal = () => {
-    setIsShowModal(false);
+    setIsShowTransferModal(false);
   };
+
+  //bell
+  const [isDeadline, setIsDeadline] = useState(false);
+  const inputDateChek = inputDate;
+  const todayDateChek = useMemo(() => {
+    return new Date();
+  }, []);
+  inputDateChek.setHours(0, 0, 0, 0);
+  todayDateChek.setHours(0, 0, 0, 0);
+
+  useEffect(() => {
+    if (inputDateChek.getTime() === todayDateChek.getTime()) {
+      setIsDeadline(true);
+    } else setIsDeadline(false);
+  }, [inputDateChek, todayDateChek]);
 
   return (
     <BoardCardStyle priorityColor={priorityColor(card.priority.toLowerCase())}>
@@ -139,12 +155,19 @@ function BoardCardItem({ boardId, columnId, card }) {
         </div>
       </div>
       <div className="containerCardIcon">
+        {isDeadline && (
+          <FiBell
+            style={{
+              color: '#BEDBB0',
+            }}
+          />
+        )}
         <FiArrowRightCircle
           style={{
             cursor: 'pointer',
             color: theme?.themeSet?.cardPriorityIcon,
           }}
-          onClick={() => setIsShowModal(true)}
+          onClick={() => setIsShowTransferModal(true)}
         />
 
         <FiEdit2
@@ -176,15 +199,16 @@ function BoardCardItem({ boardId, columnId, card }) {
           hideModal={closeModalCard}
         />
       </div>
-      {isShowModal && (
-        <PopUpModal
-          boardId={boardId}
-          columnId={columnId}
-          cardId={card._id}
-          isShowModal={isShowModal}
-          hideModal={hideModal}
-          card={card}
-        ></PopUpModal>
+      {isShowTransferModal && (
+        <BackDrop hideModal={hideModal}>
+          <PopUpModal
+            boardId={boardId}
+            columnId={columnId}
+            cardId={card._id}
+            hideModal={hideModal}
+            card={card}
+          ></PopUpModal>
+        </BackDrop>
       )}
     </BoardCardStyle>
   );

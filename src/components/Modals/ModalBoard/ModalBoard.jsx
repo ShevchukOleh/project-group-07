@@ -9,31 +9,24 @@ import {
   Image,
   ContainerModal,
   TextFieldStyled,
-  DialogActionsStyled,
   FormControlLabelStyled,
   ErrorTextWrap,
-  StyledButton,
-  StyledBox,
-  PlusIcon,
   IconWrapper,
   IconReactSvgWrapper,
-
 } from './ModalBoard.styled';
 import FormControl from '@mui/material/FormControl';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-import { useState } from 'react';
-import { useEffect } from 'react';
-
+import { useState, useEffect } from 'react';
 import { getIcon, getImage } from './servises';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { createBoard } from '../../../store/AsyncThunk/asyncThunkBoards';
 import { selectToken } from 'store/createSlices/userAuth/userSelectors';
-import { IconClose } from '../UI/ModalCulumn.styled';
-import { CloseBtn } from '../NeedHelp/NeedHelpModal.styled';
+import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
+import { ModalTitle } from '../ModalTitle';
+import { BaseBtn } from 'components/Buttons/BaseBtn';
 
 export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const user = useSelector(getCurrentUser);
@@ -76,8 +69,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
         setIsLoading(false);
       });
   }, [token]);
-
-  // console.log(icon);
 
   const createBd = {
     title: valueInput,
@@ -124,17 +115,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
             <ErrorTextWrap>Something went wrong. Try again later</ErrorTextWrap>
           )}
 
-          <DialogTitle
-            sx={{
-              fontSize: 18,
-              fontWeight: 500,
-              padding: 0,
-              marginBottom: '24px',
-              color: `${theme?.themeSet?.modalHelpTitle}`,
-            }}
-          >
-            New board
-          </DialogTitle>
+          <ModalTitle title={'New board'} />
 
           <DialogContent sx={{ padding: 0 }}>
             <TextFieldStyled
@@ -168,7 +149,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
 
               <IconWrapper>
                 {icon.map(({ _id, icon_src }) => (
-
                   <IconReactSvgWrapper
                     $currentTheme={currentTheme}
                     $isSelected={valueIcon === _id}
@@ -293,41 +273,9 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
             </ImageBgContainer>
           </DialogContent>
 
-          <DialogActionsStyled>
-            <StyledButton
-              onClick={handleCloseBtn}
-              sx={{
-                fontFamily: 'Poppins',
-                backgroundColor: `${theme?.themeSet?.modalHelpSendBg}`,
-                color: `${theme?.themeSet?.modalHelpSendText}`,
-                fontWeight: 500,
-                height: 49,
-                width: '100%',
-                padding: 0,
-                textTransform: 'capitalize',
-                borderRadius: '8px',
-              }}
-            >
-              <StyledBox
-                sx={{
-                  height: 28,
-                  width: 28,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '8px',
-                  marginRight: 1,
-                }}
-              >
-                <PlusIcon />
-              </StyledBox>
-              Create
-            </StyledButton>
-          </DialogActionsStyled>
+          <BaseBtn type={'submit'} label={'Create'} onClick={handleCloseBtn} />
 
-          <CloseBtn>
-            <IconClose onClick={createOpenModalShow} />
-          </CloseBtn>
+          <CloseBtn onClick={createOpenModalShow} />
         </ContainerModal>
       </Dialog>
     </div>

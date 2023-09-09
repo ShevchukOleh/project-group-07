@@ -66,11 +66,13 @@ export default function CardFormDialog({
     // setValueDescription('');
   };
 
-  // console.log({ boardId, columnId, createCard });
+  console.log({ boardId, columnId, createCard });
 
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
+    console.log(createCard)
+
     // setLabelColor('LOW');
     // setValueTitle('');
     // setValueDescription('');
@@ -78,7 +80,7 @@ export default function CardFormDialog({
 
   const handleChangeTitle = event => {
     setValueTitle(event.target.value);
-    // console.log(event.target.value);
+    console.log(event.target.value);
   };
 
   const handleDateDedline = newValue => {
@@ -88,12 +90,12 @@ export default function CardFormDialog({
 
   const handleChangeDescription = event => {
     setValueDescription(event.target.value);
-    // console.log(event.target.value);
+    console.log(event.target.value);
   };
 
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
-    // console.log(event.target.value);
+    console.log(event.target.value);
   };
 
 

@@ -87,7 +87,7 @@ export const ThemeModal = () => {
               <StyledFormControlLabel
                 value={LIGHT}
                 control={<StyledRadio />}
-                label="Light"
+                label={LIGHT}
                 labelPlacement="start"
                 themestatus={firstThemeStatus}
               />
@@ -95,7 +95,7 @@ export const ThemeModal = () => {
               <StyledFormControlLabel
                 value={DARK}
                 control={<StyledRadio />}
-                label="Dark"
+                label={DARK}
                 labelPlacement="start"
                 themestatus={secondThemeStatus}
               />
@@ -103,7 +103,7 @@ export const ThemeModal = () => {
               <StyledFormControlLabel
                 value={COLORED}
                 control={<StyledRadio />}
-                label="Violet"
+                label={COLORED}
                 labelPlacement="start"
                 themestatus={thirdThemeStatus}
               />

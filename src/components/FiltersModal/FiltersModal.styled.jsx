@@ -135,7 +135,7 @@ export const StyledFormControlLabel = styled(FormControlLabel)`
   }
 `;
 
-//const bgPriorityColor = (prioritystatus, bgcolor, theme) =>
+//const bgPriorityColor = (prioritystatus, bgcolor) =>
 //  prioritystatus ? 'transparent' : bgcolor;
 
 export const StyledRadio = styled(Radio)`

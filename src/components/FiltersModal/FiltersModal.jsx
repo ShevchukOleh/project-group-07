@@ -224,7 +224,7 @@ export const FiltersModal = () => {
                           mediumStatus,
                           '#E09CB5'
                         ),
-                        '& span svg': { fill: '#E09CB5' },
+                        '& span svg': { color: '#E09CB5' },
                       }}
                     />
                   }
@@ -236,6 +236,7 @@ export const FiltersModal = () => {
                   value="high"
                   control={
                     <Radio
+                      prioritystatus={highStatus}
                       sx={{
                         backgroundColor: bgPriorityColor(highStatus, '#BEDBB0'),
                         '& span svg': { color: '#BEDBB0' },

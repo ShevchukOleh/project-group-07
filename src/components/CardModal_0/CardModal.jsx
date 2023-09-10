@@ -192,7 +192,6 @@ export default function CardFormDialog({
                           '&.Mui-checked': {
                             color: '#E09CB5',
                             backgroundColor: 'transparent',
-
                           },
                         }}
                       />

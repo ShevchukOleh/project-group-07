@@ -62,7 +62,6 @@ function BoardCardItem({ boardId, columnId, card }) {
 
   let inputDate = new Date(card.deadline);
   const currentDate = new Date();
-  console.log('urrentDate!!!!!!!!!!!!!!!!: ', currentDate);
 
   if (inputDate.getTime() === 0) {
     inputDate = currentDate;

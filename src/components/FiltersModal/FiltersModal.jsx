@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react';
-import {
-  Menu,
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-} from '@mui/material';
+import { Radio } from '@mui/material';
 import {
   FiltersBtn,
   FilterIcon,
+  StyledMenu,
   Border,
   Wrapper,
+  StyledFormControl,
+  StyledFormLabel,
+  StyledRadioGroup,
+  StyledFormControlLabel,
   ShowAllBtn,
   MenuLabelWrap,
   MenuWrap,
@@ -50,33 +48,33 @@ export const FiltersModal = () => {
   const [mediumStatus, setMediumStatus] = useState(null);
   const [highStatus, setHighStatus] = useState(null);
 
-  const priorityColor = priorityStatus =>
-    priorityStatus
-      ? theme?.themeSet?.modalFiltersSubtitleFocus
-      : theme?.themeSet?.modalFiltersSubtitle;
-
   const bgPriorityColor = (priorityStatus, bgColor) =>
     priorityStatus ? 'transparent' : bgColor;
 
   const handleClick = event => {
     setFiltersEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setFiltersEl(null);
   };
+
   useEffect(() => {
     setObjCards(columnCards);
     setFilterValue(selectPriority);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columnCards, filteredAllCard]);
+
   useEffect(() => {
     setFilteredCards(objCards);
   }, [filteredCards, objCards]);
+
   const handleChange = event => {
     setFilterValue(event.currentTarget.value);
     const choosePriority = event.currentTarget.value;
 
     let filteredObjCards = {};
+
     if (choosePriority === 'Show all') {
       setFilteredCards(objCards);
     } else {
@@ -98,28 +96,28 @@ export const FiltersModal = () => {
 
     // ===========================================>sort
     if (event.currentTarget.value === 'without priority') {
-      setWithoutStatus(true);
+      setWithoutStatus('checked');
       setLowStatus(null);
       setMediumStatus(null);
       setHighStatus(null);
     }
     if (event.currentTarget.value === 'low') {
       setWithoutStatus(null);
-      setLowStatus(true);
+      setLowStatus('checked');
       setMediumStatus(null);
       setHighStatus(null);
     }
     if (event.currentTarget.value === 'medium') {
       setWithoutStatus(null);
       setLowStatus(null);
-      setMediumStatus(true);
+      setMediumStatus('checked');
       setHighStatus(null);
     }
     if (event.currentTarget.value === 'high') {
       setWithoutStatus(null);
       setLowStatus(null);
       setMediumStatus(null);
-      setHighStatus(true);
+      setHighStatus('checked');
     }
   };
 
@@ -146,7 +144,7 @@ export const FiltersModal = () => {
         Filters
       </FiltersBtn>
 
-      <Menu
+      <StyledMenu
         id="filters-menu"
         anchorEl={filtersEl}
         open={open}
@@ -159,19 +157,6 @@ export const FiltersModal = () => {
           vertical: 'top',
           horizontal: 'right',
         }}
-        sx={{
-          '& ul': {
-            padding: 0,
-          },
-          '& ul > div': {
-            backgroundColor: `${theme?.themeSet?.modalFiltersBg}`,
-            borderRadius: '8px',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            borderColor: `${theme?.themeSet?.modalFiltersOutBorder}`,
-            boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.05)',
-          },
-        }}
       >
         <MenuWrap>
           <MenuLabelWrap>
@@ -183,50 +168,22 @@ export const FiltersModal = () => {
           <Border />
 
           <Wrapper>
-            <FormControl
-              sx={{
-                width: 188,
-                justifyContent: 'center',
-              }}
-            >
-              <FormLabel
-                id="filters-radio-buttons-group-label"
-                sx={{
-                  marginBottom: '10px',
-                  color: `${theme?.themeSet?.modalFiltersTitle}`,
-                  fontFamily: 'Poppins',
-                  fontWeight: 500,
-                  fontSize: '14px',
-                  lineHeight: 1.5,
-                  letterSpacing: '0.02em',
-                }}
-              >
+            <StyledFormControl>
+              <StyledFormLabel id="filters-radio-buttons-group-label">
                 Label color
-              </FormLabel>
+              </StyledFormLabel>
 
-              <RadioGroup
+              <StyledRadioGroup
                 aria-labelledby="filters-radio-buttons-group-label"
                 name="filters-radio-buttons-group"
                 value={filterValue}
                 onChange={handleChange}
-                sx={{
-                  '&': { gap: '8px' },
-                  '& label': { margin: 0, gap: '8px' },
-                  '& label .MuiTypography-root': {
-                    fontFamily: 'Poppins',
-                    fontWeight: 400,
-                    fontSize: '12px',
-                    lineHeight: 1.5,
-                    letterSpacing: '0.02em',
-                  },
-                  '& label .MuiButtonBase-root': { padding: 0 },
-                  '& label > span span svg': { width: '14px', height: '14px' },
-                }}
               >
-                <FormControlLabel
-                  value="without"
+                <StyledFormControlLabel
+                  value="without priority"
                   control={
                     <Radio
+                      prioritystatus={withoutStatus}
                       sx={{
                         backgroundColor: bgPriorityColor(
                           withoutStatus,
@@ -239,16 +196,14 @@ export const FiltersModal = () => {
                     />
                   }
                   label="Without priority"
-                  sx={{
-                    '& .MuiTypography-root': {
-                      color: priorityColor(withoutStatus),
-                    },
-                  }}
+                  prioritystatus={withoutStatus}
                 />
-                <FormControlLabel
+
+                <StyledFormControlLabel
                   value="low"
                   control={
                     <Radio
+                      prioritystatus={lowStatus}
                       sx={{
                         backgroundColor: bgPriorityColor(lowStatus, '#8FA1D0'),
                         '& span svg': { color: '#8FA1D0' },
@@ -256,16 +211,14 @@ export const FiltersModal = () => {
                     />
                   }
                   label="Low"
-                  sx={{
-                    '& .MuiTypography-root': {
-                      color: priorityColor(lowStatus),
-                    },
-                  }}
+                  prioritystatus={lowStatus}
                 />
-                <FormControlLabel
+
+                <StyledFormControlLabel
                   value="medium"
                   control={
                     <Radio
+                      prioritystatus={mediumStatus}
                       sx={{
                         backgroundColor: bgPriorityColor(
                           mediumStatus,
@@ -276,16 +229,14 @@ export const FiltersModal = () => {
                     />
                   }
                   label="Medium"
-                  sx={{
-                    '& .MuiTypography-root': {
-                      color: priorityColor(mediumStatus),
-                    },
-                  }}
+                  prioritystatus={mediumStatus}
                 />
-                <FormControlLabel
+
+                <StyledFormControlLabel
                   value="high"
                   control={
                     <Radio
+                      prioritystatus={highStatus}
                       sx={{
                         backgroundColor: bgPriorityColor(highStatus, '#BEDBB0'),
                         '& span svg': { color: '#BEDBB0' },
@@ -293,20 +244,17 @@ export const FiltersModal = () => {
                     />
                   }
                   label="High"
-                  sx={{
-                    '& .MuiTypography-root': {
-                      color: priorityColor(highStatus),
-                    },
-                  }}
+                  prioritystatus={highStatus}
                 />
-              </RadioGroup>
-            </FormControl>
+              </StyledRadioGroup>
+            </StyledFormControl>
+
             <ShowAllBtn onClick={handleShowAllBtnClick} id="Show all">
               Show all
             </ShowAllBtn>
           </Wrapper>
         </MenuWrap>
-      </Menu>
+      </StyledMenu>
     </>
   );
 };

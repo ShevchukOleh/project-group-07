@@ -27,6 +27,12 @@ export const ThemeModal = () => {
   const [secondThemeStatus, setSecondThemeStatus] = useState(null);
   const [thirdThemeStatus, setThirdThemeStatus] = useState(null);
 
+  const themes = [
+    { name: LIGHT, status: firstThemeStatus },
+    { name: DARK, status: secondThemeStatus },
+    { name: COLORED, status: thirdThemeStatus },
+  ];
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -84,29 +90,16 @@ export const ThemeModal = () => {
               name="radio-buttons-group"
               onChange={handleChange}
             >
-              <StyledFormControlLabel
-                value={LIGHT}
-                control={<StyledRadio />}
-                label={LIGHT}
-                labelPlacement="start"
-                themestatus={firstThemeStatus}
-              />
-
-              <StyledFormControlLabel
-                value={DARK}
-                control={<StyledRadio />}
-                label={DARK}
-                labelPlacement="start"
-                themestatus={secondThemeStatus}
-              />
-
-              <StyledFormControlLabel
-                value={COLORED}
-                control={<StyledRadio />}
-                label={COLORED}
-                labelPlacement="start"
-                themestatus={thirdThemeStatus}
-              />
+              {themes.map(({ name, status }) => (
+                <StyledFormControlLabel
+                  key={name}
+                  value={name}
+                  control={<StyledRadio />}
+                  label={name}
+                  labelPlacement="start"
+                  themestatus={status}
+                />
+              ))}
             </StyledRadioGroup>
           </StyledFormControl>
         </Wrapper>

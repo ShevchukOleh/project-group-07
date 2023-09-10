@@ -54,7 +54,7 @@ export const StyledMenu = styled(Menu)`
     background-color: ${props => {
       return props?.theme?.themeSet?.modalFiltersBg;
     }};
-    border-radius: 8px;
+    border-radius: 4px;
     border-width: 1px;
     border-style: solid;
     border-color: ${props => {

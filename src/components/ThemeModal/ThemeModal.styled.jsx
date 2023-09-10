@@ -81,7 +81,7 @@ const themeBtnColor = ( themestatus, theme ) =>
 export const StyledFormControlLabel = styled(FormControlLabel)`
   margin-left: 0;
   justify-content: flex-end;
-  max-width: 100;
+  max-width: 100px;
 
   & .MuiTypography-root {
     color: ${({ themestatus, theme }) => themeBtnColor(themestatus, theme)};

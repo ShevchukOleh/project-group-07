@@ -180,7 +180,7 @@ export const FiltersModal = () => {
                 onChange={handleChange}
               >
                 <StyledFormControlLabel
-                  value="without"
+                  value="without priority"
                   control={
                     <Radio
                       prioritystatus={withoutStatus}

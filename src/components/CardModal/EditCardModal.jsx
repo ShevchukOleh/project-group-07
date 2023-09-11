@@ -43,16 +43,15 @@ export default function CardFormDialog({
 
   const dispatch = useDispatch();
   const cards = useSelector(selectAllColumnCards);
-  const currentCard = cards[columnId];
+  const currentCard = cards[columnId].find(({ _id }) => _id === cardId);
+  console.log('currentCard: ', currentCard);
 
-  const [valueTitle, setValueTitle] = useState(currentCard[0]?.title || '');
-  const [labelColor, setLabelColor] = useState(
-    currentCard[0]?.priority || 'LOW'
-  );
+  const [valueTitle, setValueTitle] = useState(currentCard?.title || '');
+  const [labelColor, setLabelColor] = useState(currentCard?.priority || 'LOW');
   const [valueDescription, setValueDescription] = useState(
-    currentCard[0]?.description || ''
+    currentCard?.description || ''
   );
-  const [dateDeadline, setDeadline] = useState(currentCard[0]?.deadline || '');
+  const [dateDeadline, setDeadline] = useState(currentCard?.deadline || '');
 
   const createCard = {
     title: valueTitle,

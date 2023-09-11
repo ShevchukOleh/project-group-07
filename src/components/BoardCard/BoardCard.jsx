@@ -203,7 +203,7 @@ function BoardCardItem({ boardId, columnId, card }) {
           btnText={'Edit'}
           requestFunction={editCardById}
           boardId={boardId}
-          columnId={selectedColumnId}
+          columnId={columnId}
           cardId={card._id}
           isShowModal={isModalCardOpen}
           hideModal={closeModalCard}

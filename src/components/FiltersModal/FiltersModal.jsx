@@ -10,6 +10,7 @@ import {
   StyledFormLabel,
   StyledRadioGroup,
   StyledFormControlLabel,
+  StyledRadio,
   ShowAllBtn,
   MenuLabelWrap,
   MenuWrap,
@@ -27,6 +28,12 @@ import {
   selectAllColumnCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
+
+const WITHOUT_PRIORITY = 'Without priority';
+const LOW = 'Low';
+const MEDIUM = 'Medium';
+const HIGH = 'High';
+const SHOW_ALL = 'Show all';
 
 export const FiltersModal = () => {
   const user = useSelector(getCurrentUser);
@@ -47,6 +54,13 @@ export const FiltersModal = () => {
   const [lowStatus, setLowStatus] = useState(null);
   const [mediumStatus, setMediumStatus] = useState(null);
   const [highStatus, setHighStatus] = useState(null);
+
+  const priorities = [
+    { name: WITHOUT_PRIORITY, status: withoutStatus },
+    { name: LOW, status: lowStatus },
+    { name: MEDIUM, status: mediumStatus },
+    { name: HIGH, status: highStatus },
+  ];
 
   const bgPriorityColor = (priorityStatus, bgColor) =>
     priorityStatus ? 'transparent' : bgColor;
@@ -75,7 +89,7 @@ export const FiltersModal = () => {
 
     let filteredObjCards = {};
 
-    if (choosePriority === 'Show all') {
+    if (choosePriority === SHOW_ALL) {
       setFilteredCards(objCards);
     } else {
       for (let key in objCards) {
@@ -95,25 +109,25 @@ export const FiltersModal = () => {
     setFilteredCards(filteredObjCards);
 
     // ===========================================>sort
-    if (event.currentTarget.value === 'without priority') {
+    if (event.currentTarget.value === WITHOUT_PRIORITY) {
       setWithoutStatus('checked');
       setLowStatus(null);
       setMediumStatus(null);
       setHighStatus(null);
     }
-    if (event.currentTarget.value === 'low') {
+    if (event.currentTarget.value === LOW) {
       setWithoutStatus(null);
       setLowStatus('checked');
       setMediumStatus(null);
       setHighStatus(null);
     }
-    if (event.currentTarget.value === 'medium') {
+    if (event.currentTarget.value === MEDIUM) {
       setWithoutStatus(null);
       setLowStatus(null);
       setMediumStatus('checked');
       setHighStatus(null);
     }
-    if (event.currentTarget.value === 'high') {
+    if (event.currentTarget.value === HIGH) {
       setWithoutStatus(null);
       setLowStatus(null);
       setMediumStatus(null);
@@ -122,7 +136,7 @@ export const FiltersModal = () => {
   };
 
   const handleShowAllBtnClick = event => {
-    if (event.target.id === 'Show all') {
+    if (event.target.id === SHOW_ALL) {
       dispatch(sortByPriority(objCards));
       setWithoutStatus(null);
       setLowStatus(null);
@@ -180,77 +194,57 @@ export const FiltersModal = () => {
                 onChange={handleChange}
               >
                 <StyledFormControlLabel
-                  value="without priority"
+                  value={WITHOUT_PRIORITY}
                   control={
-                    <Radio
+                    <StyledRadio
+                      priority={WITHOUT_PRIORITY}
                       prioritystatus={withoutStatus}
-                      sx={{
-                        backgroundColor: bgPriorityColor(
-                          withoutStatus,
-                          `${theme?.themeSet?.modalFiltersMarkWithoutPr}`
-                        ),
-                        '& span svg': {
-                          color: `${theme?.themeSet?.modalFiltersMarkWithoutPr}`,
-                        },
-                      }}
                     />
                   }
-                  label="Without priority"
+                  label={WITHOUT_PRIORITY}
                   prioritystatus={withoutStatus}
                 />
 
                 <StyledFormControlLabel
-                  value="low"
+                  value={LOW}
                   control={
-                    <Radio
+                    <StyledRadio
+                      priority={LOW}
                       prioritystatus={lowStatus}
-                      sx={{
-                        backgroundColor: bgPriorityColor(lowStatus, '#8FA1D0'),
-                        '& span svg': { color: '#8FA1D0' },
-                      }}
                     />
                   }
-                  label="Low"
+                  label={LOW}
                   prioritystatus={lowStatus}
                 />
 
                 <StyledFormControlLabel
-                  value="medium"
+                  value={MEDIUM}
                   control={
-                    <Radio
+                    <StyledRadio
+                      priority={MEDIUM}
                       prioritystatus={mediumStatus}
-                      sx={{
-                        backgroundColor: bgPriorityColor(
-                          mediumStatus,
-                          '#E09CB5'
-                        ),
-                        '& span svg': { color: '#E09CB5' },
-                      }}
                     />
                   }
-                  label="Medium"
+                  label={MEDIUM}
                   prioritystatus={mediumStatus}
                 />
 
                 <StyledFormControlLabel
-                  value="high"
+                  value={HIGH}
                   control={
-                    <Radio
+                    <StyledRadio
+                      priority={HIGH}
                       prioritystatus={highStatus}
-                      sx={{
-                        backgroundColor: bgPriorityColor(highStatus, '#BEDBB0'),
-                        '& span svg': { color: '#BEDBB0' },
-                      }}
                     />
                   }
-                  label="High"
+                  label={HIGH}
                   prioritystatus={highStatus}
                 />
               </StyledRadioGroup>
             </StyledFormControl>
 
-            <ShowAllBtn onClick={handleShowAllBtnClick} id="Show all">
-              Show all
+            <ShowAllBtn onClick={handleShowAllBtnClick} id={SHOW_ALL}>
+              {SHOW_ALL}
             </ShowAllBtn>
           </Wrapper>
         </MenuWrap>

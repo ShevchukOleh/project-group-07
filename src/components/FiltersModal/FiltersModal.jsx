@@ -25,12 +25,9 @@ import {
   selectAllColumnCards,
   selectedInPriority,
 } from 'store/createSlices/board/boardSelectors';
+import { priorityNames } from 'constants';
 
-const WITHOUT_PRIORITY = 'Without priority';
-const LOW = 'Low';
-const MEDIUM = 'Medium';
-const HIGH = 'High';
-const SHOW_ALL = 'Show all';
+const { LOW, MEDIUM, HIGH, WITHOUT_PRIORITY, SHOW_ALL } = priorityNames;
 
 export const FiltersModal = () => {
   const dispatch = useDispatch();

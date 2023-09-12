@@ -123,7 +123,7 @@ export const StyledRadioGroup = styled(RadioGroup)`
   }
 `;
 
-const priorityColor = (prioritystatus, theme) =>
+const priorityLabelColor = (prioritystatus, theme) =>
   prioritystatus
     ? theme?.themeSet?.modalFiltersSubtitleFocus
     : theme?.themeSet?.modalFiltersSubtitle;
@@ -131,19 +131,46 @@ const priorityColor = (prioritystatus, theme) =>
 export const StyledFormControlLabel = styled(FormControlLabel)`
   & .MuiTypography-root {
     color: ${({ prioritystatus, theme }) =>
-      priorityColor(prioritystatus, theme)};
+      priorityLabelColor(prioritystatus, theme)};
   }
 `;
 
-//const bgPriorityColor = (prioritystatus, bgcolor) =>
-//  prioritystatus ? 'transparent' : bgcolor;
+const withoutPrColor = theme => {
+  return theme?.themeSet?.modalFiltersMarkWithoutPr;
+};
+
+const priorityInputColor = (priority, theme) => {
+  switch (priority) {
+    case 'Low':
+      return '#8FA1D0';
+    case 'Medium':
+      return '#E09CB5';
+    case 'High':
+      return '#BEDBB0';
+    default:
+      return withoutPrColor(theme);
+  }
+};
+
+const priorityInputBgColor = (priority, prioritystatus, theme) => {
+  switch (priority) {
+    case 'Low':
+      return prioritystatus ? 'transparent' : '#8FA1D0';
+    case 'Medium':
+      return prioritystatus ? 'transparent' : '#E09CB5';
+    case 'High':
+      return prioritystatus ? 'transparent' : '#BEDBB0';
+    default:
+      return withoutPrColor(theme);
+  }
+};
 
 export const StyledRadio = styled(Radio)`
-  color: #bedbb0;
-  background-color: #bedbb0;
-  &.Mui-checked {
-    color: #bedbb0;
-    background-color: transparent;
+  background-color: ${({ priority, prioritystatus, theme }) =>
+    priorityInputBgColor(priority, prioritystatus, theme)};
+
+  & span svg {
+    color: ${({ priority, theme }) => priorityInputColor(priority, theme)};
   }
 `;
 

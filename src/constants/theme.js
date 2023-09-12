@@ -231,13 +231,16 @@ const coloredTheme = {
   calendar: '#5255BC',
 };
 
+export const themeNames = { LIGHT: 'Light', DARK: 'Dark', COLORED: 'Violet' };
+const { LIGHT, DARK, COLORED } = themeNames;
+
 const getThemeSet = themeSet => {
   switch (themeSet) {
-    case 'Light':
+    case LIGHT:
       return lightTheme;
-    case 'Dark':
+    case DARK:
       return darkTheme;
-    case 'Violet':
+    case COLORED:
       return coloredTheme;
     default:
       return lightTheme;

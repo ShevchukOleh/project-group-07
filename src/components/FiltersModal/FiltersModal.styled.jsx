@@ -9,6 +9,12 @@ import {
   Radio,
 } from '@mui/material';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import { priorityNames, priorityColors } from 'constants';
+
+const TRANSPARENT = 'transparent';
+const { LOW, MEDIUM, HIGH } = priorityNames;
+const { lowPriorityColor, mediumPriorityColor, highPriorityColor } =
+  priorityColors;
 
 export const FiltersBtn = styled(Button)`
   position: absolute;
@@ -141,12 +147,12 @@ const withoutPrColor = theme => {
 
 const priorityInputColor = (priority, theme) => {
   switch (priority) {
-    case 'Low':
-      return '#8FA1D0';
-    case 'Medium':
-      return '#E09CB5';
-    case 'High':
-      return '#BEDBB0';
+    case LOW:
+      return lowPriorityColor;
+    case MEDIUM:
+      return mediumPriorityColor;
+    case HIGH:
+      return highPriorityColor;
     default:
       return withoutPrColor(theme);
   }
@@ -154,14 +160,14 @@ const priorityInputColor = (priority, theme) => {
 
 const priorityInputBgColor = (priority, prioritystatus, theme) => {
   switch (priority) {
-    case 'Low':
-      return prioritystatus ? 'transparent' : '#8FA1D0';
-    case 'Medium':
-      return prioritystatus ? 'transparent' : '#E09CB5';
-    case 'High':
-      return prioritystatus ? 'transparent' : '#BEDBB0';
+    case LOW:
+      return prioritystatus ? TRANSPARENT : lowPriorityColor;
+    case MEDIUM:
+      return prioritystatus ? TRANSPARENT : mediumPriorityColor;
+    case HIGH:
+      return prioritystatus ? TRANSPARENT : highPriorityColor;
     default:
-      return withoutPrColor(theme);
+      return prioritystatus ? TRANSPARENT : withoutPrColor(theme);
   }
 };
 

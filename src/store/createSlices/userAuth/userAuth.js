@@ -64,11 +64,16 @@ const userSlice = createSlice({
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.loading = false;
+        state.token = null;
         state.error = action.error.message;
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.currentUser = action.payload;
         state.error = null;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        state.user = null;
+        state.error = action.error.message;
       })
       .addCase(fetchThemeUpdate.pending, state => {
         state.loading = true;
@@ -82,7 +87,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(addUserAvatar.pending, (state) => {
+      .addCase(addUserAvatar.pending, state => {
         state.loading = true;
       })
       .addCase(addUserAvatar.fulfilled, (state, action) => {
@@ -94,7 +99,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(updateUserData.pending, (state) => {
+      .addCase(updateUserData.pending, state => {
         state.loading = true;
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
@@ -105,8 +110,8 @@ const userSlice = createSlice({
       .addCase(updateUserData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
-  }
+      });
+  },
 });
 
 export default userSlice.reducer;

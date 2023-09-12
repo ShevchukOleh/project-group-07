@@ -53,6 +53,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = response;
       return data;
     } catch (error) {
+      thunkAPI.dispatch(logoutUser());
       throw new Error('Failed to fetch current user');
     }
   }
@@ -69,8 +70,8 @@ const fetchThemeUpdate = createAsyncThunk(
         },
       });
       const { data } = response;
-      const res = { theme: data }
-      console.log(res)
+      const res = { theme: data };
+      console.log(res);
       return res;
     } catch (error) {
       throw new Error('Failed to update theme');

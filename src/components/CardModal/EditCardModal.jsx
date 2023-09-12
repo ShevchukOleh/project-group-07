@@ -25,6 +25,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { ModalTitle } from 'components/Modals/ModalTitle';
 import { BaseBtn } from 'components/Buttons/BaseBtn';
+import { selectAllColumnCards } from 'store/createSlices/board/boardSelectors';
 
 export default function CardFormDialog({
   titleText,
@@ -41,11 +42,16 @@ export default function CardFormDialog({
   const theme = getTheme(currentTheme);
 
   const dispatch = useDispatch();
+  const cards = useSelector(selectAllColumnCards);
+  const currentCard = cards[columnId].find(({ _id }) => _id === cardId);
+  console.log('currentCard: ', currentCard);
 
-  const [valueTitle, setValueTitle] = useState('');
-  const [labelColor, setLabelColor] = useState('LOW');
-  const [valueDescription, setValueDescription] = useState('');
-  const [dateDeadline, setDeadline] = useState('');
+  const [valueTitle, setValueTitle] = useState(currentCard?.title || '');
+  const [labelColor, setLabelColor] = useState(currentCard?.priority || 'LOW');
+  const [valueDescription, setValueDescription] = useState(
+    currentCard?.description || ''
+  );
+  const [dateDeadline, setDeadline] = useState(currentCard?.deadline || '');
 
   const createCard = {
     title: valueTitle,
@@ -64,7 +70,6 @@ export default function CardFormDialog({
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
-    console.log(createCard)
 
     // setLabelColor('LOW');
     // setValueTitle('');
@@ -100,20 +105,21 @@ export default function CardFormDialog({
                 autoFocus
                 label="Required"
                 required
-                id="title"
                 type="text"
                 placeholder="Title"
+                value={valueTitle}
+                name="title"
                 onChange={handleChangeTitle}
               />
 
               <DescriptionFieldStyled
-                id="Description"
                 multiline
-                row={4}
+                rows={4}
                 label="Title"
                 type="text"
-                value={valueDescription}
                 placeholder="Description"
+                value={valueDescription}
+                name="description"
                 onChange={handleChangeDescription}
               />
 

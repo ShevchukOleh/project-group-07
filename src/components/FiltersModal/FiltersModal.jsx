@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Radio } from '@mui/material';
 import {
   FiltersBtn,
   FilterIcon,
@@ -18,8 +17,6 @@ import {
 
 import { ModalTitle } from 'components/Modals/ModalTitle';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
-import { getTheme } from 'constants';
-import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { sortByPriority } from 'store/createSlices/board/board';
@@ -36,9 +33,6 @@ const HIGH = 'High';
 const SHOW_ALL = 'Show all';
 
 export const FiltersModal = () => {
-  const user = useSelector(getCurrentUser);
-  const currentTheme = user?.theme || 'Light';
-  const theme = getTheme(currentTheme);
   const dispatch = useDispatch();
   const columnCards = useSelector(selectAllColumnCards);
   const filteredAllCard = useSelector(filteredAllCards);
@@ -61,9 +55,6 @@ export const FiltersModal = () => {
     { name: MEDIUM, status: mediumStatus },
     { name: HIGH, status: highStatus },
   ];
-
-  const bgPriorityColor = (priorityStatus, bgColor) =>
-    priorityStatus ? 'transparent' : bgColor;
 
   const handleClick = event => {
     setFiltersEl(event.currentTarget);
@@ -193,53 +184,17 @@ export const FiltersModal = () => {
                 value={filterValue}
                 onChange={handleChange}
               >
-                <StyledFormControlLabel
-                  value={WITHOUT_PRIORITY}
-                  control={
-                    <StyledRadio
-                      priority={WITHOUT_PRIORITY}
-                      prioritystatus={withoutStatus}
-                    />
-                  }
-                  label={WITHOUT_PRIORITY}
-                  prioritystatus={withoutStatus}
-                />
-
-                <StyledFormControlLabel
-                  value={LOW}
-                  control={
-                    <StyledRadio
-                      priority={LOW}
-                      prioritystatus={lowStatus}
-                    />
-                  }
-                  label={LOW}
-                  prioritystatus={lowStatus}
-                />
-
-                <StyledFormControlLabel
-                  value={MEDIUM}
-                  control={
-                    <StyledRadio
-                      priority={MEDIUM}
-                      prioritystatus={mediumStatus}
-                    />
-                  }
-                  label={MEDIUM}
-                  prioritystatus={mediumStatus}
-                />
-
-                <StyledFormControlLabel
-                  value={HIGH}
-                  control={
-                    <StyledRadio
-                      priority={HIGH}
-                      prioritystatus={highStatus}
-                    />
-                  }
-                  label={HIGH}
-                  prioritystatus={highStatus}
-                />
+                {priorities.map(({ name, status }) => (
+                  <StyledFormControlLabel
+                    key={name}
+                    value={name}
+                    control={
+                      <StyledRadio priority={name} prioritystatus={status} />
+                    }
+                    label={name}
+                    prioritystatus={status}
+                  />
+                ))}
               </StyledRadioGroup>
             </StyledFormControl>
 

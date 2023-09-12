@@ -12,10 +12,9 @@ import {
 } from './ThemeModal.styled';
 import Icon from '../../images/symbol-defs.svg';
 import { fetchThemeUpdate } from 'store/AsyncThunk/asyncThunkUsersAuth';
+import { themeNames } from 'constants';
 
-const LIGHT = 'Light';
-const DARK = 'Dark';
-const COLORED = 'Violet';
+const { LIGHT, DARK, COLORED } = themeNames;
 
 export const ThemeModal = () => {
   const dispatch = useDispatch();

@@ -62,7 +62,7 @@ function BoardCardItem({ boardId, columnId, card }) {
 
   let inputDate = new Date(card.deadline);
   const currentDate = new Date();
-  console.log('urrentDate!!!!!!!!!!!!!!!!: ', currentDate);
+  // console.log('currentDate!!!!!!!!!!!!!!!!: ', currentDate);
 
   if (inputDate.getTime() === 0) {
     inputDate = currentDate;
@@ -206,6 +206,7 @@ function BoardCardItem({ boardId, columnId, card }) {
           boardId={boardId}
           columnId={selectedColumnId}
           cardId={card._id}
+          card={card}
           isShowModal={isModalCardOpen}
           hideModal={closeModalCard}
         />

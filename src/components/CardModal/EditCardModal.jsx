@@ -18,38 +18,44 @@ import {
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
 import { Stack } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { ModalTitle } from 'components/Modals/ModalTitle';
 import { BaseBtn } from 'components/Buttons/BaseBtn';
-import {selectMyCards} from '../../store/createSlices/board/boardSelectors'
+import {selectAllColumnCards} from '../../store/createSlices/board/boardSelectors'
 
 export default function CardFormDialog({
-  titleText,
-  btnText,
   requestFunction,
   hideModal,
   isShowModal,
   boardId,
   columnId,
   cardId,
+  card,
 }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
-  const cardArray = useSelector(selectMyCards);
-  const currentCard = cardArray.find(card => card._id === cardId);
-  console.log(currentCard);
-
+  const cardArray = useSelector(selectAllColumnCards);
+  const currentColumn = cardArray[columnId];
   const dispatch = useDispatch();
 
   const [valueTitle, setValueTitle] = useState('');
   const [labelColor, setLabelColor] = useState('LOW');
   const [valueDescription, setValueDescription] = useState('');
-  const [dateDeadline, setDeadline] = useState('');
+  const [dateDeadline, setDeadline] = useState(Date.now());
+
+  useEffect(() => {
+      setLabelColor(card?.priority || '');
+      setValueDescription(card?.description || '');
+      setDeadline(card?.dateDeadline || Date.now());
+      setValueTitle(card?.title || '');
+  
+  }, [card, cardId, currentColumn]
+)
 
   const createCard = {
     title: valueTitle,
@@ -60,19 +66,11 @@ export default function CardFormDialog({
 
   const handleClose = () => {
     hideModal();
-    // setLabelColor('LOW');
-    // setValueTitle('');
-    // setValueDescription('');
   };
 
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
-    // console.log(createCard)
-
-    // setLabelColor('LOW');
-    // setValueTitle('');
-    // setValueDescription('');
   };
 
   const handleChangeTitle = event => {
@@ -106,7 +104,7 @@ export default function CardFormDialog({
                 required
                 id="title"
                 type="text"
-                placeholder="Title"
+                value={valueTitle}
                 onChange={handleChangeTitle}
               />
 

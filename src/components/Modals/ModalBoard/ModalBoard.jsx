@@ -28,7 +28,8 @@ import { ReactSVG } from 'react-svg';
 import { ModalTitle } from '../ModalTitle';
 import { BaseBtn } from 'components/Buttons/BaseBtn';
 
-export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
+export default function FormDialog({ createOpenModalShow, isCreateOpenModal,
+ }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
@@ -42,7 +43,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
   const [errorField, setErrorField] = useState(null);
-  // eslint-disable-next-line no-unused-vars
   const [selectImgBg, setSelectImgBg] = useState(null);
 
   const token = useSelector(selectToken);
@@ -84,7 +84,8 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
   const violetImageBg = image[16];
 
   const handleCloseBtn = (e) => {
-        e.preventDefault();
+    e.preventDefault();
+
     if (valueInput) {
       dispatch(createBoard(createBd));
       navigate(`/home/${valueInput}`);
@@ -96,10 +97,10 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
     }
   };
 
-  //   const handleTakeImgBg = _id => {
-  //   setSelectImgBg(_id);
-  //   takeIMG(_id);
-  // };
+    const handleTakeImgBg = _id => {
+    setSelectImgBg(_id);
+    // takeIMG(_id);
+  };
 
 
 
@@ -215,7 +216,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
                           checked
                         />
                       }
-                      // onClick={() => handleTakeImgBg(lightImageBg?._id)}
+                      onClick={() => handleTakeImgBg(lightImageBg?._id)}
                     />
                   }
                 />
@@ -241,7 +242,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
                           checked
                         />
                       }
-                      // onClick={() => handleTakeImgBg(violetImageBg?._id)}
+                      onClick={() => handleTakeImgBg(violetImageBg?._id)}
                     />
                   }
                 />
@@ -266,7 +267,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
                           checked
                         />
                       }
-                      // onClick={() => handleTakeImgBg(darkImageBg?._id)}
+                      onClick={() => handleTakeImgBg(darkImageBg?._id)}
                     />
                   }
                 />
@@ -284,7 +285,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal}) {
                         checkedIcon={
                           <Image src={background_icon_src} alt={_id} checked />
                         }
-                        // onClick={() => handleTakeImgBg(_id)}
+                        onClick={() => handleTakeImgBg(_id)}
                       />
                     }
                   />

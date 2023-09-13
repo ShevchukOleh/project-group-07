@@ -25,6 +25,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { ModalTitle } from 'components/Modals/ModalTitle';
 import { BaseBtn } from 'components/Buttons/BaseBtn';
+import {selectMyCards} from '../../store/createSlices/board/boardSelectors'
 
 export default function CardFormDialog({
   titleText,
@@ -39,6 +40,9 @@ export default function CardFormDialog({
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
+  const cardArray = useSelector(selectMyCards);
+  const currentCard = cardArray.find(card => card._id === cardId);
+  console.log(currentCard);
 
   const dispatch = useDispatch();
 
@@ -64,7 +68,7 @@ export default function CardFormDialog({
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
-    console.log(createCard)
+    // console.log(createCard)
 
     // setLabelColor('LOW');
     // setValueTitle('');

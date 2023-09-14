@@ -44,7 +44,6 @@ export default function CardFormDialog({
   const dispatch = useDispatch();
   const cards = useSelector(selectAllColumnCards);
   const currentCard = cards[columnId].find(({ _id }) => _id === cardId);
-  //console.log('currentCard: ', currentCard);
 
   const [valueTitle, setValueTitle] = useState(currentCard?.title || '');
   const [labelColor, setLabelColor] = useState(currentCard?.priority || 'LOW');

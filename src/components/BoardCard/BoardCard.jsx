@@ -202,6 +202,7 @@ function BoardCardItem({ boardId, columnId, card }) {
           boardId={boardId}
           columnId={columnId}
           cardId={card._id}
+          card={card}
           isShowModal={isModalCardOpen}
           hideModal={closeModalCard}
         />

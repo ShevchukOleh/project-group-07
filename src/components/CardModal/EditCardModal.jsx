@@ -18,7 +18,7 @@ import {
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
 import { Stack } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
@@ -28,22 +28,37 @@ import { BaseBtn } from 'components/Buttons/BaseBtn';
 import { selectAllColumnCards } from 'store/createSlices/board/boardSelectors';
 
 export default function CardFormDialog({
-  titleText,
-  btnText,
   requestFunction,
   hideModal,
   isShowModal,
   boardId,
   columnId,
   cardId,
+  card,
 }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
-
+  const cardArray = useSelector(selectAllColumnCards);
+  const currentColumn = cardArray[columnId];
   const dispatch = useDispatch();
   const cards = useSelector(selectAllColumnCards);
   const currentCard = cards[columnId].find(({ _id }) => _id === cardId);
+
+
+//   const [valueTitle, setValueTitle] = useState('');
+//   const [labelColor, setLabelColor] = useState('LOW');
+//   const [valueDescription, setValueDescription] = useState('');
+//   const [dateDeadline, setDeadline] = useState(Date.now());
+
+//   useEffect(() => {
+//       setLabelColor(card?.priority || '');
+//       setValueDescription(card?.description || '');
+//       setDeadline(card?.dateDeadline || Date.now());
+//       setValueTitle(card?.title || '');
+  
+//   }, [card, cardId, currentColumn]
+// )
 
   const [valueTitle, setValueTitle] = useState(currentCard?.title || '');
   const [labelColor, setLabelColor] = useState(currentCard?.priority || 'LOW');
@@ -51,6 +66,7 @@ export default function CardFormDialog({
     currentCard?.description || ''
   );
   const [dateDeadline, setDeadline] = useState(currentCard?.deadline || '');
+
 
   const createCard = {
     title: valueTitle,
@@ -61,18 +77,11 @@ export default function CardFormDialog({
 
   const handleClose = () => {
     hideModal();
-    // setLabelColor('LOW');
-    // setValueTitle('');
-    // setValueDescription('');
   };
 
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
-
-    // setLabelColor('LOW');
-    // setValueTitle('');
-    // setValueDescription('');
   };
 
   const handleChangeTitle = event => {

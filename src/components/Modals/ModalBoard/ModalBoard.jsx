@@ -28,7 +28,8 @@ import { ReactSVG } from 'react-svg';
 import { ModalTitle } from '../ModalTitle';
 import { BaseBtn } from 'components/Buttons/BaseBtn';
 
-export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
+export default function FormDialog({ createOpenModalShow, isCreateOpenModal,
+ }) {
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
@@ -42,6 +43,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const [icon, setIcon] = useState([]);
   const [image, setImage] = useState([]);
   const [errorField, setErrorField] = useState(null);
+  const [selectImgBg, setSelectImgBg] = useState(null);
 
   const token = useSelector(selectToken);
 
@@ -78,10 +80,12 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
   const length = image.length - 3;
   const imageNew = image.slice(0, length);
   const lightImageBg = image[15];
-  const darkImageBg = image[16];
-  const violetImageBg = image[17];
+  const darkImageBg = image[17];
+  const violetImageBg = image[16];
 
-  const handleCloseBtn = () => {
+  const handleCloseBtn = (e) => {
+    e.preventDefault();
+
     if (valueInput) {
       dispatch(createBoard(createBd));
       navigate(`/home/${valueInput}`);
@@ -92,6 +96,13 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
       setErrorField('Please, fill in the required fields');
     }
   };
+
+    const handleTakeImgBg = _id => {
+    setSelectImgBg(_id);
+    // takeIMG(_id);
+  };
+
+
 
   const handleChange = event => {
     setValueInput(event.target.value);
@@ -126,7 +137,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
               placeholder="Title"
               required
               onChange={handleChange}
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
             {errorField && (
               <div style={{ color: 'red', position: 'absolute', top: 130 }}>
@@ -186,10 +197,12 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
             >
               {currentTheme === 'Light' && (
                 <FormControlLabelStyled
-                  value={'noBackground'}
+                  value={lightImageBg?._id}
+                  key={lightImageBg?._id}
+                  selected={lightImageBg?._id === selectImgBg}
                   control={
                     <RadioStyledImg
-                      key={lightImageBg?._id}
+
                       icon={
                         <Image
                           src={lightImageBg?.background_icon_src}
@@ -203,52 +216,58 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                           checked
                         />
                       }
+                      onClick={() => handleTakeImgBg(lightImageBg?._id)}
                     />
                   }
                 />
               )}
               {currentTheme === 'Violet' && (
                 <FormControlLabelStyled
-                  value={'noBackground'}
+                  value={violetImageBg?._id}
+                  key={violetImageBg?._id}
+                  selected={violetImageBg?._id === selectImgBg}
                   control={
                     <RadioStyledImg
-                      key={darkImageBg?._id}
+
                       icon={
                         <Image
-                          src={darkImageBg?.background_icon_src}
+                          src={violetImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={darkImageBg?.background_icon_src}
+                          src={violetImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />
                       }
+                      onClick={() => handleTakeImgBg(violetImageBg?._id)}
                     />
                   }
                 />
               )}
               {currentTheme === 'Dark' && (
                 <FormControlLabelStyled
-                  value={'noBackground'}
+                  value={darkImageBg?._id}
+                  selected={darkImageBg?._id === selectImgBg}
+                  key={darkImageBg?._id}
                   control={
                     <RadioStyledImg
-                      key={violetImageBg?._id}
                       icon={
                         <Image
-                          src={violetImageBg?.background_icon_src}
+                          src={darkImageBg?.background_icon_src}
                           alt="noBackground"
                         />
                       }
                       checkedIcon={
                         <Image
-                          src={violetImageBg?.background_icon_src}
+                          src={darkImageBg?.background_icon_src}
                           alt="noBackground"
                           checked
                         />
                       }
+                      onClick={() => handleTakeImgBg(darkImageBg?._id)}
                     />
                   }
                 />
@@ -266,6 +285,7 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal }) {
                         checkedIcon={
                           <Image src={background_icon_src} alt={_id} checked />
                         }
+                        onClick={() => handleTakeImgBg(_id)}
                       />
                     }
                   />

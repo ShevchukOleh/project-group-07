@@ -18,7 +18,7 @@ import {
 } from './CardModal.styled';
 import FormControl from '@mui/material/FormControl';
 import { Stack } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
@@ -39,8 +39,8 @@ export default function CardFormDialog({
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
-  const cardArray = useSelector(selectAllColumnCards);
-  const currentColumn = cardArray[columnId];
+  // const cardArray = useSelector(selectAllColumnCards);
+  // const currentColumn = cardArray[columnId];
   const dispatch = useDispatch();
   const cards = useSelector(selectAllColumnCards);
   const currentCard = cards[columnId].find(({ _id }) => _id === cardId);

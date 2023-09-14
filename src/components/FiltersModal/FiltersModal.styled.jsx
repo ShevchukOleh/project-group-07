@@ -9,6 +9,12 @@ import {
   Radio,
 } from '@mui/material';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import { priorityNames, priorityColors } from 'constants';
+
+const TRANSPARENT = 'transparent';
+const { LOW, MEDIUM, HIGH } = priorityNames;
+const { lowPriorityColor, mediumPriorityColor, highPriorityColor } =
+  priorityColors;
 
 export const FiltersBtn = styled(Button)`
   position: absolute;
@@ -123,7 +129,7 @@ export const StyledRadioGroup = styled(RadioGroup)`
   }
 `;
 
-const priorityColor = (prioritystatus, theme) =>
+const priorityLabelColor = (prioritystatus, theme) =>
   prioritystatus
     ? theme?.themeSet?.modalFiltersSubtitleFocus
     : theme?.themeSet?.modalFiltersSubtitle;
@@ -131,19 +137,46 @@ const priorityColor = (prioritystatus, theme) =>
 export const StyledFormControlLabel = styled(FormControlLabel)`
   & .MuiTypography-root {
     color: ${({ prioritystatus, theme }) =>
-      priorityColor(prioritystatus, theme)};
+      priorityLabelColor(prioritystatus, theme)};
   }
 `;
 
-//const bgPriorityColor = (prioritystatus, bgcolor) =>
-//  prioritystatus ? 'transparent' : bgcolor;
+const withoutPrColor = theme => {
+  return theme?.themeSet?.modalFiltersMarkWithoutPr;
+};
+
+const priorityInputColor = (priority, theme) => {
+  switch (priority) {
+    case LOW:
+      return lowPriorityColor;
+    case MEDIUM:
+      return mediumPriorityColor;
+    case HIGH:
+      return highPriorityColor;
+    default:
+      return withoutPrColor(theme);
+  }
+};
+
+const priorityInputBgColor = (priority, prioritystatus, theme) => {
+  switch (priority) {
+    case LOW:
+      return prioritystatus ? TRANSPARENT : lowPriorityColor;
+    case MEDIUM:
+      return prioritystatus ? TRANSPARENT : mediumPriorityColor;
+    case HIGH:
+      return prioritystatus ? TRANSPARENT : highPriorityColor;
+    default:
+      return prioritystatus ? TRANSPARENT : withoutPrColor(theme);
+  }
+};
 
 export const StyledRadio = styled(Radio)`
-  color: #bedbb0;
-  background-color: #bedbb0;
-  &.Mui-checked {
-    color: #bedbb0;
-    background-color: transparent;
+  background-color: ${({ priority, prioritystatus, theme }) =>
+    priorityInputBgColor(priority, prioritystatus, theme)};
+
+  & span svg {
+    color: ${({ priority, theme }) => priorityInputColor(priority, theme)};
   }
 `;
 

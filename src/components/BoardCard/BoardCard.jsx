@@ -86,12 +86,8 @@ function BoardCardItem({ boardId, columnId, card }) {
   const toggleDescription = () => {
     setDescriptionExpanded(!isDescriptionExpanded);
   };
-  // const [selectedColumnId, setSelectedColumnId] = useState(null);
-  const [setSelectedColumnId] = useState(null);
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
   const openModalCard = columnId => {
-    setSelectedColumnId(columnId);
-    // console.log('SelectedColumnId: ', selectedColumnId);
     setIsModalCardOpen(true);
   };
   const closeModalCard = () => {

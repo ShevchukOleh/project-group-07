@@ -62,7 +62,6 @@ function BoardCardItem({ boardId, columnId, card }) {
 
   let inputDate = new Date(card.deadline);
   const currentDate = new Date();
-  // console.log('currentDate!!!!!!!!!!!!!!!!: ', currentDate);
 
   if (inputDate.getTime() === 0) {
     inputDate = currentDate;
@@ -87,11 +86,8 @@ function BoardCardItem({ boardId, columnId, card }) {
   const toggleDescription = () => {
     setDescriptionExpanded(!isDescriptionExpanded);
   };
-  const [selectedColumnId, setSelectedColumnId] = useState(null);
   const [isModalCardOpen, setIsModalCardOpen] = useState(false);
   const openModalCard = columnId => {
-    setSelectedColumnId(columnId);
-    // console.log('SelectedColumnId: ', selectedColumnId);
     setIsModalCardOpen(true);
   };
   const closeModalCard = () => {
@@ -204,7 +200,7 @@ function BoardCardItem({ boardId, columnId, card }) {
           btnText={'Edit'}
           requestFunction={editCardById}
           boardId={boardId}
-          columnId={selectedColumnId}
+          columnId={columnId}
           cardId={card._id}
           card={card}
           isShowModal={isModalCardOpen}

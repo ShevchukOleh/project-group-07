@@ -25,7 +25,7 @@ import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import { CloseBtn } from 'components/Buttons/CloseBtn';
 import { ModalTitle } from 'components/Modals/ModalTitle';
 import { BaseBtn } from 'components/Buttons/BaseBtn';
-import {selectAllColumnCards} from '../../store/createSlices/board/boardSelectors'
+import { selectAllColumnCards } from 'store/createSlices/board/boardSelectors';
 
 export default function CardFormDialog({
   requestFunction,
@@ -42,20 +42,31 @@ export default function CardFormDialog({
   const cardArray = useSelector(selectAllColumnCards);
   const currentColumn = cardArray[columnId];
   const dispatch = useDispatch();
+  const cards = useSelector(selectAllColumnCards);
+  const currentCard = cards[columnId].find(({ _id }) => _id === cardId);
 
-  const [valueTitle, setValueTitle] = useState('');
-  const [labelColor, setLabelColor] = useState('LOW');
-  const [valueDescription, setValueDescription] = useState('');
-  const [dateDeadline, setDeadline] = useState(Date.now());
 
-  useEffect(() => {
-      setLabelColor(card?.priority || '');
-      setValueDescription(card?.description || '');
-      setDeadline(card?.dateDeadline || Date.now());
-      setValueTitle(card?.title || '');
+//   const [valueTitle, setValueTitle] = useState('');
+//   const [labelColor, setLabelColor] = useState('LOW');
+//   const [valueDescription, setValueDescription] = useState('');
+//   const [dateDeadline, setDeadline] = useState(Date.now());
+
+//   useEffect(() => {
+//       setLabelColor(card?.priority || '');
+//       setValueDescription(card?.description || '');
+//       setDeadline(card?.dateDeadline || Date.now());
+//       setValueTitle(card?.title || '');
   
-  }, [card, cardId, currentColumn]
-)
+//   }, [card, cardId, currentColumn]
+// )
+
+  const [valueTitle, setValueTitle] = useState(currentCard?.title || '');
+  const [labelColor, setLabelColor] = useState(currentCard?.priority || 'LOW');
+  const [valueDescription, setValueDescription] = useState(
+    currentCard?.description || ''
+  );
+  const [dateDeadline, setDeadline] = useState(currentCard?.deadline || '');
+
 
   const createCard = {
     title: valueTitle,
@@ -102,20 +113,21 @@ export default function CardFormDialog({
                 autoFocus
                 label="Required"
                 required
-                id="title"
                 type="text"
+                placeholder="Title"
                 value={valueTitle}
+                name="title"
                 onChange={handleChangeTitle}
               />
 
               <DescriptionFieldStyled
-                id="Description"
                 multiline
-                row={4}
+                rows={4}
                 label="Title"
                 type="text"
-                value={valueDescription}
                 placeholder="Description"
+                value={valueDescription}
+                name="description"
                 onChange={handleChangeDescription}
               />
 

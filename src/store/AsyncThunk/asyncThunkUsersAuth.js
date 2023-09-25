@@ -17,7 +17,6 @@ const registerUser = createAsyncThunk('user/registerUser', async userData => {
   try {
     const response = await axios.post(`${BASE_URL}register`, userData);
     const { data } = response;
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error('Failed to register');

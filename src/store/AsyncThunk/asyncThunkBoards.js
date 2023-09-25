@@ -66,7 +66,6 @@ const getIconBoard = createAsyncThunk('board/getIcon', async (_, thunkAPI) => {
       },
     });
     const { data } = response;
-    console.log('data: ', data);
     return data;
   } catch (error) {
     throw new Error('Failed get icon');
@@ -84,7 +83,6 @@ const deleteBoard = createAsyncThunk(
         },
       });
       const { data } = response;
-      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed delete Board');
@@ -94,7 +92,6 @@ const deleteBoard = createAsyncThunk(
 const editBoardById = createAsyncThunk(
   'board/editBoardById',
   async ({ boardId, editBoardObject }, thunkAPI) => {
-    console.log(editBoardObject);
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
@@ -107,7 +104,6 @@ const editBoardById = createAsyncThunk(
         }
       );
       const { data } = response;
-      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed edit board by id');
@@ -126,7 +122,6 @@ const getBoardById = createAsyncThunk(
         },
       });
       const { data } = response;
-      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed get board by id');
@@ -176,7 +171,6 @@ const createColumn = createAsyncThunk(
         }
       );
       const { data } = response;
-      console.log('data: ', data);
       return data;
     } catch (error) {
       throw new Error('Failed to post new column');
@@ -254,7 +248,6 @@ const getAllCards = createAsyncThunk(
 const createOneCard = createAsyncThunk(
   'board/postCard',
   async ({ boardId, columnId, createCard }, thunkAPI) => {
-    console.log({ boardId, columnId, createCard });
 
     try {
       const token = thunkAPI.getState().user.token;
@@ -268,7 +261,6 @@ const createOneCard = createAsyncThunk(
         }
       );
       const { data } = response;
-      console.log('data: ', data);
       return { data, columnId };
     } catch (error) {
       throw new Error('Failed to post new card');

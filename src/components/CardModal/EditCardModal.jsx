@@ -85,7 +85,7 @@ export default function CardFormDialog({
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+    <LocalizationProvider dateAdapter={AdapterDayjs} locale="uk">
       <div>
         <Dialog open={isShowModal} onClose={handleClose}>
           <ContainerModal>

@@ -1,20 +1,6 @@
 import React from 'react';
 import { AddCard } from './AddCard.styled';
 
-{
-  /* <CardForm>
-  <h4 className="title">Add Card</h4>
-  <input placeholder="Title" type="text"></input>
-  <textarea placeholder="Description" typeof="text"></textarea>
-  <input type="radio"></input>
-  <input type="radio"></input>
-  <input type="radio"></input>
-  <input type="radio"></input>
-  <Deadline></Deadline>
-  <addCardBtn></addCardBtn>
-</CardForm>; */
-}
-
 const Card = () => {
   return (
     <AddCard>

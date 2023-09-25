@@ -13,7 +13,6 @@ const collectionSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      // fetchTodos===========================================================>
       .addCase(fetchTodos.pending, state => {
         state.loading = true;
       })
@@ -26,11 +25,9 @@ const collectionSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      // createTodo===========================================================>
       .addCase(createTodo.fulfilled, (state, action) => {
         state.todos.push(action.payload);
       })
-      //updateTodo ===========================================================>
       .addCase(updateTodo.fulfilled, (state, action) => {
         const updatedIndex = state.todos.findIndex(
           todo => todo.id === action.payload.id
@@ -39,11 +36,9 @@ const collectionSlice = createSlice({
           state.todos[updatedIndex] = action.payload;
         }
       })
-      //deleteTodo ===========================================================>
       .addCase(deleteTodo.fulfilled, (state, action) => {
         state.todos = state.todos.filter(todo => todo.id !== action.payload);
       })
-      //patchTodo ===========================================================>
       .addCase(patchTodo.fulfilled, (state, action) => {
         const patchedIndex = state.todos.findIndex(
           todo => todo.id === action.payload.id

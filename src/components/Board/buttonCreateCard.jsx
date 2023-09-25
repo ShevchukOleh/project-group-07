@@ -1,5 +1,4 @@
 import React from 'react';
-// import { ButtonCreateStyle } from './ButtonCreate.styled';
 import { RiAddLine } from 'react-icons/ri';
 import { ButtonCreateCard } from './Board.styled';
 

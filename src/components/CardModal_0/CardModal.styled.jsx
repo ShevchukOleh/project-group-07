@@ -36,7 +36,6 @@ width: 350px;
   }
 
 `
-// export const LightModeIcon = 
 export const FormControlLabelStyled = styled(FormControlLabel)`
 margin: 0px;
 `
@@ -105,14 +104,7 @@ padding-left: 18px;
   ::placeholder {
     color: #BEDBB0;
   };
-  // &&:focus {
-  // border: 1px solid grey
-  // };
   &:hover {
   border: 1px solid grey
   };
 `
-
-// export const DateField = styled.input`
-
-// `

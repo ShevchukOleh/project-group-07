@@ -37,9 +37,9 @@ export const Sidebar = () => {
   const boardsInSidebar = useSelector(selectBoards);
   const [isCreateOpenModal, setCreateOpenModal] = useState(false);
   const [isNeedHelpModal, setisNeedHelpModal] = useState(false);
-  const [boardsList, setBoardsList] = useState(boardsInSidebar); //collection boards
-  const [filteredItems, setFilteredItems] = useState(boardsInSidebar); //search
-  // ===============================search
+  const [boardsList, setBoardsList] = useState(boardsInSidebar);
+  const [filteredItems, setFilteredItems] = useState(boardsInSidebar);
+
   useEffect(() => {
     dispatch(getAllBoards());
   }, [dispatch]);
@@ -47,16 +47,11 @@ export const Sidebar = () => {
   useEffect(() => {
     setBoardsList(boardsInSidebar);
   }, [boardsInSidebar, filteredItems]);
-  // =============================search
+
   const createOpenModalShow = () => {
     setCreateOpenModal(!isCreateOpenModal);
   };
 
-  //   const openModalBoard = () => {
-  //     setIsModalBoardOpen(true);
-  //   };
-  //   const closeModalBoard = () => {
-  //     setIsModalBoardOpen(false);
   const needHelpModalShow = e => {
     if (
       e.target.id === 'backdropNeedHelp' ||

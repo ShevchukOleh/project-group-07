@@ -114,7 +114,7 @@ const editBoardById = createAsyncThunk(
     }
   }
 );
-// 500 error
+
 const getBoardById = createAsyncThunk(
   'board/getBoardById',
   async (boardId, thunkAPI) => {
@@ -189,7 +189,6 @@ const editColumnById = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
       const response = await axios.patch(
-        // `${BASE_URL}api/board/${boardId}/column/${columnId}`,
 
         `${BASE_URL}api/board/${requestData.boardId}/column/${requestData.columnId}`,
         { title },
@@ -245,7 +244,6 @@ const getAllCards = createAsyncThunk(
         }
       );
       const { data } = response;
-      // data.columnId = columnId;
       return { data, columnId };
     } catch (error) {
       throw new Error('Failed get cards');
@@ -342,12 +340,6 @@ const submitHelp = createAsyncThunk(
   }
 );
 
-// const SwaggerUI = async () => {
-// const { data } = await axios.get(
-// `https://taskpro-backend-zulp.onrender.com/api-docs/Swagger_UI`
-// );
-// console.log(data);
-// };
 export {
   getAllBoards,
   createBoard,

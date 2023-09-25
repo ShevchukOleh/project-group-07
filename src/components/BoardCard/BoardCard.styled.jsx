@@ -42,7 +42,7 @@ export const BoardCardStyle = styled.div`
     }};
     font-size: 12px;
     font-weight: 400;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
     letter-spacing: -0.24px;
   }
 

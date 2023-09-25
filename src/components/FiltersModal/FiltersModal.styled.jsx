@@ -21,9 +21,9 @@ export const FiltersBtn = styled(Button)`
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
   gap: 8px;
-  /* color: ${props => {
+  color: ${props => {
     return props?.theme?.themeSet?.modalFiltersLabel;
-  }}; */
+  }};
   color: black;
   font-family: Poppins;
   font-size: 14px;

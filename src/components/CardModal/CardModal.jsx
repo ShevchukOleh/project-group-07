@@ -141,7 +141,6 @@ export default function CardFormDialog({
                 >
                   <FormControlLabelStyled
                     value="LOW"
-                    // key={_id}
                     control={
                       <RadioStyled
                         sx={{

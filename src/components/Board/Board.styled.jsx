@@ -112,9 +112,9 @@ export const BoardStyle = styled.section`
   }
 
   & .title {
-    /* color: ${props => {
+    color: ${props => {
       return props?.theme?.themeSet?.boardTitle;
-    }}; */
+    }};
     color: black;
 
     font-size: 14px;

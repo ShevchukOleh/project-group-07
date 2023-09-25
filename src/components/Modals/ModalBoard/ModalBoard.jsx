@@ -61,7 +61,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal,
 
   useEffect(() => {
     setIsLoading(true);
-    // setImage([]);
     getImage(token)
       .then(data => {
         setImage(data);
@@ -99,7 +98,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal,
 
     const handleTakeImgBg = _id => {
     setSelectImgBg(_id);
-    // takeIMG(_id);
   };
 
 
@@ -137,7 +135,6 @@ export default function FormDialog({ createOpenModalShow, isCreateOpenModal,
               placeholder="Title"
               required
               onChange={handleChange}
-              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
             {errorField && (
               <div style={{ color: 'red', position: 'absolute', top: 130 }}>

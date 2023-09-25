@@ -5,7 +5,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
 import { Radio, FormControlLabel } from '@mui/material';
 import { RiAddLine } from 'react-icons/ri';
-// import AddIcon from '@mui/icons-material/Add';
 
 export const ButtonStyled = styled(Button)`
   font-family: 'Poppins';
@@ -97,7 +96,6 @@ export const IconWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  //cursor: pointer;
 `;
 
 export const IconReactSvgWrapper = styled.span`

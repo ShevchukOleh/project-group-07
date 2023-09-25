@@ -71,7 +71,6 @@ const fetchThemeUpdate = createAsyncThunk(
       });
       const { data } = response;
       const res = { theme: data };
-      console.log(res);
       return res;
     } catch (error) {
       throw new Error('Failed to update theme');

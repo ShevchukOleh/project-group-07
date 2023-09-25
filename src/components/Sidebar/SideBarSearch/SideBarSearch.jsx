@@ -32,7 +32,6 @@ const SideBarSearch = ({ boardsList, setFilteredItems }) => {
 
   return (
     <StyledInput
-      id="standard-multiline-flexible"
       type="text"
       placeholder="My boards"
       value={searchText}

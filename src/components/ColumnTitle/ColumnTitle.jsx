@@ -17,8 +17,6 @@ export default function ColumnTitle(params) {
   const theme = getTheme(currentTheme);
 
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectLoading);
-  // const isError = useSelector(selectError);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [editColumn, setEditColumn] = useState('');
 
@@ -63,7 +61,6 @@ export default function ColumnTitle(params) {
           />
         </Dialog>
 
-        {/* {isLoading && <LoaderComponent />} */}
         <FiTrash
           onClick={() => dispatch(deleteColumn(requestData))}
           style={{

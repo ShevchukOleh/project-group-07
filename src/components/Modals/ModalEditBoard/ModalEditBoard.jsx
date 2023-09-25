@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-// import Loader from 'components/Loader/Loader';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import {
@@ -97,7 +96,6 @@ export default function ModalEditFormDialog({
               value={editBoard}
               required
               onChange={e => setEditBoard(e.target.value)}
-              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             />
             {error && (
               <div style={{ color: 'red', position: 'absolute', top: 130 }}>

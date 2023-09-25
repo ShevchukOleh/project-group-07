@@ -24,17 +24,12 @@ import Plus from '../../images/icons/plus.svg';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/material';
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { createTodo } from 'store/AsyncThunk/asyncThunkCollection';
-// import { selectToken } from 'store/createSlices/userAuth/userSelectors';
 
 export default function CardEditFormDialog({ hideModal, isShowModal }) {
   const [valueTitle, setValueTitle] = useState('');
   const [labelColor, setLabelColor] = useState('Low');
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDateDeadline] = useState('');
-
-  // const date = Date.now()
 
   console.log(dateDeadline, valueTitle, labelColor, valueDescription);
 
@@ -54,7 +49,6 @@ export default function CardEditFormDialog({ hideModal, isShowModal }) {
 
   const handleCloseBtn = () => {
     hideModal();
-    //   dispatch(createTodo(createCard))
     setLabelColor('Low');
     setValueTitle('');
     setValueDescription('');
@@ -75,11 +69,6 @@ export default function CardEditFormDialog({ hideModal, isShowModal }) {
     setLabelColor(event.target.value);
     console.log(event.target.value);
   };
-
-  // const handleDateDeadline = event => {
-  //     setDeadline(event.target.value)
-  //     console.log(event.target.value)
-  // }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">

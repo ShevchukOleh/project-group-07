@@ -6,14 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'store/AsyncThunk/asyncThunkUsersAuth';
 import { useNavigate } from 'react-router-dom';
 import {
-  // selectError,
   selectIsLoggedIn,
 } from 'store/createSlices/userAuth/userSelectors';
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogined = useSelector(selectIsLoggedIn);
-  // const getError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const handleShowPassword = () => {

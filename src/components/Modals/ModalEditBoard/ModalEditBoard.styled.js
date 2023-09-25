@@ -3,13 +3,9 @@ import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 import RadioGroup from '@mui/material/RadioGroup';
 import DialogActions from '@mui/material/DialogActions';
-// import { Radio, FormControlLabel } from '@mui/material';
 import { Radio } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { RiAddLine } from 'react-icons/ri';
-
-
-// import AddIcon from '@mui/icons-material/Add';
 
 export const ButtonStyled = styled(Button)`
   font-family: 'Poppins';
@@ -182,10 +178,6 @@ export const TextFieldStyled = styled.input`
       return props?.theme?.themeSet?.inputPlaceholder;
     }};
   }
-
-  // &&:focus {
-  // border: 1px solid #161616;
-  // };
 
   &:hover {
     border: 1px solid

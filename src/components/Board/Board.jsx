@@ -3,11 +3,7 @@ import {
   selectBoards,
   selectBackgrounds,
   selectColumns,
-  // selectAllCards,
-  // selectLoading,
-  // selectAllColumnCards,
   filteredAllCards,
-  // selectError,
 } from 'store/createSlices/board/boardSelectors';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -33,7 +29,6 @@ export default function Board() {
 
   const boards = useSelector(selectBoards);
   const columns = useSelector(selectColumns);
-  // const cards = useSelector(selectAllCards);
   const columnCards = useSelector(filteredAllCards);
   const backgrounds = useSelector(selectBackgrounds);
   const { boardName } = useParams();
@@ -46,10 +41,8 @@ export default function Board() {
   const dispatch = useDispatch();
   const [columnList, setColumnList] = useState([]);
 
-  // const isError = useSelector(selectError);
   const openModalCard = columnId => {
     setSelectedColumnId(columnId);
-    // console.log('SelectedColumnId: ', selectedColumnId);
     setIsModalCardOpen(true);
   };
   const closeModalCard = () => {
@@ -80,12 +73,6 @@ export default function Board() {
   const background = backgrounds.find(
     background => background._id === backgroundId
   );
-
-  // const backgroundSrc = background?.background_lg_src || '';
-
-  // const backgroundStyle = backgroundSrc
-  //   ? { backgroundImage: `url(${backgroundSrc})`, backgroundSize: 'cover' }
-  //   : { backgroundColor: theme?.themeSet?.boardBg };
 
   let backgroundSrc = '';
   const screenWidth = window.innerWidth;
@@ -175,7 +162,7 @@ export default function Board() {
 
           <div>
             <ButtonCreate text="Add another column" onClick={openModal} />
-            {/* =========================modal */}
+
             <Dialog open={openAddModal} onClose={openModal}>
               <ModalAddColumn
                 handleSubmit={handleSubmit}
@@ -184,7 +171,7 @@ export default function Board() {
                 setOpenAddModal={setOpenAddModal}
               />
             </Dialog>
-            {/* ===================modal */}
+
           </div>
         </div>
       )}

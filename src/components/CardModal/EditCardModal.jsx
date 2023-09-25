@@ -39,26 +39,9 @@ export default function CardFormDialog({
   const user = useSelector(getCurrentUser);
   const currentTheme = user?.theme || 'Light';
   const theme = getTheme(currentTheme);
-  // const cardArray = useSelector(selectAllColumnCards);
-  // const currentColumn = cardArray[columnId];
   const dispatch = useDispatch();
   const cards = useSelector(selectAllColumnCards);
   const currentCard = cards[columnId].find(({ _id }) => _id === cardId);
-
-
-//   const [valueTitle, setValueTitle] = useState('');
-//   const [labelColor, setLabelColor] = useState('LOW');
-//   const [valueDescription, setValueDescription] = useState('');
-//   const [dateDeadline, setDeadline] = useState(Date.now());
-
-//   useEffect(() => {
-//       setLabelColor(card?.priority || '');
-//       setValueDescription(card?.description || '');
-//       setDeadline(card?.dateDeadline || Date.now());
-//       setValueTitle(card?.title || '');
-  
-//   }, [card, cardId, currentColumn]
-// )
 
   const [valueTitle, setValueTitle] = useState(currentCard?.title || '');
   const [labelColor, setLabelColor] = useState(currentCard?.priority || 'LOW');
@@ -155,7 +138,6 @@ export default function CardFormDialog({
                 >
                   <FormControlLabelStyled
                     value="LOW"
-                    // key={_id}
                     control={
                       <RadioStyled
                         sx={{

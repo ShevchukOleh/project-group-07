@@ -1,18 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { BoardCardStyle } from './BoardCard.styled';
 import { FiTrash, FiEdit2, FiArrowRightCircle, FiBell } from 'react-icons/fi';
-
 import { useDispatch } from 'react-redux';
 import { deleteCard, editCardById } from 'store/AsyncThunk/asyncThunkBoards';
-
-// export default function BoardCard({ boardId, columnId, card }) {
-//   const dispatch = useDispatch();
-
 import { useSelector } from 'react-redux';
-// import {
-//   selectMyCards,
-//   selectedInPriority,
-// } from 'store/createSlices/board/boardSelectors';
 import { getTheme } from 'constants';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
 import CardFormDialog from 'components/CardModal/EditCardModal';
@@ -20,19 +11,9 @@ import PopUpModal from 'components/PopUpModal/PopUpModal';
 import BackDrop from 'components/BackDrop/BackDrop';
 
 export default function BoardCard({ boardId, columnId, card }) {
-  // const selectPriority = useSelector(selectedInPriority);
-  // const selectCards = useSelector(selectMyCards);
-  // const [cards, setCards] = useState([]);
-
-  // useEffect(() => {
-  //   setCards(selectCards);
-  // }, [selectPriority, selectCards]);
-
   return (
     <>
-      {/* {cards.map((item, index) => ( */}
       <BoardCardItem boardId={boardId} columnId={columnId} card={card} />
-      {/* ))} */}
     </>
   );
 }
@@ -94,13 +75,11 @@ function BoardCardItem({ boardId, columnId, card }) {
     setIsModalCardOpen(false);
   };
 
-  //pop up
   const [isShowTransferModal, setIsShowTransferModal] = useState(false);
   const hideModal = () => {
     setIsShowTransferModal(false);
   };
 
-  //bell
   const [isDeadline, setIsDeadline] = useState(false);
   const [colorBell, setColorBell] = useState('');
   const inputDateChek = inputDate;
@@ -186,7 +165,6 @@ function BoardCardItem({ boardId, columnId, card }) {
         />
 
         <FiTrash
-          // style={{ cursor: 'pointer', fill: theme?.themeSet?.cardPriorityIcon }}
           onClick={() =>
             dispatch(deleteCard({ boardId, columnId, cardId: card._id }))
           }

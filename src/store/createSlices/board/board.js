@@ -158,7 +158,7 @@ const boardSlice = createSlice({
               title: action.payload.title,
             };
           }
-          return el; // Повертаємо не змінений об'єкт для інших дошок
+          return el;
         });
         state.error = null;
       })

@@ -7,11 +7,7 @@ import BackDrop from 'components/BackDrop/BackDrop';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-
-// import FormDialog from 'components/ModalBoard/ModalBoard';
-
 import { useDispatch, useSelector } from 'react-redux';
-// import Board from 'components/Board/Board';
 import {
   getAllBoards,
   getAllCards,
@@ -20,7 +16,6 @@ import {
 } from '../../store/AsyncThunk/asyncThunkBoards';
 import {
   selectBoards,
-  // selectColumns,
 } from 'store/createSlices/board/boardSelectors';
 import EmptyBoardsBaner from 'components/Board/EmptyBoardsBaner/EmptyBoard';
 

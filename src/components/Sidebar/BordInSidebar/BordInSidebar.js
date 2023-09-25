@@ -10,7 +10,6 @@ import { EditIcon, ImgBox } from './BordInSidebar.styled';
 import { getTheme } from 'constants';
 import { editBoardById } from 'store/AsyncThunk/asyncThunkBoards';
 import { getCurrentUser } from 'store/createSlices/userAuth/userSelectors';
-// import Layout from 'components/Layout/Layout';
 import { selectBoards } from '../../../store/createSlices/board/boardSelectors';
 import ModalEditFormDialog from 'components/Modals/ModalEditBoard/ModalEditBoard';
 import { useParams } from 'react-router-dom';
@@ -24,11 +23,8 @@ export const BordInSidebar = ({ filteredItems }) => {
   const dispatch = useDispatch();
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // const navigate = useNavigate();
   const { boardName } = useParams();
-  // const location = useLocation();
   const [boardEl, setBoardEl] = useState([]);
-  // const token = useSelector(selectToken);
   const boardsArray = useSelector(selectBoards);
 
   useEffect(() => {
@@ -39,10 +35,6 @@ export const BordInSidebar = ({ filteredItems }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardsArray]);
 
-  // const boardsInSidebar = useSelector(state => state.board.boards);
-  // const collect = useSelector(state => state);
-  // console.log(collect);
-  // console.log(boardsInSidebar);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [editBoard, setIsEditBoard] = useState('');
   const [editBoardIcon, setIsEditBoardIcon] = useState('');
@@ -76,7 +68,6 @@ export const BordInSidebar = ({ filteredItems }) => {
     }
   };
   const handleChangeIcon = _id => {
-    // const clickedId = event.currentTarget.getAttribute('data-icon-id');
     setIsEditBoardIcon(_id);
   };
   const handleDeleteBoard = id => {
@@ -113,7 +104,6 @@ export const BordInSidebar = ({ filteredItems }) => {
                 $currentTheme={currentTheme}
                 $isSelected={selectedItem === index}
               >
-                {/*<ImgIcon src={board.icon.icon_src} alt="icon" width={18} />*/}
                 <ReactSVG src={board.icon.icon_src} alt="icon" width={18} />
               </ImgBox>
 

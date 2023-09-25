@@ -51,8 +51,6 @@ export default function CardFormDialog({
   const [valueDescription, setValueDescription] = useState('');
   const [dateDeadline, setDeadline] = useState('');
 
-  // console.log(dateDeadline);
-
   const createCard = {
     title: valueTitle,
     description: valueDescription,
@@ -67,8 +65,6 @@ export default function CardFormDialog({
     setValueDescription('');
   };
 
-  // console.log({ boardId, columnId, createCard });
-
   const handleCloseBtn = async event => {
     dispatch(requestFunction({ boardId, columnId, cardId, createCard }));
     hideModal();
@@ -79,7 +75,6 @@ export default function CardFormDialog({
 
   const handleChangeTitle = event => {
     setValueTitle(event.target.value);
-    // console.log(event.target.value);
   };
 
   const handleDateDedline = newValue => {
@@ -89,12 +84,10 @@ export default function CardFormDialog({
 
   const handleChangeDescription = event => {
     setValueDescription(event.target.value);
-    // console.log(event.target.value);
   };
 
   const handleChangeLabelColor = event => {
     setLabelColor(event.target.value);
-    // console.log(event.target.value);
   };
 
     const popperSx: SxProps = {
@@ -167,7 +160,6 @@ export default function CardFormDialog({
                 >
                   <FormControlLabelStyled
                     value="LOW"
-                    // key={_id}
                     control={
                       <RadioStyled
                         sx={{
@@ -246,16 +238,13 @@ export default function CardFormDialog({
 
               <CalendarWrap>
                 <Stack
-                //   sx={{  color: '#BEDBB0' }}
                   components={[
                     'DatePicker'
                   ]}
                               >
                   <div sx={{ width: '127px' }}>
-                    <DatePicker
-                        
-                    //   localeText={{ clearButtonLabel: 'Empty' }}
-                                          slotProps={{
+                    <DatePicker    
+                    slotProps={{
                      popper: {
                             sx: popperSx
                         },

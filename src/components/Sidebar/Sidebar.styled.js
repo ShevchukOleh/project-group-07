@@ -138,11 +138,9 @@ const OneBoard = styled.div`
     transition: opacity 0.3s;
 
     &:hover.delete {
-      /* transform: scale(2); */
       color: rgb(209 92 92);
     }
     &:hover.edit {
-      /* transform: scale(2); */
       color: rgb(104 177 39);
     }
   }
@@ -160,10 +158,6 @@ const OneBoard = styled.div`
     transform: scaleX(${props => (props.isSelected ? 1 : 0)});
     transition: transform 0.3s;
   }
-
-  /* &:hover:before {
-    transform: scaleX(1);
-  } */
 `;
 
 const BlockContainer = styled.div`
@@ -288,7 +282,6 @@ export {
   BlockLink,
   OneBoard,
   ContainerAside,
-  
   PlantImg,
   Helpbutton,
 };

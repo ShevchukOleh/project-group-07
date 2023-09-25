@@ -2,26 +2,21 @@ import styled from '@emotion/styled';
 
 export const BoardStyle = styled.section`
   position: relative;
-  width: 375px;
+  max-width: 375px;
 
   @media screen and (min-width: 768px) {
-    width: 768px;
+    padding: 26px 32px;
+    max-width: 1439px;
   }
 
   @media screen and (min-width: 1440px) {
     width: 1180px;
+    padding: 10px 24px;
+    padding-top: 32px;
   }
 
   padding: 14px 20px;
   height: calc(100vh - 68px);
-
-  @media screen and (min-width: 768px) {
-    padding: 26px 32px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    padding: 10px 24px;
-  }
 
   p,
   h2 {
@@ -81,8 +76,6 @@ export const BoardStyle = styled.section`
     @media screen and (min-width: 1440px) {
       width: 354px;
       max-height: calc(100vh - 292px);
-      // max-height: 100%;
-      //       min-height: 300px;
     }
   }
 
@@ -101,20 +94,28 @@ export const BoardStyle = styled.section`
   }
 
   & .containerTitle {
+    position: absolute;
     width: max-content;
-    padding: 0 10px;
+    padding: 2px 10px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 4px;
+    top: 14px;
+    left: 20px;
+    @media screen and (min-width: 768px) {
+      top: 14px;
+      left: 32px;
+    }
     @media screen and (min-width: 1440px) {
-      margin-top: 26px;
-      margin-bottom: 26px;
+      top: 10px;
+      left: 24px;
     }
   }
 
   & .title {
-    color: ${props => {
+    /* color: ${props => {
       return props?.theme?.themeSet?.boardTitle;
-    }};
+    }}; */
+    color: black;
 
     font-size: 14px;
     font-style: normal;
@@ -161,8 +162,16 @@ export const BoardStyle = styled.section`
 
   & .filtersPosition {
     position: absolute;
-    top: 0;
-    right: 24px;
+    top: 14px;
+    right: 20px;
+    @media screen and (min-width: 768px) {
+      top: 14px;
+      right: 32px;
+    }
+    @media screen and (min-width: 1440px) {
+      top: 10px;
+      right: 24px;
+    }
   }
 
   & .emptyBoard {

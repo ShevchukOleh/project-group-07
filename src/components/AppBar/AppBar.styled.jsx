@@ -5,8 +5,7 @@ export const Header = styled.header`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  min-width: 320px;
-  width: 375px;
+  max-width: 375px;
   height: 60px;
   padding: 14px 24px;
   background-color: ${props => {
@@ -14,14 +13,14 @@ export const Header = styled.header`
   }};
 
   @media screen and (min-width: 768px) {
-    width: 768px;
+    max-width: 1439px;
     height: 68px;
     padding: 18px 24px;
   }
 
   @media screen and (min-width: 1440px) {
     display: block;
-    width: 1180px;
+    max-width: 1180px;
   }
 `;
 

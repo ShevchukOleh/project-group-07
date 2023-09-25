@@ -116,6 +116,7 @@ export const DescriptionFieldStyled = styled.textarea`
   width: 100%;
   margin-bottom: 24px;
   padding-left: 18px;
+  padding-top: 14px;
   outline: none;
   ::placeholder {
     color: ${props => {
@@ -192,7 +193,3 @@ export const CalendarWrap = styled.div`
     return props?.theme?.themeSet?.calendar;
   }}
 `;
-
-// export const DateField = styled.input`
-
-// `

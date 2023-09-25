@@ -65,7 +65,7 @@ const Layout = () => {
     <Suspense fallback={null}>
       <Container>
         {!isTablet && <Sidebar setIsShowModal={setIsShowModal} />}
-        <div>
+        <div style={{display: 'flow-root'}}>
           <AppBar />
           {boards.length > 0 ? <Outlet /> : <EmptyBoardsBaner />}
         </div>

@@ -14,6 +14,7 @@ const ContainerAside = styled.aside`
 
   @media screen and (min-width: 1440px) {
     float: left;
+    width: 260px;
   }
 `;
 
